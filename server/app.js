@@ -1,0 +1,58 @@
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+const es6Renderer = require("express-es6-template-engine");
+const compression = require("compression");
+const helmet = require("helmet");
+const cors = require("cors");
+const session = require('express-session');
+const Filestore = require('session-file-store')(session);
+
+
+require('dotenv').config();
+
+// ROUTERS
+const indexRouter = require("./routes/index");
+
+const corsOptions = {
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Credentials": true,
+  "Access-Control-Allow-Headers":
+  "Origin, X-Requested-With, Content-Type, Accept"
+};
+
+const app = express();
+
+app.engine("html", es6Renderer);
+app.set("views", "./views");
+app.set("view engine", "html");
+
+app.use(compression());
+app.use(helmet());
+app.use(cors(corsOptions));
+
+app.use(logger("dev"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, "public/")));
+
+
+app.use(session({
+    store: new Filestore(),
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    is_logged_in: false
+}));
+
+// User Routers
+app.use("/", indexRouter);
+
+
+
+module.exports = app;
