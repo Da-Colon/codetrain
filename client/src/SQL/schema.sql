@@ -42,7 +42,8 @@ CREATE TABLE posts_resources (
   short_description VARCHAR(400),
   full_description TEXT,
   resource_url VARCHAR TEXT,
-  date_posted DATE DEFAULT NOW()
+  date_posted DATE DEFAULT NOW(),
+  users_id INTEGER REFERENCES users(id)
 );
 
 CREATE TABLE posts_jobs (
