@@ -12,22 +12,22 @@ INSERT INTO user_types (
 
 CREATE TABLE companies (
   id SERIAL PRIMARY KEY,
-  email VARCHAR(50) NOT NULL,
+  email VARCHAR(50) UNIQUE NOT NULL,
   name VARCHAR(100),
-  company_url VARCHAR(125),
-  company_logo_url VARCHAR(125),
+  company_url TEXT,
+  company_logo_url TEXT,
   description TEXT
 );
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
-  email VARCHAR(25) NOT NULL,
+  email VARCHAR(50) NOT NULL UNIQUE,
   password VARCHAR(12) NOT NULL,
   first_name VARCHAR(25) NOT NULL,
   last_name VARCHAR(25) NOT NULL,
   skills TEXT[],
-  github_url VARCHAR(125) NOT NULL,
-  linkedin_url VARCHAR(125) NOT NULL,
+  github_url TEXT,
+  linkedin_url TEXT,
   auth BOOLEAN,
   user_types_id INTEGER REFERENCES user_types(id),
   bootcamp_name VARCHAR(100),
@@ -40,8 +40,8 @@ CREATE TABLE posts_resources (
   down_votes INTEGER,
   title VARCHAR(100),
   short_description VARCHAR(400),
-  full_description text,
-  resource_url VARCHAR(125),
+  full_description TEXT,
+  resource_url VARCHAR TEXT,
   date_posted DATE DEFAULT NOW()
 );
 
