@@ -36,12 +36,12 @@ CREATE TABLE users (
 
 CREATE TABLE posts_resources (
   id SERIAL PRIMARY KEY,
-  up_votes INTEGER,
-  down_votes INTEGER,
+  up_votes INTEGER DEFAULT (0),
+  down_votes INTEGER DEFAULT (0),
   title VARCHAR(100),
   short_description VARCHAR(400),
   full_description TEXT,
-  resource_url VARCHAR TEXT,
+  resource_url TEXT,
   date_posted DATE DEFAULT NOW(),
   users_id INTEGER REFERENCES users(id)
 );
@@ -61,8 +61,8 @@ CREATE TABLE posts_jobs (
 CREATE TABLE job_applications (
   id SERIAL PRIMARY KEY,
   date_applied DATE DEFAULT NOW(),
-  rejected BOOLEAN,
-  accepted BOOLEAN,
+  rejected BOOLEAN DEFAULT FALSE,
+  accepted BOOLEAN DEFAULT FALSE,
   users_id INTEGER REFERENCES users(id),
   posts_jobs_id INTEGER REFERENCES posts_jobs(id)
 );
