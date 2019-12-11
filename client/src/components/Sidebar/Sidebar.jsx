@@ -8,6 +8,7 @@ const SideBar = () => {
       <NavLink to="/profile">Profile</NavLink>
       <NavLink to="/jobs">Jobs</NavLink>
       <NavLink to="/resources">Resources</NavLink>
+      <NavLink to="/applications">Applications</NavLink>
     </nav>
   );
 }
