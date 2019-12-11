@@ -2,18 +2,18 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-const es6Renderer = require("express-es6-template-engine");
+// const es6Renderer = require("express-es6-template-engine");
 const compression = require("compression");
 const helmet = require("helmet");
 const cors = require("cors");
-const session = require('express-session');
-const Filestore = require('session-file-store')(session);
+const session = require("express-session");
+const Filestore = require("session-file-store")(session);
 
-
-require('dotenv').config();
+require("dotenv").config();
 
 // ROUTERS
 const indexRouter = require("./routes/index");
+const jobApplicationsRouter = require("./routes/jobApplications");
 
 const corsOptions = {
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
@@ -22,14 +22,14 @@ const corsOptions = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Credentials": true,
   "Access-Control-Allow-Headers":
-  "Origin, X-Requested-With, Content-Type, Accept"
+    "Origin, X-Requested-With, Content-Type, Accept"
 };
 
 const app = express();
 
-app.engine("html", es6Renderer);
-app.set("views", "./views");
-app.set("view engine", "html");
+// app.engine("html", es6Renderer);
+// app.set("views", "./views");
+// app.set("view engine", "html");
 
 app.use(compression());
 app.use(helmet());
@@ -41,18 +41,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public/")));
 
-
-app.use(session({
-    store: new Filestore(),
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    is_logged_in: false
-}));
+// app.use(
+//   session({
+//     store: new Filestore(),
+//     secret: process.env.SESSION_SECRET,
+//     resave: false,
+//     saveUninitialized: true,
+//     is_logged_in: false
+//   })
+// );
 
 // User Routers
 app.use("/", indexRouter);
-
-
+app.use("/job-applications", jobApplicationsRouter);
 
 module.exports = app;
