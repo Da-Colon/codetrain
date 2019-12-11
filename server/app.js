@@ -7,7 +7,7 @@ const helmet = require("helmet");
 const cors = require("cors");
 const session = require('express-session');
 const Filestore = require('session-file-store')(session);
-
+const passport = require('passport')
 
 require('dotenv').config();
 
@@ -30,6 +30,8 @@ const app = express();
 app.use(compression());
 app.use(helmet());
 app.use(cors(corsOptions));
+
+require('./auth/auth');
 
 app.use(logger("dev"));
 app.use(express.json());
