@@ -41,7 +41,7 @@ class JobApplication {
   }
 
   static async updateStatus(id, status, statusChange) {
-    const query = `update job_applications set '${status}' = ${statusChange} where id = ${id}`;
+    const query = `update job_applications set ${status} = ${statusChange} where id = ${id}`;
     try {
       const response = await db.result(query);
       return response;
