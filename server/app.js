@@ -14,6 +14,7 @@ require('dotenv').config();
 // ROUTERS
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
+const jobApplicationsRouter = require("./routes/jobApplications");
 
 const corsOptions = {
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
@@ -22,7 +23,7 @@ const corsOptions = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Credentials": true,
   "Access-Control-Allow-Headers":
-  "Origin, X-Requested-With, Content-Type, Accept"
+    "Origin, X-Requested-With, Content-Type, Accept"
 };
 
 const app = express();
@@ -39,19 +40,19 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public/")));
 
-
-app.use(session({
-    store: new Filestore(),
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    is_logged_in: false
-}));
+// app.use(
+//   session({
+//     store: new Filestore(),
+//     secret: process.env.SESSION_SECRET,
+//     resave: false,
+//     saveUninitialized: true,
+//     is_logged_in: false
+//   })
+// );
 
 // User Routers
 app.use("/", indexRouter);
 app.use("/", usersRouter);
-
-
+app.use("/job-applications", jobApplicationsRouter);
 
 module.exports = app;
