@@ -1,15 +1,31 @@
-import React from 'react';
+import React from "react";
+import HackerNews from "./Components/HackerNews";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import "./App.css";
 
-import './App.css';
-import SideBar from '../src/Components/SideBar'
+// This is a testing component
+const MainPage = () => (
+    <>
+        <h1>You are on the main page</h1>
+        <Link to="/dashboard" label="View Dashboard">
+          <p>Dashboard</p>
+        </Link>
+    </>
+);
 
-function App() {
-  return (
-    
-    <div className="App">
-      <SideBar/>
-    </div>
-  );
-}
+const App = () => {
+    return (
+        <Router>
+            <Switch>
+                <Route path="/" exact>
+                    <MainPage />
+                </Route>
+                <Route path="/dashboard">
+                    <HackerNews />
+                </Route>
+            </Switch>
+        </Router>
+    );
+};
 
 export default App;
