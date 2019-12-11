@@ -64,3 +64,5 @@ router.delete("/delete/:id", async (req, res) => {
       .status(409);
   }
 });
+
+module.exports = router;
