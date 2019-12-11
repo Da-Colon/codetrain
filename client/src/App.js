@@ -1,6 +1,8 @@
 import React from 'react';
 import NavBar from './components/NavBar/NavBar';
 import Sidebar from './components/Sidebar/Sidebar';
+import FrozenDept from './components/FrozenDept/FrozenDept';
+
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 const Login = () => <h1>Login</h1>
@@ -22,6 +24,7 @@ function App() {
       <Route exact path="/profile" component={Profile} />
       <Route exact path="/jobs" component={Jobs} />
       <Route exact path="/resources" component={Resources} />
+      <Route exact path="/frozen-dept" component={FrozenDept} />
     </Router>
   );
 }
