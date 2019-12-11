@@ -1,6 +1,6 @@
 const db = require("./conn.js");
 
-class JobPost {
+class JobPosts {
   constructor(
     id,
     title,
@@ -21,38 +21,29 @@ class JobPost {
     this.users_id = users_id;
   }
 
-  static async getByJobId(job_id) {
-    const query = `select * from job_applications where posts_jobs_id= ${job_id}`;
-    try {
-      const response = await db.any(query);
-      return response;
-    } catch (err) {
-      return err.message;
-    }
-  }
-
-  static async getByJobUserId(job_id, user_id) {
-    const query = `select * from job_applications where posts_jobs_id=${job_id} and users_id = ${user_id}`;
-    try {
-      const response = await db.any(query);
-      return response;
-    } catch (err) {
-      return err.message;
-    }
-  }
-
-  static async addApplication(user_id, job_id) {
-    const query = `insert into job_applications (rejected, accepted, users_id, posts_jobs_id) values (FALSE, FALSE, ${user_id}, ${job_id})`;
-    try {
-      const response = await db.result(query);
-      return response;
-    } catch (err) {
-      return err.message;
-    }
-  }
-
-  static async updateStatus(id, status, statusChange) {
-    const query = `update job_applications set ${status} = ${statusChange} where id = ${id}`;
+  static async addJob(
+    title,
+    content,
+    experience,
+    contact_email,
+    contact_phone,
+    companies_id,
+    users_id
+  ) {
+    const query = `insert into posts_jobs (title,
+      content,
+      experience,
+      contact_email,
+      contact_phone,
+      companies_id,
+      users_id) values (
+        '${title}',
+        '${content}',
+        '${experience}',
+        '${contact_email}',
+        '${contact_phone}',
+       ${companies_id},
+        ${users_id})`;
     try {
       const response = await db.result(query);
       return response;
@@ -61,8 +52,47 @@ class JobPost {
     }
   }
 
-  static async removeApplication(id) {
-    const query = `delete from job_applications where id = ${id}`;
+  static async getAllJobs() {
+    const query = `select * from posts_jobs`;
+    try {
+      const response = await db.any(query);
+      return response;
+    } catch (err) {
+      return err.message;
+    }
+  }
+  static async getById(id) {
+    const query = `select * from posts_jobs where id= ${id}`;
+    try {
+      const response = await db.any(query);
+      return response;
+    } catch (err) {
+      return err.message;
+    }
+  }
+
+  static async getByCompanyId(companies_id) {
+    const query = `select * from posts_jobs where companies_id=${companies_id}`;
+    try {
+      const response = await db.any(query);
+      return response;
+    } catch (err) {
+      return err.message;
+    }
+  }
+
+  static async updateJob(id, column, value) {
+    const query = `update posts_jobs set ${column} = '${value}' where id = ${id}`;
+    try {
+      const response = await db.result(query);
+      return response;
+    } catch (err) {
+      return err.message;
+    }
+  }
+
+  static async removeJob(id) {
+    const query = `delete from posts_jobs where id = ${id}`;
     try {
       const response = await db.result(query);
       return response;
@@ -72,4 +102,4 @@ class JobPost {
   }
 }
 
-module.exports = JobPost;
+module.exports = JobPosts;
