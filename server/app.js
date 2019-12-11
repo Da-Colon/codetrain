@@ -2,17 +2,18 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-// const es6Renderer = require("express-es6-template-engine");
 const compression = require("compression");
 const helmet = require("helmet");
 const cors = require("cors");
-const session = require("express-session");
-const Filestore = require("session-file-store")(session);
+const session = require('express-session');
+const Filestore = require('session-file-store')(session);
+const passport = require('passport')
 
-require("dotenv").config();
+require('dotenv').config();
 
 // ROUTERS
 const indexRouter = require("./routes/index");
+const usersRouter = require("./routes/users");
 const jobApplicationsRouter = require("./routes/jobApplications");
 
 const corsOptions = {
@@ -27,13 +28,11 @@ const corsOptions = {
 
 const app = express();
 
-// app.engine("html", es6Renderer);
-// app.set("views", "./views");
-// app.set("view engine", "html");
-
 app.use(compression());
 app.use(helmet());
 app.use(cors(corsOptions));
+
+require('./auth/auth');
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -53,6 +52,7 @@ app.use(express.static(path.join(__dirname, "public/")));
 
 // User Routers
 app.use("/", indexRouter);
+app.use("/", usersRouter);
 app.use("/job-applications", jobApplicationsRouter);
 
 module.exports = app;
