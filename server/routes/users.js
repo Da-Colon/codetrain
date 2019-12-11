@@ -23,11 +23,13 @@ router.get('/login', function(req, res, next) {
 });
 
 
-router.get('/signup', function(req, res, next) {
-
-  res.send('respond with a resource');
-
-});
+router.post(
+  "/signup",
+  passport.authenticate('signup', { session: false }),
+  async (req, res, next) => {
+    res.status(200).json({ message: "signup successful" });
+  }
+);
 
 router.get('/logout', function(req, res, next) {
 

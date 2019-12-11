@@ -22,13 +22,13 @@ CREATE TABLE companies (
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   email VARCHAR(50) NOT NULL UNIQUE,
-  password VARCHAR(12) NOT NULL,
+  password TEXT NOT NULL,
   first_name VARCHAR(25) NOT NULL,
   last_name VARCHAR(25) NOT NULL,
   skills TEXT[],
   github_url TEXT,
   linkedin_url TEXT,
-  auth BOOLEAN,
+  auth BOOLEAN DEFAULT (FALSE),
   user_types_id INTEGER REFERENCES user_types(id),
   bootcamp_name VARCHAR(100),
   companies_id INTEGER REFERENCES companies(id)
