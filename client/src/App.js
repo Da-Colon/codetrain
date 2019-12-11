@@ -1,5 +1,6 @@
 import React from "react";
 import HackerNews from "./Components/HackerNews";
+import TechNews from "./Components/TechNews"
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import "./App.css";
 
@@ -22,6 +23,7 @@ const App = () => {
                 </Route>
                 <Route path="/dashboard">
                     <HackerNews />
+                    <TechNews />
                 </Route>
             </Switch>
         </Router>

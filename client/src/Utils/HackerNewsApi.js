@@ -11,3 +11,4 @@ export const getAnItem = async id => {
     const response = await Axios.get(`https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`);
     return response;
 };
+

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Post from "./Post"
-import { getTopStoriesIds } from "../../Utils";
+import { getTopStoriesIds } from "../../Utils/HackerNewsApi";
 
 
 class Index extends Component {
@@ -20,6 +20,7 @@ class Index extends Component {
 
         return (
             <div>
+                <h1>HackerNews Data</h1>
                 <ul>
                     {topIds.map(id => {
                         return (

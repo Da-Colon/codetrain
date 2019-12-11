@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getAnItem } from "../../Utils";
+import { getAnItem } from "../../Utils/HackerNewsApi";
 import Moment from "react-moment";
 
 class Post extends Component {
