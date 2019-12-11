@@ -2,7 +2,6 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-const es6Renderer = require("express-es6-template-engine");
 const compression = require("compression");
 const helmet = require("helmet");
 const cors = require("cors");
@@ -14,6 +13,7 @@ require('dotenv').config();
 
 // ROUTERS
 const indexRouter = require("./routes/index");
+const usersRouter = require("./routes/users");
 
 const corsOptions = {
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
@@ -26,10 +26,6 @@ const corsOptions = {
 };
 
 const app = express();
-
-app.engine("html", es6Renderer);
-app.set("views", "./views");
-app.set("view engine", "html");
 
 app.use(compression());
 app.use(helmet());
@@ -52,6 +48,7 @@ app.use(session({
 
 // User Routers
 app.use("/", indexRouter);
+app.use("/", usersRouter);
 
 
 
