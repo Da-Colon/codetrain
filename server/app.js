@@ -5,16 +5,17 @@ const logger = require("morgan");
 const compression = require("compression");
 const helmet = require("helmet");
 const cors = require("cors");
-const session = require('express-session');
-const Filestore = require('session-file-store')(session);
-const passport = require('passport')
+const session = require("express-session");
+const Filestore = require("session-file-store")(session);
+const passport = require("passport");
 
-require('dotenv').config();
+require("dotenv").config();
 
 // ROUTERS
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const jobApplicationsRouter = require("./routes/jobApplications");
+const postsJobsRouter = require("./routes/postsJobs");
 
 const corsOptions = {
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
@@ -32,7 +33,7 @@ app.use(compression());
 app.use(helmet());
 app.use(cors(corsOptions));
 
-require('./auth/auth');
+require("./auth/auth");
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -54,5 +55,6 @@ app.use(express.static(path.join(__dirname, "public/")));
 app.use("/", indexRouter);
 app.use("/", usersRouter);
 app.use("/job-applications", jobApplicationsRouter);
+app.use("/posts/jobs", postsJobsRouter);
 
 module.exports = app;
