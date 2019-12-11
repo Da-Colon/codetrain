@@ -1,49 +1,49 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import BootcampApplications from './components/BootcampApplications/BootcampApplications';
+import CompanyApplications from './components/CompanyApplications/CompanyApplications';
+import BootcampProfile from './components/BootcampProfile/BootcampProfile';
+import CompanyProfile from './components/CompanyProfile/CompanyProfile';
+import Login from './components/Login/Login';
+import Signup from './components/Signup/Signup';
 import NavBar from './components/NavBar/NavBar';
+import BootcampJobs from './components/BootcampJobs/BootcampJobs';
+import CompanyJobs from './components/CompanyJobs/CompanyJobs';
+import Resources from './components/Resources/Resources';
 import Sidebar from './components/Sidebar/Sidebar';
 import FrozenDept from './components/FrozenDept/FrozenDept';
-import HackerNews from "./Components/HackerNews";
-import TechNews from "./Components/TechNews"
+import BootcampDashboard from './components/BootcampDashboard/BootcampDashboard';
+import CompanyDashboard from './components/CompanyDashboard/CompanyDashboard';
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+
 import "./App.css";
 
-const Login = () => <h1>Login</h1>
-const Signup = () => <h1>Sign up</h1>
-
-const Dashboard = () => <h1>This is the Dashboard</h1>
-const Profile = () => <h1>This is the Profile</h1>
-const Jobs = () => <h1>This is the Jobs</h1>
-const Resources = () => <h1>This is the Resources</h1>
-
-// This is a testing component
-const MainPage = () => (
-  <>
-      <h1>You are on the main page</h1>
-      <Link to="/dashboard" label="View Dashboard">
-        <p>Dashboard</p>
-      </Link>
-  </>
-);
+// const userType = 'bootcamper'
+const userType = 'company'
 
 function App() {
   return (
     <Router>
-      <Switch>
-        <Route path="/" component={NavBar} />
-        <Route path="/" component={Sidebar} />
-        <Route path="/" exact component={MainPage} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/signup" component={Signup} />
-        <Route exact path="/dashboard" component={Dashboard} />
-        <Route path="/bootcamp-dashboard">
-            <HackerNews />
-            <TechNews />
-        </Route>
-        <Route exact path="/profile" component={Profile} />
-        <Route exact path="/jobs" component={Jobs} />
-        <Route exact path="/resources" component={Resources} />
-        <Route exact path="/frozen-dept" component={FrozenDept} />
-      </Switch>
+    {/* Shared Routes  */}
+      <Route path="/" component={NavBar} />
+      <Route path="/" component={Sidebar} />
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/signup" component={Signup} />
+      <Route exact path="/applications" render={() => {
+        return userType === 'bootcamper' ? <BootcampApplications /> : <CompanyApplications />
+      }} />
+      <Route exact path="/dashboard" render={() => {
+        return userType === 'bootcamper' ? <BootcampDashboard /> : <CompanyDashboard />
+      }} />
+      <Route exact path="/jobs" render={() => {
+        return userType === 'bootcamper' ? <BootcampJobs /> : <CompanyJobs />
+      }} />
+      <Route exact path="/profile" render={() => {
+        return userType === 'bootcamper' ? <BootcampProfile /> : <CompanyProfile />
+      }} />
+      {/* Bootcamper Routes */}
+      <Route exact path="/resources" component={Resources} />
+      {/* Reference Routes */}
+      <Route exact path="/frozen-dept" component={FrozenDept} />
     </Router>
   );
 }
