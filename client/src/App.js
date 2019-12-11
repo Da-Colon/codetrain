@@ -1,10 +1,10 @@
 import React from 'react';
-import NavBar from './components/NavBar/NavBar';
-import Sidebar from './components/Sidebar/Sidebar';
-import FrozenDept from './components/FrozenDept/FrozenDept';
+import NavBar from './Components/NavBar/NavBar';
+import Sidebar from './Components/Sidebar/Sidebar';
+import FrozenDept from './Components/FrozenDept/FrozenDept';
 import HackerNews from "./Components/HackerNews";
 import TechNews from "./Components/TechNews"
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import "./App.css";
 
 const Login = () => <h1>Login</h1>
@@ -28,7 +28,6 @@ const MainPage = () => (
 function App() {
   return (
     <Router>
-      <Switch>
         <Route path="/" component={NavBar} />
         <Route path="/" component={Sidebar} />
         <Route path="/" exact component={MainPage} />
@@ -43,7 +42,6 @@ function App() {
         <Route exact path="/jobs" component={Jobs} />
         <Route exact path="/resources" component={Resources} />
         <Route exact path="/frozen-dept" component={FrozenDept} />
-      </Switch>
     </Router>
   );
 }
