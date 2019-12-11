@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import BootcampApplications from './components/BootcampApplications/BootcampApplications';
 import CompanyApplications from './components/CompanyApplications/CompanyApplications';
 import BootcampProfile from './components/BootcampProfile/BootcampProfile';
@@ -19,7 +19,6 @@ import "./App.css";
 
 // const userType = 'bootcamper'
 const userType = 'company'
-
 function App() {
   return (
     <Router>
