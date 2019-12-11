@@ -6,7 +6,9 @@ const pgp = require("pg-promise")({
 
 const options = {
   host: "localhost",
-  database: "#" //add database name
+  database: "codetrain", 
+  user: process.env.USER,
+  password: process.env.PASSWORD,
 };
 
 const db = pgp(options);
