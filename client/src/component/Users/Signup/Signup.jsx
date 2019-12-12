@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Axios from "axios";
 import { Link } from "react-router-dom";
-import { Form, Label, Input, Button, Title } from "./styles";
+import { Form, Label, Input, Button, Title } from "../../Styles/FormStyles";
 
 
 const SignupForm = () => {

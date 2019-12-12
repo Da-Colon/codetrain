@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import {theStore} from "../../index";
+import {theStore} from "../../../index";
 import Axios from "axios";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Form, Label, Input, Button, Title } from "./styles";
+import { Form, Label, Input, Button, Title } from "../../Styles/FormStyles";
+
 
 
 const LoginForm = props => {
