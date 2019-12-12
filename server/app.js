@@ -17,6 +17,7 @@ const usersRouter = require("./routes/users");
 const resourceRouter = require("./routes/resourcePosts");
 const jobApplicationsRouter = require("./routes/jobApplications");
 const postsJobsRouter = require("./routes/postsJobs");
+const companiesRouter = require("./routes/companies");
 
 const corsOptions = {
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
@@ -58,5 +59,6 @@ app.use("/", usersRouter);
 app.use("/resources", resourceRouter);
 app.use("/job-applications", jobApplicationsRouter);
 app.use("/posts/jobs", postsJobsRouter);
+app.use("/companies", companiesRouter);
 
 module.exports = app;

@@ -5,7 +5,7 @@ const passport = require('passport')
 
 
 /* GET users listing. */
-router.get('/login', function(req, res, next) {
+router.post('/login', function(req, res, next) {
   passport.authenticate('login', async (err, user) => {
     try{
       if (err || !user) {
