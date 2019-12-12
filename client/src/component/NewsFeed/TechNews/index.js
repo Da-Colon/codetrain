@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getTopTechStories } from "../../Utils/NewsApi";
+import { getTopTechStories } from "../../../Utils/NewsApi";
 import Story from "./Story";
 
 class Index extends Component {

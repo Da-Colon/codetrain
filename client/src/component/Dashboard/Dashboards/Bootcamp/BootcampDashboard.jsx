@@ -1,11 +1,13 @@
 import React, { Component, Fragment } from 'react';
-import HackerNews from '../../../HackerNews';
-import TechNews from '../../../TechNews';
+import HackerNews from '../../../NewsFeed/HackerNews/'
+import TechNews from '../../../NewsFeed/TechNews/';
+import BootcampResourcePost from './BootcampResourcePost';
 
 class BootcampDashboard extends Component {
   render() {
     return (
       <Fragment>
+        <BootcampResourcePost />
         <HackerNews />
         <TechNews />
       </Fragment>
