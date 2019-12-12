@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import JobBoard from '../JobBoard/ JobBoard';
+import JobBoard from '../../../../JobBoard/ JobBoard';
 
 class BootcampJobs extends Component {
   state = {

@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import HackerNews from '../HackerNews';
-import TechNews from '../TechNews';
+import HackerNews from '../../../HackerNews';
+import TechNews from '../../../TechNews';
 
 class BootcampDashboard extends Component {
   render() {
