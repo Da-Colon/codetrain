@@ -136,7 +136,7 @@ const SignupForm = () => {
       {addInput()}
 
       <Button type="submit">Create Your Account</Button>
-      <Link to="/" style={{ fontSize: "150%" }}>
+      <Link to="/login" style={{ fontSize: "150%" }}>
         Already have an account, Sign in!
       </Link>
     </Form>
