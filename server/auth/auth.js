@@ -31,10 +31,10 @@ passport.use(
         if (!user) {
           return done(null, false, { message: "User not found" });
         }
-        // const isValid = user.checkPassword(password);
-        // if (!isValid) {
-        //   return done(null, false, { message: 'Wrong Password' });
-        // }
+        const isValid = user.checkPassword(password);
+        if (!isValid) {
+          return done(null, false, { message: 'Wrong Password' });
+        }
         return done(null, response, { message: "Logged in Successfully" });
       } catch (error) {
         return done(error);

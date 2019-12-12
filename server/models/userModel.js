@@ -13,10 +13,10 @@ class User {
     this.bootcamp_name = bootcamp_name;
   }
 
-   // BCrypt password compare
-//   checkPassword(hashedPassword) {
-//     return bcrypt.compareSync(this.password, hashedPassword);
-// }
+  //  BCrypt password compare
+  async checkPassword(hashedPassword) {
+    return await bcrypt.compareSync(this.password, hashedPassword);
+}
 
   async login () {
     return await db.one(`SELECT * FROM users WHERE email = $1`, [this.email]);
