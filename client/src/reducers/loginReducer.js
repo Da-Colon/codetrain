@@ -1,5 +1,14 @@
 const initialState = {
-  user: "none"
+    id: null,
+    email: null,
+    first_name: null,
+    last_name: null,
+    skills: null,
+    linkedin_url: null,
+    auth: null,
+    user_types_id: null,
+    bootcamp_name: null,
+    companies_id: null
 };
 
 const userReducer = (state = initialState, action) => {
