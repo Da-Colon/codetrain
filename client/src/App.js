@@ -15,8 +15,8 @@ import "./App.css";
 const App = () => {
   return (
     <>
-      <NavBar />
     <Router>
+      <NavBar />
       <Route path="/" component={Home} exact />
       <Route path="/signup" component={Signup} exact />
       <Route path="/login" component={Login} exact />
