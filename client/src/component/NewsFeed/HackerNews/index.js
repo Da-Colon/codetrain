@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Post from "./Post";
-import { getTopStoriesIds } from "../../Utils/HackerNewsApi";
+import { getTopStoriesIds } from "../../../Utils/HackerNewsApi";
 
 class Index extends Component {
   state = {
