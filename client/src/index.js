@@ -13,7 +13,7 @@ import rootReducer from './reducers/rootReducer';
 
 const middleWare = [reduxPromise, reduxThunk];
 
-const theStore = applyMiddleware(...middleWare)(createStore)(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+export const theStore = applyMiddleware(...middleWare)(createStore)(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 ReactDOM.render(
   <Provider store={theStore}>
