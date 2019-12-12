@@ -17,8 +17,9 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 import "./App.css";
 
-// const userType = 'bootcamper'
-const userType = 'company'
+const userType = 'bootcamper'
+// const userType = 'company'
+
 function App() {
   return (
     <Router>
