@@ -1,6 +1,9 @@
+// Will need a /profile link to company page from this page once we have profile components built. Company profile page currenlty not built.
 import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import Moment from "react-moment";
 import Axios from "axios";
 import {
   Card,
@@ -56,26 +59,45 @@ const JobCard = ({ data }) => {
     fetchCompanyData();
   }, []);
 
-
   const postApplication = async () => {
     const endpoint = "http://localhost:3000/job-applications/add-application/";
     const payload = {
       users_id: user.id,
       posts_jobs_id: data.id
-    }
+    };
     const res = await Axios.post(endpoint, payload);
-    res.status === 200 ? alert('Your application was received.') : alert('Sorry. There was an error.')
+    res.status === 200
+      ? alert("Your application was received.")
+      : alert("Sorry. There was an error.");
   };
-
+  // title, content, experience, date_posted, contact_email, contact_phone, company_name, company_profile, company_url
   return (
-    <Card>
+    <Card style={{ maxWidth: "400px", margin: "20px" }}>
       <CardHeader>
         <CardHeaderTitle>{data.title}</CardHeaderTitle>
       </CardHeader>
       <CardContent>
-        <Content>Job Description: {data.content}</Content>
-        <Content>Company Name: {companyData.name}</Content>
-        <Content>{companyData.name}</Content>
+        <Content>
+          <strong>Date Posted:</strong>
+          <Moment format="YYYY-MM-DD">{data.date_posted}</Moment>
+        </Content>
+        <Content>
+          <strong>Job Description: </strong>
+          {data.content}
+        </Content>
+        <Content>
+          <strong>Experience:</strong> {data.experience}
+        </Content>
+        <Content>
+          <strong>Company Name:</strong>
+          <Link exact to="/profile">
+            {companyData.name}
+          </Link>
+        </Content>
+        <Content>
+          <strong>Contact Email:</strong>
+          {data.contact_email}
+        </Content>
       </CardContent>
       <CardFooter>
         <CardFooterItem href="#">
@@ -89,6 +111,7 @@ const JobCard = ({ data }) => {
 const JobCardWrapper = styled.div`
   display: flex;
   flex-flow: row wrap;
+  justify-content: flex-start;
 `;
 
 export default JobBoard;
