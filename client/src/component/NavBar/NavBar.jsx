@@ -37,7 +37,7 @@ const NavBar = () => {
         <Ul>
           <Button to="/dashboard">Dashboard</Button>
           <Button>Profile</Button>
-          <Button>Jobs</Button>
+          <Link to="/jobs" exact>Jobs</Link>
           <Button>Applicants</Button>
           <Button onClick={handleLogout}>Logout</Button>
         </Ul>

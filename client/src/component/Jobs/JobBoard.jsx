@@ -90,7 +90,7 @@ const JobCard = ({ data }) => {
         </Content>
         <Content>
           <strong>Company Name:</strong>
-          <Link exact to="/profile">
+          <Link exact to={`/profile/${companyData.id}`}>
             {companyData.name}
           </Link>
         </Content>
