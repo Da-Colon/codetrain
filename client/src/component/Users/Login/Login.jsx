@@ -28,12 +28,12 @@ const LoginForm = props => {
       console.log(response)
       const data = await response.data.user;
       await updateUser(data);
-      // history.push("/dashboard");
+      history.push("/dashboard");
     } catch {
       window.alert(
         "Sorry, There Was An Error While Logging In, Please Try Again"
       );
-      // window.location.reload();
+      window.location.reload();
     }
   };
 
