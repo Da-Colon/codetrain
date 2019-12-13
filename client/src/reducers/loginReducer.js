@@ -1,16 +1,16 @@
-const developmentType = null
-const developmentAuth = null
+const developmentType = 3;
+const developmentAuth = true;
 const initialState = {
-    id: null,
-    email: null,
-    first_name: null,
-    last_name: null,
-    skills: null,
-    linkedin_url: null,
-    auth: developmentAuth,
-    user_types_id: developmentType,
-    bootcamp_name: null,
-    companies_id: null
+  id: 1,
+  email: null,
+  first_name: null,
+  last_name: null,
+  skills: null,
+  linkedin_url: null,
+  auth: developmentAuth,
+  user_types_id: developmentType,
+  bootcamp_name: null,
+  companies_id: 1
 };
 
 const userReducer = (state = initialState, action) => {
