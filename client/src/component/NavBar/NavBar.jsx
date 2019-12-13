@@ -35,7 +35,7 @@ const NavBar = () => {
       ) : user.user_types_id === 2 && user.auth === true ? (
         //  BootCamp User NavBar
         <Ul>
-          <Button to="/dashboard">Dashboard</Button>
+          <Link to="/dashboard">Dashboard</Link>
           <Button>Profile</Button>
           <Button>Jobs</Button>
           <Button>Applicants</Button>
@@ -44,13 +44,13 @@ const NavBar = () => {
       ) : user.user_types_id === 3 && user.auth === true ? (
         // Company User NavBar
         <Ul>
-          <Button to="/dashboard">Dashboard</Button>
+          <Link to="/dashboard">Dashboard</Link>
           <Button>Company</Button>
           <Button>Jobs</Button>
           <Button>Applicants</Button>
           <Button onClick={handleLogout}>Logout</Button>
         </Ul>
-      ) : user.user_types_id === 2 || (3 && user.auth === false) ? (
+      ) : (user.user_types_id === 2 || user.user_types_id === 3) &&  user.auth === false ? (
         // Not Auth User
         <Ul>
           <Button>Profile</Button>

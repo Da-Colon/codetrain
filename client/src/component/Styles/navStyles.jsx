@@ -22,8 +22,12 @@ export const Link = styled(NavLink)`
   font-weight: 500;
   background-color: lightblue;
   font-size: 150%;
+  width: fit-content;
   margin-right: 16px;
   border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 2px 2px 3px 3px rgba(0, 0, 0, 0.2),
+    2px 4px 3px 3px rgba(0, 0, 0, 0.2);
 `;
 
 export const Button = styled.button`
@@ -36,4 +40,5 @@ export const Button = styled.button`
   border-radius: 8px;
   box-shadow: 2px 2px 3px 3px rgba(0, 0, 0, 0.2),
     2px 4px 3px 3px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
 `;
