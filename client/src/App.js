@@ -7,35 +7,26 @@ import Signup from "./component/Users/Signup/Signup";
 import Login from "./component/Users/Login/Login";
 import Home from "./component/Home";
 import Dashboard from "./component/Dashboard";
-import Jobs from './component/Jobs/Jobs'
+import Jobs from "./component/Jobs/Jobs";
+import Profile from "./component/Dashboard/Profile";
 
-// Ideally the Profile component can render the correct view based on user type similar to the Jobs component. Choosing the company profile component here for testing purposes of the company link in the job post
-import Profile from './component/Dashboard/Dashboards/Company/views/CompanyProfile'
+import "./App.css";
+
 
 import "./App.css";
 
 const App = () => {
   return (
     <>
-<<<<<<< HEAD
       <Router>
         <NavBar />
         <Route path="/" component={Home} exact />
         <Route path="/signup" component={Signup} exact />
         <Route path="/login" component={Login} exact />
-        <Route path="/dashboard" component={Dashboard} />
-        <Route path="/jobs" component={Jobs} />
-        <Route path="/profile" component={Profile} exact/>
+        <Route path="/dashboard" component={Dashboard} exact />
+        <Route path="/profile" component={Profile} exact />
+        <Route path="/jobs" component={Jobs} exact />
       </Router>
-=======
-    <Router>
-      <NavBar />
-      <Route path="/" component={Home} exact />
-      <Route path="/signup" component={Signup} exact />
-      <Route path="/login" component={Login} exact />
-      <Route path="/dashboard" component={Dashboard} exact/>
-    </Router>
->>>>>>> 9741a3db915a04e48e67cf8cd784a2d46545041c
     </>
   );
 };

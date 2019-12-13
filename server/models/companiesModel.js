@@ -24,7 +24,7 @@ class Companies {
     // const query = (`select * from companies where id = $1`, [this.id]);
     const query = `select * from companies where id = ${id}`;
     try {
-      const response = await db.any(query);
+      const response = await db.one(query);
       return response;
     } catch (err) {
       return err.message;
