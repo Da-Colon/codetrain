@@ -1,15 +1,11 @@
 import React, { Component, Fragment } from 'react';
-import JobBoard from '../../../../JobBoard/ JobBoard';
+import JobBoard from '../../../../Jobs/JobBoard';
 
 class BootcampJobs extends Component {
-  state = {
-    
-  }
 
   render() { 
     return ( 
       <Fragment>
-        <h1>This is the BootcampJobs component!</h1>
         <JobBoard />
       </Fragment>
     );
