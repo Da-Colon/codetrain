@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import HackerNews from '../../../NewsFeed/HackerNews/'
-import TechNews from '../../../NewsFeed/TechNews/';
+import HackerNews from '../../../Home/HackerNews'
+import TechNews from '../../../Home/TechNews';
 import BootcampResourcePost from './BootcampResourcePost';
 import CompanyProfile from "../Company/views/CompanyProfile";
 import UserProfile from "./views/BootcampProfile";

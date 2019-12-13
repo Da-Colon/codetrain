@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import BootcampProfile from "../Dashboards/Bootcamp/views/BootcampProfile";
-import CompanyProfile from "../Dashboards/Company/views/CompanyProfile";
+import BootcampProfile from "./BootcampProfile"
+import CompanyProfile from "./CompanyProfile";
 
 export default function Dashboard() {
   const user = useSelector(state => state.user);
@@ -13,9 +13,9 @@ export default function Dashboard() {
         <BootcampProfile />
       ) : user.user_types_id === 3 && user.auth === true ? (
         <CompanyProfile />
-      ) : (user.user_types_id === 2 || user.user_types_id) === 3 &&
+      ) : (user.user_types_id === 2 || user.user_types_id === 3) &&
         user.auth === false ? (
-        ""
+        <>hello</>
       ) : (
         // <></>
         window.location.replace("/")
