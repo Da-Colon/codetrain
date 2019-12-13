@@ -26,7 +26,7 @@ const NavBar = () => {
         
         codetrain
       </Link>
-        <Button>Resources</Button>
+        <Link to="/resources">Resources</Link>
       {user.user_types_id === 1 && user.auth === true ? (
         //  Admin User NavBar
         <Ul>
@@ -35,25 +35,25 @@ const NavBar = () => {
       ) : user.user_types_id === 2 && user.auth === true ? (
         //  BootCamp User NavBar
         <Ul>
-          <Link to="/dashboard">Dashboard</Link>
-          <Button>Profile</Button>
+          <Link to="/home">Home</Link>
+          <Link to="/profile">Profile</Link>
           <Link to="/jobs" exact>Jobs</Link>
-          <Button>Applicants</Button>
+          <Link to="/applications">Applications</Link>
           <Button onClick={handleLogout}>Logout</Button>
         </Ul>
       ) : user.user_types_id === 3 && user.auth === true ? (
         // Company User NavBar
         <Ul>
-          <Link to="/dashboard">Dashboard</Link>
-          <Button>Company</Button>
-          <Button>Jobs</Button>
-          <Button>Applicants</Button>
+          <Link to="/home">Home</Link>
+          <Link to="/profile">Company</Link>
+          <Link to="/jobs">Jobs</Link>
+          <Link to="/applications">Applicants</Link>
           <Button onClick={handleLogout}>Logout</Button>
         </Ul>
       ) : (user.user_types_id === 2 || user.user_types_id === 3) &&  user.auth === false ? (
         // Not Auth User
         <Ul>
-          <Button>Profile</Button>
+          <Link to="/profile">Profile</Link>
           <Button onClick={handleLogout}>Logout</Button>
         </Ul>
       ) : (

@@ -1,7 +1,9 @@
-const developmentType = 3;
-const developmentAuth = true;
+const developmentType = null;
+const developmentAuth = null;
+const developmentid = null;
+const developmentCid = null;
 const initialState = {
-  id: 1,
+  id: developmentid,
   email: null,
   first_name: null,
   last_name: null,
@@ -10,7 +12,7 @@ const initialState = {
   auth: developmentAuth,
   user_types_id: developmentType,
   bootcamp_name: null,
-  companies_id: 1
+  companies_id: developmentCid
 };
 
 const userReducer = (state = initialState, action) => {

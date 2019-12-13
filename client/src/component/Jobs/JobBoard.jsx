@@ -52,12 +52,15 @@ const JobCard = ({ data }) => {
   const fetchCompanyData = async () => {
     const endpoint = `http://localhost:3000/companies/id/${data.companies_id}`;
     const res = await Axios.get(endpoint);
-    setCompanyData(res.data[0]);
+    console.log("res", res)
+    setCompanyData(res.data);
   };
 
   useEffect(() => {
     fetchCompanyData();
   }, []);
+
+  console.log(companyData)
 
   const postApplication = async () => {
     const endpoint = "http://localhost:3000/job-applications/add-application/";
@@ -90,7 +93,7 @@ const JobCard = ({ data }) => {
         </Content>
         <Content>
           <strong>Company Name:</strong>
-          <Link exact to={`/profile/${companyData.id}`}>
+          <Link to={`/profile/${companyData.id}`}>
             {companyData.name}
           </Link>
         </Content>

@@ -13,9 +13,9 @@ export default function Dashboard() {
         <BootcampProfile />
       ) : user.user_types_id === 3 && user.auth === true ? (
         <CompanyProfile />
-      ) : (user.user_types_id === 2 || user.user_types_id) === 3 &&
+      ) : (user.user_types_id === 2 || user.user_types_id === 3) &&
         user.auth === false ? (
-        ""
+        <>hello</>
       ) : (
         // <></>
         window.location.replace("/")
