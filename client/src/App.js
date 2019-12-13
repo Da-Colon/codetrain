@@ -17,6 +17,7 @@ import "./App.css";
 const App = () => {
   return (
     <>
+<<<<<<< HEAD
       <Router>
         <NavBar />
         <Route path="/" component={Home} exact />
@@ -26,6 +27,15 @@ const App = () => {
         <Route path="/jobs" component={Jobs} />
         <Route path="/profile" component={Profile} exact/>
       </Router>
+=======
+    <Router>
+      <NavBar />
+      <Route path="/" component={Home} exact />
+      <Route path="/signup" component={Signup} exact />
+      <Route path="/login" component={Login} exact />
+      <Route path="/dashboard" component={Dashboard} exact/>
+    </Router>
+>>>>>>> 9741a3db915a04e48e67cf8cd784a2d46545041c
     </>
   );
 };
