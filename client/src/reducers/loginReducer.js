@@ -1,5 +1,5 @@
-const developmentType = 2
-const developmentAuth = true
+const developmentType = null
+const developmentAuth = null
 const initialState = {
     id: null,
     email: null,
