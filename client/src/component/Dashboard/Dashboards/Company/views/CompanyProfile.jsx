@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from "react-redux";
 import axios from 'axios'
 
 const CompanyProfile = () => {
+  const company = useSelector(state => state.user);
   const [companyInfo, setCompanyInfo] = useState({
-    id: "1",
+    // id: "1",
     email: "",
     name: "",
     company_url: "",
@@ -19,7 +21,7 @@ const CompanyProfile = () => {
   }
 
   useEffect(() => {
-    getCompanyInfo(companyInfo.id)
+    getCompanyInfo(company.companies_id)
     console.log('company info', companyInfo)
   }, [])
 

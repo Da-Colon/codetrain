@@ -1,8 +1,17 @@
-const db = require('./conn');
-const bcrypt = require('bcryptjs');
+const db = require("./conn");
+const bcrypt = require("bcryptjs");
 
 class User {
-  constructor(email, password, first_name, last_name, github_url, linkedin_url, user_type, bootcamp_name) {
+  constructor(
+    email,
+    password,
+    first_name,
+    last_name,
+    github_url,
+    linkedin_url,
+    user_type,
+    bootcamp_name
+  ) {
     this.email = email;
     this.password = password;
     this.first_name = first_name;
@@ -16,17 +25,36 @@ class User {
   //  BCrypt password compare
   async checkPassword(hashedPassword) {
     return await bcrypt.compareSync(this.password, hashedPassword);
-}
+  }
 
-  async login () {
+  async login() {
     return await db.one(`SELECT * FROM users WHERE email = $1`, [this.email]);
-  } 
-  async signup () {
-    return await db.result(`INSERT INTO users (email, password, first_name, last_name, github_url, linkedin_url, user_types_id, bootcamp_name) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)`, [this.email, this.password, this.first_name, this.last_name, this.github_url, this.linkedin_url, this.user_type, this.bootcamp_name,]);
+  }
+  async signup() {
+    return await db.result(
+      `INSERT INTO users (email, password, first_name, last_name, github_url, linkedin_url, user_types_id, bootcamp_name) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)`,
+      [
+        this.email,
+        this.password,
+        this.first_name,
+        this.last_name,
+        this.github_url,
+        this.linkedin_url,
+        this.user_type,
+        this.bootcamp_name
+      ]
+    );
+  }
+
+  static async getById(id) {
+    const query = `select email, first_name, last_name, github_url, linkedin_url, bootcamp_name from users where id= ${id}`;
+    try {
+      const response = await db.one(query);
+      return response;
+    } catch (err) {
+      return err.message;
+    }
   }
 }
 
-
 module.exports = User;
-
-

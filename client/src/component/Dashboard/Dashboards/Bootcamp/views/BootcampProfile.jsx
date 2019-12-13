@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from "react-redux";
 import axios from 'axios'
 
 const UserProfile = () => {
+  const user = useSelector(state => state.user);
   const [userInfo, setUserInfo] = useState({
-    id: "1",
+    // id: "1",
     email: '',
     first_name: '',
     last_name: '',
@@ -19,7 +21,8 @@ const UserProfile = () => {
   }
 
   useEffect(() => {
-    getUserInfo(userInfo.id)
+    console.log(user)
+    getUserInfo(user.id)
   }, [])
 
   return (
