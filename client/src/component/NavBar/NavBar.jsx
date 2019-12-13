@@ -50,7 +50,7 @@ const NavBar = () => {
           <Button>Applicants</Button>
           <Button onClick={handleLogout}>Logout</Button>
         </Ul>
-      ) : user.user_types_id === 2 && user.user_types_id === 3 &&  user.auth === false ? (
+      ) : (user.user_types_id === 2 || user.user_types_id === 3) &&  user.auth === false ? (
         // Not Auth User
         <Ul>
           <Button>Profile</Button>
