@@ -1,3 +1,5 @@
+const developmentType = 2
+const developmentAuth = true
 const initialState = {
     id: null,
     email: null,
@@ -5,8 +7,8 @@ const initialState = {
     last_name: null,
     skills: null,
     linkedin_url: null,
-    auth: null,
-    user_types_id: null,
+    auth: developmentAuth,
+    user_types_id: developmentType,
     bootcamp_name: null,
     companies_id: null
 };
