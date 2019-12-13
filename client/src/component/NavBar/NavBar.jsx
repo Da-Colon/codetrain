@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { theStore } from "../../index";
 
-import { Link, Nav, Ul, Logout } from "../Styles/navStyles";
+import { Link, Nav, Ul, Button } from "../Styles/navStyles";
 
 const NavBar = () => {
   const user = useSelector(state => state.user);
@@ -23,24 +23,38 @@ const NavBar = () => {
         className="brand-logo"
         style={{ backgroundColor: "unset" }}
       >
+        
         codetrain
       </Link>
-
+        <Button>Resources</Button>
       {user.user_types_id === 1 && user.auth === true ? (
+        //  Admin User NavBar
         <Ul>
-          <Logout onClick={handleLogout}>Logout</Logout>
+          <Button onClick={handleLogout}>Logout</Button>
         </Ul>
       ) : user.user_types_id === 2 && user.auth === true ? (
+        //  BootCamp User NavBar
         <Ul>
-          <Logout onClick={handleLogout}>Logout</Logout>
+          <Button to="/dashboard">Dashboard</Button>
+          <Button>Profile</Button>
+          <Button>Jobs</Button>
+          <Button>Applicants</Button>
+          <Button onClick={handleLogout}>Logout</Button>
         </Ul>
       ) : user.user_types_id === 3 && user.auth === true ? (
+        // Company User NavBar
         <Ul>
-          <Logout onClick={handleLogout}>Logout</Logout>
+          <Button to="/dashboard">Dashboard</Button>
+          <Button>Company</Button>
+          <Button>Jobs</Button>
+          <Button>Applicants</Button>
+          <Button onClick={handleLogout}>Logout</Button>
         </Ul>
       ) : user.user_types_id === 2 || (3 && user.auth === false) ? (
+        // Not Auth User
         <Ul>
-          <Logout onClick={handleLogout}>Logout</Logout>
+          <Button>Profile</Button>
+          <Button onClick={handleLogout}>Logout</Button>
         </Ul>
       ) : (
         <Ul>
