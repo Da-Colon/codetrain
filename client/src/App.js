@@ -20,7 +20,7 @@ const App = () => {
       <Route path="/" component={Home} exact />
       <Route path="/signup" component={Signup} exact />
       <Route path="/login" component={Login} exact />
-      <Route path="/dashboard" component={Dashboard}/>
+      <Route path="/dashboard" component={Dashboard} exact/>
     </Router>
     </>
   );
