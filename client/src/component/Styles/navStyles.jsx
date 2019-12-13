@@ -26,7 +26,7 @@ export const Link = styled(NavLink)`
   border-radius: 8px;
 `;
 
-export const Logout = styled.button`
+export const Button = styled.button`
   padding: 8px;
   font-weight: 500;
   background-color: lightblue;
