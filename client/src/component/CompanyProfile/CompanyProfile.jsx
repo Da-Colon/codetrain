@@ -34,7 +34,7 @@ const CompanyProfile = () => {
       <img src={companyInfo.company_logo_url} alt="company logo" />
       <h2>
         Email:{" "}
-        <a href="mailto:{companyInfo.ematakil}">
+        <a href="mailto:{companyInfo.email}">
           {companyInfo.email}
         </a>
       </h2>
