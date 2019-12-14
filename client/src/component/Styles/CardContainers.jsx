@@ -16,5 +16,5 @@ flex-direction: column;
   margin: 16px;
 `
 export const MappedItem = styled.li`
-  margin: 8px;
+  margin: 4px;
 `
