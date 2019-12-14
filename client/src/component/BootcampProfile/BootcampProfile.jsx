@@ -35,19 +35,19 @@ const UserProfile = () => {
       <h2>Bootcamp: {userInfo.bootcamp_name}</h2>
       <h2>
         Email:{" "}
-        <a href="mailto:{userInfo.email}" target="_blank">
+        <a href="mailto:{userInfo.email}">
           {userInfo.email}
         </a>
       </h2>
       <h2>
         Github:{" "}
-        <a href={userInfo.github_url} target="_blank">
+        <a href={userInfo.github_url}>
           {userInfo.github_url}
         </a>
       </h2>
       <h2>
         LinkedIn:{" "}
-        <a href={userInfo.linkedin_url} target="_blank">
+        <a href={userInfo.linkedin_url}>
           {userInfo.linkedin_url}
         </a>
       </h2>
