@@ -54,7 +54,7 @@ app.use(express.static(path.join(__dirname, "public/")));
 //   })
 // );
 
-// User Routers
+
 app.use("/", indexRouter);
 app.use("/", usersRouter);
 app.use("/resources", resourceRouter);
