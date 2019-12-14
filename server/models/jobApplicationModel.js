@@ -31,7 +31,7 @@ class JobApplication {
   }
 
   static async getApplicants(companies_id) {
-    const query = `Select posts_jobs.id, posts_jobs.users_id, date_applied, first_name, last_name, accepted, rejected, title from posts_jobs INNER JOIN job_applications ON posts_jobs.id = job_applications.posts_jobs_id INNER JOIN users on users.id = job_applications.users_id WHERE posts_jobs.companies_id = ${companies_id} ORDER BY date_applied DESC`;
+    const query = `Select posts_jobs.id, posts_jobs.users_id, date_applied, first_name, last_name, accepted, rejected, title from posts_jobs INNER JOIN job_applications ON posts_jobs.id = job_applications.posts_jobs_id INNER JOIN users on users.id = job_applications.users_id WHERE posts_jobs.companies_id = ${companies_id} ORDER BY date_applied DESC LIMIT 5`;
     try {
       const response = await db.any(query);
       return response;
