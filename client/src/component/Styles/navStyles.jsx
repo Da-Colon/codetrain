@@ -9,7 +9,7 @@ export const Nav = styled.div`
   background-color: grey;
 `;
 
-export const Ul = styled.ul`
+export const Ul = styled.div`
   display: flex;
   list-style-type: none;
   justify-content: flex-end;
@@ -25,9 +25,9 @@ export const Link = styled(NavLink)`
   width: fit-content;
   margin-right: 16px;
   border-radius: 8px;
-  cursor: pointer;
   box-shadow: 2px 2px 3px 3px rgba(0, 0, 0, 0.2),
     2px 4px 3px 3px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 `;
 
 export const Button = styled.button`
@@ -40,5 +40,5 @@ export const Button = styled.button`
   border-radius: 8px;
   box-shadow: 2px 2px 3px 3px rgba(0, 0, 0, 0.2),
     2px 4px 3px 3px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
+  cursor: pointer;
 `;
