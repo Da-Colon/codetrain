@@ -11,7 +11,7 @@ class JobApplication {
   }
 
   static async getByJobId(job_id) {
-    const query = `select * from job_applications where posts_jobs_id= ${job_id}`;
+    const query = `select * from job_applications where posts_jobs_id=${job_id}`;
     try {
       const response = await db.any(query);
       return response;
@@ -22,6 +22,16 @@ class JobApplication {
 
   static async getByJobUserId(job_id, user_id) {
     const query = `select * from job_applications where posts_jobs_id=${job_id} and users_id = ${user_id}`;
+    try {
+      const response = await db.any(query);
+      return response;
+    } catch (err) {
+      return err.message;
+    }
+  }
+
+  static async getApplicants(companies_id) {
+    const query = `Select posts_jobs.id, posts_jobs.users_id, date_applied, first_name, last_name, accepted, rejected, title from posts_jobs INNER JOIN job_applications ON posts_jobs.id = job_applications.posts_jobs_id INNER JOIN users on users.id = job_applications.users_id WHERE posts_jobs.companies_id = ${companies_id} ORDER BY date_applied DESC`;
     try {
       const response = await db.any(query);
       return response;
