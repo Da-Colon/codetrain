@@ -6,6 +6,7 @@ import { Link, Nav, Ul, Button } from "../Styles/navStyles";
 
 const NavBar = () => {
   const user = useSelector(state => state.user);
+  console.log('user is', user)
 
   const handleLogout = async e => {
     // await Axios.post(`${endpoint}/logout`);
@@ -36,7 +37,7 @@ const NavBar = () => {
         //  BootCamp User NavBar
         <Ul>
           <Link to="/home">Home</Link>
-          <Link to="/profile">Profile</Link>
+          <Link to={`/user/${user.id}`}>Profile</Link>
           <Link to="/jobs" exact>Jobs</Link>
           <Link to="/applications">Applications</Link>
           <Button onClick={handleLogout}>Logout</Button>
@@ -45,7 +46,7 @@ const NavBar = () => {
         // Company User NavBar
         <Ul>
           <Link to="/home">Home</Link>
-          <Link to="/profile">Company</Link>
+          <Link to={`/company/${user.companies_id}`}>Company</Link>
           <Link to="/jobs">Jobs</Link>
           <Link to="/applications">Applicants</Link>
           <Button onClick={handleLogout}>Logout</Button>
