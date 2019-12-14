@@ -8,7 +8,8 @@ import Login from "./component/Users/Login";
 import LandingPage from "./component/LandingPage";
 import Home from "./component/Home";
 import Jobs from "./component/Jobs";
-import Profile from "./component/Profile";
+import BootcampProfile from './component/BootcampProfile'
+import CompanyProfile from './component/CompanyProfile'
 import Applications from './component/Applications';
 import Resources from './component/Resources'
 
@@ -28,7 +29,8 @@ const App = () => {
         <Route path="/login" component={Login} exact />
         <Route path="/home" component={Home} exact />
         <Route path="/applications" component={Applications} exact />
-        <Route path="/profile" component={Profile} exact />
+        <Route path="/user/:id" component={BootcampProfile} exact />
+        <Route path="/company/:id" component={CompanyProfile} exact />
         <Route path="/jobs" component={Jobs} exact />
         <Route path="/resources" component={Resources} exact />
       </Router>
