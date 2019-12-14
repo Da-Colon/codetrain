@@ -24,6 +24,7 @@ export const Input = styled.input`
   padding: 8px;
   font-size: 100%;
 `;
+
 export const Button = styled.button`
   padding: 8px;
   font-weight: 500;
@@ -36,4 +37,10 @@ export const Title = styled.h1`
   text-align: center;
   font-size: 300%;
   letter-spacing: ;
+`;
+
+export const TextArea = styled.textarea`
+  font-size: 100%;
+  height: 500px;
+  padding: 16px;
 `;
