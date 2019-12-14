@@ -17,6 +17,8 @@ export default function CompanyHome() {
   const user = useSelector(state => state.user);
 
   const [postUsers, setPostUsers] = useState([]);
+  const [messages, setMessages] = useState([])
+
   const getJobsByCompany = async () => {
     const response = await axios.get(
       `${endpoint}/job-applications/users/${user.companies_id}`
@@ -25,8 +27,17 @@ export default function CompanyHome() {
     setPostUsers(data);
   };
 
+  const getMessages = async () => {
+    const response = await axios.get(
+      `${endpoint}/messages/${user.id}`
+    );
+    const data = response.data;
+    setMessages(data);
+  }
+
   useEffect(() => {
     getJobsByCompany();
+    getMessages();
   }, []);
 
   return (
@@ -38,14 +49,14 @@ export default function CompanyHome() {
           return (
             <MappedList key={index}>
                   <>
-                  <p>JOB ID: {post.posts_jobs_id}</p>
-                  <p>JOB TITLE: {post.title}</p>
-                  <p>
+                  <MappedItem>JOB ID: {post.id}</MappedItem>
+                  <MappedItem>JOB TITLE: {post.title}</MappedItem>
+                  <MappedItem>
                     Applicant Name: {post.first_name} {post.last_name}
                     <button> View Profile</button>
-                  </p>
-                  <p>Date Applied: <Moment format="YYYY-MM-DD">{post.date_applied}</Moment></p>
-                  <p>Status: {(!post.rejected && !post.accepted) ? '<pending>' : (post.rejected) ? 'rejected' : (post.accepted) ? 'approved' : ''}</p>
+                  </MappedItem>
+                  <MappedItem>Date Applied: <Moment format="YYYY-MM-DD">{post.date_applied}</Moment></MappedItem>
+                  <MappedItem>Status: {(!post.rejected && !post.accepted) ? '<pending>' : (post.rejected) ? 'rejected' : (post.accepted) ? 'approved' : ''}</MappedItem>
                 </>
                 <hr />
                 {/* ) }  */}
@@ -55,7 +66,22 @@ export default function CompanyHome() {
       </SmallCard>
 
       <SmallCard>
+        <Title>Messages</Title>
+        <button>View All Messages</button>
+        {messages.map((message, index) => {
+          return(
+          <MappedList key={index}>
 
+            <MappedItem>From: {message.first_name} {message.last_name}</MappedItem>
+            <MappedItem>Date Sent: <Moment format="YYYY-MM-DD">{message.date_sent}</Moment></MappedItem>
+            <MappedItem>Subject: {message.subject}</MappedItem>
+            <button>View Message</button>
+
+
+          </MappedList>
+          )
+        })}
+        
       </SmallCard>
 
     </MainContainer>
