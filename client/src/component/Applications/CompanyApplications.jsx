@@ -14,14 +14,15 @@ const CompanyApplications = () => {
     res.data.length > 1 ? setJobTitle([res.data[0].title]) : setJobTitle('')
   };
 
+  // const getApplicantsByJobId
+
   function handleChange(e) {
     setJobTitle(e.target.value);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log('jobs is', jobs);
-    console.log('jobId is', jobTitle);
+
   }
 
   useEffect(() => {
@@ -37,10 +38,12 @@ const CompanyApplications = () => {
             return <option value={job.title}>{job.title}</option>;
           })}
         </select>
-        <button type="submit">Submit</button>
+        <button type="submit">See Applicants</button>
       </form>
 
-      <h1>You are currently viewing job title: {jobTitle}</h1>
+      <ul>
+
+      </ul>
     </>
   );
 };

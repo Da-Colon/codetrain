@@ -19,6 +19,7 @@ const jobApplicationsRouter = require("./routes/jobApplications");
 const postsJobsRouter = require("./routes/postsJobs");
 const companiesRouter = require("./routes/companies");
 const profilesRouter = require("./routes/profiles");
+const applicantsRouter = require('./routes/applicantsRoute')
 
 const corsOptions = {
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
@@ -62,4 +63,5 @@ app.use("/job-applications", jobApplicationsRouter);
 app.use("/posts/jobs", postsJobsRouter);
 app.use("/companies", companiesRouter);
 app.use("/profiles", profilesRouter);
+app.use("/api/applicants", applicantsRouter);
 module.exports = app;
