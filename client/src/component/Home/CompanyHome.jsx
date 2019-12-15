@@ -39,7 +39,7 @@ export default function CompanyHome() {
   useEffect(() => {
     getJobsByCompany();
     getMessages();
-  });
+  },[]);
 
   return (
     <MainContainer>

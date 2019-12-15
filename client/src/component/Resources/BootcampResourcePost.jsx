@@ -1,8 +1,11 @@
 import React, {Fragment, useState} from 'react';
+import {useSelector} from 'react-redux';
 import axios from "axios";
 import { Form, Label, Input, Button, Title } from '../Styles/FormStyles'
 
+
 const BootcampResourcePost = () => {
+  const user = useSelector(state => state.user);
   const [state, setState] = useState({
     title: "",
     short_description: "",
@@ -18,7 +21,7 @@ const BootcampResourcePost = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const userId = 1;
+    const userId = user.id;
     const endpoint = `http://localhost:3000/resources/add/${userId}`;
 
     const payload = {

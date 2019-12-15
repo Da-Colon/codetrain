@@ -14,10 +14,10 @@ const getAllResources = async () => {
 const getAllResourcesAndPosters = async () => {
   const query = await db.any(`
     SELECT 
-      title, up_votes, down_votes, short_description, full_description, resource_url, date_posted, users_id, email, first_name, last_name, github_url, linkedin_url, bootcamp_name
+      pr.id, title, up_votes, down_votes, short_description, full_description, resource_url, date_posted, users_id, email, first_name, last_name, github_url, linkedin_url, bootcamp_name
     FROM
-	    posts_resources
-    INNER JOIN users ON users.id = posts_resources.users_id;
+	    posts_resources as pr
+    INNER JOIN users ON users.id = pr.users_id;
 `);
 
   try {
@@ -44,4 +44,17 @@ const saveNewResource = async (
   }
 };
 
-module.exports = { getAllResources, saveNewResource, getAllResourcesAndPosters };
+const deleteResource = async (resourceId) => {
+  const query = await db.any(`
+    DELETE FROM posts_resources
+    WHERE id = $1
+  `, [resourceId]);
+  try {
+    console.log('Resource deleted successfully');
+    return query
+  } catch {
+    return console.log(`ERROR: Unable to delete resource from database`);
+  }
+}
+
+module.exports = { getAllResources, saveNewResource, getAllResourcesAndPosters, deleteResource };

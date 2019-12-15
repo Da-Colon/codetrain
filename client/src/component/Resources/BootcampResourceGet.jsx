@@ -4,12 +4,13 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import Moment from 'react-moment';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import {
   Box,
   Breadcrumb,
   BreadcrumbItem,
+  Button,
   Card,
   CardHeader,
   CardHeaderTitle,
@@ -32,7 +33,13 @@ const BootcampResourceGet = () => {
     const resourcesEndpoint = 'http://localhost:3000/resources/getAllResources';
     const res = await axios.get(resourcesEndpoint);
     setResources(res.data);
-    setResourcesFetched(!resourcesFetched);
+    setResourcesFetched(true);
+  };
+
+  const deleteResource = async resourceId => {
+    const endpoint = `http://localhost:3000/resources/delete/${resourceId}`;
+    await axios.delete(endpoint);
+    fetchResourcesData();
   };
 
   useEffect(() => {
@@ -44,7 +51,7 @@ const BootcampResourceGet = () => {
       {resourcesFetched ? (
         resources.map((resource, i) => {
           const {
-            id,
+            id: resourceId,
             up_votes,
             down_votes,
             title,
@@ -53,7 +60,7 @@ const BootcampResourceGet = () => {
             resource_url: resourceURL,
             date_posted: datePosted /* information beyond this line relates to resource poster */,
             users_id: usersId,
-            email, 
+            email,
             first_name: firstName,
             last_name: lastName,
             github_url: githubLink,
@@ -83,7 +90,9 @@ const BootcampResourceGet = () => {
                       <Breadcrumb isSize={`small`} isAlign={'right'}>
                         <ul>
                           <BreadcrumbItem>
-                            <Link to={`/user/${usersId}`}>{firstName} {lastName}</Link>
+                            <Link to={`/user/${usersId}`}>
+                              {firstName} {lastName}
+                            </Link>
                           </BreadcrumbItem>
                           <BreadcrumbItem>
                             <a href={`mailto:${email}`}>Email</a>
@@ -109,10 +118,20 @@ const BootcampResourceGet = () => {
               {user.id === usersId ? (
                 <CardFooter>
                   <CardFooterItem>
-                    <a href="#">Edit</a>
+                    <Button
+                      isColor={`success`}
+                      onClick={() => console.log(`Hopefully we can edit soon!`)}
+                    >
+                      Edit
+                    </Button>
                   </CardFooterItem>
                   <CardFooterItem>
-                    <a href="#">Delete</a>
+                    <Button
+                      isColor={`danger`}
+                      onClick={() => deleteResource(resourceId)}
+                    >
+                      Delete
+                    </Button>
                   </CardFooterItem>
                 </CardFooter>
               ) : null}
