@@ -23,6 +23,11 @@ router.get("/:job_id", async (req, res) => {
   const jobApplications = await JobApplicationModel.getByJobId(job_id);
   res.json(jobApplications).status(200);
 });
+router.get("/users/:companies_id", async (req, res) => {
+  const { companies_id } = req.params;
+  const jobApplications = await JobApplicationModel.getApplicants(companies_id);
+  res.json(jobApplications).status(200);
+});
 
 // Read an application for a job
 router.get("/:job_id/:user_id", async (req, res) => {
