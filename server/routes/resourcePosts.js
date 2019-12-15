@@ -4,7 +4,9 @@ const router = express.Router();
 const ResourcePostModel = require('../models/resourcePostModel');
 
 router.get('/getAllResources', async (res, req, next) => {
-  const getResources = await ResourcePostModel.getAllResources();
+  // const getResources = await ResourcePostModel.getAllResources();
+  const getResources = await ResourcePostModel.getAllResourcesAndPosters();
+  console.log(getResources);
   req.send(getResources).status(200).end();
 })
 
