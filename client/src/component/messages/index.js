@@ -23,6 +23,7 @@ export default function Messages() {
 
   const endpoint = "http://localhost:3000";
 
+
   const getMessages = async () => {
     const response = await axios.get(`${endpoint}/messages/all/${user.id}`);
     const data = response.data;
@@ -44,6 +45,12 @@ export default function Messages() {
     e.preventDefault();
     const send = await axios.post(`${endpoint}/sendmessage`, sendMessage)
     console.log(send)
+    if(send.status === 200){
+      alert("Message Sent")
+      setShowMessage(false)
+    } else{
+      alert("There was a problem sending the message please try again later")
+    }
   }
 
   const handleChange = (e) =>{
@@ -52,34 +59,38 @@ export default function Messages() {
     };
 
   const handleClick = (id) => {
+    setShowMessage(false)
     showMessageAndReplyForm(id)
+    
   };
 
   return (
     <Main>
+      {(messages.length === 0) ? <h1>No Messages</h1> : 
       <SideBar>
         {messages.map((message, index) => {
           return (
             <ul key={message.id} onClick={() =>handleClick(message.id)}>
-              <li>
-                From: {message.first_name} {message.last_name}
-              </li>
-              <li>
-                Date Sent:
-                <Moment format="YYYY-MM-DD">{message.date_sent}</Moment>
-              </li>
-              <li>Subject: {message.subject}</li>
-              <hr />
+            <li>
+            From: {message.first_name} {message.last_name}
+            </li>
+            <li>
+            Date Sent:
+            <Moment format="YYYY-MM-DD">{message.date_sent}</Moment>
+            </li>
+            <li>Subject: {message.subject}</li>
+            <hr />
             </ul>
-          );
-        })}
+            );
+          })}
         
       </SideBar>
+        }
       {(showMessage) ? 
       <Message>
         {message.map((message, index) => {
           return(
-            <ul key={index} onClick={handleClick}>
+            <ul key={message.id} onClick={handleClick}>
               <li>
                 {message.first_name} {message.last_name}
               </li>
