@@ -1,7 +1,18 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import {
+  Form,
+  Label,
+  Input,
+  Button,
+  Title,
+  TextArea
+} from "../Styles/FormStyles";
 import axios from "axios";
 
 const CompanyJobs = () => {
+  const company = useSelector(state => state.user);
+
   const [state, setState] = useState({
     job_title: "",
     description: "",
@@ -17,7 +28,6 @@ const CompanyJobs = () => {
     setState({ ...state, [name]: value });
   };
 
-  // We will need to look up the companies_id and the users_id from the global store. At the moment, I will manually set companies_id to 1 and users_id to 6 for testing purposes.
   const handleSubmit = async e => {
     e.preventDefault();
     const endpoint = "http://localhost:3000/posts/jobs/add";
@@ -28,8 +38,8 @@ const CompanyJobs = () => {
       experience: state.experience,
       contact_email: state.email,
       contact_phone: state.phone,
-      companies_id: 1,
-      users_id: 6
+      companies_id: company.companies_id,
+      users_id: company.id
     };
 
     const response = await axios.post(endpoint, payload);
@@ -38,67 +48,63 @@ const CompanyJobs = () => {
 
   return (
     <>
-      <h1>Create a Job Post</h1>
+      <Title>Create a Job Post</Title>
       {state.isSubmitted ? (
         <div>
           <h2> Thank you for your submission {state.contact_name}</h2>
         </div>
       ) : (
-        <form onSubmit={handleSubmit}>
-          <label>
+        <Form onSubmit={handleSubmit}>
+          <Label>
             Job Title
-            <input
+            <Input
               type="text"
               placeholder="Job Title"
               name="job_title"
               value={state.name}
               onChange={handleChange}
-            ></input>
-          </label>
-          <label>
+            ></Input>
+          </Label>
+          <Label>
             Job Description
-            <textarea
-              rows="5"
-              cols="33"
+            <TextArea
               placeholder="Job Description Information"
               name="description"
               value={state.description}
               onChange={handleChange}
-            ></textarea>
-          </label>
-          <label>
+            ></TextArea>
+          </Label>
+          <Label>
             Experience Desired
-            <textarea
-              rows="5"
-              cols="33"
+            <TextArea
               placeholder="What skills are you looking for?"
               name="experience"
               value={state.experience}
               onChange={handleChange}
-            ></textarea>
-          </label>
-          <label>
+            ></TextArea>
+          </Label>
+          <Label>
             Contact Email
-            <input
+            <Input
               type="email"
               placeholder="Contact Email"
               name="email"
               value={state.email}
               onChange={handleChange}
-            ></input>
-          </label>
-          <label>
+            ></Input>
+          </Label>
+          <Label>
             Contact Phone Number
-            <input
+            <Input
               type="tel"
               placeholder="Phone Number"
               name="phone"
               value={state.phone}
               onChange={handleChange}
-            ></input>
-          </label>
-          <button type="submit">Create Job</button>
-        </form>
+            ></Input>
+          </Label>
+          <Button type="submit">Create Job</Button>
+        </Form>
       )}
     </>
   );
