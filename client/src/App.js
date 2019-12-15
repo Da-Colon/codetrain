@@ -19,6 +19,8 @@ import "./App.css";
 
 import "./App.css";
 import Messages from "./component/messages";
+import AUsers from "./component/Home/admin/users";
+import ACompanies from "./component/Home/admin/companies";
 
 const App = () => {
   return (
@@ -29,6 +31,8 @@ const App = () => {
         <Route path="/signup" component={Signup} exact />
         <Route path="/login" component={Login} exact />
         <Route path="/home" component={Home} exact />
+        <Route path="/admin/users" component={AUsers} exact />
+        <Route path="/admin/companies" component={ACompanies} />
         <Route path="/applications" component={Applications} exact />
         <Route path="/messages" component={Messages} exact />
         <Route path="/user/:id" component={BootcampProfile} exact />
