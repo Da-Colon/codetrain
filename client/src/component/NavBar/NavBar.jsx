@@ -40,6 +40,7 @@ const NavBar = () => {
           <Link to={`/user/${user.id}`}>Profile</Link>
           <Link to="/jobs" exact>Jobs</Link>
           <Link to="/applications">Applications</Link>
+          <Link to="/messages">Messages</Link>
           <Button onClick={handleLogout}>Logout</Button>
         </Ul>
       ) : user.user_types_id === 3 && user.auth === true ? (
@@ -49,6 +50,7 @@ const NavBar = () => {
           <Link to={`/company/${user.companies_id}`}>Company</Link>
           <Link to="/jobs">Jobs</Link>
           <Link to="/applications">Applicants</Link>
+          <Link to="/messages">Messages</Link>
           <Button onClick={handleLogout}>Logout</Button>
         </Ul>
       ) : (user.user_types_id === 2 || user.user_types_id === 3) &&  user.auth === false ? (
