@@ -34,20 +34,17 @@ router.get("/:job_id/:user_id", async (req, res) => {
   res.json(jobApplication).status(200);
 });
 
-// Update application status
-router.put("/update-status/:id", async (req, res) => {
-  const { id } = req.params;
-  const { status, statusChange } = req.body;
-  const response = await JobApplicationModel.updateStatus(
-    id,
-    status,
-    statusChange
-  );
+// Update applicant to rejected
+router.put("/update-status/:applicantId/:jobPostId", async (req, res) => {
+  const { applicantId, jobPostId } = req.params;
+
+  const response = await JobApplicationModel.updateStatusToRejected(applicantId,jobPostId)
+
   if (response.command === "UPDATE" && response.rowCount >= 1) {
     res.sendStatus(200);
   } else {
     res
-      .send(`Could not update job application status for id: ${id}`)
+      .send(`Could not update job application status`)
       .status(409);
   }
 });

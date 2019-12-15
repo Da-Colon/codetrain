@@ -1,13 +1,26 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { useSelector } from "react-redux";
+import Moment from "react-moment";
+import {
+  Card,
+  CardHeader,
+  CardHeaderTitle,
+  CardContent,
+  Content,
+  CardFooter,
+  CardFooterItem
+} from "bloomer";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { Button } from "../Styles/FormStyles";
 
 const CompanyApplications = () => {
   const user = useSelector(state => state.user);
   const [jobs, setJobs] = useState([]);
   // const [jobTitle, setJobTitle] = useState();
   const [jobId, setJobId] = useState("");
-  const [showApplicants, setApplicants] = useState(false);
+  const [showApplicants, setShowApplicants] = useState(false);
 
   const getJobPostsByCompanyId = async () => {
     const endpoint = `http://localhost:3000/posts/jobs/company/${user.companies_id}`;
@@ -19,17 +32,16 @@ const CompanyApplications = () => {
 
   function handleChange(e) {
     setJobId(e.target.value);
-    console.log("job id is", jobId);
+    setShowApplicants(false);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    setApplicants(true);
+    setShowApplicants(true);
   }
 
   useEffect(() => {
     getJobPostsByCompanyId();
-    console.log(jobId);
   }, []);
 
   return (
@@ -44,7 +56,9 @@ const CompanyApplications = () => {
         <button type="submit">See Applicants</button>
       </form>
 
-      <ul>{showApplicants ? <ApplicantsData jobId={jobId} /> : <></>}</ul>
+      <ApplicantCardWrapper>
+        {showApplicants ? <ApplicantsData jobId={jobId} /> : <></>}
+      </ApplicantCardWrapper>
     </>
   );
 };
@@ -62,13 +76,72 @@ const ApplicantsData = props => {
     getApplicantsByJobId();
   }, []);
 
-  console.log(applicants);
+  const handleRejection = async (applicantId, jobId) => {
+    const endpoint = `http://localhost:3000/job-applications/update-status/${applicantId}/${jobId}`
+    const res = await Axios.put(endpoint)
+    alert('Applicant was rejected.')
+  }
 
   return (
     <>
       {applicants ? (
         applicants.map(applicant => {
-          return <p>{applicant.first_name}</p>;
+          return (
+            <Card style={{ maxWidth: "400px", margin: "20px" }}>
+              <CardHeader>
+                <CardHeaderTitle>
+                  {applicant.first_name} {applicant.last_name}
+                </CardHeaderTitle>
+              </CardHeader>
+              <CardContent>
+                <Content>
+                  <strong>Date Applied:</strong>
+                  <Moment format="YYYY-MM-DD">{applicant.date_applied}</Moment>
+                </Content>
+                <Content>
+                  <strong>Email Address:</strong> {applicant.email}
+                </Content>
+                <Content>
+                  <strong>Skills:</strong>
+                  <ul style={{ display: "inline", listStyleType: "none" }}>
+                    {applicant.skills.map(skill => {
+                      return <li>{skill}</li>;
+                    })}
+                  </ul>
+                </Content>
+                <Content>
+                  <strong>Github Page:</strong>
+                  <a href={applicant.github_url}>
+                    {applicant.first_name}'s Github Profile
+                  </a>
+                </Content>
+                <Content>
+                  <strong>LinkedIn:</strong>
+                  <a href={applicant.linkedin_url}>
+                    {applicant.first_name}'s LinkedIn Profile
+                  </a>
+                </Content>
+                <Content>
+                  <strong>Bootcamp Name:</strong>
+                  <p>{applicant.bootcamp_name}</p>
+                </Content>
+                <Content>
+                  <strong>Application Status:</strong>
+                  <p>{(!applicant.rejected && !applicant.accepted) ? '<pending>' : (applicant.rejected) ? 'rejected' : (applicant.accepted) ? 'approved' : ''}</p>
+                </Content>
+              </CardContent>
+              <CardFooter>
+                <CardFooterItem>
+                  <Button>
+                    <Link to={`/user/${applicant.applicantid}`}>
+                      View Applicant
+                    </Link>
+                  </Button>
+                  <Button onClick={() => handleRejection(applicant.applicantid, applicant.jobid)}>Reject Applicant</Button>
+                </CardFooterItem>
+              </CardFooter>
+            </Card>
+          );
         })
       ) : (
         <></>
@@ -78,3 +151,9 @@ const ApplicantsData = props => {
 };
 
 export default CompanyApplications;
+
+const ApplicantCardWrapper = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+`;
