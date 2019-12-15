@@ -13,12 +13,13 @@ import {
 import { Title } from "bloomer/lib/elements/Title";
 
 export default function CompanyHome() {
-  const endpoint = "http://localhost:3000";
   const user = useSelector(state => state.user);
-
+  
   const [postUsers, setPostUsers] = useState([]);
   const [messages, setMessages] = useState([])
 
+  const endpoint = "http://localhost:3000";
+  
   const getJobsByCompany = async () => {
     const response = await axios.get(
       `${endpoint}/job-applications/users/${user.companies_id}`
@@ -38,7 +39,7 @@ export default function CompanyHome() {
   useEffect(() => {
     getJobsByCompany();
     getMessages();
-  }, []);
+  });
 
   return (
     <MainContainer>
