@@ -18,6 +18,7 @@ import "./App.css";
 
 
 import "./App.css";
+import Messages from "./component/messages";
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
         <Route path="/login" component={Login} exact />
         <Route path="/home" component={Home} exact />
         <Route path="/applications" component={Applications} exact />
+        <Route path="/messages" component={Messages} exact />
         <Route path="/user/:id" component={BootcampProfile} exact />
         <Route path="/company/:id" component={CompanyProfile} exact />
         <Route path="/jobs" component={Jobs} exact />
