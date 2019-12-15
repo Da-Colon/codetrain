@@ -58,15 +58,15 @@ class JobApplication {
   static async addApplication(user_id, job_id) {
     const query = `insert into job_applications (rejected, accepted, users_id, posts_jobs_id) values (FALSE, FALSE, ${user_id}, ${job_id})`;
     try {
-      const response = await db.result(query);
+      const response = await db.one(query);
       return response;
     } catch (err) {
       return err.message;
     }
   }
 
-  static async updateStatus(id, status, statusChange) {
-    const query = `update job_applications set ${status} = ${statusChange} where id = ${id}`;
+  static async updateStatusToRejected(applicantId, jobPostId) {
+    const query = `UPDATE job_applications set rejected = true WHERE job_applications.posts_jobs_id = ${jobPostId} AND job_applications.users_id = ${applicantId};`
     try {
       const response = await db.result(query);
       return response;
