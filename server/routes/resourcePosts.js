@@ -17,4 +17,11 @@ router.post("/add/:user_id", async (req, res) => {
   res.json({ message: 'Successfully Saved' }).status(200);
 });
 
+router.delete('/delete/:resource_id', async (req, res) => {
+  const resourceId = req.params.resource_id;
+  console.log('THE PARAMS: ', req.params)
+  await ResourcePostModel.deleteResource(resourceId);
+  res.json({ message: 'Successfully Deleted' }).status(200);
+})
+
 module.exports = router;
