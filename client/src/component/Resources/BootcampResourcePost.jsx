@@ -1,6 +1,6 @@
 import React, {Fragment, useState} from 'react';
 import axios from "axios";
-import { Form, Label, Input, Button, Title } from "../../../Styles/FormStyles";
+import { Form, Label, Input, Button, Title } from '../Styles/FormStyles'
 
 const BootcampResourcePost = () => {
   const [state, setState] = useState({
@@ -36,7 +36,7 @@ const BootcampResourcePost = () => {
 
   return ( 
     <Fragment>
-    <h1>Submit a resource!</h1>
+    <Title>Submit a resource!</Title>
     {state.resourceSubmitted ? (
       <div>
         <Title>Thank you for submitting a resource!</Title>
