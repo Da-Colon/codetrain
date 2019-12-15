@@ -16,7 +16,6 @@ const CompanyProfile = () => {
 
   const getCompanyInfo = async (id) => {
     const response = await axios.get(`http://localhost:3000/companies/id/${id}`)
-    console.log(response)
     setCompanyInfo(response.data)
   }
 
@@ -28,9 +27,9 @@ const CompanyProfile = () => {
   return (
     <card>
       <h1>Company Name: {companyInfo.name}</h1>
-      <img src={companyInfo.company_logo_url} placeholder='company logo' />
-      <h2>Email: <a href='mailto:{companyInfo.email}' target='_blank'>{companyInfo.email}</a></h2>
-      <h2>Website: <a href={companyInfo.company_url} target='_blank'>{companyInfo.company_url}</a></h2>
+      <img src={companyInfo.company_logo_url} alt='company logo' />
+      <h2>Email: <a href='mailto:{companyInfo.email}'>{companyInfo.email}</a></h2>
+      <h2>Website: <a href={companyInfo.company_url}>{companyInfo.company_url}</a></h2>
 
       <h2>About: </h2>
       <p>{companyInfo.description}</p>
