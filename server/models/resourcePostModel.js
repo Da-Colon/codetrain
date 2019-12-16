@@ -14,7 +14,7 @@ const getAllResources = async () => {
 const getAllResourcesAndPosters = async () => {
   const query = await db.any(`
     SELECT 
-      pr.id, title, up_votes, down_votes, short_description, full_description, resource_url, date_posted, users_id, email, first_name, last_name, github_url, linkedin_url, bootcamp_name
+      pr.id, title, up_votes, down_votes, short_description, full_description, resource_url, date_posted, is_deleted, users_id, email, first_name, last_name, github_url, linkedin_url, bootcamp_name
     FROM
 	    posts_resources as pr
     INNER JOIN users ON users.id = pr.users_id;
@@ -46,7 +46,8 @@ const saveNewResource = async (
 
 const deleteResource = async (resourceId) => {
   const query = await db.any(`
-    DELETE FROM posts_resources
+    UPDATE posts_resources
+    SET is_deleted = TRUE
     WHERE id = $1
   `, [resourceId]);
   try {
@@ -57,4 +58,24 @@ const deleteResource = async (resourceId) => {
   }
 }
 
-module.exports = { getAllResources, saveNewResource, getAllResourcesAndPosters, deleteResource };
+const updateResource = async (
+  title,
+  short_description,
+  full_description,
+  resource_url,
+  resourceId
+) => {
+  const query = await db.any(`
+      UPDATE posts_resources
+      SET title = $1, short_description = $2, full_description = $3, resource_url = $4
+      WHERE id = $5
+    ;`, [title, short_description, full_description, resource_url, resourceId]
+  );
+  try {
+    return query;
+  } catch {
+    return console.log(`ERROR: Unable to update resource in database`);
+  }
+};
+
+module.exports = { getAllResources, saveNewResource, getAllResourcesAndPosters, deleteResource, updateResource };

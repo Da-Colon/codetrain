@@ -5,13 +5,6 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
-import {
-  Form,
-  Label,
-  Input,
-  Button as FormButton,
-  Title as FormTitle
-} from '../Styles/FormStyles';
 
 import {
   Box,
@@ -27,13 +20,11 @@ import {
   CardFooterItem,
   Media,
   MediaContent,
-  Modal,
-  ModalBackground,
-  ModalContent,
-  ModalClose,
   Title,
   Subtitle
 } from 'bloomer';
+
+import EditResourceModal from './EditResourceModal'
 
 const BootcampResourceGet = () => {
   const user = useSelector(state => state.user);
@@ -45,37 +36,6 @@ const BootcampResourceGet = () => {
     resourceId: null
   });
 
-  const [editState, setEditState] = useState({
-    title: "",
-    short_description: "",
-    full_description: "",
-    resource_url: "",
-    resourceEdited: false
-  });
-
-  const handleEdit = e => {
-    const { name, value } = e.target;
-    setEditState({ ...editState, [name]: value });
-  };
-
-  const handleEditSubmit = async e => {
-    e.preventDefault();
-    const userId = user.id;
-    const endpoint = `http://localhost:3000/resources/add/${userId}`;
-
-    const payload = {
-      title: editState.title,
-      short_description: editState.short_description,
-      full_description: editState.full_description,
-      resource_url: editState.resource_url,
-      userId
-    };
-
-    const response = await axios.post(endpoint, payload);
-    setEditState({ ...editState, resourceEdited: true });
-  
-  }
-
   const fetchResourcesData = async () => {
     const resourcesEndpoint = 'http://localhost:3000/resources/getAllResources';
     const res = await axios.get(resourcesEndpoint);
@@ -85,13 +45,11 @@ const BootcampResourceGet = () => {
 
   const deleteResource = async resourceId => {
     const endpoint = `http://localhost:3000/resources/delete/${resourceId}`;
-    await axios.delete(endpoint);
+    await axios.put(endpoint);
     fetchResourcesData();
   };
 
   const editResource = (e, resource) => {
-    console.log(`Hopefully we can edit soon! Here's your event...`, e);
-    console.log('Here is the resource: ', resource);
     setEditFormActive({
       isActive: true,
       resourceId: resource.id
@@ -106,7 +64,6 @@ const BootcampResourceGet = () => {
     <ResourceWrapper>
       {resourcesFetched ? (
         resources.map((resource, i) => {
-          console.log(editFormActive);
           const {
             id: resourceId,
             up_votes,
@@ -115,6 +72,7 @@ const BootcampResourceGet = () => {
             short_description: descriptionShort,
             full_description: descriptionFull,
             resource_url: resourceURL,
+            is_deleted: isDeleted,
             date_posted: datePosted /* information beyond this line relates to resource poster */,
             users_id: usersId,
             email,
@@ -125,7 +83,7 @@ const BootcampResourceGet = () => {
             bootcamp_name: bootcampAffiliation
           } = resource;
           return (
-            <Card key={i} style={{ maxWidth: '600px', margin: '20px' }}>
+            <Card key={i} style={{ maxWidth: '600px', margin: '20px', display: isDeleted ? 'none' : 'block'}}>
               <CardHeader>
                 <CardHeaderTitle>{title}</CardHeaderTitle>
               </CardHeader>
@@ -191,57 +149,11 @@ const BootcampResourceGet = () => {
                     </Button>
                   </CardFooterItem>
                   {editFormActive.resourceId === resource.id ? (
-                    <Modal isActive={editFormActive}>
-                      <ModalBackground />
-                      <ModalContent>
-                        <Form onSubmit={handleEditSubmit}>
-                          <Label>
-                            Resource Title
-                            <Input
-                              type="text"
-                              placeholder="Resource Title"
-                              name="title"
-                              value={editState.title}
-                              onChange={handleEdit}
-                            ></Input>
-                          </Label>
-                          <Label>
-                            Resource Description (short)
-                            <textarea
-                              rows="5"
-                              cols="33"
-                              placeholder="Short description of resource"
-                              name="short_description"
-                              value={editState.short_description}
-                              onChange={handleEdit}
-                            ></textarea>
-                          </Label>
-                          <Label>
-                            Resource Description (full)
-                            <textarea
-                              rows="5"
-                              cols="33"
-                              placeholder="Full description of resource"
-                              name="full_description"
-                              value={editState.full_description}
-                              onChange={handleEdit}
-                            ></textarea>
-                          </Label>
-                          <Label>
-                            Resource Link (URL)
-                            <Input
-                              type="url"
-                              placeholder="Link to resource"
-                              name="resource_url"
-                              value={editState.resource_url}
-                              onChange={handleEdit}
-                            ></Input>
-                          </Label>
-                          <FormButton type="submit">Update Resource</FormButton>
-                        </Form>
-                      </ModalContent>
-                      <ModalClose onClick={() => setEditFormActive(false)} />
-                    </Modal>
+                    <EditResourceModal 
+                      editFormActive={editFormActive}
+                      setEditFormActive={setEditFormActive} 
+                      resource={resource}
+                    />
                   ) : null}
                 </CardFooter>
               ) : null}
