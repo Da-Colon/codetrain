@@ -42,3 +42,7 @@ export const Button = styled.button`
     2px 4px 3px 3px rgba(0, 0, 0, 0.2);
   cursor: pointer;
 `;
+
+export const Anchor = styled.a`
+  color: blue;
+`;

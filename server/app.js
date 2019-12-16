@@ -15,6 +15,7 @@ require("dotenv").config();
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const messageRouter = require("./routes/messages")
+const adminRouter = require("./routes/admin")
 const resourceRouter = require("./routes/resourcePosts");
 const jobApplicationsRouter = require("./routes/jobApplications");
 const postsJobsRouter = require("./routes/postsJobs");
@@ -60,6 +61,7 @@ app.use(express.static(path.join(__dirname, "public/")));
 app.use("/", indexRouter);
 app.use("/", usersRouter);
 app.use("/", messageRouter);
+app.use("/", adminRouter);
 app.use("/resources", resourceRouter);
 app.use("/job-applications", jobApplicationsRouter);
 app.use("/posts/jobs", postsJobsRouter);

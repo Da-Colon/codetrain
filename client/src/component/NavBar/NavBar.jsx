@@ -6,7 +6,6 @@ import { Link, Nav, Ul, Button } from "../Styles/navStyles";
 
 const NavBar = () => {
   const user = useSelector(state => state.user);
-  console.log('user is', user)
 
   const handleLogout = async e => {
     // await Axios.post(`${endpoint}/logout`);
@@ -28,9 +27,15 @@ const NavBar = () => {
         codetrain
       </Link>
         <Link to="/resources">Resources</Link>
+        <h1>{user.first_name} {user.last_name}</h1> 
+      
       {user.user_types_id === 1 && user.auth === true ? (
         //  Admin User NavBar
         <Ul>
+          <Link to="/home">Home</Link>
+          <Link to="/admin/reports">Reports</Link>
+          <Link to="/jobs" exact>Jobs</Link>
+          <Link to="/messages">Messages</Link>
           <Button onClick={handleLogout}>Logout</Button>
         </Ul>
       ) : user.user_types_id === 2 && user.auth === true ? (

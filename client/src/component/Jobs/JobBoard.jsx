@@ -2,7 +2,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Moment from "react-moment";
 import Axios from "axios";
 import {
@@ -17,6 +17,7 @@ import {
 import styled from "styled-components";
 
 import { Button } from "../Styles/FormStyles";
+import { Anchor } from "../Styles/navStyles";
 
 // This component fetches all the data that will populate each job post
 const JobBoard = () => {
@@ -75,20 +76,36 @@ const JobCard = ({ data }) => {
       });
   };
 
+  const history = useHistory();
+  // const postReport = () => {
+  //   history.push(
+  //     `/report/job/${data.id}/${data.companies_id}/${data.users_id}`
+  //   );
+  // };
+  // title, content, experience, date_posted, contact_email, contact_phone, company_name, company_profile, company_url
   return (
     <Card style={{ maxWidth: "400px", margin: "20px" }}>
       <CardHeader>
-        <CardHeaderTitle>{data.title}</CardHeaderTitle>
+        <Link to={`/jobs/${data.id}`}>
+          <CardHeaderTitle>
+            {data.title} &nbsp; <Anchor>See full post</Anchor>
+          </CardHeaderTitle>
+        </Link>
+        <Link
+          to={`/report/job/${data.id}/${data.companies_id}/${data.users_id}`}
+        >
+          Report Job
+        </Link>
       </CardHeader>
       <CardContent>
         <Content>
           <strong>Date Posted:</strong>
           <Moment format="YYYY-MM-DD">{data.date_posted}</Moment>
         </Content>
-        <Content>
+        {/* <Content>
           <strong>Job Description: </strong>
           {data.content}
-        </Content>
+        </Content> */}
         <Content>
           <strong>Experience:</strong> {data.experience}
         </Content>
