@@ -2,7 +2,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Moment from "react-moment";
 import Axios from "axios";
 import {
@@ -70,11 +70,17 @@ const JobCard = ({ data }) => {
       ? alert("Your application was received.")
       : alert("Sorry. There was an error.");
   };
+
+  const history = useHistory()
+  const postReport = () => {
+    history.push(`/report/job/${data.id}/${data.companies_id}/${data.users_id}`)
+  }
   // title, content, experience, date_posted, contact_email, contact_phone, company_name, company_profile, company_url
   return (
     <Card style={{ maxWidth: "400px", margin: "20px" }}>
       <CardHeader>
         <CardHeaderTitle>{data.title}</CardHeaderTitle>
+        <button onClick={postReport}>Report Job</button>
       </CardHeader>
       <CardContent>
         <Content>
