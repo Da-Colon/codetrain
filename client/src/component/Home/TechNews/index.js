@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Story from "./Story";
 import Axios from "axios";
 import styled from "styled-components";
-import {Title} from '../../Styles/FormStyles'
+import { Title } from "../../Styles/FormStyles";
 
 const Index = () => {
   const [topStories, setTopStories] = useState([]);
@@ -23,14 +23,11 @@ const Index = () => {
     <Wrapper>
       <Title>TechCrunch Top Stories</Title>
       <ul>
-        {topStories.map(story => {
-          // intentionally ignoring the unique key prop for now
-          return (
-            <li>
-              <Story data={story} />
-            </li>
-          );
-        })}
+        {topStories.map((story, i) => (
+          <li key={i}>
+            <Story data={story} />
+          </li>
+        ))}
       </ul>
     </Wrapper>
   );
