@@ -19,7 +19,7 @@ export default function Messages() {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState([]);
   const [showMessage, setShowMessage] = useState(false)
-  const [sendMessage, setSendMessage] = useState({subject: '', message: '', sent_to: '', sent_from: ''});
+  const [sendMessage, setSendMessage] = useState({subject: '', message: '', sent_to: '', sent_from: '', sent_from_companies_id: null});
 
   const endpoint = "http://localhost:3000";
 
@@ -55,7 +55,7 @@ export default function Messages() {
 
   const handleChange = (e) =>{
       const { name, value } = e.target;
-      setSendMessage({ ...sendMessage, [name]: value, sent_from: message[0].sent_from, sent_to: user.id});
+      setSendMessage({ ...sendMessage, [name]: value, sent_from: message[0].sent_from, sent_to: user.id, sent_from_companies_id: user.companies_id});
     };
 
   const handleClick = (id) => {
