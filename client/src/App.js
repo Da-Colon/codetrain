@@ -35,8 +35,8 @@ const App = () => {
         <Route path="/admin/reports" component={AdminReports} exact />
         <Route path="/report/user/:user_id/:companies_id?" component={Reports} exact />
         <Route path="/report/company/:companies_id/:user_id?" component={Reports} exact />
-        <Route path="/report/resource/:resource_id/" component={Reports} exact />
-        <Route path="/report/job/:posts_jobs_id/:companies_id?/:companies_id?" component={Reports} exact />
+        <Route path="/report/resource/:resource_id/:user_id" component={Reports} exact />
+        <Route path="/report/job/:posts_jobs_id/:companies_id/:user_id?" component={Reports} exact />
         <Route path="/applications" component={Applications} exact />
         <Route path="/messages" component={Messages} exact />
         <Route path="/user/:id" component={BootcampProfile} exact />
