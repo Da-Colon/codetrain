@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Moment from "react-moment";
 import axios from "axios";
 import { SideBar, Main, Message } from "../Styles/messageStyles";
+import {useHistory} from 'react-router-dom'
 
 import {
   Form,
@@ -61,9 +62,13 @@ export default function Messages() {
   const handleClick = (id) => {
     setShowMessage(false)
     showMessageAndReplyForm(id)
-    
   };
 
+  const history = useHistory()
+  const postReport = () => {
+    history.push(`/report/${message[0].id}/${message[0].sent_from_companies_id}/resource_id/posts_jobs_id`)
+  }
+  console.log(message[0])
   return (
     <Main>
       {(messages.length === 0) ? <h1>No Messages</h1> : 
@@ -92,7 +97,8 @@ export default function Messages() {
           return(
             <ul key={message.id} onClick={handleClick}>
               <li>
-                {message.first_name} {message.last_name}
+                {message.first_name} {message.last_name} 
+                <button onClick={postReport}>Report {message.first_name}</button>
               </li>
               <li>
                 Date Sent:
