@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import Moment from 'react-moment';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import {
   Box,
@@ -46,6 +46,9 @@ const BootcampResourceGet = () => {
     fetchResourcesData();
   }, []);
 
+  console.log("this", resources)
+  const history = useHistory()
+
   return (
     <ResourceWrapper>
       {resourcesFetched ? (
@@ -67,10 +70,14 @@ const BootcampResourceGet = () => {
             linkedin_url: linkedinLink,
             bootcamp_name: bootcampAffiliation
           } = resource;
+          const postReport = () => {
+            history.push(`/report/resource/${resource.id}/${resource.users_id}`)
+          }
           return (
             <Card key={i} style={{ maxWidth: '600px', margin: '20px' }}>
               <CardHeader>
                 <CardHeaderTitle>{title}</CardHeaderTitle>
+                <button onClick={postReport}>Report Resource</button>
               </CardHeader>
               <CardContent>
                 <Media>
