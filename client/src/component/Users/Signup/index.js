@@ -33,7 +33,7 @@ const SignupForm = () => {
     e.preventDefault();
     try {
       await Axios.post(`${endpoint}/signup`, newUser);
-      // window.location.replace("/");
+      window.location.replace("/login");
     } catch {
       window.alert(
         "Sorry, There Was An Error With Signing up, Please Try Again"
@@ -52,7 +52,7 @@ const SignupForm = () => {
     <Form onSubmit={handleSubmit}>
       <Title style={{ textAlign: "center" }}>Create an Account</Title>
       <Label>
-        Email Adress
+        Email Address
         <Input
           type="email"
           placeholder="Email Address"
@@ -92,20 +92,20 @@ const SignupForm = () => {
         />
       </Label>
       <Label>
-        Github URL
+        Github Profile
         <Input
           type="url"
-          placeholder="Enter your github url"
+          placeholder="Link to your Github Profile"
           onChange={handleInputChange}
           name="github_url"
           aria-label="Github URL"
         />
       </Label>
       <Label>
-        Linkedin URL
+        LinkedIn Profile
         <Input
           type="url"
-          placeholder="Enter your github url"
+          placeholder="Link to your LinkedIn Profile"
           onChange={handleInputChange}
           name="linkedin_url"
           aria-label="Linkedin URL"
