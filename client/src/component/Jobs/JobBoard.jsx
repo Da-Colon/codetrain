@@ -77,11 +77,11 @@ const JobCard = ({ data }) => {
   };
 
   const history = useHistory();
-  const postReport = () => {
-    history.push(
-      `/report/job/${data.id}/${data.companies_id}/${data.users_id}`
-    );
-  };
+  // const postReport = () => {
+  //   history.push(
+  //     `/report/job/${data.id}/${data.companies_id}/${data.users_id}`
+  //   );
+  // };
   // title, content, experience, date_posted, contact_email, contact_phone, company_name, company_profile, company_url
   return (
     <Card style={{ maxWidth: "400px", margin: "20px" }}>
@@ -89,8 +89,12 @@ const JobCard = ({ data }) => {
         <Link to={`/jobs/${data.id}`}>
           <CardHeaderTitle>
             {data.title} &nbsp; <Anchor>See full post</Anchor>
-            <button onClick={postReport}>Report Job</button>
           </CardHeaderTitle>
+        </Link>
+        <Link
+          to={`/report/job/${data.id}/${data.companies_id}/${data.users_id}`}
+        >
+          Report Job
         </Link>
       </CardHeader>
       <CardContent>

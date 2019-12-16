@@ -89,20 +89,25 @@ const BootcampResourceGet = () => {
               linkedin_url: linkedinLink,
               bootcamp_name: bootcampAffiliation
             } = resource;
-            const postReport = () => {
-              history.push(
-                `/report/resource/${resource.id}/${resource.users_id}`
-              );
-            };
+            // const postReport = () => {
+            //   history.push(
+            //     `/report/resource/${resource.id}/${resource.users_id}`
+            //   );
+            // };
 
             return (
               <Card key={i} style={{ maxWidth: "600px", margin: "20px" }}>
                 <CardHeader>
-                  <Link to={`/resources/${resourceId}`}>
-                    <CardHeaderTitle>
+                  <CardHeaderTitle>
+                    <Link to={`/resources/${resourceId}`}>
                       {title} &nbsp; <Anchor>See full post</Anchor>
-                      <button onClick={postReport}>Report Resource</button>
-                    </CardHeaderTitle>
+                    </Link>
+                  </CardHeaderTitle>
+
+                  <Link
+                    to={`/report/resource/${resource.id}/${resource.users_id}`}
+                  >
+                    Report Resource
                   </Link>
                 </CardHeader>
                 <CardContent>
