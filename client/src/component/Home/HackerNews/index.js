@@ -1,37 +1,45 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import Post from "./Post";
-import { getTopStoriesIds } from "../../../Utils/HackerNewsApi";
+import Axios from "axios";
+import styled from 'styled-components'
+import {Title} from '../../Styles/FormStyles'
 
-class Index extends Component {
-  state = {
-    topIds: []
-  };
+const Index = () => {
+  const [topIds, setTopIds] = useState([]);
 
-  async componentDidMount() {
-    const response = await getTopStoriesIds();
+  const getTopStoriesIds = async () => {
+    const response = await Axios.get(
+      "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty"
+    );
     const allIds = response.data;
     const topIds = allIds.slice(0, 25);
-    this.setState({ topIds });
-  }
+    setTopIds(topIds);
+  };
 
-  render() {
-    const { topIds } = this.state;
+  useEffect(() => {
+    getTopStoriesIds();
+  }, []);
 
-    return (
-      <div>
-        <h1>HackerNews Data</h1>
-        <ul>
-          {topIds.map(id => {
-            return (
-              <li key={id}>
-                <Post id={id} />
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    );
-  }
-}
+  return (
+    <Wrapper>
+      <Title>HackerNews Top Stories</Title>
+      <ul>
+        {topIds.map(id => {
+          return (
+            <li key={id}>
+              <Post id={id} />
+            </li>
+          );
+        })}
+      </ul>
+    </Wrapper>
+  );
+};
+
+const Wrapper = styled.div`
+  width: 50%;
+  overflow-y: auto;
+  height: 100vh;
+`
 
 export default Index;
