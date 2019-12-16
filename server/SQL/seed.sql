@@ -559,8 +559,7 @@ INSERT INTO private_messages(
   'Culpa irure sit sint ullamco non tempor.',
   'Nostrud labore proident dolor cupidatat aliqua labore elit duis sint nisi Lorem qui id. Reprehenderit ex occaecat do dolor. Irure aute officia mollit reprehenderit amet enim do.',
   6,
-  1,
-  2
+  1
 );
 
 INSERT INTO reports (
@@ -594,6 +593,5 @@ INSERT INTO reports (
   1,
   'bad reputation of taking advatage of new programmers'
 );
-
 
 
