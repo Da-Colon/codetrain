@@ -56,6 +56,46 @@ const getAllResourceReports = resource_id => {
   }
 };
 
+// get all user reports
+const getUsersReports = () => {
+  const query = db.any(`SELECT * from reports WHERE users_id IS NOT NULL;`);
+  try {
+    return query;
+  } catch {
+    console.log("There was an error when retrieving the reports");
+  }
+};
+
+// get all company reports
+const getCompaniesReports = () => {
+  const query = db.any(`SELECT * from reports WHERE companies_id IS NOT NULL;`);
+  try {
+    return query;
+  } catch {
+    console.log("There was an error when retrieving the reports");
+  }
+};
+
+// get all job reports
+const getJobsReports = () => {
+  const query = db.any(`SELECT * from reports WHERE posts_jobs_id IS NOT NULL;`);
+  try {
+    return query;
+  } catch {
+    console.log("There was an error when retrieving the reports");
+  }
+};
+
+// get all resource reports
+const getResourcesReports = () => {
+  const query = db.any(`SELECT * from reports WHERE resource_id IS NOT NULL;`);
+  try {
+    return query;
+  } catch {
+    console.log("There was an error when retrieving the reports");
+  }
+};
+
 // delete/change auth of user
 const removeAuthUser = users_id => {
   const query = db.any(`UPDATE users SET auth = FALSE WHERE id = $1;`, [
@@ -211,5 +251,9 @@ module.exports = {
   removeAuthCompanyUsers,
   removeAuthUser,
   getReports,
-  resolveIssue
+  resolveIssue,
+  getCompaniesReports,
+  getUsersReports,
+  getJobsReports,
+  getResourcesReports
 };
