@@ -3,17 +3,20 @@ const router = express.Router();
 
 const JobApplicationModel = require("../models/jobApplicationModel");
 
-// Create
+// Create job application
 router.post("/add-application", async (req, res) => {
   const { users_id, posts_jobs_id } = req.body;
   const response = await JobApplicationModel.addApplication(
     users_id,
     posts_jobs_id
   );
-  if (response.command === "INSERT" && response.rowCount >= 1) {
-    res.sendStatus(200);
+    console.log(response.code)
+  if (
+    response.code == 23505
+  ) {
+    res.status(403).send({ message: "Applicant has already applied" });
   } else {
-    res.send("Could not add job application").status(409);
+    res.status(200).send({ message: "Application received" });
   }
 });
 
@@ -50,14 +53,15 @@ router.get("/:job_id/:user_id", async (req, res) => {
 router.put("/update-status/:applicantId/:jobPostId", async (req, res) => {
   const { applicantId, jobPostId } = req.params;
 
-  const response = await JobApplicationModel.updateStatusToRejected(applicantId,jobPostId)
+  const response = await JobApplicationModel.updateStatusToRejected(
+    applicantId,
+    jobPostId
+  );
 
   if (response.command === "UPDATE" && response.rowCount >= 1) {
     res.sendStatus(200);
   } else {
-    res
-      .send(`Could not update job application status`)
-      .status(409);
+    res.send(`Could not update job application status`).status(409);
   }
 });
 
