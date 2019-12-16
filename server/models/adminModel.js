@@ -210,5 +210,6 @@ module.exports = {
   // findUser,
   removeAuthCompanyUsers,
   removeAuthUser,
-  getReports
+  getReports,
+  resolveIssue
 };
