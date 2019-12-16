@@ -74,6 +74,7 @@ const JobCard = ({ data }) => {
         alert("You have already applied for this job.");
       });
   };
+  
 
   const history = useHistory()
   const postReport = () => {
