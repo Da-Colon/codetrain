@@ -39,11 +39,13 @@ CREATE TABLE posts_resources (
   up_votes INTEGER DEFAULT (0),
   down_votes INTEGER DEFAULT (0),
   title VARCHAR(100),
+  categories TEXT[],
   short_description VARCHAR(400),
   full_description TEXT,
   resource_url TEXT,
   date_posted DATE DEFAULT NOW(),
-  users_id INTEGER REFERENCES users(id)
+  users_id INTEGER REFERENCES users(id),
+  is_deleted BOOLEAN DEFAULT (FALSE)
 );
 
 CREATE TABLE posts_jobs (

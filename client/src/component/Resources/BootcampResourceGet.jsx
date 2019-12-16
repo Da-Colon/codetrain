@@ -24,10 +24,17 @@ import {
   Subtitle
 } from 'bloomer';
 
+import EditResourceModal from './EditResourceModal'
+
 const BootcampResourceGet = () => {
   const user = useSelector(state => state.user);
   const [resources, setResources] = useState([]);
   const [resourcesFetched, setResourcesFetched] = useState(false);
+  // const [editFormActive, setEditFormActive] = useState(false);
+  const [editFormActive, setEditFormActive] = useState({
+    isActive: false,
+    resourceId: null
+  });
 
   const fetchResourcesData = async () => {
     const resourcesEndpoint = 'http://localhost:3000/resources/getAllResources';
@@ -38,8 +45,15 @@ const BootcampResourceGet = () => {
 
   const deleteResource = async resourceId => {
     const endpoint = `http://localhost:3000/resources/delete/${resourceId}`;
-    await axios.delete(endpoint);
+    await axios.put(endpoint);
     fetchResourcesData();
+  };
+
+  const editResource = (e, resource) => {
+    setEditFormActive({
+      isActive: true,
+      resourceId: resource.id
+    });
   };
 
   useEffect(() => {
@@ -61,6 +75,7 @@ const BootcampResourceGet = () => {
             short_description: descriptionShort,
             full_description: descriptionFull,
             resource_url: resourceURL,
+            is_deleted: isDeleted,
             date_posted: datePosted /* information beyond this line relates to resource poster */,
             users_id: usersId,
             email,
@@ -74,7 +89,7 @@ const BootcampResourceGet = () => {
             history.push(`/report/resource/${resource.id}/${resource.users_id}`)
           }
           return (
-            <Card key={i} style={{ maxWidth: '600px', margin: '20px' }}>
+            <Card key={i} style={{ maxWidth: '600px', margin: '20px', display: isDeleted ? 'none' : 'block'}}>
               <CardHeader>
                 <CardHeaderTitle>{title}</CardHeaderTitle>
                 <button onClick={postReport}>Report Resource</button>
@@ -127,7 +142,7 @@ const BootcampResourceGet = () => {
                   <CardFooterItem>
                     <Button
                       isColor={`success`}
-                      onClick={() => console.log(`Hopefully we can edit soon!`)}
+                      onClick={e => editResource(e, resource)}
                     >
                       Edit
                     </Button>
@@ -140,6 +155,13 @@ const BootcampResourceGet = () => {
                       Delete
                     </Button>
                   </CardFooterItem>
+                  {editFormActive.resourceId === resource.id ? (
+                    <EditResourceModal 
+                      editFormActive={editFormActive}
+                      setEditFormActive={setEditFormActive} 
+                      resource={resource}
+                    />
+                  ) : null}
                 </CardFooter>
               ) : null}
             </Card>
