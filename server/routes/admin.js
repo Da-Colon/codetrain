@@ -81,8 +81,9 @@ router.post("/reports/send/company", async (req, res) => {
 
 // post report
 router.post('/reports/newreport', async (req, res) =>{
-  const {user_id, posts_jobs_id, companies_id, resource_id, reason, submitted_by} = req.body
-  const saveReport = await AdminModel.postReport(user_id, posts_jobs_id, companies_id, resource_id, submitted_by, reason)
+  const {users_id, posts_jobs_id, companies_id, resource_id, reason, submited_by} = req.body
+  console.log(req.body)
+  const saveReport = await AdminModel.postReport(users_id, posts_jobs_id, companies_id, resource_id, submited_by, reason)
   res.status(200).end()
 })
 
@@ -105,6 +106,34 @@ router.post('/reports/resolve/:report_id', async (req, res) =>{
   const {report_id} = req.params;
   const updateResolve = await AdminModel.resolveIssue(report_id);
   res.status(200).end()
+})
+
+
+// All Companies reports
+router.get('/reports/companies', async (req, res) =>{
+  const getTheReports = await AdminModel.getCompaniesReports();
+  res.json(getTheReports).status(200)
+})
+
+
+// All USERS reports
+router.get('/reports/users', async (req, res) =>{
+  const getTheReports = await AdminModel.getUsersReports();
+  res.json(getTheReports).status(200)
+})
+
+
+// All jobs reports
+router.get('/reports/jobs', async (req, res) =>{
+  const getTheReports = await AdminModel.getJobsReports();
+  res.json(getTheReports).status(200)
+})
+
+
+// all resource reports
+router.get('/reports/resources', async (req, res) =>{
+  const getTheReports = await AdminModel.getResourcesReport();
+  res.json(getTheReports).status(200)
 })
 
 // // search user
