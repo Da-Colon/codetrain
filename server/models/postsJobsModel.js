@@ -64,7 +64,7 @@ class JobPosts {
   static async getById(id) {
     const query = `select * from posts_jobs where id= ${id}`;
     try {
-      const response = await db.any(query);
+      const response = await db.one(query);
       return response;
     } catch (err) {
       return err.message;

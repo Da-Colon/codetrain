@@ -1,17 +1,15 @@
-import React, { Component, Fragment } from 'react';
-import BootcampResourcePost from './BootcampResourcePost';
-import BootcampResourceGet from './BootcampResourceGet';
+import React, { Component, Fragment } from "react";
+import BootcampResourcePost from "./BootcampResourcePost";
+import BootcampResourceGet from "./BootcampResourceGet";
 
 class Resources extends Component {
-  state = {
-
-  }
+  state = {};
 
   render() {
     return (
       <Fragment>
         <BootcampResourceGet />
-        <BootcampResourcePost />
+        {/* <BootcampResourcePost /> */}
       </Fragment>
     );
   }
