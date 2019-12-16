@@ -61,7 +61,7 @@ class JobApplication {
       const response = await db.one(query);
       return response;
     } catch (err) {
-      return err.message;
+      return err;
     }
   }
 
