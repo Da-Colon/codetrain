@@ -1,37 +1,37 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import Post from "./Post";
-import { getTopStoriesIds } from "../../../Utils/HackerNewsApi";
+import Axios from "axios";
 
-class Index extends Component {
-  state = {
-    topIds: []
+const Index = () => {
+  const [topIds, setTopIds] = useState([]);
+
+  const getTopStoriesIds = async () => {
+    const response = await Axios.get(
+      "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty"
+    );
+    const allIds = response.data;
+    const topIds = allIds.slice(0, 10);
+    setTopIds(topIds);
   };
 
-  async componentDidMount() {
-    const response = await getTopStoriesIds();
-    const allIds = response.data;
-    const topIds = allIds.slice(0, 25);
-    this.setState({ topIds });
-  }
+  useEffect(() => {
+    getTopStoriesIds();
+  }, []);
 
-  render() {
-    const { topIds } = this.state;
-
-    return (
-      <div>
-        <h1>HackerNews Data</h1>
-        <ul>
-          {topIds.map(id => {
-            return (
-              <li key={id}>
-                <Post id={id} />
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <h1>HackerNews Data</h1>
+      <ul>
+        {topIds.map(id => {
+          return (
+            <li key={id}>
+              <Post id={id} />
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+};
 
 export default Index;

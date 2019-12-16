@@ -1,17 +1,23 @@
-import React, { Component, Fragment } from 'react';
-import HackerNews from './HackerNews'
-import TechNews from './TechNews';
+import React from "react";
+import HackerNews from "./HackerNews";
+import TechNews from "./TechNews";
+import { Container } from "bloomer";
+import styled from "styled-components";
 
-
-class BootcampHome extends Component {
-  render() {
-    return (
-      <Fragment>
+const BootcampHome = () => (
+  <>
+    <Container>
+      <Wrapper>
         <HackerNews />
         <TechNews />
-      </Fragment>
-    );
-  }
-}
+      </Wrapper>
+    </Container>
+  </>
+);
+
+const Wrapper = styled.div`
+  display: flex;
+`;
+
 
 export default BootcampHome;
