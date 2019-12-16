@@ -221,7 +221,7 @@ INSERT INTO posts_resources (
   'PostgreSQL Tutorial',
   '{Tutorial, Reference, Backend, Database}',
   'This PostgreSQL tutorial aims to help you understand PostgreSQL quickly through many practical examples. Numerous problems are given, and, more importantly, solutions are sketched.',
-  'The aim of this resource is to help you get up and running with PostgreSQL as quickly as possible by means of problems and solutions. If you are looking to learn PostgreSQL fast and easily, develop applications using PostgreSQL as the back-end database management system, or migrating from other database management systems such as MySQL, Oracle, Microsoft SQL Server to PostgreSQL, then this resource is for you! 
+  'The aim of this resource is to help you get up and running with PostgreSQL as quickly as possible by means of problems and solutions. If you are looking to learn PostgreSQL fast and easily, develop applications using PostgreSQL as the back-end database management system, or migrating from other database management systems such as MySQL, Oracle, Microsoft SQL Server to PostgreSQL, then this resource is for you!
   
   First, you will learn how to query data from a single table using basic data selection techniques such as selecting columns, sorting result set, and filtering rows. Then, you will learn about the advanced queries such as joining multiple tables, using set operations, and constructing the subquery. Finally, you will learn how to manage database tables such as creating new a table or modifying an existing table’s structure.
   ',
