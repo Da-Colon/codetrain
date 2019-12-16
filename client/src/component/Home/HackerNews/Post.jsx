@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Moment from "react-moment";
 import Axios from "axios";
+import styled from 'styled-components'
 
 const Post = props => {
   const [postData, setPostData] = useState({});
@@ -20,20 +21,26 @@ const Post = props => {
   const dateToFormat = postData.time;
 
   return (
-    <div>
+    <PostWrapper>
       <p>
-        {postData.title} (<a href={postData.url}>Link</a> )
+         <a href={postData.url}>{postData.title}</a> 
       </p>
       <p>
+        Posted {" "}
         <Moment fromNow unix>
           {dateToFormat}
         </Moment>
       </p>
       <p>
-        {postData.score} points by {postData.by}
+        {postData.score} points on HackerNews by {postData.by}
       </p>
-    </div>
+    </PostWrapper>
   );
 };
+
+const PostWrapper = styled.div`
+  margin-bottom: 20px;
+`
+
 
 export default Post;

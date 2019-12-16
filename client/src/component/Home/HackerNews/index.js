@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Post from "./Post";
 import Axios from "axios";
+import styled from 'styled-components'
+import {Title} from '../../Styles/FormStyles'
 
 const Index = () => {
   const [topIds, setTopIds] = useState([]);
@@ -10,7 +12,7 @@ const Index = () => {
       "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty"
     );
     const allIds = response.data;
-    const topIds = allIds.slice(0, 10);
+    const topIds = allIds.slice(0, 25);
     setTopIds(topIds);
   };
 
@@ -19,8 +21,8 @@ const Index = () => {
   }, []);
 
   return (
-    <div>
-      <h1>HackerNews Data</h1>
+    <Wrapper>
+      <Title>HackerNews Top Stories</Title>
       <ul>
         {topIds.map(id => {
           return (
@@ -30,8 +32,14 @@ const Index = () => {
           );
         })}
       </ul>
-    </div>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  width: 50%;
+  overflow-y: auto;
+  height: 100vh;
+`
 
 export default Index;

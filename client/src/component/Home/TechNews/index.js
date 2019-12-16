@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Story from "./Story";
 import Axios from "axios";
+import styled from "styled-components";
+import {Title} from '../../Styles/FormStyles'
 
 const Index = () => {
   const [topStories, setTopStories] = useState([]);
@@ -18,8 +20,8 @@ const Index = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Tech News Data</h1>
+    <Wrapper>
+      <Title>TechCrunch Top Stories</Title>
       <ul>
         {topStories.map(story => {
           // intentionally ignoring the unique key prop for now
@@ -30,8 +32,13 @@ const Index = () => {
           );
         })}
       </ul>
-    </div>
+    </Wrapper>
   );
 };
 
+const Wrapper = styled.div`
+  width: 50%;
+  overflow-y: auto;
+  height: 100vh;
+`;
 export default Index;
