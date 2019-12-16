@@ -34,11 +34,24 @@ router.post("/add/:user_id", async (req, res) => {
   res.json({ message: "Successfully Saved" }).status(200);
 });
 
-router.delete("/delete/:resource_id", async (req, res) => {
+router.put("/delete/:resource_id", async (req, res) => {
   const resourceId = req.params.resource_id;
   console.log("THE PARAMS: ", req.params);
   await ResourcePostModel.deleteResource(resourceId);
   res.json({ message: "Successfully Deleted" }).status(200);
+});
+
+router.put("/update/:resource_id", async (req, res) => {
+  const resourceId = req.params.resource_id;
+  const { title, short_description, full_description, resource_url } = req.body;
+  await ResourcePostModel.updateResource(
+    title,
+    short_description,
+    full_description,
+    resource_url,
+    resourceId
+  );
+  res.json({ message: "Successfully Updated" }).status(200);
 });
 
 module.exports = router;

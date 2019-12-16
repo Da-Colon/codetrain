@@ -60,18 +60,22 @@ const JobCard = ({ data }) => {
     fetchCompanyData();
   }, []);
 
-  const postApplication = async () => {
+  const postApplication = () => {
     const endpoint = "http://localhost:3000/job-applications/add-application/";
     const payload = {
       users_id: user.id,
       posts_jobs_id: data.id
     };
-    const res = await Axios.post(endpoint, payload);
-    res.status === 200
-      ? alert("Your application was received.")
-      : alert("Sorry. There was an error.");
+
+    Axios.post(endpoint, payload)
+      .then(res => {
+        alert("Your application was received.");
+      })
+      .catch(err => {
+        alert("You have already applied for this job.");
+      });
   };
-  // title, content, experience, date_posted, contact_email, contact_phone, company_name, company_profile, company_url
+
   return (
     <Card style={{ maxWidth: "400px", margin: "20px" }}>
       <CardHeader>
