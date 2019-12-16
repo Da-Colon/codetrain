@@ -1,17 +1,21 @@
 import React from "react";
+import styled from "styled-components";
 
 const Story = props => {
   const story = props.data;
+
   return (
-    <div>
-      <h3>{story.title}</h3>
+    <StoryWrapper>
+      <a href={story.url}>
+        <p>{story.title}</p>
+      </a>
       <p>{story.description}</p>
-      <p>By: {story.author}</p>
-      <p>
-        <a href={story.url}>Click for More Information</a>
-      </p>
-    </div>
+    </StoryWrapper>
   );
 };
+
+const StoryWrapper = styled.div`
+  margin-bottom: 20px;
+`;
 
 export default Story;

@@ -1,7 +1,8 @@
-const developmentType = null;
-const developmentAuth = null;
-const developmentid = null;
+const developmentType = 2;
+const developmentAuth = true;
+const developmentid = 1;
 const developmentCid = null;
+
 const initialState = {
   id: developmentid,
   email: null,

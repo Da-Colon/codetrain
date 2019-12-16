@@ -1,39 +1,46 @@
-import React, { Component } from "react";
-import { getAnItem } from "../../../Utils/HackerNewsApi"
+import React, { useState, useEffect } from "react";
 import Moment from "react-moment";
+import Axios from "axios";
+import styled from 'styled-components'
 
-class Post extends Component {
-  state = {
-    postData: {}
+const Post = props => {
+  const [postData, setPostData] = useState({});
+
+  const getAnItem = async id => {
+    const response = await Axios.get(
+      `https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`
+    );
+    const postData = response.data;
+    setPostData(postData);
   };
 
-  async componentDidMount() {
-    const idFromParent = this.props.id;
-    const response = await getAnItem(idFromParent);
-    const postData = response.data;
-    this.setState({ postData });
-  }
+  useEffect(() => {
+    getAnItem(props.id);
+  }, []);
 
-  render() {
-    const { postData } = this.state;
-    const dateToFormat = postData.time;
+  const dateToFormat = postData.time;
 
-    return (
-      <div>
-        <p>
-          {postData.title} (<a href={postData.url}>Link</a> )
-        </p>
-        <p>
-          <Moment fromNow unix>
-            {dateToFormat}
-          </Moment>
-        </p>
-        <p>
-          {postData.score} points by {postData.by}
-        </p>
-      </div>
-    );
-  }
-}
+  return (
+    <PostWrapper>
+      <p>
+         <a href={postData.url}>{postData.title}</a> 
+      </p>
+      <p>
+        Posted {" "}
+        <Moment fromNow unix>
+          {dateToFormat}
+        </Moment>
+      </p>
+      <p>
+        {postData.score} points on HackerNews by {postData.by}
+      </p>
+    </PostWrapper>
+  );
+};
+
+const PostWrapper = styled.div`
+  margin-bottom: 20px;
+`
+
 
 export default Post;
