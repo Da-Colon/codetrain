@@ -33,8 +33,8 @@ const NavBar = () => {
         //  Admin User NavBar
         <Ul>
           <Link to="/home">Home</Link>
-          <Link to="/admin/users">Users</Link>
-          <Link to="/admin/companies">Companies</Link>
+          <Link to="/admin/reports">Reports</Link>
+          <Link to="/jobs" exact>Jobs</Link>
           <Link to="/messages">Messages</Link>
           <Button onClick={handleLogout}>Logout</Button>
         </Ul>
