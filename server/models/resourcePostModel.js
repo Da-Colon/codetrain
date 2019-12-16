@@ -21,12 +21,32 @@ const getAllResourcesAndPosters = async () => {
 `);
 
   try {
-    return query
+    return query;
   } catch {
-    return console.log(`Error: Unable to retrieve resources and posters from database`);
+    return console.log(
+      `Error: Unable to retrieve resources and posters from database`
+    );
   }
+};
 
-}
+const getResourceandPosterById = async id => {
+  const query = await db.one(`
+    SELECT 
+      pr.id, title, up_votes, down_votes, short_description, full_description, resource_url, date_posted, users_id, email, first_name, last_name, github_url, linkedin_url, bootcamp_name
+    FROM
+	    posts_resources as pr
+    INNER JOIN users ON users.id = pr.users_id
+    WHERE pr.id = ${id};
+`);
+
+  try {
+    return query;
+  } catch {
+    return console.log(
+      `Error: Unable to retrieve resources and posters from database`
+    );
+  }
+};
 
 const saveNewResource = async (
   title,
@@ -35,7 +55,9 @@ const saveNewResource = async (
   resource_url,
   userId
 ) => {
-  const query = await db.any(`INSERT INTO posts_resources (title, short_description, full_description, resource_url, users_id) VALUES ($1, $2, $3, $4, $5);`, [title, short_description, full_description, resource_url, userId]
+  const query = await db.any(
+    `INSERT INTO posts_resources (title, short_description, full_description, resource_url, users_id) VALUES ($1, $2, $3, $4, $5);`,
+    [title, short_description, full_description, resource_url, userId]
   );
   try {
     return query;
@@ -44,19 +66,22 @@ const saveNewResource = async (
   }
 };
 
-const deleteResource = async (resourceId) => {
-  const query = await db.any(`
+const deleteResource = async resourceId => {
+  const query = await db.any(
+    `
     UPDATE posts_resources
     SET is_deleted = TRUE
     WHERE id = $1
-  `, [resourceId]);
+  `,
+    [resourceId]
+  );
   try {
-    console.log('Resource deleted successfully');
-    return query
+    console.log("Resource deleted successfully");
+    return query;
   } catch {
     return console.log(`ERROR: Unable to delete resource from database`);
   }
-}
+};
 
 const updateResource = async (
   title,
@@ -65,11 +90,13 @@ const updateResource = async (
   resource_url,
   resourceId
 ) => {
-  const query = await db.any(`
+  const query = await db.any(
+    `
       UPDATE posts_resources
       SET title = $1, short_description = $2, full_description = $3, resource_url = $4
       WHERE id = $5
-    ;`, [title, short_description, full_description, resource_url, resourceId]
+    ;`,
+    [title, short_description, full_description, resource_url, resourceId]
   );
   try {
     return query;
@@ -78,4 +105,11 @@ const updateResource = async (
   }
 };
 
-module.exports = { getAllResources, saveNewResource, getAllResourcesAndPosters, deleteResource, updateResource };
+module.exports = {
+  getAllResources,
+  saveNewResource,
+  getAllResourcesAndPosters,
+  deleteResource,
+  updateResource,
+  getResourceandPosterById
+};
