@@ -36,8 +36,8 @@ const CompanyProfile = () => {
   return (
     <card>
       <h1>Company Name: {companyInfo.name}
-      <button onClick={postReport}>Report {companyInfo.name}</button>
       </h1>
+      <button onClick={postReport}>Report {companyInfo.name}</button>
       <img src={companyInfo.company_logo_url} alt="company logo" />
       <h2>
         Email:{" "}
