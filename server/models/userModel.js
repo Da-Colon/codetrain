@@ -47,7 +47,7 @@ class User {
   }
 
   static async getById(id) {
-    const query = `select email, first_name, last_name, github_url, linkedin_url, bootcamp_name from users where id= ${id}`;
+    const query = `select id, email, first_name, last_name, github_url, linkedin_url, bootcamp_name, companies_id from users where id= ${id}`;
     try {
       const response = await db.one(query);
       return response;
