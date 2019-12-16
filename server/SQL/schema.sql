@@ -75,6 +75,7 @@ CREATE TABLE private_messages(
   subject TEXT,
   message TEXT,
   sent_from INTEGER REFERENCES users(id),
+  sent_from_companies_id INTEGER REFERENCES companies(id),
   sent_to INTEGER REFERENCES users(id),
   date_sent DATE DEFAULT NOW()
 );
@@ -92,8 +93,9 @@ CREATE TABLE reports (
   resource_id INTEGER REFERENCES posts_resources(id),
   reason TEXT,
   submited_by INTEGER REFERENCES users(id),
-  resolved BOOLEAN DEFAULT (False)
-);
+  resolved BOOLEAN DEFAULT (False),
+  date_reported DATE DEFAULT NOW()
+)
 
 -- Need to Figure out Data Storage for PDFs
 
