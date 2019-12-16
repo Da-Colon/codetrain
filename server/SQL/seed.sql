@@ -7,21 +7,15 @@ INSERT INTO companies (
   'https://google.com',
   'https://2.bp.blogspot.com/-tRdfCkaPO0A/Ui-PRJLDZlI/AAAAAAABMI8/8L9maIUroq8/s640/google-new-logo.png',
   'Mollit ipsum ut labore magna consequat dolore. Duis ipsum dolore ipsum consectetur ipsum elit nisi veniam. Consectetur occaecat culpa enim ea. Id id eiusmod deserunt cupidatat. Mollit labore officia magna tempor.'
-); 
-
-INSERT INTO companies (
-  email, name, company_url, company_logo_url, description
-) VALUES (
+), 
+(
   'gradpad@gmail.com', 
   'GradPad', 
   'https://google.com',
   'https://2.bp.blogspot.com/-tRdfCkaPO0A/Ui-PRJLDZlI/AAAAAAABMI8/8L9maIUroq8/s640/google-new-logo.png',
 'Mollit ipsum ut labore magna consequat dolore. Duis ipsum dolore ipsum consectetur ipsum elit nisi veniam. Consectetur occaecat culpa enim ea. Id id eiusmod deserunt cupidatat. Mollit labore officia magna tempor.'
-);  
-
-INSERT INTO companies (
-  email, name, company_url, company_logo_url, description
-) VALUES (
+),
+(
   'sideqik@gmail.com', 
   'SideQik',
   'https://google.com',
@@ -29,7 +23,7 @@ INSERT INTO companies (
 'Mollit ipsum ut labore magna consequat dolore. Duis ipsum dolore ipsum consectetur ipsum elit nisi veniam. Consectetur occaecat culpa enim ea. Id id eiusmod deserunt cupidatat. Mollit labore officia magna tempor.'
 );
 
--- BOOTCAMP USERS
+-- USERS
 INSERT INTO users (
   email,
   password,
@@ -42,7 +36,7 @@ INSERT INTO users (
   user_types_id,
   bootcamp_name,
   companies_id
-) VALUES (
+) VALUES ( -- BOOTCAMP USERS
   'dcapples@gmail.com',
   'test',
   'Dave',
@@ -54,21 +48,8 @@ INSERT INTO users (
   2,
   'Digital Crafts',
   NULL
-);
-
-INSERT INTO users (
-  email,
-  password,
-  first_name,
-  last_name,
-  skills,
-  github_url,
-  linkedin_url,
-  auth,
-  user_types_id,
-  bootcamp_name,
-  companies_id
-) VALUES (
+),
+(
   'dbananas@gmail.com',
   'test',
   'Daniel',
@@ -80,21 +61,8 @@ INSERT INTO users (
   2,
   'General Assembly',
   NULL
-);
-
-INSERT INTO users (
-  email,
-  password,
-  first_name,
-  last_name,
-  skills,
-  github_url,
-  linkedin_url,
-  auth,
-  user_types_id,
-  bootcamp_name,
-  companies_id
-) VALUES (
+),
+(
   'nocarrots@gmail.com',
   'test',
   'Nep',
@@ -106,22 +74,9 @@ INSERT INTO users (
   2,
   'Thinkful',
   NULL
-);
 
--- COMPANY USERS
-INSERT INTO users (
-  email,
-  password,
-  first_name,
-  last_name,
-  skills,
-  github_url,
-  linkedin_url,
-  auth,
-  user_types_id,
-  bootcamp_name,
-  companies_id
-) VALUES (
+), -- COMPANY USERS
+(
   'hrdave@google.com',
   'test',
   'Dave',
@@ -133,21 +88,8 @@ INSERT INTO users (
   3,
   NULL,
   3
-);
-
-INSERT INTO users (
-  email,
-  password,
-  first_name,
-  last_name,
-  skills,
-  github_url,
-  linkedin_url,
-  auth,
-  user_types_id,
-  bootcamp_name,
-  companies_id
-) VALUES (
+),
+(
   'hmnep@gmail.com',
   'test',
   'Nep',
@@ -159,21 +101,8 @@ INSERT INTO users (
   3,
   NULL,
   3
-);
-
-INSERT INTO users (
-  email,
-  password,
-  first_name,
-  last_name,
-  skills,
-  github_url,
-  linkedin_url,
-  auth,
-  user_types_id,
-  bootcamp_name,
-  companies_id
-) VALUES (
+),
+(
   'prescottceo@gmail.com',
   'test',
   'Prescott',
@@ -185,22 +114,8 @@ INSERT INTO users (
   3,
   NULL,
   2
-);
-
--- Not Authorized Users
-INSERT INTO users (
-  email,
-  password,
-  first_name,
-  last_name,
-  skills,
-  github_url,
-  linkedin_url,
-  auth,
-  user_types_id,
-  bootcamp_name,
-  companies_id
-) VALUES (
+), -- Not Authorized Users
+(
   'neppers@gmail.com',
   'test',
   'Nep',
@@ -212,21 +127,8 @@ INSERT INTO users (
   2,
   'Digital Crafts',
   NULL
-);
-
-INSERT INTO users (
-  email,
-  password,
-  first_name,
-  last_name,
-  skills,
-  github_url,
-  linkedin_url,
-  auth,
-  user_types_id,
-  bootcamp_name,
-  companies_id
-) VALUES (
+),
+(
   'dannybeans@gmail.com',
   'test',
   'Daniel',
@@ -238,21 +140,8 @@ INSERT INTO users (
   2,
   'Digital Crafts',
   NULL
-);
-
-INSERT INTO users (
-  email,
-  password,
-  first_name,
-  last_name,
-  skills,
-  github_url,
-  linkedin_url,
-  auth,
-  user_types_id,
-  bootcamp_name,
-  companies_id
-) VALUES (
+),
+(
   'Prestonsmithson@gmail.com',
   'test',
   'Preston',
@@ -264,22 +153,8 @@ INSERT INTO users (
   3,
   NULL,
   3
-);
-
--- ADMIN USERS
-INSERT INTO users (
-  email,
-  password,
-  first_name,
-  last_name,
-  skills,
-  github_url,
-  linkedin_url,
-  auth,
-  user_types_id,
-  bootcamp_name,
-  companies_id
-) VALUES (
+), -- ADMIN USERS
+(
   'david@gmail.com',
   'test',
   'David',
@@ -291,21 +166,8 @@ INSERT INTO users (
   1,
   NULL,
   NULL
-);
-
-INSERT INTO users (
-  email,
-  password,
-  first_name,
-  last_name,
-  skills,
-  github_url,
-  linkedin_url,
-  auth,
-  user_types_id,
-  bootcamp_name,
-  companies_id
-) VALUES (
+),
+(
   'Daniel@gmail.com',
   'test',
   'Daniel',
@@ -317,21 +179,8 @@ INSERT INTO users (
   1,
   NULL,
   NULL
-);
-
-INSERT INTO users (
-  email,
-  password,
-  first_name,
-  last_name,
-  skills,
-  github_url,
-  linkedin_url,
-  auth,
-  user_types_id,
-  bootcamp_name,
-  companies_id
-) VALUES (
+),
+(
   'nep@gmail.com',
   'test',
   'Nep',
@@ -343,24 +192,11 @@ INSERT INTO users (
   1,
   NULL,
   NULL
-);
-
-INSERT INTO users (
-  email,
-  password,
-  first_name,
-  last_name,
-  skills,
-  github_url,
-  linkedin_url,
-  auth,
-  user_types_id,
-  bootcamp_name,
-  companies_id
-) VALUES (
-  'preston@gmail.com',
+),
+(
+  'prescott@gmail.com',
   'test',
-  'Preston',
+  'Prescott',
   'C',
   NULL,
   NULL,
@@ -371,103 +207,117 @@ INSERT INTO users (
   NULL
 );
 
--- POSTS RESOURCE DATA
+-- POSTED RESOURCES
 
 INSERT INTO posts_resources (
-  title,
-  short_description,
-  full_description,
+  title, 
+  categories, 
+  short_description, 
+  full_description, 
   resource_url,
   users_id
-) VALUES (
-  'Ipsum ea laboris cupidatat et duis do.',
-  'Est ipsum laborum excepteur enim dolore ex ad deserunt irure adipisicing et ut aliquip pariatur. Quis irure est magna eu. Lorem sit reprehenderit velit deserunt fugiat laborum irure ut eu. Esse consectetur nostrud cillum et quis reprehenderit dolore enim elit cillum nulla. In nostrud sunt nisi aliquip ipsum occaecat esse voluptate magna do labore. Sit est cupidatat voluptate enim sunt.',
-  'Lorem tempor quis in occaecat cupidatat amet sit. Ex sint cupidatat aute ea. Officia sit do consectetur deserunt consectetur occaecat enim aute. Nisi nisi sint mollit eu. Dolore laboris deserunt exercitation consequat voluptate pariatur ea duis mollit adipisicing sit ipsum incididunt. Consectetur anim aliquip exercitation commodo. Sunt sit culpa proident ex.
-  Nostrud dolor cillum ullamco exercitation aliquip excepteur sint ex excepteur ipsum. Culpa laborum voluptate aliquip aliquip occaecat ea. Non ut aliqua aliqua ad ipsum velit id nulla commodo. In dolor aute mollit cupidatat id ipsum enim exercitation cillum pariatur. Occaecat et ut amet eu enim velit nisi velit qui est eu et reprehenderit occaecat. Ea enim enim velit occaecat magna amet eu do amet exercitation.
-  Aliquip et sint cillum sit. Fugiat ad ex quis id nisi. Officia qui nostrud laborum labore laborum do sint occaecat pariatur reprehenderit aute aliqua magna cillum. Eiusmod cupidatat officia enim nisi aute veniam sit excepteur ex fugiat amet sint tempor do. Excepteur incididunt amet ullamco minim dolore commodo cupidatat sit duis. Ipsum anim quis sit sint aute aliqua sit Lorem amet.',
-  'https://reactjs.org/docs/hooks-overview.html',
+) VALUES 
+(
+  'PostgreSQL Tutorial',
+  '{Tutorial, Reference, Backend, Database}',
+  'This PostgreSQL tutorial aims to help you understand PostgreSQL quickly through many practical examples. Numerous problems are given, and, more importantly, solutions are sketched.',
+  'The aim of this resource is to help you get up and running with PostgreSQL as quickly as possible by means of problems and solutions. If you are looking to learn PostgreSQL fast and easily, develop applications using PostgreSQL as the back-end database management system, or migrating from other database management systems such as MySQL, Oracle, Microsoft SQL Server to PostgreSQL, then this resource is for you!
+  
+  First, you will learn how to query data from a single table using basic data selection techniques such as selecting columns, sorting result set, and filtering rows. Then, you will learn about the advanced queries such as joining multiple tables, using set operations, and constructing the subquery. Finally, you will learn how to manage database tables such as creating new a table or modifying an existing table’s structure.
+  ',
+  'http://www.postgresqltutorial.com/',
   1
-);
-
-INSERT INTO posts_resources (
-  title,
-  short_description,
-  full_description,
-  resource_url,
-  users_id
-) VALUES (
-  'Ipsum ea laboris cupidatat et duis do.',
-  'Est ipsum laborum excepteur enim dolore ex ad deserunt irure adipisicing et ut aliquip pariatur. Quis irure est magna eu. Lorem sit reprehenderit velit deserunt fugiat laborum irure ut eu. Esse consectetur nostrud cillum et quis reprehenderit dolore enim elit cillum nulla. In nostrud sunt nisi aliquip ipsum occaecat esse voluptate magna do labore. Sit est cupidatat voluptate enim sunt.',
-  'Lorem tempor quis in occaecat cupidatat amet sit. Ex sint cupidatat aute ea. Officia sit do consectetur deserunt consectetur occaecat enim aute. Nisi nisi sint mollit eu. Dolore laboris deserunt exercitation consequat voluptate pariatur ea duis mollit adipisicing sit ipsum incididunt. Consectetur anim aliquip exercitation commodo. Sunt sit culpa proident ex.
-  Nostrud dolor cillum ullamco exercitation aliquip excepteur sint ex excepteur ipsum. Culpa laborum voluptate aliquip aliquip occaecat ea. Non ut aliqua aliqua ad ipsum velit id nulla commodo. In dolor aute mollit cupidatat id ipsum enim exercitation cillum pariatur. Occaecat et ut amet eu enim velit nisi velit qui est eu et reprehenderit occaecat. Ea enim enim velit occaecat magna amet eu do amet exercitation.
-  Aliquip et sint cillum sit. Fugiat ad ex quis id nisi. Officia qui nostrud laborum labore laborum do sint occaecat pariatur reprehenderit aute aliqua magna cillum. Eiusmod cupidatat officia enim nisi aute veniam sit excepteur ex fugiat amet sint tempor do. Excepteur incididunt amet ullamco minim dolore commodo cupidatat sit duis. Ipsum anim quis sit sint aute aliqua sit Lorem amet.',
-  'https://reactjs.org/docs/hooks-overview.html',
+),
+(
+  'Stack Overflow',
+  '{Forum, General, Development}',
+  'SHORT_DESCRIPTION',
+  'FULL_DESCRIPTION',
+  'https://stackoverflow.com/',
   1
-);
-
-INSERT INTO posts_resources (
-  title,
-  short_description,
-  full_description,
-  resource_url,
-  users_id
-) VALUES (
-  'Ipsum ea laboris cupidatat et duis do.',
-  'Est ipsum laborum excepteur enim dolore ex ad deserunt irure adipisicing et ut aliquip pariatur. Quis irure est magna eu. Lorem sit reprehenderit velit deserunt fugiat laborum irure ut eu. Esse consectetur nostrud cillum et quis reprehenderit dolore enim elit cillum nulla. In nostrud sunt nisi aliquip ipsum occaecat esse voluptate magna do labore. Sit est cupidatat voluptate enim sunt.',
-  'Lorem tempor quis in occaecat cupidatat amet sit. Ex sint cupidatat aute ea. Officia sit do consectetur deserunt consectetur occaecat enim aute. Nisi nisi sint mollit eu. Dolore laboris deserunt exercitation consequat voluptate pariatur ea duis mollit adipisicing sit ipsum incididunt. Consectetur anim aliquip exercitation commodo. Sunt sit culpa proident ex.
-  Nostrud dolor cillum ullamco exercitation aliquip excepteur sint ex excepteur ipsum. Culpa laborum voluptate aliquip aliquip occaecat ea. Non ut aliqua aliqua ad ipsum velit id nulla commodo. In dolor aute mollit cupidatat id ipsum enim exercitation cillum pariatur. Occaecat et ut amet eu enim velit nisi velit qui est eu et reprehenderit occaecat. Ea enim enim velit occaecat magna amet eu do amet exercitation.
-  Aliquip et sint cillum sit. Fugiat ad ex quis id nisi. Officia qui nostrud laborum labore laborum do sint occaecat pariatur reprehenderit aute aliqua magna cillum. Eiusmod cupidatat officia enim nisi aute veniam sit excepteur ex fugiat amet sint tempor do. Excepteur incididunt amet ullamco minim dolore commodo cupidatat sit duis. Ipsum anim quis sit sint aute aliqua sit Lorem amet.',
-  'https://reactjs.org/docs/hooks-overview.html',
+),
+(
+  'Flexbox Froggy',
+  '{Tutorial, Game, CSS, Flexbox}',
+  'SHORT_DESCRIPTION',
+  'FULL_DESCRIPTION',
+  'http://flexboxfroggy.com/',
   2
-);
-
-INSERT INTO posts_resources (
-  title,
-  short_description,
-  full_description,
-  resource_url,
-  users_id
-) VALUES (
-  'Ipsum ea laboris cupidatat et duis do.',
-  'Est ipsum laborum excepteur enim dolore ex ad deserunt irure adipisicing et ut aliquip pariatur. Quis irure est magna eu. Lorem sit reprehenderit velit deserunt fugiat laborum irure ut eu. Esse consectetur nostrud cillum et quis reprehenderit dolore enim elit cillum nulla. In nostrud sunt nisi aliquip ipsum occaecat esse voluptate magna do labore. Sit est cupidatat voluptate enim sunt.',
-  'Lorem tempor quis in occaecat cupidatat amet sit. Ex sint cupidatat aute ea. Officia sit do consectetur deserunt consectetur occaecat enim aute. Nisi nisi sint mollit eu. Dolore laboris deserunt exercitation consequat voluptate pariatur ea duis mollit adipisicing sit ipsum incididunt. Consectetur anim aliquip exercitation commodo. Sunt sit culpa proident ex.
-  Nostrud dolor cillum ullamco exercitation aliquip excepteur sint ex excepteur ipsum. Culpa laborum voluptate aliquip aliquip occaecat ea. Non ut aliqua aliqua ad ipsum velit id nulla commodo. In dolor aute mollit cupidatat id ipsum enim exercitation cillum pariatur. Occaecat et ut amet eu enim velit nisi velit qui est eu et reprehenderit occaecat. Ea enim enim velit occaecat magna amet eu do amet exercitation.
-  Aliquip et sint cillum sit. Fugiat ad ex quis id nisi. Officia qui nostrud laborum labore laborum do sint occaecat pariatur reprehenderit aute aliqua magna cillum. Eiusmod cupidatat officia enim nisi aute veniam sit excepteur ex fugiat amet sint tempor do. Excepteur incididunt amet ullamco minim dolore commodo cupidatat sit duis. Ipsum anim quis sit sint aute aliqua sit Lorem amet.',
-  'https://reactjs.org/docs/hooks-overview.html',
+),
+(
+  'Flexbox Froggy Guide',
+  '{Guide, Reference, CSS, Flexbox}',
+  'SHORT_DESCRIPTION',
+  'FULL_DESCRIPTION',
+  'https://github.com/daniel-farlow/flexbox-froggy',
   3
-);
-
-INSERT INTO posts_resources (
-  title,
-  short_description,
-  full_description,
-  resource_url,
-  users_id
-) VALUES (
-  'Ipsum ea laboris cupidatat et duis do.',
-  'Est ipsum laborum excepteur enim dolore ex ad deserunt irure adipisicing et ut aliquip pariatur. Quis irure est magna eu. Lorem sit reprehenderit velit deserunt fugiat laborum irure ut eu. Esse consectetur nostrud cillum et quis reprehenderit dolore enim elit cillum nulla. In nostrud sunt nisi aliquip ipsum occaecat esse voluptate magna do labore. Sit est cupidatat voluptate enim sunt.',
-  'Lorem tempor quis in occaecat cupidatat amet sit. Ex sint cupidatat aute ea. Officia sit do consectetur deserunt consectetur occaecat enim aute. Nisi nisi sint mollit eu. Dolore laboris deserunt exercitation consequat voluptate pariatur ea duis mollit adipisicing sit ipsum incididunt. Consectetur anim aliquip exercitation commodo. Sunt sit culpa proident ex.
-  Nostrud dolor cillum ullamco exercitation aliquip excepteur sint ex excepteur ipsum. Culpa laborum voluptate aliquip aliquip occaecat ea. Non ut aliqua aliqua ad ipsum velit id nulla commodo. In dolor aute mollit cupidatat id ipsum enim exercitation cillum pariatur. Occaecat et ut amet eu enim velit nisi velit qui est eu et reprehenderit occaecat. Ea enim enim velit occaecat magna amet eu do amet exercitation.
-  Aliquip et sint cillum sit. Fugiat ad ex quis id nisi. Officia qui nostrud laborum labore laborum do sint occaecat pariatur reprehenderit aute aliqua magna cillum. Eiusmod cupidatat officia enim nisi aute veniam sit excepteur ex fugiat amet sint tempor do. Excepteur incididunt amet ullamco minim dolore commodo cupidatat sit duis. Ipsum anim quis sit sint aute aliqua sit Lorem amet.',
-  'https://reactjs.org/docs/hooks-overview.html',
+),
+(
+  'CSS Diner',
+  '{CSS, Game}',
+  'SHORT_DESCRIPTION',
+  'FULL_DESCRIPTION',
+  'https://flukeout.github.io/',
+  2
+),
+(
+  'CSS Diner Guide',
+  '{Guide, Reference, CSS}',
+  'SHORT_DESCRIPTION',
+  'FULL_DESCRIPTION',
+  'https://github.com/daniel-farlow/css-diner',
+  1
+),
+(
+  'VSCode Keyboard Shortcuts',
+  '{IDE, Reference, Shortcuts}',
+  'SHORT_DESCRIPTION',
+  'FULL_DESCRIPTION',
+  'https://github.com/daniel-farlow/VSCode-Keyboard-Shortcuts',
+  2
+),
+(
+  'Deploying on AWS',
+  '{Guide, Deployment, Tutorial}',
+  'SHORT_DESCRIPTION',
+  'FULL_DESCRIPTION',
+  'https://github.com/daniel-farlow/deploying-on-aws',
+  3
+),
+(
+  'Small Group Projects - Tips for Success',
+  '{Blog, Productivity, Teams, Work}',
+  'SHORT_DESCRIPTION',
+  'FULL_DESCRIPTION',
+  'https://blog.neporshiso.com/small-group-projects/',
+  1
+),
+(
+  'freeCodeCamp',
+  '{Free, Tutorial, Reference, Learning, Education}',
+  'SHORT_DESCRIPTION',
+  'FULL_DESCRIPTION',
+  'https://www.freecodecamp.org/',
+  1
+),
+(
+  'Codecademy',
+  '{Free, Premium, Quizzes, Tutorial, Reference, Learning, Education}',
+  'SHORT_DESCRIPTION',
+  'FULL_DESCRIPTION',
+  'https://www.codecademy.com/',
+  1
+),
+(
+  'JSON Viewer',
+  '{Free, Browser Extension, Chrome, JSON, Development}',
+  'SHORT_DESCRIPTION',
+  'FULL_DESCRIPTION',
+  'https://chrome.google.com/webstore/detail/json-viewer/gbmdgpbipfallnflgajpaliibnhdgobh?hl=en-US',
   2
 );
 
-INSERT INTO posts_resources (
-  title,
-  short_description,
-  full_description,
-  resource_url,
-  users_id
-) VALUES (
-  'Ipsum ea laboris cupidatat et duis do.',
-  'Est ipsum laborum excepteur enim dolore ex ad deserunt irure adipisicing et ut aliquip pariatur. Quis irure est magna eu. Lorem sit reprehenderit velit deserunt fugiat laborum irure ut eu. Esse consectetur nostrud cillum et quis reprehenderit dolore enim elit cillum nulla. In nostrud sunt nisi aliquip ipsum occaecat esse voluptate magna do labore. Sit est cupidatat voluptate enim sunt.',
-  'Lorem tempor quis in occaecat cupidatat amet sit. Ex sint cupidatat aute ea. Officia sit do consectetur deserunt consectetur occaecat enim aute. Nisi nisi sint mollit eu. Dolore laboris deserunt exercitation consequat voluptate pariatur ea duis mollit adipisicing sit ipsum incididunt. Consectetur anim aliquip exercitation commodo. Sunt sit culpa proident ex. Nostrud dolor cillum ullamco exercitation aliquip excepteur sint ex excepteur ipsum. Culpa laborum voluptate aliquip aliquip occaecat ea. Non ut aliqua aliqua ad ipsum velit id nulla commodo. In dolor aute mollit cupidatat id ipsum enim exercitation cillum pariatur. Occaecat et ut amet eu enim velit nisi velit qui est eu et reprehenderit occaecat. Ea enim enim velit occaecat magna amet eu do amet exercitation. Aliquip et sint cillum sit. Fugiat ad ex quis id nisi. Officia qui nostrud laborum labore laborum do sint occaecat pariatur reprehenderit aute aliqua magna cillum. Eiusmod cupidatat officia enim nisi aute veniam sit excepteur ex fugiat amet sint tempor do. Excepteur incididunt amet ullamco minim dolore commodo cupidatat sit duis. Ipsum anim quis sit sint aute aliqua sit Lorem amet.',
-  'https://reactjs.org/docs/hooks-overview.html',
-  1
-);
-
--- POSTS_JOB DATA
+-- POSTED JOBS
 INSERT INTO posts_jobs (
   title,
   content,
@@ -484,17 +334,8 @@ INSERT INTO posts_jobs (
   '1-867-5309',
   3,
   5
-);
-
-INSERT INTO posts_jobs (
-  title,
-  content,
-  experience,
-  contact_email,
-  contact_phone,
-  companies_id,
-  users_id
-) VALUES (
+),
+(
   'Job Post 2',
   'Lorem tempor quis in occaecat cupidatat amet sit. Ex sint cupidatat aute ea. Officia sit do consectetur deserunt consectetur occaecat enim aute. Nisi nisi sint mollit eu. Dolore laboris deserunt exercitation consequat voluptate pariatur ea duis mollit adipisicing sit ipsum incididunt. Consectetur anim aliquip exercitation commodo. Sunt sit culpa proident ex. Nostrud dolor cillum ullamco exercitation aliquip excepteur sint ex excepteur ipsum. Culpa laborum voluptate aliquip aliquip occaecat ea. Non ut aliqua aliqua ad ipsum velit id nulla commodo. In dolor aute mollit cupidatat id ipsum enim exercitation cillum pariatur. Occaecat et ut amet eu enim velit nisi velit qui est eu et reprehenderit occaecat. Ea enim enim velit occaecat magna amet eu do amet exercitation. Aliquip et sint cillum sit. Fugiat ad ex quis id nisi. Officia qui nostrud laborum labore laborum do sint occaecat pariatur reprehenderit aute aliqua magna cillum. Eiusmod cupidatat officia enim nisi aute veniam sit excepteur ex fugiat amet sint tempor do. Excepteur incididunt amet ullamco minim dolore commodo cupidatat sit duis. Ipsum anim quis sit sint aute aliqua sit Lorem amet.',
   'Adipisicing Lorem in excepteur sint occaecat minim commodo minim incididunt minim qui ea.',
@@ -502,17 +343,8 @@ INSERT INTO posts_jobs (
   '1-867-5309',
   1,
   5
-);
-
-INSERT INTO posts_jobs (
-  title,
-  content,
-  experience,
-  contact_email,
-  contact_phone,
-  companies_id,
-  users_id
-) VALUES (
+),
+(
   'Job Post 3',
   'Lorem tempor quis in occaecat cupidatat amet sit. Ex sint cupidatat aute ea. Officia sit do consectetur deserunt consectetur occaecat enim aute. Nisi nisi sint mollit eu. Dolore laboris deserunt exercitation consequat voluptate pariatur ea duis mollit adipisicing sit ipsum incididunt. Consectetur anim aliquip exercitation commodo. Sunt sit culpa proident ex. Nostrud dolor cillum ullamco exercitation aliquip excepteur sint ex excepteur ipsum. Culpa laborum voluptate aliquip aliquip occaecat ea. Non ut aliqua aliqua ad ipsum velit id nulla commodo. In dolor aute mollit cupidatat id ipsum enim exercitation cillum pariatur. Occaecat et ut amet eu enim velit nisi velit qui est eu et reprehenderit occaecat. Ea enim enim velit occaecat magna amet eu do amet exercitation. Aliquip et sint cillum sit. Fugiat ad ex quis id nisi. Officia qui nostrud laborum labore laborum do sint occaecat pariatur reprehenderit aute aliqua magna cillum. Eiusmod cupidatat officia enim nisi aute veniam sit excepteur ex fugiat amet sint tempor do. Excepteur incididunt amet ullamco minim dolore commodo cupidatat sit duis. Ipsum anim quis sit sint aute aliqua sit Lorem amet.',
   'Adipisicing Lorem in excepteur sint occaecat minim commodo minim incididunt minim qui ea.',
@@ -520,17 +352,8 @@ INSERT INTO posts_jobs (
   '1-867-5309',
   2,
   5
-);
-
-INSERT INTO posts_jobs (
-  title,
-  content,
-  experience,
-  contact_email,
-  contact_phone,
-  companies_id,
-  users_id
-) VALUES (
+),
+(
   'Job Post 4',
   'Lorem tempor quis in occaecat cupidatat amet sit. Ex sint cupidatat aute ea. Officia sit do consectetur deserunt consectetur occaecat enim aute. Nisi nisi sint mollit eu. Dolore laboris deserunt exercitation consequat voluptate pariatur ea duis mollit adipisicing sit ipsum incididunt. Consectetur anim aliquip exercitation commodo. Sunt sit culpa proident ex. Nostrud dolor cillum ullamco exercitation aliquip excepteur sint ex excepteur ipsum. Culpa laborum voluptate aliquip aliquip occaecat ea. Non ut aliqua aliqua ad ipsum velit id nulla commodo. In dolor aute mollit cupidatat id ipsum enim exercitation cillum pariatur. Occaecat et ut amet eu enim velit nisi velit qui est eu et reprehenderit occaecat. Ea enim enim velit occaecat magna amet eu do amet exercitation. Aliquip et sint cillum sit. Fugiat ad ex quis id nisi. Officia qui nostrud laborum labore laborum do sint occaecat pariatur reprehenderit aute aliqua magna cillum. Eiusmod cupidatat officia enim nisi aute veniam sit excepteur ex fugiat amet sint tempor do. Excepteur incididunt amet ullamco minim dolore commodo cupidatat sit duis. Ipsum anim quis sit sint aute aliqua sit Lorem amet.',
   'Adipisicing Lorem in excepteur sint occaecat minim commodo minim incididunt minim qui ea.',
@@ -538,17 +361,8 @@ INSERT INTO posts_jobs (
   '1-867-5309',
   1,
   6
-);
-
-INSERT INTO posts_jobs (
-  title,
-  content,
-  experience,
-  contact_email,
-  contact_phone,
-  companies_id,
-  users_id
-) VALUES (
+),
+(
   'Job Post 5',
   'Lorem tempor quis in occaecat cupidatat amet sit. Ex sint cupidatat aute ea. Officia sit do consectetur deserunt consectetur occaecat enim aute. Nisi nisi sint mollit eu. Dolore laboris deserunt exercitation consequat voluptate pariatur ea duis mollit adipisicing sit ipsum incididunt. Consectetur anim aliquip exercitation commodo. Sunt sit culpa proident ex. Nostrud dolor cillum ullamco exercitation aliquip excepteur sint ex excepteur ipsum. Culpa laborum voluptate aliquip aliquip occaecat ea. Non ut aliqua aliqua ad ipsum velit id nulla commodo. In dolor aute mollit cupidatat id ipsum enim exercitation cillum pariatur. Occaecat et ut amet eu enim velit nisi velit qui est eu et reprehenderit occaecat. Ea enim enim velit occaecat magna amet eu do amet exercitation. Aliquip et sint cillum sit. Fugiat ad ex quis id nisi. Officia qui nostrud laborum labore laborum do sint occaecat pariatur reprehenderit aute aliqua magna cillum. Eiusmod cupidatat officia enim nisi aute veniam sit excepteur ex fugiat amet sint tempor do. Excepteur incididunt amet ullamco minim dolore commodo cupidatat sit duis. Ipsum anim quis sit sint aute aliqua sit Lorem amet.',
   'Adipisicing Lorem in excepteur sint occaecat minim commodo minim incididunt minim qui ea.',
@@ -556,17 +370,8 @@ INSERT INTO posts_jobs (
   '1-867-5309',
   2,
   5
-);
-
-INSERT INTO posts_jobs (
-  title,
-  content,
-  experience,
-  contact_email,
-  contact_phone,
-  companies_id,
-  users_id
-) VALUES (
+),
+(
   'Job Post 6',
   'Lorem tempor quis in occaecat cupidatat amet sit. Ex sint cupidatat aute ea. Officia sit do consectetur deserunt consectetur occaecat enim aute. Nisi nisi sint mollit eu. Dolore laboris deserunt exercitation consequat voluptate pariatur ea duis mollit adipisicing sit ipsum incididunt. Consectetur anim aliquip exercitation commodo. Sunt sit culpa proident ex. Nostrud dolor cillum ullamco exercitation aliquip excepteur sint ex excepteur ipsum. Culpa laborum voluptate aliquip aliquip occaecat ea. Non ut aliqua aliqua ad ipsum velit id nulla commodo. In dolor aute mollit cupidatat id ipsum enim exercitation cillum pariatur. Occaecat et ut amet eu enim velit nisi velit qui est eu et reprehenderit occaecat. Ea enim enim velit occaecat magna amet eu do amet exercitation. Aliquip et sint cillum sit. Fugiat ad ex quis id nisi. Officia qui nostrud laborum labore laborum do sint occaecat pariatur reprehenderit aute aliqua magna cillum. Eiusmod cupidatat officia enim nisi aute veniam sit excepteur ex fugiat amet sint tempor do. Excepteur incididunt amet ullamco minim dolore commodo cupidatat sit duis. Ipsum anim quis sit sint aute aliqua sit Lorem amet.',
   'Adipisicing Lorem in excepteur sint occaecat minim commodo minim incididunt minim qui ea.',
@@ -574,17 +379,8 @@ INSERT INTO posts_jobs (
   '1-867-5309',
   3,
   4
-);
-
-INSERT INTO posts_jobs (
-  title,
-  content,
-  experience,
-  contact_email,
-  contact_phone,
-  companies_id,
-  users_id
-) VALUES (
+),
+(
   'Job Post 7',
   'Lorem tempor quis in occaecat cupidatat amet sit. Ex sint cupidatat aute ea. Officia sit do consectetur deserunt consectetur occaecat enim aute. Nisi nisi sint mollit eu. Dolore laboris deserunt exercitation consequat voluptate pariatur ea duis mollit adipisicing sit ipsum incididunt. Consectetur anim aliquip exercitation commodo. Sunt sit culpa proident ex. Nostrud dolor cillum ullamco exercitation aliquip excepteur sint ex excepteur ipsum. Culpa laborum voluptate aliquip aliquip occaecat ea. Non ut aliqua aliqua ad ipsum velit id nulla commodo. In dolor aute mollit cupidatat id ipsum enim exercitation cillum pariatur. Occaecat et ut amet eu enim velit nisi velit qui est eu et reprehenderit occaecat. Ea enim enim velit occaecat magna amet eu do amet exercitation. Aliquip et sint cillum sit. Fugiat ad ex quis id nisi. Officia qui nostrud laborum labore laborum do sint occaecat pariatur reprehenderit aute aliqua magna cillum. Eiusmod cupidatat officia enim nisi aute veniam sit excepteur ex fugiat amet sint tempor do. Excepteur incididunt amet ullamco minim dolore commodo cupidatat sit duis. Ipsum anim quis sit sint aute aliqua sit Lorem amet.',
   'Adipisicing Lorem in excepteur sint occaecat minim commodo minim incididunt minim qui ea.',
@@ -594,160 +390,88 @@ INSERT INTO posts_jobs (
   4
 );
 
--- JOB_APPLICATIONS
-
+-- JOB APPLICATIONS
 INSERT INTO job_applications (
   users_id,
   posts_jobs_id
 ) VALUES (
   1,
   1
-);
-
-INSERT INTO job_applications (
-  users_id,
-  posts_jobs_id
-) VALUES (
+),
+(
   2,
   1
-);
-
-INSERT INTO job_applications (
-  users_id,
-  posts_jobs_id
-) VALUES (
+),
+(
   3,
   1
-);
-
-INSERT INTO job_applications (
-  users_id,
-  posts_jobs_id
-) VALUES (
+),
+(
   1,
   2
-);
-
-INSERT INTO job_applications (
-  users_id,
-  posts_jobs_id
-) VALUES (
+),
+(
   2,
   2
-);
-
-INSERT INTO job_applications (
-  users_id,
-  posts_jobs_id
-) VALUES (
+),
+(
   3,
   2
-);
-
-INSERT INTO job_applications (
-  users_id,
-  posts_jobs_id
-) VALUES (
+),
+(
   1,
   3
-);
-
-INSERT INTO job_applications (
-  users_id,
-  posts_jobs_id
-) VALUES (
+),
+(
   2,
   3
-);
-
-INSERT INTO job_applications (
-  users_id,
-  posts_jobs_id
-) VALUES (
+),
+(
   3,
   3
-);
-
-INSERT INTO job_applications (
-  users_id,
-  posts_jobs_id
-) VALUES (
+),
+(
   1,
   4
-);
-
-INSERT INTO job_applications (
-  users_id,
-  posts_jobs_id
-) VALUES (
+),
+(
   2,
   4
-);
-
-INSERT INTO job_applications (
-  users_id,
-  posts_jobs_id
-) VALUES (
+),
+(
   1,
   5
-);
-
-INSERT INTO job_applications (
-  users_id,
-  posts_jobs_id
-) VALUES (
+),
+(
   2,
   5
-);
-
-INSERT INTO job_applications (
-  users_id,
-  posts_jobs_id
-) VALUES (
+),
+(
   3,
   5
-);
-
-INSERT INTO job_applications (
-  users_id,
-  posts_jobs_id
-) VALUES (
+),
+(
   2,
   6
-);
-
-INSERT INTO job_applications (
-  users_id,
-  posts_jobs_id
-) VALUES (
+),
+(
   3,
   6
-);
-
-INSERT INTO job_applications (
-  users_id,
-  posts_jobs_id
-) VALUES (
+),
+(
   1,
   7
-);
-
-INSERT INTO job_applications (
-  users_id,
-  posts_jobs_id
-) VALUES (
+),
+(
   2,
   7
-);
-
-INSERT INTO job_applications (
-  users_id,
-  posts_jobs_id
-) VALUES (
+),
+(
   3,
   7
 );
 
+-- PRIVATE MESSAGES
 INSERT INTO private_messages(
   subject,
   message,
@@ -758,158 +482,80 @@ INSERT INTO private_messages(
   'Nostrud labore proident dolor cupidatat aliqua labore elit duis sint nisi Lorem qui id. Reprehenderit ex occaecat do dolor. Irure aute officia mollit reprehenderit amet enim do.',
   1,
   5
-);
-
-INSERT INTO private_messages(
-  subject,
-  message,
-  sent_from,
-  sent_to
-) VALUES (
+),
+(
   'Culpa irure sit sint ullamco non tempor.',
   'Nostrud labore proident dolor cupidatat aliqua labore elit duis sint nisi Lorem qui id. Reprehenderit ex occaecat do dolor. Irure aute officia mollit reprehenderit amet enim do.',
   1,
   5
-);
-
-INSERT INTO private_messages(
-  subject,
-  message,
-  sent_from,
-  sent_to
-) VALUES (
+),
+(
   'Culpa irure sit sint ullamco non tempor.',
   'Nostrud labore proident dolor cupidatat aliqua labore elit duis sint nisi Lorem qui id. Reprehenderit ex occaecat do dolor. Irure aute officia mollit reprehenderit amet enim do.',
   1,
   5
-);
-
-INSERT INTO private_messages(
-  subject,
-  message,
-  sent_from,
-  sent_to
-) VALUES (
+),
+(
   'Culpa irure sit sint ullamco non tempor.',
   'Nostrud labore proident dolor cupidatat aliqua labore elit duis sint nisi Lorem qui id. Reprehenderit ex occaecat do dolor. Irure aute officia mollit reprehenderit amet enim do.',
   2,
   6
-);
-
-INSERT INTO private_messages(
-  subject,
-  message,
-  sent_from,
-  sent_to
-) VALUES (
+),
+(
   'Culpa irure sit sint ullamco non tempor.',
   'Nostrud labore proident dolor cupidatat aliqua labore elit duis sint nisi Lorem qui id. Reprehenderit ex occaecat do dolor. Irure aute officia mollit reprehenderit amet enim do.',
   2,
   5
-);
-
-INSERT INTO private_messages(
-  subject,
-  message,
-  sent_from,
-  sent_to
-) VALUES (
+),
+(
   'Culpa irure sit sint ullamco non tempor.',
   'Nostrud labore proident dolor cupidatat aliqua labore elit duis sint nisi Lorem qui id. Reprehenderit ex occaecat do dolor. Irure aute officia mollit reprehenderit amet enim do.',
   1,
   3
-);
-
-INSERT INTO private_messages(
-  subject,
-  message,
-  sent_from,
-  sent_to
-) VALUES (
+),
+(
   'Culpa irure sit sint ullamco non tempor.',
   'Nostrud labore proident dolor cupidatat aliqua labore elit duis sint nisi Lorem qui id. Reprehenderit ex occaecat do dolor. Irure aute officia mollit reprehenderit amet enim do.',
   1,
   4
-);
-
-INSERT INTO private_messages(
-  subject,
-  message,
-  sent_from,
-  sent_to
-) VALUES (
+),
+(
   'Culpa irure sit sint ullamco non tempor.',
   'Nostrud labore proident dolor cupidatat aliqua labore elit duis sint nisi Lorem qui id. Reprehenderit ex occaecat do dolor. Irure aute officia mollit reprehenderit amet enim do.',
   1,
   5
-);
-
-INSERT INTO private_messages(
-  subject,
-  message,
-  sent_from,
-  sent_to
-) VALUES (
+),
+(
   'Culpa irure sit sint ullamco non tempor.',
   'Nostrud labore proident dolor cupidatat aliqua labore elit duis sint nisi Lorem qui id. Reprehenderit ex occaecat do dolor. Irure aute officia mollit reprehenderit amet enim do.',
   3,
   4
-);
-
-INSERT INTO private_messages(
-  subject,
-  message,
-  sent_from,
-  sent_to
-) VALUES (
+),
+(
   'Culpa irure sit sint ullamco non tempor.',
   'Nostrud labore proident dolor cupidatat aliqua labore elit duis sint nisi Lorem qui id. Reprehenderit ex occaecat do dolor. Irure aute officia mollit reprehenderit amet enim do.',
   1,
   6
-);
-
-INSERT INTO private_messages(
-  subject,
-  message,
-  sent_from,
-  sent_to
-) VALUES (
+),
+(
   'Culpa irure sit sint ullamco non tempor.',
   'Nostrud labore proident dolor cupidatat aliqua labore elit duis sint nisi Lorem qui id. Reprehenderit ex occaecat do dolor. Irure aute officia mollit reprehenderit amet enim do.',
   5,
   1
-);
-
-INSERT INTO private_messages(
-  subject,
-  message,
-  sent_from,
-  sent_to
-) VALUES (
+),
+(
   'Culpa irure sit sint ullamco non tempor.',
   'Nostrud labore proident dolor cupidatat aliqua labore elit duis sint nisi Lorem qui id. Reprehenderit ex occaecat do dolor. Irure aute officia mollit reprehenderit amet enim do.',
   4,
   2
-);
-
-INSERT INTO private_messages(
-  subject,
-  message,
-  sent_from,
-  sent_to
-) VALUES (
+),
+(
   'Culpa irure sit sint ullamco non tempor.',
   'Nostrud labore proident dolor cupidatat aliqua labore elit duis sint nisi Lorem qui id. Reprehenderit ex occaecat do dolor. Irure aute officia mollit reprehenderit amet enim do.',
   4,
   2
-);
-
-INSERT INTO private_messages(
-  subject,
-  message,
-  sent_from,
-  sent_to
-) VALUES (
+),
+(
   'Culpa irure sit sint ullamco non tempor.',
   'Nostrud labore proident dolor cupidatat aliqua labore elit duis sint nisi Lorem qui id. Reprehenderit ex occaecat do dolor. Irure aute officia mollit reprehenderit amet enim do.',
   6,
