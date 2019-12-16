@@ -22,10 +22,10 @@ const SignupForm = () => {
 
   const addInput = () =>{
     if(newUser.user_type === "2"){
-      return <Label>Bootcamp Name<Input type="text" placeholder="Name of Bootcamp" onChange={handleInputChange} name="bootcamp_name" aria-label="Bootcamp Name" /></Label>
+      return <Label>Bootcamp Name<Input type="text" placeholder="Name of Bootcamp" onChange={handleInputChange} name="bootcamp_name" aria-label="Bootcamp Name" required /></Label>
     }
     if(newUser.user_type === "3"){
-      return <Label>Company Name<Input type="text" placeholder="Name of Company" onChange={handleInputChange} name="company_name" aria-label="Company Name" /></Label>
+      return <Label>Company Name<Input type="text" placeholder="Name of Company" onChange={handleInputChange} name="company_name" aria-label="Company Name" required /></Label>
     }
 }
 
