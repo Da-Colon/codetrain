@@ -90,7 +90,8 @@ CREATE TABLE reports (
   resource_id INTEGER REFERENCES posts_resources(id),
   reason TEXT,
   submited_by INTEGER REFERENCES users(id),
-  resolved BOOLEAN DEFAULT (False)
+  resolved BOOLEAN DEFAULT (False),
+  date_reported DATE DEFAULT NOW()
 )
 
 -- Need to Figure out Data Storage for PDFs
