@@ -181,16 +181,16 @@ const sendMessageUser = (subject, message, sent_from, sent_to) => {
 
 // post report
 const postReport = (
-  user_id,
+  users_id,
   posts_jobs_id,
   companies_id,
   resource_id,
   reason,
-  submitted_by
+  submited_by
 ) => {
   const postQuery = db.any(
-    `INSERT INTO reports (user_id, posts_jobs_id, companies_id, resource_id, reason, submitted_by) VALUES ($1,$2,$3,$4,$5,$6);`,
-    [user_id, posts_jobs_id, companies_id, resource_id, reason, submitted_by]
+    `INSERT INTO reports (users_id, posts_jobs_id, companies_id, resource_id, submited_by, reason) VALUES ($1,$2,$3,$4,$5,$6)`,
+    [users_id, posts_jobs_id, companies_id, resource_id, reason, submited_by]
   );
   try {
     return postQuery;
