@@ -64,7 +64,8 @@ CREATE TABLE job_applications (
   rejected BOOLEAN DEFAULT FALSE,
   accepted BOOLEAN DEFAULT FALSE,
   users_id INTEGER REFERENCES users(id),
-  posts_jobs_id INTEGER REFERENCES posts_jobs(id)
+  posts_jobs_id INTEGER REFERENCES posts_jobs(id),
+  UNIQUE (users_id, posts_jobs_id)
 );
 
 CREATE TABLE private_messages(
