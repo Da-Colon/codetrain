@@ -872,46 +872,89 @@ INSERT INTO private_messages(
   subject,
   message,
   sent_from,
-  sent_to
+  sent_to,
+  sent_from_companies_id
 ) VALUES (
   'Culpa irure sit sint ullamco non tempor.',
   'Nostrud labore proident dolor cupidatat aliqua labore elit duis sint nisi Lorem qui id. Reprehenderit ex occaecat do dolor. Irure aute officia mollit reprehenderit amet enim do.',
   5,
-  1
+  1,
+  3
 );
 
 INSERT INTO private_messages(
   subject,
   message,
   sent_from,
-  sent_to
+  sent_to,
+  sent_from_companies_id
 ) VALUES (
   'Culpa irure sit sint ullamco non tempor.',
   'Nostrud labore proident dolor cupidatat aliqua labore elit duis sint nisi Lorem qui id. Reprehenderit ex occaecat do dolor. Irure aute officia mollit reprehenderit amet enim do.',
   4,
-  2
+  2,
+  3
 );
 
 INSERT INTO private_messages(
   subject,
   message,
   sent_from,
-  sent_to
+  sent_to,
+  sent_from_companies_id
 ) VALUES (
   'Culpa irure sit sint ullamco non tempor.',
   'Nostrud labore proident dolor cupidatat aliqua labore elit duis sint nisi Lorem qui id. Reprehenderit ex occaecat do dolor. Irure aute officia mollit reprehenderit amet enim do.',
   4,
-  2
+  2,
+  3
 );
 
 INSERT INTO private_messages(
   subject,
   message,
   sent_from,
-  sent_to
+  sent_to,
+  sent_from_companies_id
 ) VALUES (
   'Culpa irure sit sint ullamco non tempor.',
   'Nostrud labore proident dolor cupidatat aliqua labore elit duis sint nisi Lorem qui id. Reprehenderit ex occaecat do dolor. Irure aute officia mollit reprehenderit amet enim do.',
   6,
-  1
+  1,
+  2
 );
+
+INSERT INTO reports (
+  users_id,
+  reason
+) VALUES (
+  1,
+  'using the platform to troll beginners'
+);
+
+INSERT INTO reports (
+  users_id,
+  reason
+ ) VALUES (
+  1,
+  'I dont like them'
+);
+
+INSERT INTO reports (
+  users_id,
+  reason
+) VALUES (
+  3,
+  'He is weird'
+);
+
+INSERT INTO reports (
+  companies_id,
+  reason
+) VALUES (
+  1,
+  'bad reputation of taking advatage of new programmers'
+);
+
+
+
