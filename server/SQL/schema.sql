@@ -72,6 +72,7 @@ CREATE TABLE private_messages(
   subject TEXT,
   message TEXT,
   sent_from INTEGER REFERENCES users(id),
+  sent_from_companies_id INTEGER REFERENCES companies(id),
   sent_to INTEGER REFERENCES users(id),
   date_sent DATE DEFAULT NOW()
 );
@@ -79,6 +80,17 @@ CREATE TABLE private_messages(
 CREATE TABLE preferences(
   id SERIAL PRIMARY KEY,
   users_id INTEGER REFERENCES users(id)
+);
+
+CREATE TABLE reports (
+  id SERIAL PRIMARY KEY,
+  users_id INTEGER REFERENCES users(id),
+  posts_jobs_id INTEGER REFERENCES posts_jobs(id),
+  companies_id INTEGER REFERENCES companies(id),
+  resource_id INTEGER REFERENCES posts_resources(id),
+  reason TEXT,
+  submited_by INTEGER REFERENCES users(id),
+  resolved BOOLEAN DEFAULT (False)
 )
 
 -- Need to Figure out Data Storage for PDFs
