@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Form, Label, Input, Button, Title } from "../../Styles/FormStyles";
 
 
@@ -28,17 +28,18 @@ const SignupForm = () => {
       return <Label>Company Name<Input type="text" placeholder="Name of Company" onChange={handleInputChange} name="company_name" aria-label="Company Name" required /></Label>
     }
 }
-
+  const history = useHistory();
   const handleSubmit = async e => {
     e.preventDefault();
     try {
       await Axios.post(`${endpoint}/signup`, newUser);
-      // window.location.replace("/");
+      alert('Successfully signed up, please log in')
+      history.replace("/login");
     } catch {
       window.alert(
         "Sorry, There Was An Error With Signing up, Please Try Again"
       );
-      // window.location.reload();
+      window.location.reload();
     }
   };
 
