@@ -59,13 +59,20 @@ class Companies {
     }
   }
 
-  static async updateCompany(id, column, value) {
-    const query = `update companies set ${column} = '${value}' where id = ${id}`;
-    //   (`update companies set $1 = '$2' where id = $3`,
-    //   [this.column, this.value, this.id]);
+  static async updateCompany(
+    email,
+    name,
+    company_url,
+    company_logo_url,
+    description,
+    id
+  ) {
+    const query = await db.any(
+      `UPDATE companies SET email = $1, name = $2, company_url = $3, company_logo_url = $4, description = $5 WHERE id = $6;`,
+      [email, name, company_url, company_logo_url, description, id]
+    );
     try {
-      const response = await db.result(query);
-      return response;
+      return query;
     } catch (err) {
       return err.message;
     }
