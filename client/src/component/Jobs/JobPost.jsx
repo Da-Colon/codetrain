@@ -91,11 +91,19 @@ const JobPost = props => {
     };
 
     const response = await Axios.put(endpoint, payload);
-    alert("Your job was posted!");
+    alert("Edit Successful!");
     setEditMode(false);
     fetchJobsData()
     history.push(`/jobs/${props.match.params.job_id}`);
   };
+
+  const handleRemoveJob = async e => {
+    e.preventDefault()
+    const endpoint = `http://localhost:3000/posts/jobs/delete/${props.match.params.job_id}`
+    const response = await Axios.put(endpoint);
+    alert("Job Post Deleted")
+    history.push(`/jobs`)
+  }
 
   return (
     <>
@@ -150,6 +158,7 @@ const JobPost = props => {
             ></Input>
           </Label>
           <Button type="submit">Edit Job Post</Button>
+          <Button onClick={handleRemoveJob}>Remove Job Post</Button>
         </Form>
       ) : (
         <CardFooterItem>

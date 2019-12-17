@@ -25,7 +25,8 @@ const JobBoard = () => {
   const fetchJobsData = async () => {
     const endpoint = "http://localhost:3000/posts/jobs";
     const res = await Axios.get(endpoint);
-    setJobs(res.data);
+    const activeJobs = res.data.filter(job => job.is_active === true)
+    setJobs(activeJobs);
   };
 
   // the 2nd empty array argument prevents infinite re-renders.
