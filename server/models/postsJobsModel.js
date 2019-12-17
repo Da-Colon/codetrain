@@ -81,11 +81,13 @@ class JobPosts {
     }
   }
 
-  static async updateJob(id, column, value) {
-    const query = `update posts_jobs set ${column} = '${value}' where id = ${id}`;
+  static async updateJob(title, content, experience, contact_email, contact_phone, id) {
+    const query = await db.any(
+      `UPDATE posts_jobs SET title = $1, content = $2, experience = $3, contact_email = $4, contact_phone = $5 WHERE id = $6;`,
+      [title, content, experience, contact_email, contact_phone, id]
+    );
     try {
-      const response = await db.result(query);
-      return response;
+      return query;
     } catch (err) {
       return err.message;
     }

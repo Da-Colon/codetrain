@@ -53,13 +53,9 @@ router.post("/add", async (req, res) => {
 // Update job post
 router.put("/update/:id", async (req, res) => {
   const { id } = req.params;
-  const { column, value } = req.body;
-  const response = await JobPostsModel.updateJob(id, column, value);
-  if (response.command === "UPDATE" && response.rowCount >= 1) {
-    res.sendStatus(200);
-  } else {
-    res.send(`Could not update ${column} for job id: ${id}`).status(409);
-  }
+  const { title, content, experience, contact_email, contact_phone } = req.body;
+  const response = await JobPostsModel.updateJob(title, content, experience, contact_email, contact_phone, id);
+  res.json({ message: "Successfully Updated" }).status(200);
 });
 
 // Delete job. Not functioning due to dependencies in other tables
