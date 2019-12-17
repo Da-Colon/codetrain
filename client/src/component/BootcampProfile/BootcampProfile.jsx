@@ -6,7 +6,7 @@ import axios from "axios";
 const UserProfile = () => {
   const user = useSelector(state => state.user);
   const [userInfo, setUserInfo] = useState({
-    // id: "1",
+    id: "",
     email: "",
     first_name: "",
     last_name: "",
@@ -20,6 +20,8 @@ const UserProfile = () => {
 
   const getUserInfo = async id => {
     const response = await axios.get(`http://localhost:3000/profiles/id/${id}`);
+    console.log('HERE IS THE PROFILE RESPONSE: ', response);
+    console.log('HERE IS THE USER: ', user)
     setUserInfo(response.data);
   };
 
@@ -40,7 +42,7 @@ const UserProfile = () => {
       <h1>
         User Name: {userInfo.first_name} {userInfo.last_name}
       </h1>
-      <button onClick={postReport}>Report {userInfo.first_name}</button>
+      {userInfo.id !== user.id && <button onClick={postReport}>Report {userInfo.first_name}</button>}
       <h2>Bootcamp: {userInfo.bootcamp_name}</h2>
       <h2>
         Email: <a href="mailto:{userInfo.email}">{userInfo.email}</a>

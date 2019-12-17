@@ -6,7 +6,7 @@ import { useParams, useHistory } from "react-router-dom";
 const CompanyProfile = () => {
   const company = useSelector(state => state.user);
   const [companyInfo, setCompanyInfo] = useState({
-    // id: "1",
+    id: "",
     email: "",
     name: "",
     company_url: "",
@@ -37,7 +37,7 @@ const CompanyProfile = () => {
     <card>
       <h1>Company Name: {companyInfo.name}
       </h1>
-      <button onClick={postReport}>Report {companyInfo.name}</button>
+      {companyInfo.id !== company.companies_id && <button onClick={postReport}>Report {companyInfo.name}</button>}
       <img src={companyInfo.company_logo_url} alt="company logo" />
       <h2>
         Email:{" "}
