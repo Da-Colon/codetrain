@@ -25,6 +25,8 @@ CREATE TABLE users (
   password TEXT NOT NULL,
   first_name VARCHAR(25) NOT NULL,
   last_name VARCHAR(25) NOT NULL,
+  personal_website TEXT,
+  about VARCHAR(5000),
   skills TEXT[],
   github_url TEXT,
   linkedin_url TEXT,

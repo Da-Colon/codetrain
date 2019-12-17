@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
@@ -64,10 +64,8 @@ const BootcampResourceGet = () => {
   const history = useHistory();
 
   return (
-    <>
-      <Link to="/resources/submit">
-        <Anchor style={{ fontSize: "2rem" }}>Submit a resource</Anchor>
-      </Link>
+    <Fragment>
+      {user.user_types_id === 2 && <Link to="/resources/submit"><Anchor style={{ fontSize: "2rem" }}>Submit a resource</Anchor></Link>}
       <ResourceWrapper>
         {resourcesFetched ? (
           resources.map((resource, i) => {
@@ -96,30 +94,35 @@ const BootcampResourceGet = () => {
             // };
 
             return (
-              <Card key={i} style={{ maxWidth: "600px", margin: "20px" }}>
+              <Card key={i} style={{ maxWidth: "600px", margin: "20px", display: 'flex', flexDirection: 'column'}}>
                 <CardHeader>
                   <CardHeaderTitle>
-                    <Link to={`/resources/${resourceId}`}>
-                      {title} &nbsp; <Anchor>See full post</Anchor>
-                    </Link>
+                    {title}
                   </CardHeaderTitle>
-
-                  <Link
-                    to={`/report/resource/${resource.id}/${resource.users_id}`}
-                  >
-                    Report Resource
-                  </Link>
                 </CardHeader>
                 <CardContent>
                   <Media>
                     <MediaContent hasTextAlign={"left"}>
                       <Title isSize={5}>Resource Info</Title>
                       <Subtitle isSize={6}>
-                        <Anchor href={resourceURL}>Link to resource</Anchor>
-                        <p>
-                          Posted:{" "}
-                          <Moment format="YYYY-MM-DD">{datePosted}</Moment>
-                        </p>
+                        <Breadcrumb isSize={`small`} isAlign={"left"}>
+                          <ul>
+                            <BreadcrumbItem>
+                              <Anchor href={resourceURL} target="_blank">Resource link</Anchor>
+                            </BreadcrumbItem>
+                            <BreadcrumbItem>
+                              <Link to={`/report/resource/${resource.id}/${resource.users_id}`}>Report</Link>
+                            </BreadcrumbItem>
+                          </ul>
+                          <ul>
+                          <BreadcrumbItem>
+                              <Link to={`/resources/${resourceId}`}>Full post</Link>
+                            </BreadcrumbItem>
+                            <BreadcrumbItem>&nbsp;&nbsp;
+                              <Moment format="YYYY-MM-DD">{datePosted}</Moment>
+                            </BreadcrumbItem>
+                          </ul>
+                        </Breadcrumb>
                       </Subtitle>
                     </MediaContent>
                     <MediaContent hasTextAlign={"right"}>
@@ -133,15 +136,15 @@ const BootcampResourceGet = () => {
                               </Link>
                             </BreadcrumbItem>
                             <BreadcrumbItem>
-                              <a href={`mailto:${email}`}>Email</a>
+                              <a href={`mailto:${email}`} target="_blank">Email</a>
                             </BreadcrumbItem>
                           </ul>
                           <ul>
                             <BreadcrumbItem>
-                              <a href={githubLink}>GitHub</a>
+                              <a href={githubLink} target="_blank">GitHub</a>
                             </BreadcrumbItem>
                             <BreadcrumbItem>
-                              <a href={linkedinLink}>LinkedIn</a>
+                              <a href={linkedinLink} target="_blank">LinkedIn</a>
                             </BreadcrumbItem>
                           </ul>
                         </Breadcrumb>
@@ -154,7 +157,7 @@ const BootcampResourceGet = () => {
                   {/* <Content>{descriptionFull}</Content> */}
                 </CardContent>
                 {user.id === usersId ? (
-                  <CardFooter>
+                  <CardFooter style={{marginTop: 'auto'}}>
                     <CardFooterItem>
                       <Button
                         isColor={`success`}
@@ -187,7 +190,7 @@ const BootcampResourceGet = () => {
           <p>Loading ...</p>
         )}
       </ResourceWrapper>
-    </>
+    </Fragment>
   );
 };
 
