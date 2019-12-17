@@ -25,6 +25,8 @@ CREATE TABLE users (
   password TEXT NOT NULL,
   first_name VARCHAR(25) NOT NULL,
   last_name VARCHAR(25) NOT NULL,
+  personal_website TEXT,
+  about VARCHAR(5000),
   skills TEXT[],
   github_url TEXT,
   linkedin_url TEXT,
@@ -56,6 +58,7 @@ CREATE TABLE posts_jobs (
   date_posted DATE DEFAULT NOW(),
   contact_email VARCHAR(50),
   contact_phone VARCHAR(15),
+  is_active BOOLEAN DEFAULT TRUE,
   companies_id INTEGER REFERENCES companies(id),
   users_id INTEGER REFERENCES users(id)
 );

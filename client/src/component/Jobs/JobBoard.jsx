@@ -1,4 +1,3 @@
-// Will need a /profile link to company page from this page once we have profile components built. Company profile page currenlty not built.
 import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -26,7 +25,8 @@ const JobBoard = () => {
   const fetchJobsData = async () => {
     const endpoint = "http://localhost:3000/posts/jobs";
     const res = await Axios.get(endpoint);
-    setJobs(res.data);
+    const activeJobs = res.data.filter(job => job.is_active === true)
+    setJobs(activeJobs);
   };
 
   // the 2nd empty array argument prevents infinite re-renders.
@@ -119,9 +119,9 @@ const JobCard = ({ data }) => {
         </Content>
       </CardContent>
       <CardFooter>
-        <CardFooterItem href="#">
+        {/* <CardFooterItem href="#">
           <Button onClick={postApplication}>Apply!</Button>
-        </CardFooterItem>
+        </CardFooterItem> */}
       </CardFooter>
     </Card>
   );

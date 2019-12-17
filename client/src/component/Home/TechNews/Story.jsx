@@ -1,21 +1,17 @@
 import React from "react";
-import styled from "styled-components";
+import {Box} from 'bloomer';
 
 const Story = props => {
   const story = props.data;
 
   return (
-    <StoryWrapper>
-      <a href={story.url}>
+    <Box>
+      <a href={story.url} target="_blank">
         <p>{story.title}</p>
       </a>
       <p>{story.description}</p>
-    </StoryWrapper>
+    </Box>
   );
 };
-
-const StoryWrapper = styled.div`
-  margin-bottom: 20px;
-`;
 
 export default Story;

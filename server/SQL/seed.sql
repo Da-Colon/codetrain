@@ -29,6 +29,8 @@ INSERT INTO users (
   password,
   first_name,
   last_name,
+  personal_website,
+  about,
   skills,
   github_url,
   linkedin_url,
@@ -39,8 +41,14 @@ INSERT INTO users (
 ) VALUES ( -- BOOTCAMP USERS
   'dcapples@gmail.com',
   'test',
-  'Dave',
-  'Apples',
+  'David',
+  'Colon',
+  'https://davidacolon.com/',
+  'For the past 11 years I have been working to make a career in the restaurant industry as a chef. I recently decided to pivot and dive headfirst into the world of programming. I could not have made a better decision to attend DigitalCrafts Full Stack Bootcamp with each "ah-hah" moment that I get and every technical document I read, I am hungry to learn more of what these amazing languages can do and push my skills to the limit.
+
+I have a wonderful wife, who has been there to support me through this career transition. We have been together for 7 years and we recently got married in September of 2019. We have a fantastic dog, Odin, who we rescued at 8 weeks old. In my free time (when I am not plastered in front of my computer figuring out a new bug), I enjoy spending time with my family going on walks and hiking. I slso enjoy playing video games and watching the lastest Marvel movie or shows such as Silcon Valley (I understand when they have problems from merge conflicts now).
+
+I am more passionate than I have ever been in my life to continue to learn new skills and languages and achieving all of my career goals. While I do plan to focus on my current Stack and continue to improve, in the future I would like to learn more about lower level languages, data architecture, and game design.',
   '{Javascript, HTML5, CSS3, postgreSQL, React, Python, jQuery}',
   'github.com/Da-Colon',
   'https://www.linkedin.com/in/david-colon-600994124/',
@@ -53,10 +61,17 @@ INSERT INTO users (
   'dbananas@gmail.com',
   'test',
   'Daniel',
-  'Bananas',
+  'Farlow',
+  'https://daniel-farlow.com/',
+  '
+Hi, I''m Daniel.
+
+I am a software engineer living in Atlanta, GA. I am originally from Frederick, MD, and I attended Davidson College where I majored in mathematics. Soon after graduating I started my career as a math instructor, first teaching at Barrie School in Silver Spring, MD, then at The Hotchkiss School in Lakeville, CT, and finally at St. Andrew''s Episcopal School in Ridgeland, MS. After a number of years in education, I realized I was hungry for a new challenge, and software engineering stood out to me as a field ripe with the kinds of challenges I was looking for.
+
+The first challenge was in finding a way to pursue this beautiful discipline but to do so not in a vaccuum but with a community of like-minded peers eager to engage new challenges and solve difficult problems. My search led me to DigitalCrafts, a four month full-time immersive coding bootcamp that I began in August of 2019 and will finish in December.',
    '{Javascript, HTML5, CSS3, postgreSQL, React, Python, jQuery}',
-  'github.com/Da-Colon',
-  'https://www.linkedin.com/in/david-colon-600994124/',
+  'https://github.com/daniel-farlow',
+  'https://www.linkedin.com/in/daniel-farlow/',
   TRUE,
   2,
   'General Assembly',
@@ -66,10 +81,14 @@ INSERT INTO users (
   'nocarrots@gmail.com',
   'test',
   'Nep',
-  'Carrots',
+  'Orshiso',
+  'https://neporshiso.com/',
+  'My name is Nep Orshiso and I’m from Kansas City, MO. I’m an Ethiopian-American and I’ve lived in the Midwest most of my life. I have a B.S. in Finance and Marketing and a minor in Economics from Truman State University.
+
+I moved to Atlanta, GA in August 2019 to join the DigitalCrafts Full-Time Immersive Program to make the transition into software development. Previously, I worked at a large retirement services provider as a junior manager in their call center.',
   '{Javascript, HTML5, CSS3, Bulma, Boomer}',
-  'github.com/Da-Colon',
-  'https://www.linkedin.com/in/david-colon-600994124/',
+  'https://github.com/neporshiso',
+  'https://www.linkedin.com/in/neporshiso/',
   TRUE,
   2,
   'Thinkful',
@@ -81,6 +100,8 @@ INSERT INTO users (
   'test',
   'Dave',
   'Strickland',
+  NULL,
+  NULL,
   NULL,
   NULL,
   'https://www.linkedin.com/in/david-colon-600994124/',
@@ -96,6 +117,8 @@ INSERT INTO users (
   'Mchammersmith',
   NULL,
   NULL,
+  NULL,
+  NULL,
   'https://www.linkedin.com/in/david-colon-600994124/',
   TRUE,
   3,
@@ -109,6 +132,8 @@ INSERT INTO users (
   'Gundy',
   NULL,
   NULL,
+  NULL,
+  NULL,
   'https://www.linkedin.com/in/david-colon-600994124/',
   TRUE,
   3,
@@ -120,7 +145,9 @@ INSERT INTO users (
   'test',
   'Nep',
   'Peppers',
-   '{Javascript, HTML5, CSS3, postgreSQL, React, Python, jQuery}',
+  NULL,
+  NULL,
+  '{Javascript, HTML5, CSS3, postgreSQL, React, Python, jQuery}',
   'github.com/Da-Colon',
   'https://www.linkedin.com/in/david-colon-600994124/',
   FALSE,
@@ -133,6 +160,8 @@ INSERT INTO users (
   'test',
   'Daniel',
   'Beans',
+  NULL,
+  NULL,
    '{Javascript, HTML5, CSS3, postgreSQL, React, Python, jQuery}',
   'github.com/Da-Colon',
   'https://www.linkedin.com/in/david-colon-600994124/',
@@ -146,6 +175,8 @@ INSERT INTO users (
   'test',
   'Preston',
   'Smithson',
+  NULL,
+  NULL,
   NULL,
   NULL,
   'https://www.linkedin.com/in/david-colon-600994124/',
@@ -162,6 +193,8 @@ INSERT INTO users (
   NULL,
   NULL,
   NULL,
+  NULL,
+  NULL,
   TRUE,
   1,
   NULL,
@@ -172,6 +205,8 @@ INSERT INTO users (
   'test',
   'Daniel',
   'C',
+  NULL,
+  NULL,
   NULL,
   NULL,
   NULL,
@@ -188,6 +223,8 @@ INSERT INTO users (
   NULL,
   NULL,
   NULL,
+  NULL,
+  NULL,
   TRUE,
   1,
   NULL,
@@ -198,6 +235,8 @@ INSERT INTO users (
   'test',
   'Prescott',
   'C',
+  NULL,
+  NULL,
   NULL,
   NULL,
   NULL,
@@ -231,24 +270,33 @@ INSERT INTO posts_resources (
 (
   'Stack Overflow',
   '{Forum, General, Development}',
-  'SHORT_DESCRIPTION',
-  'FULL_DESCRIPTION',
+  'Stack Overflow is a question and answer site for professional and enthusiast programmers. It is basically where you will need to go to get answers to most of your developer-related questions. Stack Overflow is a question and answer site for professional and enthusiast programmers. It is basically where you will need to go to get answers to most of your developer-related questions.',
+  'The website serves as a platform for users to ask and answer questions, and, through membership and active participation, to vote questions and answers up or down and edit questions and answers in a fashion similar to a wiki or Reddit. Users of Stack Overflow can earn reputation points and "badges"; for example, a person is awarded 10 reputation points for receiving an "up" vote on an answer given to a question and 10 points for the "up" vote of a question, and can receive badges for their valued contributions, which represents a kind of gamification of the traditional Q&A site. Users unlock new privileges with an increase in reputation like the ability to vote, comment, and even edit other people''s posts.
+  
+  Closing questions is a main differentiation from Yahoo! Answers and a way to prevent low quality questions. The mechanism was overhauled in 2013; questions edited after being put "on hold" now appear in a review queue. Jeff Atwood stated in 2010 that duplicate questions are not seen as a problem but rather they constitute an advantage if such additional questions drive extra traffic to the site by multiplying relevant keyword hits in search engines.
+
+  As of January 2019 Stack Overflow has over 10 million registered users, and it exceeded 16 million questions in mid 2018. Based on the type of tags assigned to questions, the top eight most discussed topics on the site are: JavaScript, Java, C#, PHP, Android, Python, jQuery and HTML.
+
+  Stack Overflow also has a Jobs section to assist developers in finding their next opportunity. For employers, Stack Overflow provides tools to brand their business, advertise their openings on the site, and source candidates from Stack Overflow''s database of developers who are open to being contacted.
+  ',
   'https://stackoverflow.com/',
   1
 ),
 (
   'Flexbox Froggy',
   '{Tutorial, Game, CSS, Flexbox}',
-  'SHORT_DESCRIPTION',
-  'FULL_DESCRIPTION',
+  'Flexbox Froggy is a game where you help Froggy and friends get to their lilypads by writing CSS code that utilizes the flexible box model in CSS (i.e., "flexbox").',
+  'This game will help you become familiar with the basics of the CSS flexible box model (i.e., "flexbox") by means of a fun game. You will learn how to utilize a variety of the flexbox properties and values: justify-content, align-items, flex-direction, order, align-self, flex-wrap, flex-flow, align-content, and others you may find helpful.',
   'http://flexboxfroggy.com/',
   2
 ),
 (
   'Flexbox Froggy Guide',
   '{Guide, Reference, CSS, Flexbox}',
-  'SHORT_DESCRIPTION',
-  'FULL_DESCRIPTION',
+  'This guide is meant to make the experience of completing the Flexbox Froggy game as beneficial as possible with detailed solutions (with pictures and code) to each level.',
+  'You will find quite a few resources in this guide! First you will see an in-depth introduction detailing how the guide is intended to be used. You will then see different flexbox properties and values you will need to complete the different challenges (these are meant to be referenced throughout your completion of the game if need be). 
+  
+  The true utility of the guide then comes apparent with links to all of the different levels you can expect to currently see in Flexbox Froggy. For each level, you are greeted by a picture of how the level starts, a possible hint if you are stuck, the code provided at the start of the level that you need to fill in, and then a full solution with the code filled in along with pictures representing each step.',
   'https://github.com/daniel-farlow/flexbox-froggy',
   3
 ),
@@ -593,6 +641,5 @@ INSERT INTO reports (
   1,
   'bad reputation of taking advatage of new programmers'
 );
-
 
 

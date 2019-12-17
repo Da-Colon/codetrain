@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Moment from "react-moment";
 import Axios from "axios";
-import styled from 'styled-components'
+import {Box} from 'bloomer';
 
 const Post = props => {
   const [postData, setPostData] = useState({});
@@ -21,9 +21,9 @@ const Post = props => {
   const dateToFormat = postData.time;
 
   return (
-    <PostWrapper>
+    <Box>
       <p>
-         <a href={postData.url}>{postData.title}</a> 
+         <a href={postData.url} target="_blank">{postData.title}</a> 
       </p>
       <p>
         Posted {" "}
@@ -34,13 +34,8 @@ const Post = props => {
       <p>
         {postData.score} points on HackerNews by {postData.by}
       </p>
-    </PostWrapper>
+    </Box>
   );
 };
-
-const PostWrapper = styled.div`
-  margin-bottom: 20px;
-`
-
 
 export default Post;
