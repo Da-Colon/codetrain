@@ -14,21 +14,6 @@ import {
   BreadcrumbItem,
   Subtitle
 } from "bloomer";
-import { notDeepStrictEqual } from "assert";
-
-//   getAllCompanyReports,
-//   getAllJobReports,
-//   getAllResourceReports,
-//   getAllUserReports,
-//   sendMessageCompany,
-//   sendMessageUser,
-//   postReport,
-//   deleteJob,
-//   deleteResource,
-//   removeAuthCompanyUsers,
-//   removeAuthUser,
-//   getReports,
-//   resolveIssue
 
 export default function AdminHome() {
   const user = useSelector(state => state.user);
