@@ -68,11 +68,7 @@ const JobCard = props => {
   return (
     <Card style={{ maxWidth: "400px", margin: "20px" }}>
       <CardHeader>
-        <Link to={`/jobs/${data.id}`}>
-          <CardHeaderTitle>
-            {data.title} &nbsp; <Anchor>See full post</Anchor>
-          </CardHeaderTitle>
-        </Link>
+        <CardHeaderTitle>{data.title}</CardHeaderTitle>
       </CardHeader>
       <CardContent>
         <Content>
@@ -93,7 +89,9 @@ const JobCard = props => {
       </CardContent>
       <CardFooter>
         <CardFooterItem>
-          <Button>Edit</Button>
+          <Button>
+            <Link to={`/jobs/${data.id}`}>View Details</Link>
+          </Button>
         </CardFooterItem>
       </CardFooter>
     </Card>

@@ -81,7 +81,14 @@ class JobPosts {
     }
   }
 
-  static async updateJob(title, content, experience, contact_email, contact_phone, id) {
+  static async updateJob(
+    title,
+    content,
+    experience,
+    contact_email,
+    contact_phone,
+    id
+  ) {
     const query = await db.any(
       `UPDATE posts_jobs SET title = $1, content = $2, experience = $3, contact_email = $4, contact_phone = $5 WHERE id = $6;`,
       [title, content, experience, contact_email, contact_phone, id]
@@ -94,10 +101,12 @@ class JobPosts {
   }
 
   static async removeJob(id) {
-    const query = `delete from posts_jobs where id = ${id}`;
+    const query = await db.any(
+      `UPDATE posts_jobs SET is_active = false WHERE id = $1;`,
+      [id]
+    );
     try {
-      const response = await db.result(query);
-      return response;
+      return query;
     } catch (err) {
       return err.message;
     }
