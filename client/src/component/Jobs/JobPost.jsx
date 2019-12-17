@@ -63,10 +63,13 @@ const JobPost = props => {
       users_id: user.id,
       posts_jobs_id: jobs.id
     };
-    const res = await Axios.post(endpoint, payload);
-    res.status === 200
-      ? alert("Your application was received.")
-      : alert("Sorry. There was an error.");
+    Axios.post(endpoint, payload)
+      .then(res => {
+        alert("Your application was received.");
+      })
+      .catch(err => {
+        alert("You have already applied for this job.");
+      });
   };
   // title, content, experience, date_posted, contact_email, contact_phone, company_name, company_profile, company_url
   return (
@@ -74,6 +77,11 @@ const JobPost = props => {
       <Card style={{ maxWidth: "60vw", margin: "20px" }}>
         <CardHeader>
           <CardHeaderTitle>{jobs.title}</CardHeaderTitle>
+          <Link
+            to={`/report/job/${jobs.id}/${jobs.companies_id}/${jobs.users_id}`}
+          >
+            Report Job
+          </Link>
         </CardHeader>
         <CardContent>
           <Content>
@@ -97,7 +105,7 @@ const JobPost = props => {
           </Content>
         </CardContent>
         <CardFooter>
-          <CardFooterItem href="#">
+          <CardFooterItem>
             <Button onClick={postApplication}>Apply!</Button>
           </CardFooterItem>
         </CardFooter>

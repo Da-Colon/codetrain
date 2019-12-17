@@ -153,7 +153,7 @@ const BootcampResourceGet = () => {
                   </Content>
                   {/* <Content>{descriptionFull}</Content> */}
                 </CardContent>
-                {user.id === usersId ? (
+                {/* {user.id === usersId ? (
                   <CardFooter>
                     <CardFooterItem>
                       <Button
@@ -179,7 +179,7 @@ const BootcampResourceGet = () => {
                       />
                     ) : null}
                   </CardFooter>
-                ) : null}
+                ) : null} */}
               </Card>
             );
           })
