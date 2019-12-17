@@ -11,7 +11,9 @@ class Companies {
   }
 
   static async getAllCompanies() {
-    const query = `select * from companies`;
+    const query = `
+    select * from companies
+    order by name asc`;
     try {
       const response = await db.any(query);
       return response;

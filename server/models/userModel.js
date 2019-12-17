@@ -13,7 +13,8 @@ class User {
     bootcamp_name,
     personal_website,
     about,
-    skills
+    skills,
+    companies_id
   ) {
     this.email = email;
     this.password = password;
@@ -26,6 +27,7 @@ class User {
     this.personal_website = personal_website;
     this.about = about;
     this.skills = skills;
+    this.companies_id = companies_id;
   }
 
   //  BCrypt password compare
@@ -38,7 +40,7 @@ class User {
   }
   async signup() {
     return await db.result(
-      `INSERT INTO users (email, password, first_name, last_name, github_url, linkedin_url, user_types_id, bootcamp_name) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)`,
+      `INSERT INTO users (email, password, first_name, last_name, github_url, linkedin_url, user_types_id, bootcamp_name, companies_id, auth) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9, true)`,
       [
         this.email,
         this.password,
@@ -47,13 +49,14 @@ class User {
         this.github_url,
         this.linkedin_url,
         this.user_type,
-        this.bootcamp_name
+        this.bootcamp_name,
+        this.companies_id
       ]
     );
   }
 
   static async getById(id) {
-    const query = `SELECT * FROM users WHERE id= ${id}`;
+    const query = `SELECT (id, email, first_name, last_name, personal_website, about, skills, github_url, linkedin_url, auth, user_types_id, bootcamp_name, companies_id) FROM users WHERE id= ${id}`;
     try {
       const response = await db.one(query);
       return response;

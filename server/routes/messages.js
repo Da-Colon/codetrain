@@ -28,8 +28,8 @@ router.get("/messages/one/:messages_id", async (req, res) => {
 })
 
 router.post("/sendmessage", async (req, res) => {
-  const {subject, message, sent_from, sent_to } = req.body
-  const sendMessage = await MessagesModel.sendMessage(subject, message, sent_from, sent_to )
+  const {subject, message, sent_from, sent_to, sent_from_companies_id } = req.body
+  const sendMessage = await MessagesModel.sendMessage(subject, message, sent_from, sent_to, sent_from_companies_id )
   res.status(200).end()
 })
 

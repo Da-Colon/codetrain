@@ -44,8 +44,8 @@ const getMessage = message_id => {
   }
 };
 
-const sendMessage = (subject, message, sent_from, sent_to ) => {
-  const query = db.any(`INSERT INTO private_messages (subject, message, sent_to, sent_from) VALUES ($1, $2, $3, $4);`, [subject, message, sent_from, sent_to])
+const sendMessage = (subject, message, sent_from, sent_to, sent_from_companies_id ) => {
+  const query = db.any(`INSERT INTO private_messages (subject, message, sent_from, sent_to, sent_from_companies_id) VALUES ($1, $2, $3, $4, $5);`, [subject, message, sent_from, sent_to, sent_from_companies_id])
   try {
     return query;
   } catch {
