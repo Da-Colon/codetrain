@@ -14,6 +14,7 @@ import Applications from "./component/Applications";
 import Resources from "./component/Resources";
 import ResourcePost from "./component/Resources/ResourcePost";
 import JobPost from "./component/Jobs/JobPost";
+import CreateJobPost from './component/Jobs/CreateJobPost'
 
 import "./App.css";
 
@@ -58,6 +59,7 @@ const App = () => {
         <Route path="/user/:id" component={BootcampProfile} exact />
         <Route path="/company/:id" component={CompanyProfile} exact />
         <Route path="/jobs" component={Jobs} exact />
+        <Route path="/create-job" component={CreateJobPost} exact />
         <Route path="/jobs/:job_id" component={JobPost} exact />
         <Route path="/resources" component={Resources} exact />
         <Route path="/resources/:resource_id" component={ResourcePost} exact />

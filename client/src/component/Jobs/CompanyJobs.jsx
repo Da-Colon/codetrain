@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import Moment from "react-moment";
 import Axios from "axios";
+import CreateJobPost from "./CreateJobPost";
 import {
   Card,
   CardHeader,
@@ -36,11 +37,16 @@ const CompanyJobs = () => {
 
   // mapping over data and passing job data as props to the Job Card which renders job posts
   return (
-    <JobCardWrapper>
-      {jobs.map(job => {
-        return <JobCard key={job.id} data={job} />;
-      })}
-    </JobCardWrapper>
+    <>
+      <Link to={`/create-job`}>
+        <Button>Create a job post!</Button>
+      </Link>
+      <JobCardWrapper>
+        {jobs.map(job => {
+          return <JobCard key={job.id} data={job} />;
+        })}
+      </JobCardWrapper>
+    </>
   );
 };
 

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import {useHistory} from 'react-router-dom'
 import {
   Form,
   Label,
@@ -12,6 +13,7 @@ import axios from "axios";
 
 const CreateJobPost = () => {
   const company = useSelector(state => state.user);
+  let history = useHistory()
 
   const [state, setState] = useState({
     job_title: "",
@@ -43,7 +45,9 @@ const CreateJobPost = () => {
     };
 
     const response = await axios.post(endpoint, payload);
+    alert('Your job was posted!')
     setState({ ...state, isSubmitted: true });
+    history.push("/jobs")
   };
 
   return (
