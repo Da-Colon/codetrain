@@ -17,7 +17,8 @@ const getAllResourcesAndPosters = async () => {
       pr.id, title, up_votes, down_votes, short_description, full_description, resource_url, date_posted, is_deleted, users_id, email, first_name, last_name, github_url, linkedin_url, bootcamp_name
     FROM
 	    posts_resources as pr
-    INNER JOIN users ON users.id = pr.users_id;
+    INNER JOIN users ON users.id = pr.users_id
+    WHERE pr.is_deleted = false;
 `);
 
   try {
@@ -36,7 +37,8 @@ const getResourceandPosterById = async id => {
     FROM
 	    posts_resources as pr
     INNER JOIN users ON users.id = pr.users_id
-    WHERE pr.id = ${id};
+    WHERE pr.id = ${id}
+      AND pr.is_deleted = false;
 `);
 
   try {

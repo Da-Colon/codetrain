@@ -119,9 +119,9 @@ const JobCard = ({ data }) => {
         </Content>
       </CardContent>
       <CardFooter>
-        <CardFooterItem href="#">
+        {/* <CardFooterItem href="#">
           <Button onClick={postApplication}>Apply!</Button>
-        </CardFooterItem>
+        </CardFooterItem> */}
       </CardFooter>
     </Card>
   );

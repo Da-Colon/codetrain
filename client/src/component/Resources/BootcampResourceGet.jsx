@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React, { Fragment } from "react";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
@@ -65,7 +65,11 @@ const BootcampResourceGet = () => {
 
   return (
     <Fragment>
-      {user.user_types_id === 2 && <Link to="/resources/submit"><Anchor style={{ fontSize: "2rem" }}>Submit a resource</Anchor></Link>}
+      {user.user_types_id === 2 && (
+        <Link to="/resources/submit">
+          <Anchor style={{ fontSize: "2rem" }}>Submit a resource</Anchor>
+        </Link>
+      )}
       <ResourceWrapper>
         {resourcesFetched ? (
           resources.map((resource, i) => {
@@ -94,11 +98,17 @@ const BootcampResourceGet = () => {
             // };
 
             return (
-              <Card key={i} style={{ maxWidth: "600px", margin: "20px", display: 'flex', flexDirection: 'column'}}>
+              <Card
+                key={i}
+                style={{
+                  maxWidth: "600px",
+                  margin: "20px",
+                  display: "flex",
+                  flexDirection: "column"
+                }}
+              >
                 <CardHeader>
-                  <CardHeaderTitle>
-                    {title}
-                  </CardHeaderTitle>
+                  <CardHeaderTitle>{title}</CardHeaderTitle>
                 </CardHeader>
                 <CardContent>
                   <Media>
@@ -108,17 +118,26 @@ const BootcampResourceGet = () => {
                         <Breadcrumb isSize={`small`} isAlign={"left"}>
                           <ul>
                             <BreadcrumbItem>
-                              <Anchor href={resourceURL} target="_blank">Resource link</Anchor>
+                              <Anchor href={resourceURL} target="_blank">
+                                Resource link
+                              </Anchor>
                             </BreadcrumbItem>
                             <BreadcrumbItem>
-                              <Link to={`/report/resource/${resource.id}/${resource.users_id}`}>Report</Link>
+                              <Link
+                                to={`/report/resource/${resource.id}/${resource.users_id}`}
+                              >
+                                Report
+                              </Link>
                             </BreadcrumbItem>
                           </ul>
                           <ul>
-                          <BreadcrumbItem>
-                              <Link to={`/resources/${resourceId}`}>Full post</Link>
+                            <BreadcrumbItem>
+                              <Link to={`/resources/${resourceId}`}>
+                                Full post
+                              </Link>
                             </BreadcrumbItem>
-                            <BreadcrumbItem>&nbsp;&nbsp;
+                            <BreadcrumbItem>
+                              &nbsp;&nbsp;
                               <Moment format="YYYY-MM-DD">{datePosted}</Moment>
                             </BreadcrumbItem>
                           </ul>
@@ -136,15 +155,21 @@ const BootcampResourceGet = () => {
                               </Link>
                             </BreadcrumbItem>
                             <BreadcrumbItem>
-                              <a href={`mailto:${email}`} target="_blank">Email</a>
+                              <a href={`mailto:${email}`} target="_blank">
+                                Email
+                              </a>
                             </BreadcrumbItem>
                           </ul>
                           <ul>
                             <BreadcrumbItem>
-                              <a href={githubLink} target="_blank">GitHub</a>
+                              <a href={githubLink} target="_blank">
+                                GitHub
+                              </a>
                             </BreadcrumbItem>
                             <BreadcrumbItem>
-                              <a href={linkedinLink} target="_blank">LinkedIn</a>
+                              <a href={linkedinLink} target="_blank">
+                                LinkedIn
+                              </a>
                             </BreadcrumbItem>
                           </ul>
                         </Breadcrumb>
@@ -157,7 +182,7 @@ const BootcampResourceGet = () => {
                   {/* <Content>{descriptionFull}</Content> */}
                 </CardContent>
                 {user.id === usersId ? (
-                  <CardFooter style={{marginTop: 'auto'}}>
+                  <CardFooter style={{ marginTop: "auto" }}>
                     <CardFooterItem>
                       <Button
                         isColor={`success`}
@@ -182,7 +207,8 @@ const BootcampResourceGet = () => {
                       />
                     ) : null}
                   </CardFooter>
-                ) : null}
+                ) : null}{" "}
+                */}
               </Card>
             );
           })
