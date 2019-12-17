@@ -1,39 +1,91 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import { Form, Label, Input, Button, Title } from "../../Styles/FormStyles";
-
+import CreateCompany from "./CreateCompany";
 
 const SignupForm = () => {
   const endpoint = "http://localhost:3000";
   // const endpoint = "http://192.168.0.123:3000";
   const [newUser, setNewUser] = useState({
-    email: '',
-    password: '',
-    first_name: '',
-    last_name: '',
-    github_url: '',
-    linkedin_url: '',
+    email: "",
+    password: "",
+    first_name: "",
+    last_name: "",
+    github_url: "",
+    linkedin_url: "",
     user_type: null,
     bootcamp_name: null,
-    company_id: null,
-    company_name: null,
+    company_id: null
+    // company_name: null
   });
 
-  const addInput = () =>{
-    if(newUser.user_type === "2"){
-      return <Label>Bootcamp Name<Input type="text" placeholder="Name of Bootcamp" onChange={handleInputChange} name="bootcamp_name" aria-label="Bootcamp Name" required /></Label>
+  const [companyInfo, setCompanyInfo] = useState([]);
+
+  const getCompanyInfo = async () => {
+    const response = await Axios.get(`http://localhost:3000/companies`);
+    setCompanyInfo(response.data);
+  };
+
+  useEffect(() => {
+    getCompanyInfo();
+  }, []);
+
+  const addInput = () => {
+    if (newUser.user_type === "2") {
+      return (
+        <Label>
+          Bootcamp Name
+          <Input
+            type="text"
+            placeholder="Name of Bootcamp"
+            onChange={handleInputChange}
+            name="bootcamp_name"
+            aria-label="Bootcamp Name"
+            required
+          />
+        </Label>
+      );
     }
-    if(newUser.user_type === "3"){
-      return <Label>Company Name<Input type="text" placeholder="Name of Company" onChange={handleInputChange} name="company_name" aria-label="Company Name" required /></Label>
+    if (newUser.user_type === "3") {
+      return (
+        <container>
+          <Label>
+            Company Name
+            <select onChange={handleInputChange} name="company_id">
+              <option>Select a company</option>
+              {companyInfo.map(company => {
+                return (
+                  <option name="company_id" value={company.id}>
+                    {company.name}
+                  </option>
+                );
+              })}
+            </select>
+          </Label>
+          <Label>
+            Is your company not listed? Add it here.
+            {/* <Input
+              type="text"
+              placeholder="Name of Company"
+              onChange={handleInputChange}
+              name="company_name"
+              aria-label="Company Name"
+              // required
+            /> */}
+            <CreateCompany getCompanyInfo={getCompanyInfo} />
+          </Label>
+        </container>
+      );
     }
-}
+  };
   const history = useHistory();
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      await Axios.post(`${endpoint}/signup`, newUser);
-      alert('Successfully signed up, please log in')
+      const response = await Axios.post(`${endpoint}/signup`, newUser);
+      console.log(response);
+      alert("Successfully signed up, please log in");
       history.replace("/login");
     } catch {
       window.alert(
@@ -113,26 +165,26 @@ const SignupForm = () => {
         />
       </Label>
 
-        <Title>Are you part of a Bootcamp or a Company?</Title>
+      <Title>Are you part of a Bootcamp or a Company?</Title>
       <Label>
-      <input 
-      type="radio"
-      value="2"
-      onChange={handleInputChange}
-      name="user_type"
-      aria-label="Bootcamp"
-      />
-      Bootcamp
+        <input
+          type="radio"
+          value="2"
+          onChange={handleInputChange}
+          name="user_type"
+          aria-label="Bootcamp"
+        />
+        Bootcamp
       </Label>
       <Label>
-      <input 
-      type="radio"
-      value="3"
-      onChange={handleInputChange}
-      name="user_type"
-      aria-label="Bootcamp"
-      />
-      Company
+        <input
+          type="radio"
+          value="3"
+          onChange={handleInputChange}
+          name="user_type"
+          aria-label="Bootcamp"
+        />
+        Company
       </Label>
       {addInput()}
 

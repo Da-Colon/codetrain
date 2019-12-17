@@ -33,7 +33,7 @@ passport.use(
         }
         const isValid = user.checkPassword(password);
         if (!isValid) {
-          return done(null, false, { message: 'Wrong Password' });
+          return done(null, false, { message: "Wrong Password" });
         }
         return done(null, response, { message: "Logged in Successfully" });
       } catch (error) {
@@ -44,7 +44,7 @@ passport.use(
 );
 
 passport.use(
-  'signup',
+  "signup",
   new localStrategy(
     {
       usernameField: "email",
@@ -63,8 +63,10 @@ passport.use(
           github_url,
           linkedin_url,
           user_type,
-          bootcamp_name
+          bootcamp_name,
+          company_id
         } = req.body;
+        console.log(req.body);
 
         const user = new UserModel(
           email,
@@ -74,7 +76,8 @@ passport.use(
           github_url,
           linkedin_url,
           user_type,
-          bootcamp_name
+          bootcamp_name,
+          company_id
         );
         const response = await user.signup();
         return done(null, response);
