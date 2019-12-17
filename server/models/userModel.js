@@ -10,7 +10,8 @@ class User {
     github_url,
     linkedin_url,
     user_type,
-    bootcamp_name
+    bootcamp_name,
+    companies_id
   ) {
     this.email = email;
     this.password = password;
@@ -20,6 +21,7 @@ class User {
     this.linkedin_url = linkedin_url;
     this.user_type = user_type;
     this.bootcamp_name = bootcamp_name;
+    this.companies_id = companies_id;
   }
 
   //  BCrypt password compare
@@ -32,7 +34,7 @@ class User {
   }
   async signup() {
     return await db.result(
-      `INSERT INTO users (email, password, first_name, last_name, github_url, linkedin_url, user_types_id, bootcamp_name) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)`,
+      `INSERT INTO users (email, password, first_name, last_name, github_url, linkedin_url, user_types_id, bootcamp_name, companies_id, auth) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9, true)`,
       [
         this.email,
         this.password,
@@ -41,7 +43,8 @@ class User {
         this.github_url,
         this.linkedin_url,
         this.user_type,
-        this.bootcamp_name
+        this.bootcamp_name,
+        this.companies_id
       ]
     );
   }
