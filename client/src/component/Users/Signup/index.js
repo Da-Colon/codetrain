@@ -29,7 +29,7 @@ const SignupForm = () => {
 
   useEffect(() => {
     getCompanyInfo();
-  }, [companyInfo]);
+  }, []);
 
   const addInput = () => {
     if (newUser.user_type === "2") {
@@ -73,7 +73,7 @@ const SignupForm = () => {
               aria-label="Company Name"
               // required
             /> */}
-            <CreateCompany />
+            <CreateCompany getCompanyInfo={getCompanyInfo} />
           </Label>
         </container>
       );
@@ -86,7 +86,7 @@ const SignupForm = () => {
       const response = await Axios.post(`${endpoint}/signup`, newUser);
       console.log(response);
       alert("Successfully signed up, please log in");
-      // history.replace("/login");
+      history.replace("/login");
     } catch {
       window.alert(
         "Sorry, There Was An Error With Signing up, Please Try Again"

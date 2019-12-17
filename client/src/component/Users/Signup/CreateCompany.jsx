@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Form, Label, Input, Button, Title } from "../../Styles/FormStyles";
 import Axios from "axios";
 
-const CreateCompany = () => {
+const CreateCompany = props => {
   const [state, setState] = useState({
     email: "",
     name: ""
@@ -27,6 +27,8 @@ const CreateCompany = () => {
     const response = await Axios.post(endpoint, payload);
     // alert("Your company was added");
     setState({ ...state, isSubmitted: true });
+
+    props.getCompanyInfo();
   };
 
   return (
@@ -34,7 +36,7 @@ const CreateCompany = () => {
       {state.isSubmitted ? (
         <p>Your company was added</p>
       ) : (
-        <Form onSubmit={handleSubmit}>
+        <Form>
           <Label>
             Company Email
             <Input
