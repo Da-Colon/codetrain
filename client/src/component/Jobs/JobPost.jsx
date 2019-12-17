@@ -17,8 +17,9 @@ import styled from "styled-components";
 
 import { Button } from "../Styles/FormStyles";
 
-// This component fetches the data that will populate a job post
 const JobPost = props => {
+  const user = useSelector(state => state.user);
+  console.log("user data is", user);
   const [jobs, setJobs] = useState([]);
 
   const fetchJobsData = async () => {
@@ -27,34 +28,8 @@ const JobPost = props => {
     setJobs(res.data);
   };
 
-  // the 2nd empty array argument prevents infinite re-renders.
   useEffect(() => {
     fetchJobsData();
-  }, []);
-
-  // mapping over data and passing job data as props to the Job Card which renders job posts
-  //   return (
-  //     <JobCardWrapper>
-  //       {jobs.map(job => {
-  //         return <JobCard key={job.id} data={job} />;
-  //       })}
-  //     </JobCardWrapper>
-  //   );
-
-  // These are the actual job posts. They receive data from the JobBoard component.
-  // const JobCard = ({ data }) => {
-  const user = useSelector(state => state.user);
-  const [companyData, setCompanyData] = useState([]);
-
-  // Grabs company profile data based on posts_jobs. This could've been an inner join however, since inner join creates a new table, being able to detect the jobs id in the JobCard Component does not match jobs id in the posts_jobs table
-  const fetchCompanyData = async () => {
-    const endpoint = `http://localhost:3000/companies/id/${jobs.companies_id}`;
-    const res = await Axios.get(endpoint);
-    setCompanyData(res.data);
-  };
-
-  useEffect(() => {
-    fetchCompanyData();
   }, []);
 
   const postApplication = async () => {
@@ -68,7 +43,7 @@ const JobPost = props => {
       ? alert("Your application was received.")
       : alert("Sorry. There was an error.");
   };
-  // title, content, experience, date_posted, contact_email, contact_phone, company_name, company_profile, company_url
+
   return (
     <JobCardWrapper>
       <Card style={{ maxWidth: "60vw", margin: "20px" }}>
@@ -77,7 +52,7 @@ const JobPost = props => {
         </CardHeader>
         <CardContent>
           <Content>
-            <strong>Date Posted:</strong>
+            <strong>Date Posted: </strong>
             <Moment format="YYYY-MM-DD">{jobs.date_posted}</Moment>
           </Content>
           <Content>
@@ -88,17 +63,24 @@ const JobPost = props => {
             <strong>Experience:</strong> {jobs.experience}
           </Content>
           <Content>
-            <strong>Company Name:</strong>
-            <Link to={`/company/${companyData.id}`}>{companyData.name}</Link>
+            <strong>Company Name: </strong>
+            <Link to={`/company/${jobs.companies_id}`}>{jobs.name}</Link>
           </Content>
           <Content>
-            <strong>Contact Email:</strong>
+            <strong>Contact Email: </strong>
             {jobs.contact_email}
           </Content>
         </CardContent>
         <CardFooter>
-          <CardFooterItem href="#">
-            <Button onClick={postApplication}>Apply!</Button>
+          <CardFooterItem>
+            {/* If it's a bootcamp user viewing the job, give them ability to apply. If it's a user representing the company that posted the job, give them the option to apply. */}
+            {user.id === 2 ? (
+              <Button onClick={postApplication}>Apply!</Button>
+            ) : user.companies_id === jobs.companies_id ? (
+              <Button>Edit Post</Button>
+            ) : (
+              <></>
+            )}
           </CardFooterItem>
         </CardFooter>
       </Card>
