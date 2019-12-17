@@ -4,7 +4,7 @@ import styled from "styled-components";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import Moment from "react-moment";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import {
   Box,
@@ -42,10 +42,12 @@ const ResourcePost = props => {
     setResourcesFetched(true);
   };
 
+  let history = useHistory();
+
   const deleteResource = async resourceId => {
     const endpoint = `http://localhost:3000/resources/delete/${resourceId}`;
     await axios.put(endpoint);
-    fetchResourcesData();
+    history.push('/resources')
   };
 
   const editResource = (e, resource) => {

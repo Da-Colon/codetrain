@@ -7,7 +7,7 @@ import { Form, Label, Input, Button as FormButton } from '../Styles/FormStyles';
 import { Modal, ModalBackground, ModalContent, ModalClose } from 'bloomer';
 
 const EditResourceModal = props => {
-  const {editFormActive, setEditFormActive, resource} = props;
+  const { editFormActive, setEditFormActive, resource, fetchResourcesData } = props;
 
   const [editState, setEditState] = useState({
     title: resource.title,
@@ -38,12 +38,13 @@ const EditResourceModal = props => {
     setEditState({ ...editState, resourceEdited: true });
     const response = await axios.put(endpoint, payload);
     setEditFormActive(false)
+    fetchResourcesData()
   }
 
   return (
     <Modal isActive={editFormActive}>
       <ModalBackground />
-      <ModalContent style={{width: '100vw'}}>
+      <ModalContent style={{ width: '100vw' }}>
         <Form onSubmit={handleUpdate}>
           <Label>
             Resource Title

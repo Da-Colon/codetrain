@@ -204,11 +204,11 @@ const BootcampResourceGet = () => {
                         editFormActive={editFormActive}
                         setEditFormActive={setEditFormActive}
                         resource={resource}
+                        fetchResourcesData={fetchResourcesData}
                       />
                     ) : null}
                   </CardFooter>
                 ) : null}{" "}
-                */}
               </Card>
             );
           })
@@ -231,3 +231,4 @@ const ResourceWrapper = styled.div`
 `;
 
 export default BootcampResourceGet;
+
