@@ -1,4 +1,3 @@
-// Will need a /profile link to company page from this page once we have profile components built. Company profile page currenlty not built.
 import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
