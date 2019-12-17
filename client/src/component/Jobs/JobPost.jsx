@@ -109,6 +109,46 @@ const JobPost = props => {
   }
 
   return (
+<<<<<<< HEAD
+    <JobCardWrapper>
+      <Card style={{ maxWidth: "60vw", margin: "20px" }}>
+        <CardHeader>
+          <CardHeaderTitle>{jobs.title}</CardHeaderTitle>
+          <Link
+            to={`/report/job/${jobs.id}/${jobs.companies_id}/${jobs.users_id}`}
+          >
+            Report Job
+          </Link>
+        </CardHeader>
+        <CardContent>
+          <Content>
+            <strong>Date Posted:</strong>
+            <Moment format="YYYY-MM-DD">{jobs.date_posted}</Moment>
+          </Content>
+          <Content>
+            <strong>Job Description: </strong>
+            {jobs.content}
+          </Content>
+          <Content>
+            <strong>Experience:</strong> {jobs.experience}
+          </Content>
+          <Content>
+            <strong>Company Name:</strong>
+            <Link to={`/company/${companyData.id}`}>{companyData.name}</Link>
+          </Content>
+          <Content>
+            <strong>Contact Email:</strong>
+            {jobs.contact_email}
+          </Content>
+        </CardContent>
+        <CardFooter>
+          <CardFooterItem>
+            <Button onClick={postApplication}>Apply!</Button>
+          </CardFooterItem>
+        </CardFooter>
+      </Card>
+    </JobCardWrapper>
+=======
     <>
       {isEditMode ? (
         <Form onSubmit={handleEditSubmit}>
@@ -211,6 +251,7 @@ const JobPost = props => {
         </CardFooterItem>
       )}
     </>
+>>>>>>> master
   );
 };
 
