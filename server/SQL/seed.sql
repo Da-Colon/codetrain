@@ -64,7 +64,7 @@ I am more passionate than I have ever been in my life to continue to learn new s
   'Farlow',
   'https://daniel-farlow.com/',
   '
-Hi, I am Daniel.
+Hi, I''m Daniel.
 
 I am a software engineer living in Atlanta, GA. I am originally from Frederick, MD, and I attended Davidson College where I majored in mathematics. Soon after graduating I started my career as a math instructor, first teaching at Barrie School in Silver Spring, MD, then at The Hotchkiss School in Lakeville, CT, and finally at St. Andrew''s Episcopal School in Ridgeland, MS. After a number of years in education, I realized I was hungry for a new challenge, and software engineering stood out to me as a field ripe with the kinds of challenges I was looking for.
 
@@ -270,24 +270,33 @@ INSERT INTO posts_resources (
 (
   'Stack Overflow',
   '{Forum, General, Development}',
-  'SHORT_DESCRIPTION',
-  'FULL_DESCRIPTION',
+  'Stack Overflow is a question and answer site for professional and enthusiast programmers. It is basically where you will need to go to get answers to most of your developer-related questions. Stack Overflow is a question and answer site for professional and enthusiast programmers. It is basically where you will need to go to get answers to most of your developer-related questions.',
+  'The website serves as a platform for users to ask and answer questions, and, through membership and active participation, to vote questions and answers up or down and edit questions and answers in a fashion similar to a wiki or Reddit. Users of Stack Overflow can earn reputation points and "badges"; for example, a person is awarded 10 reputation points for receiving an "up" vote on an answer given to a question and 10 points for the "up" vote of a question, and can receive badges for their valued contributions, which represents a kind of gamification of the traditional Q&A site. Users unlock new privileges with an increase in reputation like the ability to vote, comment, and even edit other people''s posts.
+  
+  Closing questions is a main differentiation from Yahoo! Answers and a way to prevent low quality questions. The mechanism was overhauled in 2013; questions edited after being put "on hold" now appear in a review queue. Jeff Atwood stated in 2010 that duplicate questions are not seen as a problem but rather they constitute an advantage if such additional questions drive extra traffic to the site by multiplying relevant keyword hits in search engines.
+
+  As of January 2019 Stack Overflow has over 10 million registered users, and it exceeded 16 million questions in mid 2018. Based on the type of tags assigned to questions, the top eight most discussed topics on the site are: JavaScript, Java, C#, PHP, Android, Python, jQuery and HTML.
+
+  Stack Overflow also has a Jobs section to assist developers in finding their next opportunity. For employers, Stack Overflow provides tools to brand their business, advertise their openings on the site, and source candidates from Stack Overflow''s database of developers who are open to being contacted.
+  ',
   'https://stackoverflow.com/',
   1
 ),
 (
   'Flexbox Froggy',
   '{Tutorial, Game, CSS, Flexbox}',
-  'SHORT_DESCRIPTION',
-  'FULL_DESCRIPTION',
+  'Flexbox Froggy is a game where you help Froggy and friends get to their lilypads by writing CSS code that utilizes the flexible box model in CSS (i.e., "flexbox").',
+  'This game will help you become familiar with the basics of the CSS flexible box model (i.e., "flexbox") by means of a fun game. You will learn how to utilize a variety of the flexbox properties and values: justify-content, align-items, flex-direction, order, align-self, flex-wrap, flex-flow, align-content, and others you may find helpful.',
   'http://flexboxfroggy.com/',
   2
 ),
 (
   'Flexbox Froggy Guide',
   '{Guide, Reference, CSS, Flexbox}',
-  'SHORT_DESCRIPTION',
-  'FULL_DESCRIPTION',
+  'This guide is meant to make the experience of completing the Flexbox Froggy game as beneficial as possible with detailed solutions (with pictures and code) to each level.',
+  'You will find quite a few resources in this guide! First you will see an in-depth introduction detailing how the guide is intended to be used. You will then see different flexbox properties and values you will need to complete the different challenges (these are meant to be referenced throughout your completion of the game if need be). 
+  
+  The true utility of the guide then comes apparent with links to all of the different levels you can expect to currently see in Flexbox Froggy. For each level, you are greeted by a picture of how the level starts, a possible hint if you are stuck, the code provided at the start of the level that you need to fill in, and then a full solution with the code filled in along with pictures representing each step.',
   'https://github.com/daniel-farlow/flexbox-froggy',
   3
 ),
