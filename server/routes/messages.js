@@ -15,6 +15,12 @@ router.get("/messages/all/:user_id", async (req, res) => {
   res.json(getMessages).status(200);
 })
 
+router.get("/messages/sent/:user_id", async (req, res) => {
+  const { user_id } = req.params;
+  const getMessages = await MessagesModel.getSentMessages(user_id)
+  res.json(getMessages).status(200);
+})
+
 router.get("/messages/one/:messages_id", async (req, res) => {
   const {messages_id} = req.params;
   const getMessage = await MessagesModel.getMessage(messages_id)
