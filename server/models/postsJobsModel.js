@@ -62,7 +62,7 @@ class JobPosts {
     }
   }
   static async getById(id) {
-    const query = `select * from posts_jobs where id= ${id}`;
+    const query = `SELECT * FROM posts_jobs INNER JOIN companies ON posts_jobs.companies_id = companies.id WHERE posts_jobs.id = ${id}`;
     try {
       const response = await db.one(query);
       return response;
