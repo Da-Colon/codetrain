@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
@@ -27,6 +28,7 @@ const JobPost = props => {
   const user = useSelector(state => state.user);
   const [isEditMode, setEditMode] = useState(false);
   const [jobs, setJobs] = useState([]);
+  let history = useHistory();
 
   const [editJobState, setEditJobState] = useState({
     job_title: "",
@@ -78,25 +80,21 @@ const JobPost = props => {
 
   const handleEditSubmit = async e => {
     e.preventDefault();
-    const endpoint = `http://localhost:3000/posts/jobs/update/${jobs.id}`;
+    const endpoint = `http://localhost:3000/posts/jobs/update/${props.match.params.job_id}`;
 
     const payload = {
       title: editJobState.job_title,
       content: editJobState.description,
       experience: editJobState.experience,
       contact_email: editJobState.email,
-      contact_phone: editJobState.phone,
-      companies_id: jobs.companies_id,
-      users_id: user.companies_id
+      contact_phone: editJobState.phone
     };
 
-    console.log(payload)
-
     const response = await Axios.put(endpoint, payload);
-    setEditMode(false)
-    // alert("Your job was posted!");
-    // setState({ ...state, isSubmitted: true });
-    // history.push("/jobs");
+    alert("Your job was posted!");
+    setEditMode(false);
+    fetchJobsData()
+    history.push(`/jobs/${props.match.params.job_id}`);
   };
 
   return (
