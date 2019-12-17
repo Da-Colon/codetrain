@@ -4,28 +4,7 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-import Moment from 'react-moment';
 import { Link, useHistory, Route } from 'react-router-dom';
-
-import {
-  Box,
-  Breadcrumb,
-  BreadcrumbItem,
-  Button,
-  Card,
-  CardHeader,
-  CardHeaderTitle,
-  CardContent,
-  Content,
-  CardFooter,
-  CardFooterItem,
-  Media,
-  MediaContent,
-  Title,
-  Subtitle
-} from 'bloomer';
-
-import EditResourceModal from './EditResourceModal';
 
 const BootcampResourceGet = () => {
   const user = useSelector(state => state.user);
