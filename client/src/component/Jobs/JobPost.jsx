@@ -109,7 +109,6 @@ const JobPost = props => {
   }
 
   return (
-<<<<<<< HEAD
     <JobCardWrapper>
       <Card style={{ maxWidth: "60vw", margin: "20px" }}>
         <CardHeader>
@@ -148,7 +147,6 @@ const JobPost = props => {
         </CardFooter>
       </Card>
     </JobCardWrapper>
-=======
     <>
       {isEditMode ? (
         <Form onSubmit={handleEditSubmit}>
@@ -251,7 +249,6 @@ const JobPost = props => {
         </CardFooterItem>
       )}
     </>
->>>>>>> master
   );
 };
 
