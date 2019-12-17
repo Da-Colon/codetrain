@@ -140,10 +140,12 @@ export default function AdminHome() {
           <Content>
           {(companies.length < 1) ? <h4>No Reports</h4> :
             companies.map(report => {
+              console.log(report)
               return (
                 <>
                   <Subtitle isSize={6} style={{margin: 0}}>Report # {report.id}</Subtitle>
                   <Title isSize={6} style={{margin: 0}}>
+                    Company: {report.name}
                     Name: {report.first_name} {report.last_name}
                   </Title>
                   <Breadcrumb isSize={`small`} style={{margin: 0}}>
@@ -165,7 +167,7 @@ export default function AdminHome() {
 
       <Card style={{overflowY:"scroll"}}>
         <CardHeader>
-          <CardHeaderTitle>Jobs Reports</CardHeaderTitle>
+          <CardHeaderTitle >Jobs Reports</CardHeaderTitle>
         </CardHeader>
         <CardContent>
           <Content>
@@ -175,8 +177,10 @@ export default function AdminHome() {
                 <>
                   <Subtitle isSize={6} style={{margin: 0}}>Report # {report.id}</Subtitle>
                   <Title isSize={6} style={{margin: 0}}>
-                    Name: {report.first_name} {report.last_name}
+                    Company: {report.name}
                   </Title>
+                    <Title isSize={6} style={{margin: 0}}>Job Post: {report.title}</Title>
+                    <p style={{margin: 0}}>Posted by: {report.first_name} {report.last_name}</p>
                   <Breadcrumb isSize={`small`} style={{margin: 0}}>
                     <BreadcrumbItem>
                       Reported:
@@ -206,8 +210,9 @@ export default function AdminHome() {
                 <>
                   <Subtitle isSize={6} style={{margin: 0}}>Report # {report.id}</Subtitle>
                   <Title isSize={6} style={{margin: 0}}>
-                    Name: {report.first_name} {report.last_name}
                   </Title>
+                    Name: {report.first_name} {report.last_name}
+                    Resource Post: Title: {report.title}
                   <Breadcrumb isSize={`small`} style={{margin: 0}}>
                     <BreadcrumbItem>
                       Reported:
