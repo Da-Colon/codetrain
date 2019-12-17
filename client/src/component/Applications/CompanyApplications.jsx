@@ -135,7 +135,7 @@ const ApplicantsData = props => {
       {applicants && showApplicants ? (
         applicants.map(applicant => {
           return (
-            <Card key={applicant.jobId} style={{ maxWidth: "400px", margin: "20px" }}>
+            <Card key={applicant.jobId} style={{ maxWidth: "400px", margin: "20px", display:"flex", flexDirection: "column" }}>
               <CardHeader>
                 <CardHeaderTitle>
                   {applicant.first_name} {applicant.last_name}
@@ -178,7 +178,7 @@ const ApplicantsData = props => {
                   <p>{(!applicant.rejected && !applicant.accepted) ? '<pending>' : (applicant.rejected) ? 'rejected' : (applicant.accepted) ? 'approved' : ''}</p>
                 </Content>
               </CardContent>
-              <CardFooter>
+              <CardFooter style={{marginTop: "auto"}}>
                 <CardFooterItem>
                   <Button onClick={() => showMessageForm(applicant)}>Message</Button>
                     <Link to={`/user/${applicant.applicantid}`}>
