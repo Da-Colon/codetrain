@@ -1,113 +1,108 @@
-import React, { useState } from "react";
+import React from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
+import Moment from "react-moment";
+import Axios from "axios";
+import CreateJobPost from "./CreateJobPost";
 import {
-  Form,
-  Label,
-  Input,
-  Button,
-  Title,
-  TextArea
-} from "../Styles/FormStyles";
-import axios from "axios";
+  Card,
+  CardHeader,
+  CardHeaderTitle,
+  CardContent,
+  Content,
+  CardFooter,
+  CardFooterItem
+} from "bloomer";
+import styled from "styled-components";
 
+import { Button } from "../Styles/FormStyles";
+import { Anchor } from "../Styles/navStyles";
+
+// This component fetches all the data that will populate each job post
 const CompanyJobs = () => {
-  const company = useSelector(state => state.user);
+  const user = useSelector(state => state.user);
+  const [jobs, setJobs] = useState([]);
 
-  const [state, setState] = useState({
-    job_title: "",
-    description: "",
-    experience: "",
-    email: "",
-    phone: "",
-    isSubmitted: false
-  });
-
-  // prevents the use of writing several handleChange functions by deconstructing name and value from the onchange event
-  const handleChange = e => {
-    const { name, value } = e.target;
-    setState({ ...state, [name]: value });
+  const fetchJobsData = async () => {
+    const endpoint = `http://localhost:3000/posts/jobs/company/${user.companies_id}`;
+    const res = await Axios.get(endpoint);
+    const activeJobs = res.data.filter(job => job.is_active === true)
+    setJobs(activeJobs);
   };
 
-  const handleSubmit = async e => {
-    e.preventDefault();
-    const endpoint = "http://localhost:3000/posts/jobs/add";
+  // the 2nd empty array argument prevents infinite re-renders.
+  useEffect(() => {
+    fetchJobsData();
+  }, []);
 
-    const payload = {
-      title: state.job_title,
-      content: state.description,
-      experience: state.experience,
-      contact_email: state.email,
-      contact_phone: state.phone,
-      companies_id: company.companies_id,
-      users_id: company.id
-    };
-
-    const response = await axios.post(endpoint, payload);
-    setState({ ...state, isSubmitted: true });
-  };
-
+  // mapping over data and passing job data as props to the Job Card which renders job posts
   return (
     <>
-      <Title>Create a Job Post</Title>
-      {state.isSubmitted ? (
-        <div>
-          <h2> Thank you for your submission {state.contact_name}</h2>
-        </div>
-      ) : (
-        <Form onSubmit={handleSubmit}>
-          <Label>
-            Job Title
-            <Input
-              type="text"
-              placeholder="Job Title"
-              name="job_title"
-              value={state.name}
-              onChange={handleChange}
-            ></Input>
-          </Label>
-          <Label>
-            Job Description
-            <TextArea
-              placeholder="Job Description Information"
-              name="description"
-              value={state.description}
-              onChange={handleChange}
-            ></TextArea>
-          </Label>
-          <Label>
-            Experience Desired
-            <TextArea
-              placeholder="What skills are you looking for?"
-              name="experience"
-              value={state.experience}
-              onChange={handleChange}
-            ></TextArea>
-          </Label>
-          <Label>
-            Contact Email
-            <Input
-              type="email"
-              placeholder="Contact Email"
-              name="email"
-              value={state.email}
-              onChange={handleChange}
-            ></Input>
-          </Label>
-          <Label>
-            Contact Phone Number
-            <Input
-              type="tel"
-              placeholder="Phone Number"
-              name="phone"
-              value={state.phone}
-              onChange={handleChange}
-            ></Input>
-          </Label>
-          <Button type="submit">Create Job</Button>
-        </Form>
-      )}
+      <Link to={`/create-job`}>
+        <Button>Create a job post!</Button>
+      </Link>
+      <JobCardWrapper>
+        {jobs.map(job => {
+          return <JobCard key={job.id} data={job} />;
+        })}
+      </JobCardWrapper>
     </>
   );
 };
+
+// These are the actual job posts. They receive data from the JobBoard component.
+const JobCard = props => {
+  const { data } = props;
+  const [companyData, setCompanyData] = useState([]);
+
+  const fetchCompanyData = async () => {
+    const endpoint = `http://localhost:3000/companies/id/${data.companies_id}`;
+    const res = await Axios.get(endpoint);
+    setCompanyData(res.data);
+  };
+
+  useEffect(() => {
+    fetchCompanyData();
+  }, []);
+
+  return (
+    <Card style={{ maxWidth: "400px", margin: "20px" }}>
+      <CardHeader>
+        <CardHeaderTitle>{data.title}</CardHeaderTitle>
+      </CardHeader>
+      <CardContent>
+        <Content>
+          <strong>Date Posted: </strong>
+          <Moment format="YYYY-MM-DD">{data.date_posted}</Moment>
+        </Content>
+        <Content>
+          <strong>Experience:</strong> {data.experience}
+        </Content>
+        <Content>
+          <strong>Company Name:</strong>
+          <Link to={`/company/${companyData.id}`}>{companyData.name}</Link>
+        </Content>
+        <Content>
+          <strong>Contact Email:</strong>
+          {data.contact_email}
+        </Content>
+      </CardContent>
+      <CardFooter>
+        <CardFooterItem>
+          <Button>
+            <Link to={`/jobs/${data.id}`}>View Details</Link>
+          </Button>
+        </CardFooterItem>
+      </CardFooter>
+    </Card>
+  );
+};
+
+const JobCardWrapper = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+`;
 
 export default CompanyJobs;
