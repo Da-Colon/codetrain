@@ -58,7 +58,7 @@ const getAllResourceReports = resource_id => {
 
 // get all user reports
 const getUsersReports = () => {
-  const query = db.any(`SELECT * from reports WHERE users_id IS NOT NULL;`);
+  const query = db.any(`SELECT reports.id, users_id, first_name, last_name, date_reported  from reports INNER JOIN users on users.id = reports.users_id WHERE users_id IS NOT NULL AND resolved = FALSE ORDER BY date_reported ASC;`);
   try {
     return query;
   } catch {
@@ -68,7 +68,7 @@ const getUsersReports = () => {
 
 // get all company reports
 const getCompaniesReports = () => {
-  const query = db.any(`SELECT * from reports WHERE companies_id IS NOT NULL;`);
+  const query = db.any(`SELECT reports.id, name, date_reported  from reports INNER JOIN companies on companies.id = reports.companies_id WHERE reports.companies_id IS NOT NULL AND resolved = FALSE ORDER BY date_reported ASC;`);
   try {
     return query;
   } catch {
@@ -78,7 +78,7 @@ const getCompaniesReports = () => {
 
 // get all job reports
 const getJobsReports = () => {
-  const query = db.any(`SELECT * from reports WHERE posts_jobs_id IS NOT NULL;`);
+  const query = db.any(`SELECT reports.id, name, title, date_reported, first_name, last_name from reports INNER JOIN posts_jobs on reports.posts_jobs_id = posts_jobs.id INNER JOIN companies on companies.id = reports.companies_id INNER JOIN users on posts_jobs.users_id = users.id WHERE reports.companies_id IS NOT NULL AND resolved = FALSE ORDER BY date_reported ASC;`);
   try {
     return query;
   } catch {
@@ -88,7 +88,7 @@ const getJobsReports = () => {
 
 // get all resource reports
 const getResourcesReports = () => {
-  const query = db.any(`SELECT * from reports WHERE resource_id IS NOT NULL;`);
+  const query = db.any(`SELECT reports.id, first_name, last_name, submited_by, date_reported, title from reports INNER JOIN posts_resources ON reports.resource_id = posts_resources.id INNER JOIN users ON users.id = posts_resources.users_id WHERE resource_id IS NOT NULL;`);
   try {
     return query;
   } catch {

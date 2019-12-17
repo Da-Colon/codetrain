@@ -110,29 +110,29 @@ router.post('/reports/resolve/:report_id', async (req, res) =>{
 
 
 // All Companies reports
-router.get('/reports/companies', async (req, res) =>{
+router.get('/reports/all/companies', async (req, res) =>{
   const getTheReports = await AdminModel.getCompaniesReports();
   res.json(getTheReports).status(200)
 })
 
 
 // All USERS reports
-router.get('/reports/users', async (req, res) =>{
+router.get('/reports/all/users', async (req, res) =>{
   const getTheReports = await AdminModel.getUsersReports();
   res.json(getTheReports).status(200)
 })
 
 
 // All jobs reports
-router.get('/reports/jobs', async (req, res) =>{
+router.get('/reports/all/jobs', async (req, res) =>{
   const getTheReports = await AdminModel.getJobsReports();
   res.json(getTheReports).status(200)
 })
 
 
 // all resource reports
-router.get('/reports/resources', async (req, res) =>{
-  const getTheReports = await AdminModel.getResourcesReport();
+router.get('/reports/all/resources', async (req, res) =>{
+  const getTheReports = await AdminModel.getResourcesReports();
   res.json(getTheReports).status(200)
 })
 
