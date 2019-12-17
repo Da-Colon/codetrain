@@ -58,6 +58,7 @@ CREATE TABLE posts_jobs (
   date_posted DATE DEFAULT NOW(),
   contact_email VARCHAR(50),
   contact_phone VARCHAR(15),
+  is_active BOOLEAN DEFAULT TRUE,
   companies_id INTEGER REFERENCES companies(id),
   users_id INTEGER REFERENCES users(id)
 );
