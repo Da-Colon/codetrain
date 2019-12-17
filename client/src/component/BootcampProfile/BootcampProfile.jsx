@@ -20,8 +20,6 @@ const UserProfile = () => {
 
   const getUserInfo = async id => {
     const response = await axios.get(`http://localhost:3000/profiles/id/${id}`);
-    console.log('HERE IS THE PROFILE RESPONSE: ', response);
-    console.log('HERE IS THE USER: ', user)
     setUserInfo(response.data);
   };
 
@@ -38,7 +36,7 @@ const UserProfile = () => {
   };
 
   return (
-    <card>
+    <div>
       <h1>
         User Name: {userInfo.first_name} {userInfo.last_name}
       </h1>
@@ -56,7 +54,7 @@ const UserProfile = () => {
 
       {/* <h2>About: </h2>
       <p>{userInfo.description}</p> */}
-    </card>
+    </div>
   );
 };
 

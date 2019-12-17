@@ -65,9 +65,7 @@ const BootcampResourceGet = () => {
 
   return (
     <>
-      <Link to="/resources/submit">
-        <Anchor style={{ fontSize: "2rem" }}>Submit a resource</Anchor>
-      </Link>
+      {user.user_types_id === 2 && <Link to="/resources/submit"><Anchor style={{ fontSize: "2rem" }}>Submit a resource</Anchor></Link>}
       <ResourceWrapper>
         {resourcesFetched ? (
           resources.map((resource, i) => {
@@ -99,27 +97,32 @@ const BootcampResourceGet = () => {
               <Card key={i} style={{ maxWidth: "600px", margin: "20px" }}>
                 <CardHeader>
                   <CardHeaderTitle>
-                    <Link to={`/resources/${resourceId}`}>
-                      {title} &nbsp; <Anchor>See full post</Anchor>
-                    </Link>
+                    {title}
                   </CardHeaderTitle>
-
-                  <Link
-                    to={`/report/resource/${resource.id}/${resource.users_id}`}
-                  >
-                    Report Resource
-                  </Link>
                 </CardHeader>
                 <CardContent>
                   <Media>
                     <MediaContent hasTextAlign={"left"}>
                       <Title isSize={5}>Resource Info</Title>
                       <Subtitle isSize={6}>
-                        <Anchor href={resourceURL}>Link to resource</Anchor>
-                        <p>
-                          Posted:{" "}
-                          <Moment format="YYYY-MM-DD">{datePosted}</Moment>
-                        </p>
+                        <Breadcrumb isSize={`small`} isAlign={"left"}>
+                          <ul>
+                            <BreadcrumbItem>
+                              <Anchor href={resourceURL}>Resource link</Anchor>
+                            </BreadcrumbItem>
+                            <BreadcrumbItem>
+                              <Link to={`/report/resource/${resource.id}/${resource.users_id}`}>Report</Link>
+                            </BreadcrumbItem>
+                          </ul>
+                          <ul>
+                          <BreadcrumbItem>
+                              <Link to={`/resources/${resourceId}`}>Full post</Link>
+                            </BreadcrumbItem>
+                            <BreadcrumbItem>&nbsp;&nbsp;
+                              <Moment format="YYYY-MM-DD">{datePosted}</Moment>
+                            </BreadcrumbItem>
+                          </ul>
+                        </Breadcrumb>
                       </Subtitle>
                     </MediaContent>
                     <MediaContent hasTextAlign={"right"}>
