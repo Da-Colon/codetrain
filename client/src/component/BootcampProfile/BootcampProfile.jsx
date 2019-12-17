@@ -6,7 +6,7 @@ import axios from "axios";
 const UserProfile = () => {
   const user = useSelector(state => state.user);
   const [userInfo, setUserInfo] = useState({
-    // id: "1",
+    id: "",
     email: "",
     first_name: "",
     last_name: "",
@@ -36,11 +36,11 @@ const UserProfile = () => {
   };
 
   return (
-    <card>
+    <div>
       <h1>
         User Name: {userInfo.first_name} {userInfo.last_name}
       </h1>
-      <button onClick={postReport}>Report {userInfo.first_name}</button>
+      {userInfo.id !== user.id && <button onClick={postReport}>Report {userInfo.first_name}</button>}
       <h2>Bootcamp: {userInfo.bootcamp_name}</h2>
       <h2>
         Email: <a href="mailto:{userInfo.email}">{userInfo.email}</a>
@@ -54,7 +54,7 @@ const UserProfile = () => {
 
       {/* <h2>About: </h2>
       <p>{userInfo.description}</p> */}
-    </card>
+    </div>
   );
 };
 
