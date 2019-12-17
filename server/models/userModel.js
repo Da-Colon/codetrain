@@ -10,7 +10,10 @@ class User {
     github_url,
     linkedin_url,
     user_type,
-    bootcamp_name
+    bootcamp_name,
+    personal_website,
+    about,
+    skills
   ) {
     this.email = email;
     this.password = password;
@@ -20,6 +23,9 @@ class User {
     this.linkedin_url = linkedin_url;
     this.user_type = user_type;
     this.bootcamp_name = bootcamp_name;
+    this.personal_website = personal_website;
+    this.about = about;
+    this.skills = skills;
   }
 
   //  BCrypt password compare
@@ -47,10 +53,29 @@ class User {
   }
 
   static async getById(id) {
-    const query = `select id, email, first_name, last_name, github_url, linkedin_url, bootcamp_name, companies_id from users where id= ${id}`;
+    const query = `SELECT * FROM users WHERE id= ${id}`;
     try {
       const response = await db.one(query);
       return response;
+    } catch (err) {
+      return err.message;
+    }
+  }
+
+  static async updateBootcampUser(
+    github_url,
+    linkedin_url,
+    personal_website,
+    about,
+    skills,
+    id
+  ) {
+    const query = await db.any(
+      `UPDATE users SET github_url = $1, linkedin_url = $2, personal_website = $3, about = $4, skills = $5 WHERE id = $6;`,
+      [github_url, linkedin_url, personal_website, about, skills, id]
+    );
+    try {
+      return query;
     } catch (err) {
       return err.message;
     }
