@@ -12,6 +12,7 @@
     "eslint-plugin-import": "^2.19.1",
     "moment": "^2.24.0",
     "react": "^16.12.0",
+    "react-confirm-alert": "^2.4.1",
     "react-dom": "^16.12.0",
     "react-moment": "^0.9.7",
     "react-redux": "^7.1.3",

@@ -6,6 +6,8 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import {Button} from 'bloomer'
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 const ResourcePost = props => {
   const user = useSelector(state => state.user);
@@ -25,10 +27,26 @@ const ResourcePost = props => {
 
   let history = useHistory();
 
-  const deleteResource = async resourceId => {
-    const endpoint = `http://localhost:3000/resources/delete/${resourceId}`;
-    await axios.put(endpoint);
-    history.push('/resources')
+  const deleteResource = resourceId => {
+    confirmAlert({
+      title: 'Are you sure?',
+      message: 'Who knows how many people you helped by creating this resource! Please reconsider before clicking Yes. Regardless, thank you for your contribution, and we hope you contribute again soon!',
+      buttons: [
+        {
+          label: 'Delete',
+          onClick: async () => {
+            const endpoint = `http://localhost:3000/resources/delete/${resourceId}`;
+            await axios.put(endpoint);
+            await fetchResourcesData()
+            history.push('/resources')
+          }
+        },
+        {
+          label: 'Keep',
+          onClick: () => null
+        }
+      ]
+    });
   };
 
   const editResource = (e, resource) => {

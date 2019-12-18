@@ -6,6 +6,8 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { Link, useHistory, Route } from 'react-router-dom';
 import {Title, Button} from 'bloomer';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 const BootcampResourceGet = () => {
   const user = useSelector(state => state.user);
@@ -24,13 +26,26 @@ const BootcampResourceGet = () => {
     setResourcesFetched(true);
   };
 
-  const deleteResource = async resourceId => {
-    let confirmation = window.confirm('Are you sure you want to delete this resource you worked so hard to create?')
-    if (confirmation) {
-      const endpoint = `http://localhost:3000/resources/delete/${resourceId}`;
-      await axios.put(endpoint);
-      fetchResourcesData();
-    }
+  const deleteResource = resourceId => {
+    confirmAlert({
+      title: 'Are you sure?',
+      message: 'Who knows how many people you helped by creating this resource! Please reconsider before clicking Yes. Regardless, thank you for your contribution, and we hope you contribute again soon!',
+      buttons: [
+        {
+          label: 'Delete',
+          onClick: async () => {
+            const endpoint = `http://localhost:3000/resources/delete/${resourceId}`;
+            await axios.put(endpoint);
+            await fetchResourcesData()
+            history.push('/resources')
+          }
+        },
+        {
+          label: 'Keep',
+          onClick: () => null
+        }
+      ]
+    });
   };
 
   const editResource = (e, resource) => {
@@ -56,9 +71,7 @@ const BootcampResourceGet = () => {
   return (
     <Fragment>
       {user.user_types_id === 2 && (
-        <Link to="/resources/submit">
-          <Title isSize={3} style={{textAlign: 'center', paddingTop: 10}}><Button isColor={'success'} isOutlined>Submit a resource!</Button></Title>
-        </Link>
+        <Title isSize={3} style={{textAlign: 'center', marginTop: 30}}><Link to="/resources/submit"><Button isColor={'link'} isOutlined={true}>Submit a resource!</Button></Link></Title>
       )}
       <ResourceWrapper>
         {resourcesFetched ? (

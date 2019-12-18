@@ -143,7 +143,6 @@ const BootcampResourceCard = (props) => {
               isColor={`danger`}
               onClick={() => {
                 deleteResource(resourceId)
-                history.push('/resources')
               }}
             >
               Delete
