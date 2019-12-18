@@ -14,6 +14,8 @@ import {
 
 const UserProfile = () => {
   const user = useSelector(state => state.user);
+  const [skillsArray, setSkillsArray] = useState([]);
+  const [isEditMode, setEditMode] = useState(false);
   const [userInfo, setUserInfo] = useState({
     id: "",
     email: "",
@@ -27,12 +29,9 @@ const UserProfile = () => {
     skills: ""
   });
 
-  const [skillsArray, setSkillsArray] = useState([]);
-
-  const [isEditMode, setEditMode] = useState(false);
-
   // This plucks the id from the URL so we can use it in the getUserInfo and useEffect functions
   let { id } = useParams();
+  const history = useHistory();
 
   const getUserInfo = async id => {
     const response = await axios.get(`http://localhost:3000/profiles/id/${id}`);
@@ -44,7 +43,6 @@ const UserProfile = () => {
     getUserInfo(id);
   }, []);
 
-  const history = useHistory();
   const postReport = e => {
     e.preventDefault();
     history.push(`/report/user/${userInfo.id}/${userInfo.companies_id}`);
@@ -64,7 +62,6 @@ const UserProfile = () => {
     const endpoint = `http://localhost:3000/update/${id}`;
 
     let skillsArray = userInfo.skills.split(",");
-    console.log("Here is the skills array", skillsArray);
 
     const payload = {
       github_url: userInfo.github_url,
@@ -172,14 +169,17 @@ const UserProfile = () => {
           <h2>About: </h2>
           <p>{userInfo.about}</p>
           <h2>Skills: </h2>
-          <ul>
-            {Object.values(skillsArray).map(skill => {
-              console.log("skill is", skill);
-              return (
-                <li style={{ display: "inline", margin: "10px" }}>{skill}</li>
-              );
-            })}
-          </ul>
+          {skillsArray ? (
+            <ul>
+              {Object.values(skillsArray).map(skill => {
+                return (
+                  <li style={{ display: "inline", margin: "10px" }}>{skill}</li>
+                );
+              })}
+            </ul>
+          ) : (
+            <></>
+          )}
         </Container>
       )}
     </>
