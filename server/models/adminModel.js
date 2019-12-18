@@ -5,7 +5,7 @@ const db = require("./conn.js");
 // get all reports not resolved
 const getReports = () => {
   const query = db.any(
-    `SELECT reports.id, first_name, last_name, submited_by, name, posts_jobs.title, posts_resources.title from reports LEFT JOIN companies on reports.companies_id = companies.id LEFT JOIN users ON reports.submited_by = users.id LEFT JOIN posts_jobs ON reports.posts_jobs_id = posts_jobs.id LEFT JOIN posts_resources ON reports.resource_id = posts_resources.id WHERE resolved = false`
+    `SELECT reports.id, users.auth userAuth, first_name, last_name, submited_by, name, posts_jobs.title, posts_resources.title from reports LEFT JOIN companies on reports.companies_id = companies.id LEFT JOIN users ON reports.submited_by = users.id LEFT JOIN posts_jobs ON reports.posts_jobs_id = posts_jobs.id LEFT JOIN posts_resources ON reports.resource_id = posts_resources.id WHERE resolved = false`
   );
   try {
     return query;
@@ -17,7 +17,7 @@ const getReports = () => {
 // get all user reports
 const getUsersReports = () => {
   const query = db.any(
-    `SELECT reports.id, users_id, first_name, last_name, date_reported  from reports INNER JOIN users ON reports.submited_by = users.id WHERE users_id IS NOT NULL AND resolved = FALSE ORDER BY date_reported ASC;`
+    `SELECT reports.id, users_id, users.auth userAuth, first_name, last_name, date_reported  from reports INNER JOIN users ON reports.submited_by = users.id WHERE users_id IS NOT NULL AND resolved = FALSE ORDER BY date_reported ASC;`
   );
   try {
     return query;
@@ -29,7 +29,7 @@ const getUsersReports = () => {
 // get all company reports
 const getCompaniesReports = () => {
   const query = db.any(
-    `SELECT reports.id, name, first_name, last_name, date_reported from reports INNER JOIN companies on companies.id = reports.companies_id INNER JOIN users ON reports.submited_by = users.id WHERE reports.companies_id IS NOT NULL AND resolved = FALSE ORDER BY date_reported ASC;`
+    `SELECT reports.id, name, first_name, users.auth userAuth, last_name, date_reported from reports INNER JOIN companies on companies.id = reports.companies_id INNER JOIN users ON reports.submited_by = users.id WHERE reports.companies_id IS NOT NULL AND resolved = FALSE ORDER BY date_reported ASC;`
   );
   try {
     return query;
@@ -41,7 +41,7 @@ const getCompaniesReports = () => {
 // get all job reports
 const getJobsReports = () => {
   const query = db.any(
-    `SELECT reports.id, name, title, date_reported, first_name, last_name from reports INNER JOIN posts_jobs on reports.posts_jobs_id = posts_jobs.id INNER JOIN companies on companies.id = reports.companies_id INNER JOIN users ON reports.submited_by = users.id WHERE reports.companies_id IS NOT NULL AND resolved = FALSE ORDER BY date_reported ASC;`
+    `SELECT reports.id, name, title, date_reported, users.auth userAuth, first_name, last_name from reports INNER JOIN posts_jobs on reports.posts_jobs_id = posts_jobs.id INNER JOIN companies on companies.id = reports.companies_id INNER JOIN users ON reports.submited_by = users.id WHERE reports.companies_id IS NOT NULL AND resolved = FALSE ORDER BY date_reported ASC;`
   );
   try {
     return query;
@@ -53,7 +53,7 @@ const getJobsReports = () => {
 // get all resource reports
 const getResourcesReports = () => {
   const query = db.any(
-    `SELECT reports.id, first_name, last_name, submited_by, date_reported, title from reports INNER JOIN posts_resources ON reports.resource_id = posts_resources.id INNER JOIN users ON users.id = posts_resources.users_id WHERE resource_id IS NOT NULL AND resolved = false;`
+    `SELECT reports.id, first_name, last_name, submited_by, users.auth userAuth, date_reported, title from reports INNER JOIN posts_resources ON reports.resource_id = posts_resources.id INNER JOIN users ON users.id = posts_resources.users_id WHERE resource_id IS NOT NULL AND resolved = false;`
   );
   try {
     return query;
@@ -62,20 +62,23 @@ const getResourcesReports = () => {
   }
 };
 
-const getSingleReport = (report_id) => {
-  const query = db.one(`SELECT reports.id, first_name, last_name, submited_by, name, posts_jobs.title jobTitle, posts_resources.title resourceTitle, reason, reports.companies_id, reports.resource_id, reports.posts_jobs_id, reports.users_id, resolved from reports LEFT JOIN companies on reports.companies_id = companies.id LEFT JOIN users ON reports.users_id = users.id LEFT JOIN posts_jobs ON reports.posts_jobs_id = posts_jobs.id LEFT JOIN posts_resources ON reports.resource_id = posts_resources.id WHERE reports.id = $1;`, [report_id])
+const getSingleReport = report_id => {
+  const query = db.one(
+    `SELECT reports.id, first_name, auth, last_name, submited_by, name, posts_jobs.title jobTitle, posts_resources.title resourceTitle, reason, reports.companies_id, reports.resource_id, reports.posts_jobs_id, reports.users_id, resolved from reports LEFT JOIN companies on reports.companies_id = companies.id LEFT JOIN users ON reports.users_id = users.id LEFT JOIN posts_jobs ON reports.posts_jobs_id = posts_jobs.id LEFT JOIN posts_resources ON reports.resource_id = posts_resources.id WHERE reports.id = $1;`,
+    [report_id]
+  );
   try {
     return query;
   } catch {
     console.log("There was an error when retrieving the reports");
   }
-}
+};
 
 // ALL REPORTS RESOLVED
 
 const getResolvedReports = () => {
   const query = db.any(
-    `SELECT reports.id, first_name, last_name, submited_by, name, posts_jobs.title, posts_resources.title from reports LEFT JOIN companies on reports.companies_id = companies.id LEFT JOIN users ON reports.submited_by = users.id LEFT JOIN posts_jobs ON reports.posts_jobs_id = posts_jobs.id LEFT JOIN posts_resources ON reports.resource_id = posts_resources.id WHERE resolved = TRUE`
+    `SELECT reports.id, first_name, last_name, submited_by, users.auth userAuth, name, posts_jobs.title, posts_resources.title from reports LEFT JOIN companies on reports.companies_id = companies.id LEFT JOIN users ON reports.submited_by = users.id LEFT JOIN posts_jobs ON reports.posts_jobs_id = posts_jobs.id LEFT JOIN posts_resources ON reports.resource_id = posts_resources.id WHERE resolved = TRUE`
   );
   try {
     return query;
@@ -87,7 +90,7 @@ const getResolvedReports = () => {
 // get all user reports
 const getResolvedUsersReports = () => {
   const query = db.any(
-    `SELECT reports.id, users_id, first_name, last_name, date_reported  from reports INNER JOIN users ON reports.submited_by = users.id WHERE users_id IS NOT NULL AND resolved = TRUE ORDER BY date_reported ASC;`
+    `SELECT reports.id, users_id, first_name, last_name, users.auth userAuth, date_reported  from reports INNER JOIN users ON reports.submited_by = users.id WHERE users_id IS NOT NULL AND resolved = TRUE ORDER BY date_reported ASC;`
   );
   try {
     return query;
@@ -99,7 +102,7 @@ const getResolvedUsersReports = () => {
 // get all company reports
 const getResolvedCompaniesReports = () => {
   const query = db.any(
-    `SELECT reports.id, name, first_name, last_name, date_reported from reports INNER JOIN companies on companies.id = reports.companies_id INNER JOIN users ON reports.submited_by = users.id WHERE reports.companies_id IS NOT NULL AND resolved = TRUE ORDER BY date_reported ASC;`
+    `SELECT reports.id, name, first_name, last_name, users.auth userAuth, date_reported from reports INNER JOIN companies on companies.id = reports.companies_id INNER JOIN users ON reports.submited_by = users.id WHERE reports.companies_id IS NOT NULL AND resolved = TRUE ORDER BY date_reported ASC;`
   );
   try {
     return query;
@@ -111,7 +114,7 @@ const getResolvedCompaniesReports = () => {
 // get all job reports
 const getResolvedJobsReports = () => {
   const query = db.any(
-    `SELECT reports.id, name, title, date_reported, first_name, last_name from reports INNER JOIN posts_jobs on reports.posts_jobs_id = posts_jobs.id INNER JOIN companies on companies.id = reports.companies_id INNER JOIN users ON reports.submited_by = users.id WHERE reports.companies_id IS NOT NULL AND resolved = TRUE ORDER BY date_reported ASC;`
+    `SELECT reports.id, name, title, date_reported, users.auth userAuth, first_name, last_name from reports INNER JOIN posts_jobs on reports.posts_jobs_id = posts_jobs.id INNER JOIN companies on companies.id = reports.companies_id INNER JOIN users ON reports.submited_by = users.id WHERE reports.companies_id IS NOT NULL AND resolved = TRUE ORDER BY date_reported ASC;`
   );
   try {
     return query;
@@ -123,7 +126,7 @@ const getResolvedJobsReports = () => {
 // get all resource reports
 const getResolvedResourcesReports = () => {
   const query = db.any(
-    `SELECT reports.id, first_name, last_name, submited_by, date_reported, title from reports INNER JOIN posts_resources ON reports.resource_id = posts_resources.id INNER JOIN users ON users.id = posts_resources.users_id WHERE resource_id IS NOT NULL AND resolved = TRUE;`
+    `SELECT reports.id, first_name, last_name, users.auth userAuth, submited_by, date_reported, title from reports INNER JOIN posts_resources ON reports.resource_id = posts_resources.id INNER JOIN users ON users.id = posts_resources.users_id WHERE resource_id IS NOT NULL AND resolved = TRUE;`
   );
   try {
     return query;
@@ -180,7 +183,8 @@ const getAllResourceReports = resource_id => {
 
 // delete/change auth of user
 const removeAuthUser = users_id => {
-  const query = db.any(`UPDATE users SET auth = FALSE WHERE id = $1;`, [
+  console.log(users_id);
+  const query = db.result(`UPDATE users SET auth = false WHERE id = $1;`, [
     users_id
   ]);
   try {
@@ -215,17 +219,18 @@ const sendMessageCompany = async (
     `SELECT id FROM users WHERE companies_id = $1;`,
     [companies_id]
   );
+  console.log("HEEEELLLO", getUsers);
   // maps through getUsers to make a new array of just the ids
   const companyUsers = getUsers.map(obj => {
-    Object.keys(obj)
+   return Object.keys(obj)
       .sort()
       .map(key => {
-        obj[key];
+        return obj[key];
       });
   });
+  console.log("asdasdasda", companyUsers);
   // map through ids and send message to those users
   const query = await companyUsers.map(async sent_to => {
-    console.log("THIS", sent_to);
     await db.any(
       `INSERT INTO private_messages (subject, message, sent_from, sent_to) VALUES ($1, $2, $3, $4);`,
       [subject, message, sent_from, sent_to[0]]
