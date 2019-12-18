@@ -13,7 +13,7 @@ const {
 
 */}
 
-export default ColorTheme = {
+const ColorTheme = {
   whiteColor: 'hsl(0, 0%, 100%)',         /* white */
   blackColor: 'hsl(0, 0%, 4%)',           /* black */
   lightColor: 'hsl(0, 0%, 96%)',          /* light (grey darker, muted white) */
@@ -33,3 +33,5 @@ export default ColorTheme = {
   whiteTerColor: 'hsl(0, 0%, 96%)',       /* light white */
   whiteBisColor: 'hsl(0, 0%, 98%)'        /* mostly white */
 }
+
+export default ColorTheme;

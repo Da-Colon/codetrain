@@ -1,30 +1,22 @@
 import React, { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { theStore } from "../../index";
 import {
   Navbar,
   NavbarBrand,
   NavbarItem,
-  Icon,
   NavbarBurger,
   NavbarMenu,
-  NavbarStart,
-  NavbarLink,
-  NavbarDropdown,
-  NavbarDivider,
-  NavbarEnd,
-  Field,
-  Control,
-  Button
+  NavbarEnd
 } from "bloomer";
-
-import ColorTheme from '../Styles/Colors'
+import ColorTheme from "../Styles/ColorTheme";
 
 const NavBarBloomer = () => {
   const user = useSelector(state => state.user);
+  const { greyLighterColor } = ColorTheme;
 
   const handleLogout = async e => {
-    // await Axios.post(`${endpoint}/logout`);
     theStore.dispatch({
       type: "user logged out"
     });
@@ -33,65 +25,113 @@ const NavBarBloomer = () => {
 
   const onClickNav = () => setIsActive(!isActive);
   const [isActive, setIsActive] = useState(false);
-  const { background } = ColorTheme.elements;
 
   return (
-    <Navbar style={{ borderBottom: "solid 1px black", margin: "0", backgroundColor: `${background}`}}>
+    <Navbar
+      style={{
+        borderBottom: "solid 0.01rem grey",
+        margin: "0",
+        backgroundColor: `${greyLighterColor}`
+      }}
+    >
       <NavbarBrand>
         <NavbarItem>
+          <NavLink to="/home">CodeTrain</NavLink>
         </NavbarItem>
-        <NavbarItem isHidden="desktop">
-          <Icon className="fa fa-github" />
+        <NavbarItem>
+          <NavLink to="/resources">Resources</NavLink>
         </NavbarItem>
-        <NavbarItem isHidden="desktop">
-          <Icon className="fa fa-twitter" style={{ color: "#55acee" }} />
-        </NavbarItem>
-        <NavbarBurger
-          isActive={isActive}
-          onClick={onClickNav}
-        />
+        <NavbarBurger isActive={isActive} onClick={onClickNav} />
       </NavbarBrand>
       <NavbarMenu isActive={isActive} onClick={onClickNav}>
-        <NavbarStart>
-          <NavbarItem href="#/">Home</NavbarItem>
-          <NavbarItem hasDropdown isHoverable>
-            <NavbarLink href="#/documentation">Documentation</NavbarLink>
-            <NavbarDropdown>
-              <NavbarItem href="#/">One A</NavbarItem>
-              <NavbarItem href="#/">Two B</NavbarItem>
-              <NavbarDivider />
-              <NavbarItem href="#/">Two A</NavbarItem>
-            </NavbarDropdown>
-          </NavbarItem>
-        </NavbarStart>
         <NavbarEnd>
-          <NavbarItem
-            href="https://github.com/AlgusDark/bloomer"
-            isHidden="touch"
-          >
-            <Icon className="fa fa-github" />
-          </NavbarItem>
-          <NavbarItem href="https://twitter.com/AlgusDark" isHidden="touch">
-            <Icon className="fa fa-twitter" style={{ color: "#55acee" }} />
-          </NavbarItem>
-          <NavbarItem>
-            <Field isGrouped>
-              <Control>
-                <Button
-                  id="twitter"
-                  data-social-network="Twitter"
-                  data-social-action="tweet"
-                  data-social-target="http://bloomer.js.org"
-                  target="_blank"
-                  href="https://twitter.com/intent/tweet?text=bloomer:
-                    a set of React Stateless Components for bulma.io&amp;url=http://bloomer.js.org&amp;via=AlgusDark"
-                >
-                  <Icon className="fa fa-twitter" />
-                  <span>Tweet</span>
-                </Button>
-              </Control>
-            </Field>
-          </NavbarItem>
+          {/* Below items only render for Admins */}
+          {user.user_types_id === 1 && user.auth === true ? (
+            <>
+              <NavbarItem>
+                <NavLink to="/home">Home</NavLink>
+              </NavbarItem>
+              <NavbarItem>
+                <NavLink to="/admin/reports">Reports</NavLink>
+              </NavbarItem>
+              <NavbarItem>
+                <NavLink to="/jobs">Jobs</NavLink>
+              </NavbarItem>
+              <NavbarItem>
+                <NavLink to="/messages">Messages</NavLink>
+              </NavbarItem>
+              <NavbarItem>
+                <Link onClick={handleLogout}>Logout</Link>
+              </NavbarItem>
+            </>
+          ) : // Below items only render for Bootcamp Users
+          user.user_types_id === 2 && user.auth === true ? (
+            <>
+              <NavbarItem>
+                <NavLink to={`/user/${user.id}`}>Profile</NavLink>
+              </NavbarItem>
+              <NavbarItem>
+                <NavLink to="/jobs">Jobs</NavLink>
+              </NavbarItem>
+              <NavbarItem>
+                <NavLink to="/applications">Applications</NavLink>
+              </NavbarItem>
+              <NavbarItem>
+                <NavLink to="/messages">Messages</NavLink>
+              </NavbarItem>
+              <NavbarItem>
+                <Link onClick={handleLogout}>
+                  Logout
+                </Link>
+              </NavbarItem>
+            </>
+          ) : user.user_types_id === 3 && user.auth === true ? (
+            // Company User NavBar
+            <>
+              <NavbarItem>
+                <NavLink to={"home"}>Home</NavLink>
+              </NavbarItem>
+              <NavbarItem>
+                <NavLink to={`/company/${user.companies_id}`}>Company</NavLink>
+              </NavbarItem>
+              <NavbarItem>
+                <NavLink to="/jobs">Jobs</NavLink>
+              </NavbarItem>
+              <NavbarItem>
+                <NavLink to="/applications">Applicants</NavLink>
+              </NavbarItem>
+              <NavbarItem>
+                <NavLink to="/messages">Messages</NavLink>
+              </NavbarItem>
+              <NavbarItem>
+                <Link onClick={handleLogout}>
+                  Logout
+                </Link>
+              </NavbarItem>
+            </>
+          ) : (user.user_types_id === 2 || user.user_types_id === 3) &&
+            user.auth === false ? (
+            // Not Auth User
+            <>
+              <NavbarItem>
+                <NavLink to="/profile">Profile</NavLink>
+              </NavbarItem>
+              <NavbarItem>
+                <Link onClick={handleLogout}>
+                  Logout
+                </Link>
+              </NavbarItem>
+            </>
+          ) : (
+            <>
+              <NavbarItem>
+                <Link to="/signup">Sign up</Link>
+              </NavbarItem>
+              <NavbarItem>
+                <Link to="/login">Log in</Link>
+              </NavbarItem>
+            </>
+          )}
         </NavbarEnd>
       </NavbarMenu>
     </Navbar>
