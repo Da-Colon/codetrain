@@ -326,7 +326,7 @@ VALUES
   'Flexbox Froggy is a game where you help Froggy and friends get to their lilypads by writing CSS code that utilizes the flexible box model in CSS (i.e., "flexbox").',
   'This game will help you become familiar with the basics of the CSS flexible box model (i.e., "flexbox") by means of a fun game. You will learn how to utilize a variety of the flexbox properties and values: justify-content, align-items, flex-direction, order, align-self, flex-wrap, flex-flow, align-content, and others you may find helpful.',
   'http://flexboxfroggy.com/',
-  2
+  3
 ),
 (
   'Flexbox Froggy Guide',
@@ -336,7 +336,7 @@ VALUES
   
   The true utility of the guide then comes apparent with links to all of the different levels you can expect to currently see in Flexbox Froggy. For each level, you are greeted by a picture of how the level starts, a possible hint if you are stuck, the code provided at the start of the level that you need to fill in, and then a full solution with the code filled in along with pictures representing each step.',
   'https://github.com/daniel-farlow/flexbox-froggy',
-  3
+  2
 ),
 (
   'CSS Diner',
@@ -356,7 +356,7 @@ VALUES
   
   When you get to the "levels section" you will be greeted by a variety of things. First, you will see a collapsible "HTML Viewer" which gives you the HTML for the animation immediately below. The provided HTML is what you need to use in order to determine what CSS selector(s) is/are appropriate. Directly under each animation you will see a hint specific to that level''s animation. The hint will generally point you to possibly using a certain selector or combination of selectors (you will also see beside the hint a link to the selector reference section). Finally, you will see the collapsible "CSS Viewer" item which contains one possible solution. It''s important to keep in mind that there will often be numerous possible solutions to a particular level. Your job is to simply get decent exposure to all the different selectors available to you.',
   'https://github.com/daniel-farlow/css-diner',
-  1
+  2
 ),
 (
   'VSCode Keyboard Shortcuts',
@@ -380,7 +380,7 @@ VALUES
   
   As you can tell by the "brief description" above, there are quite a few steps involved! This guide should make it much easier for you to get through this process in a seamless fashion.',
   'https://github.com/daniel-farlow/deploying-on-aws',
-  3
+  2
 ),
 (
   'Small Group Projects - Tips for Success',
@@ -390,7 +390,7 @@ VALUES
   
   Read the blog post to find out more!',
   'https://blog.neporshiso.com/small-group-projects/',
-  1
+  4
 ),
 (
   'freeCodeCamp',
@@ -400,7 +400,7 @@ VALUES
   
   One may very well argue that the distinctive advantage freeCodeCamp has over other coding sites is that freeCodeCamp has not only free lessons but also projects that are really meant to test your understanding from the lessons and beyond.',
   'https://www.freecodecamp.org/',
-  1
+  4
 ),
 (
   'Codecademy',
