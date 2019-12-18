@@ -108,20 +108,21 @@ router.get('/reports/:resource_id', async (req, res) =>{
 })
 
 // delete/change auth of user
-router.put('/reports/auth/:user_id', async (req, res) =>{
+router.put('/reports/auth/user/:users_id', async (req, res) =>{
   const {users_id} = req.params;
+  console.log("THIS", users_id)
   const authUser = await AdminModel.removeAuthUser(users_id)
   if (authUser.command === "UPDATE" && authUser.rowCount >= 1) {
     res.sendStatus(200);
   } else {
     res
-      .send(`Could not update job application status`)
+      .send(`Could not update user auth status`)
       .status(409);
   }
 });
 
 // delete/change auth of all users of company
-router.put('/reports/auth/:companies_id', async (req, res) =>{
+router.put('/reports/auth/company/:companies_id', async (req, res) =>{
   const {companies_id} = req.params;
   const AuthCompanyUsers = await AdminModel.removeAuthCompanyUsers(companies_id)
   if (authUser.command === "UPDATE" && authUser.rowCount >= 1) {
