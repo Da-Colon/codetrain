@@ -4,7 +4,8 @@ import BootcampResourceCard from './BootcampResourceCard';
 import styled from "styled-components";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import {Button} from 'bloomer'
 
 const ResourcePost = props => {
   const user = useSelector(state => state.user);
@@ -48,6 +49,8 @@ const ResourcePost = props => {
     flexDirection: "column"
   }
 
+  const BackButton = () => <Link to='/resources' style={{textAlign: 'center', marginBottom: 20}}><Button isColor={'link'} isOutlined>Back to Resources</Button></Link>
+
   return (
     <ResourceWrapper>
       {resourcesFetched ? (
@@ -72,9 +75,10 @@ const ResourcePost = props => {
           setEditFormActive={setEditFormActive}
           fetchResourcesData={fetchResourcesData}
           resourceCardStyles={resourceCardStyles}
+          BackButton={BackButton}
         />
       ) : (
-          <p>Loading ...</p>
+          null
         )}
     </ResourceWrapper>
   );

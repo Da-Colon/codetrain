@@ -2,10 +2,11 @@ import React, {Fragment, useState} from 'react';
 import {useSelector} from 'react-redux';
 import axios from "axios";
 import { Form, Label, Input, Button, Title } from '../Styles/FormStyles'
-
+import {useHistory} from 'react-router-dom';
 
 const BootcampResourcePost = () => {
   const user = useSelector(state => state.user);
+  let history = useHistory();
   const [state, setState] = useState({
     title: "",
     short_description: "",
@@ -34,12 +35,13 @@ const BootcampResourcePost = () => {
 
     const response = await axios.post(endpoint, payload);
     setState({ ...state, resourceSubmitted: true });
-  
+    setTimeout(() => {
+      history.push('/resources')
+    }, 1000)
   }
 
   return ( 
     <Fragment>
-    <Title>Submit a resource!</Title>
     {state.resourceSubmitted ? (
       <div>
         <Title>Thank you for submitting a resource!</Title>

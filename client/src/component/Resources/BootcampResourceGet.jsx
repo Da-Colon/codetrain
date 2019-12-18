@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { Link, useHistory, Route } from 'react-router-dom';
+import {Title, Button} from 'bloomer';
 
 const BootcampResourceGet = () => {
   const user = useSelector(state => state.user);
@@ -24,9 +25,12 @@ const BootcampResourceGet = () => {
   };
 
   const deleteResource = async resourceId => {
-    const endpoint = `http://localhost:3000/resources/delete/${resourceId}`;
-    await axios.put(endpoint);
-    fetchResourcesData();
+    let confirmation = window.confirm('Are you sure you want to delete this resource you worked so hard to create?')
+    if (confirmation) {
+      const endpoint = `http://localhost:3000/resources/delete/${resourceId}`;
+      await axios.put(endpoint);
+      fetchResourcesData();
+    }
   };
 
   const editResource = (e, resource) => {
@@ -43,17 +47,17 @@ const BootcampResourceGet = () => {
   const history = useHistory();
 
   const resourceCardStyles = {
-    maxWidth: "600px",
-    margin: "20px",
-    display: "flex",
-    flexDirection: "column"
-  }
+    maxWidth: '600px',
+    margin: '20px',
+    display: 'flex',
+    flexDirection: 'column'
+  };
 
   return (
     <Fragment>
       {user.user_types_id === 2 && (
         <Link to="/resources/submit">
-          <Anchor style={{ fontSize: '2rem' }}>Submit a resource</Anchor>
+          <Title isSize={3} style={{textAlign: 'center', paddingTop: 10}}><Button isColor={'success'} isOutlined>Submit a resource!</Button></Title>
         </Link>
       )}
       <ResourceWrapper>

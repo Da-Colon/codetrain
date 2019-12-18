@@ -25,21 +25,21 @@ import {
 const BootcampResourceCard = (props) => {
   let history = useHistory();
 
-  const { 
-    title, 
-    resourceURL, 
-    cardResource, 
-    resourceId, 
-    datePosted, 
-    usersId, 
-    firstName, 
-    lastName, 
-    email, 
-    githubLink, 
-    linkedinLink, 
-    descriptionShort, 
-    descriptionFull, 
-    user, 
+  const {
+    title,
+    resourceURL,
+    cardResource,
+    resourceId,
+    datePosted,
+    usersId,
+    firstName,
+    lastName,
+    email,
+    githubLink,
+    linkedinLink,
+    descriptionShort,
+    descriptionFull,
+    user,
     editResource,
     deleteResource,
     editFormActive,
@@ -67,13 +67,14 @@ const BootcampResourceCard = (props) => {
                       Resource link
               </Anchor>
                   </BreadcrumbItem>
-                  <BreadcrumbItem>
-                    <Link
-                      to={`/report/resource/${cardResource.id}/${cardResource.users_id}`}
-                    >
-                      Report
+                  {cardResource.users_id !== user.id ?
+                    <BreadcrumbItem>
+                      <Link
+                        to={`/report/resource/${cardResource.id}/${cardResource.users_id}`}
+                      >
+                        Report
               </Link>
-                  </BreadcrumbItem>
+                    </BreadcrumbItem> : null}
                 </ul>
                 <ul>
                   <BreadcrumbItem>
@@ -126,6 +127,7 @@ const BootcampResourceCard = (props) => {
         </Content>
         <Content>{descriptionFull}</Content>
       </CardContent>
+      {props.BackButton ? props.BackButton() : null}
       {user.id === usersId ? (
         <CardFooter style={{ marginTop: "auto" }}>
           <CardFooterItem>
