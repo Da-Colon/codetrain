@@ -44,17 +44,13 @@ const BootcampResourceCard = (props) => {
     deleteResource,
     editFormActive,
     setEditFormActive,
-    fetchResourcesData
+    fetchResourcesData,
+    resourceCardStyles
   } = props;
 
   return (
     <Card
-      style={{
-        maxWidth: "600px",
-        margin: "20px",
-        display: "flex",
-        flexDirection: "column"
-      }}
+      style={resourceCardStyles}
     >
       <CardHeader>
         <CardHeaderTitle>{title}</CardHeaderTitle>

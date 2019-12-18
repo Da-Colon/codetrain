@@ -42,6 +42,13 @@ const BootcampResourceGet = () => {
 
   const history = useHistory();
 
+  const resourceCardStyles = {
+    maxWidth: "600px",
+    margin: "20px",
+    display: "flex",
+    flexDirection: "column"
+  }
+
   return (
     <Fragment>
       {user.user_types_id === 2 && (
@@ -98,6 +105,7 @@ const BootcampResourceGet = () => {
                   editFormActive={editFormActive}
                   setEditFormActive={setEditFormActive}
                   fetchResourcesData={fetchResourcesData}
+                  resourceCardStyles={resourceCardStyles}
                 />
               </Fragment>
             );

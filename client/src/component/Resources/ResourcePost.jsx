@@ -41,6 +41,13 @@ const ResourcePost = props => {
     fetchResourcesData();
   }, []);
 
+  const resourceCardStyles = {
+    maxWidth: "1000px",
+    margin: "20px",
+    display: "flex",
+    flexDirection: "column"
+  }
+
   return (
     <ResourceWrapper>
       {resourcesFetched ? (
@@ -64,6 +71,7 @@ const ResourcePost = props => {
           editFormActive={editFormActive}
           setEditFormActive={setEditFormActive}
           fetchResourcesData={fetchResourcesData}
+          resourceCardStyles={resourceCardStyles}
         />
       ) : (
           <p>Loading ...</p>
