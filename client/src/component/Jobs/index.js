@@ -9,7 +9,7 @@ const Jobs = () => {
 
   return (
     <div>
-      {user.user_types_id === 2 ? (
+      {user.user_types_id === 2 || user.user_types_id === 1 ? (
         <BootcampJobs />
       ) : user.user_types_id === 3 ? (
         <CompanyJobs />
