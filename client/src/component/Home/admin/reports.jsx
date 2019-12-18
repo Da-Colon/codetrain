@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, forceUpdate } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import Moment from "react-moment";
+import { useHistory } from "react-router-dom";
 
 import {
   Panel,
@@ -231,6 +232,29 @@ export default function Reports() {
     getTheReport(id);
   };
 
+  const handleResolveClick = async id => {
+    const response = await axios.post(`${ENDPOINT}/reports/resolve/${id}`);
+    if (response.status === 200) {
+      alert("Report Resolved");
+      setReport(false);
+      setShowResolved(false);
+      setShowUnResolved(false);
+      getReports();
+      getUsersReports();
+      getCompaniesReports();
+      getJobsReports();
+      getResourcesReports();
+      getResolvedReports();
+      getUsersResolvedReports();
+      getCompaniesResolvedReports();
+      getJobsResolvedReports();
+      getResourcesResolvedReports();
+      setShowUnResolved(true);
+    } else {
+      alert("Sorry, There was an Error resolving report");
+    }
+  };
+
   return (
     <div style={{ display: "flex" }}>
       <Panel
@@ -274,7 +298,8 @@ export default function Reports() {
                 <PanelBlock
                   onClick={() => handleReportClick(report.id)}
                   style={{
-                    backgroundColor: report.id === singleReport.id ? "lightgrey" : "unset",
+                    backgroundColor:
+                      report.id === singleReport.id ? "lightgrey" : "unset",
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "flex-start"
@@ -297,7 +322,8 @@ export default function Reports() {
                 <PanelBlock
                   onClick={() => handleReportClick(report.id)}
                   style={{
-                    backgroundColor: report.id === singleReport.id ? "lightgrey" : "unset",
+                    backgroundColor:
+                      report.id === singleReport.id ? "lightgrey" : "unset",
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "flex-start"
@@ -320,7 +346,8 @@ export default function Reports() {
                 <PanelBlock
                   onClick={() => handleReportClick(report.id)}
                   style={{
-                    backgroundColor: report.id === singleReport.id ? "lightgrey" : "unset",
+                    backgroundColor:
+                      report.id === singleReport.id ? "lightgrey" : "unset",
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "flex-start"
@@ -343,7 +370,8 @@ export default function Reports() {
                 <PanelBlock
                   onClick={() => handleReportClick(report.id)}
                   style={{
-                    backgroundColor: report.id === singleReport.id ? "lightgrey" : "unset",
+                    backgroundColor:
+                      report.id === singleReport.id ? "lightgrey" : "unset",
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "flex-start"
@@ -366,7 +394,8 @@ export default function Reports() {
                 <PanelBlock
                   onClick={() => handleReportClick(report.id)}
                   style={{
-                    backgroundColor: report.id === singleReport.id ? "lightgrey" : "unset",
+                    backgroundColor:
+                      report.id === singleReport.id ? "lightgrey" : "unset",
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "flex-start"
@@ -538,7 +567,12 @@ export default function Reports() {
           </Box>
           {!singleReport.resolved ? (
             <Box style={{ display: "flex", flexWrap: "wrap" }}>
-              <Button style={{ margin: "16px" }}>Resolve</Button>
+              <Button
+                onClick={() => handleResolveClick(singleReport.id)}
+                style={{ margin: "16px" }}
+              >
+                Resolve
+              </Button>
               <Button style={{ margin: "16px" }}>View Offender Profile</Button>
               <Button style={{ margin: "16px" }}>Message Offender</Button>
               <Button style={{ margin: "16px" }}>
