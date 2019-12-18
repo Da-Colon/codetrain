@@ -53,20 +53,31 @@ const BootcampResourceCard = (props) => {
       style={resourceCardStyles}
     >
       <CardHeader>
-        <CardHeaderTitle style={{fontSize: '1.5rem'}}>{title}</CardHeaderTitle>
+        <CardHeaderTitle style={{fontSize: '1.25rem'}}>{title}</CardHeaderTitle>
       </CardHeader>
       <CardContent>
         <Media>
           <MediaContent hasTextAlign={"left"}>
-            <Title isSize={4}>Resource Info</Title>
+            <Title style={{fontSize: '1.35rem'}}>Resource Info</Title>
             <Subtitle isSize={6}>
-              <Breadcrumb isSize={`medium`} isAlign={"left"}>
+              <Breadcrumb style={{fontSize: '1rem'}} isAlign={"left"}>
                 <ul>
                   <BreadcrumbItem>
                     <Anchor href={resourceURL} target="_blank">
                       Resource link
               </Anchor>
                   </BreadcrumbItem>
+                  <BreadcrumbItem>
+                  <Link to={`/resources/${resourceId}`}>
+                    Full post
+            </Link>
+                </BreadcrumbItem>
+                </ul>
+                <ul>
+                  <BreadcrumbItem>
+              <Moment format="YYYY-MM-DD">{datePosted}</Moment>
+                  </BreadcrumbItem> &nbsp;&nbsp;&nbsp;
+                  {console.log(cardResource, user)}
                   {cardResource.users_id !== user.id ?
                     <BreadcrumbItem>
                       <Link
@@ -76,24 +87,13 @@ const BootcampResourceCard = (props) => {
               </Link>
                     </BreadcrumbItem> : null}
                 </ul>
-                <ul>
-                  <BreadcrumbItem>
-                    <Link to={`/resources/${resourceId}`}>
-                      Full post
-              </Link>
-                  </BreadcrumbItem>
-                  <BreadcrumbItem>
-                    &nbsp;&nbsp;
-              <Moment format="YYYY-MM-DD">{datePosted}</Moment>
-                  </BreadcrumbItem>
-                </ul>
               </Breadcrumb>
             </Subtitle>
           </MediaContent>
           <MediaContent hasTextAlign={"right"}>
-            <Title isSize={4}>Resource Creator</Title>
+            <Title style={{fontSize: '1.35rem'}}>Resource Creator</Title>
             <Subtitle isSize={6}>
-              <Breadcrumb isSize={`medium`} isAlign={"right"}>
+              <Breadcrumb style={{fontSize: '1rem'}} isAlign={"right"}>
                 <ul>
                   <BreadcrumbItem>
                     <Link to={`/user/${usersId}`}>
@@ -123,12 +123,12 @@ const BootcampResourceCard = (props) => {
           </MediaContent>
         </Media>
         <Content>
-          <Box>{descriptionShort}</Box>
+          <Box style={{fontSize: '1.15rem'}}>{descriptionShort}</Box>
         </Content>
-        <Content>{descriptionFull}</Content>
+        <Content style={{fontSize: '1.15rem'}}>{descriptionFull}</Content>
       </CardContent>
       {props.BackButton ? props.BackButton() : null}
-      {user.id === usersId ? (
+      {user.id === usersId || user.user_types_id === 1 ? (
         <CardFooter style={{ marginTop: "auto" }}>
           <CardFooterItem>
             <Button
