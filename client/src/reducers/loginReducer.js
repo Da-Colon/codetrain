@@ -13,7 +13,8 @@ const initialState = {
   auth: developmentAuth,
   user_types_id: developmentType,
   bootcamp_name: null,
-  companies_id: developmentCid
+  companies_id: developmentCid,
+  profile_pic_url: null
 };
 
 const userReducer = (state = initialState, action) => {
