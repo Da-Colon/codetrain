@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
-const userModel = require('../models/userModel')
+const userModel = require("../models/userModel");
 
 /* GET users listing. */
 router.post("/login", function(req, res, next) {
@@ -41,7 +41,8 @@ router.put("/update/:id", async (req, res) => {
     linkedin_url,
     personal_website,
     about,
-    skills
+    skills,
+    profile_pic_url
   } = req.body;
 
   const response = await userModel.updateBootcampUser(

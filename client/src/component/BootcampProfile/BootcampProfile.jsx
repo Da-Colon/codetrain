@@ -26,7 +26,8 @@ const UserProfile = () => {
     bootcamp_name: "",
     personal_website: "",
     about: "",
-    skills: ""
+    skills: "",
+    profile_pic_url: ""
   });
 
   // This plucks the id from the URL so we can use it in the getUserInfo and useEffect functions
@@ -68,7 +69,8 @@ const UserProfile = () => {
       linkedin_url: userInfo.linkedin_url,
       personal_website: userInfo.personal_website,
       about: userInfo.about,
-      skills: skillsArray
+      skills: skillsArray,
+      profile_pic_url: userInfo.profile_pic_url
     };
     const response = await axios.put(endpoint, payload);
     setSkillsArray(skillsArray);
@@ -85,6 +87,16 @@ const UserProfile = () => {
     <>
       {isEditMode ? (
         <Form onSubmit={handleEditSubmit}>
+          <Label>
+            Profile Pic URL
+            <Input
+              type="url"
+              placeholder="Profile Pic URL"
+              name="profile_pic_url"
+              value={userInfo.profile_pic_url}
+              onChange={handleChange}
+            ></Input>
+          </Label>
           <Label>
             Github Profile
             <Input
@@ -150,6 +162,7 @@ const UserProfile = () => {
           {userInfo.id !== user.id && (
             <button onClick={postReport}>Report {userInfo.first_name}</button>
           )}
+          <img src={userInfo.profile_pic_url}></img>
           <h2>Bootcamp: {userInfo.bootcamp_name}</h2>
           <h2>
             Email: <a href="mailto:{userInfo.email}">{userInfo.email}</a>

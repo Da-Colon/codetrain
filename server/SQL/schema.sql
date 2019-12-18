@@ -26,7 +26,8 @@ CREATE TABLE users (
     auth BOOLEAN DEFAULT (FALSE),
     user_types_id INTEGER REFERENCES user_types(id),
     bootcamp_name VARCHAR(100),
-    companies_id INTEGER REFERENCES companies(id)
+    companies_id INTEGER REFERENCES companies(id),
+    profile_pic_url TEXT DEFAULT 'https://avatars.io/twitter/anonymous/medium'
   );
 CREATE TABLE posts_resources (
     id SERIAL PRIMARY KEY,

@@ -17,24 +17,30 @@ const NavBar = () => {
 
   return (
     <Nav>
-      <Link
-        exact
-        to="/"
-        className="brand-logo"
-        style={{ backgroundColor: "unset" }}
-      >
-        
-        codetrain
-      </Link>
+      <img src={user.profile_pic_url} />
+      <Ul>
+        <Link
+          exact
+          to="/"
+          className="brand-logo"
+          style={{ backgroundColor: "unset" }}
+        >
+          codetrain
+        </Link>
         <Link to="/resources">Resources</Link>
-        <h1>{user.first_name} {user.last_name}</h1> 
-      
+        <h1>
+          {user.first_name} {user.last_name}
+        </h1>
+      </Ul>
+
       {user.user_types_id === 1 && user.auth === true ? (
         //  Admin User NavBar
         <Ul>
           <Link to="/home">Home</Link>
           <Link to="/admin/reports">Reports</Link>
-          <Link to="/jobs" exact>Jobs</Link>
+          <Link to="/jobs" exact>
+            Jobs
+          </Link>
           <Link to="/messages">Messages</Link>
           <Button onClick={handleLogout}>Logout</Button>
         </Ul>
@@ -43,7 +49,9 @@ const NavBar = () => {
         <Ul>
           <Link to="/home">Home</Link>
           <Link to={`/user/${user.id}`}>Profile</Link>
-          <Link to="/jobs" exact>Jobs</Link>
+          <Link to="/jobs" exact>
+            Jobs
+          </Link>
           <Link to="/applications">Applications</Link>
           <Link to="/messages">Messages</Link>
           <Button onClick={handleLogout}>Logout</Button>
@@ -58,7 +66,8 @@ const NavBar = () => {
           <Link to="/messages">Messages</Link>
           <Button onClick={handleLogout}>Logout</Button>
         </Ul>
-      ) : (user.user_types_id === 2 || user.user_types_id === 3) &&  user.auth === false ? (
+      ) : (user.user_types_id === 2 || user.user_types_id === 3) &&
+        user.auth === false ? (
         // Not Auth User
         <Ul>
           <Link to="/profile">Profile</Link>
