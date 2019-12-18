@@ -12,7 +12,7 @@ import {
 } from "bloomer";
 import ColorTheme from "../Styles/ColorTheme";
 
-const NavBarBloomer = () => {
+const NavBar = () => {
   const user = useSelector(state => state.user);
   const { greyLighterColor } = ColorTheme;
 
@@ -138,4 +138,4 @@ const NavBarBloomer = () => {
   );
 };
 
-export default NavBarBloomer;
+export default NavBar;
