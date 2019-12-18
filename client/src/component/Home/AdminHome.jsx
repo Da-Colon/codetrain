@@ -31,7 +31,6 @@ export default function AdminHome() {
 
   const getUsersReports = async () => {
     const response = await axios.get(`http://${ENDPOINT}/reports/all/users`);
-    console.log("UsersReport", response.data);
     const data = response.data;
     if (response.status === 200) {
       setUsers(data);
@@ -44,7 +43,6 @@ export default function AdminHome() {
     const response = await axios.get(
       `http://${ENDPOINT}/reports/all/companies`
     );
-    console.log("CompaniesReport", response.data);
     const data = response.data;
     if (response.status === 200) {
       setCompanies(data);
@@ -55,7 +53,6 @@ export default function AdminHome() {
 
   const getJobsReports = async () => {
     const response = await axios.get(`http://${ENDPOINT}/reports/all/jobs`);
-    console.log("CompaniesReport", response.data);
     const data = response.data;
     if (response.status === 200) {
       setJobs(data);
@@ -68,7 +65,6 @@ export default function AdminHome() {
     const response = await axios.get(
       `http://${ENDPOINT}/reports/all/resources`
     );
-    console.log("ResourcesReport", response.data);
     const data = response.data;
     if (response.status === 200) {
       setResources(data);
@@ -95,10 +91,10 @@ export default function AdminHome() {
           {(users.length < 1) ? <h4>No Reports</h4> :
             users.map(report => {
               return (
-                <>
+                <div key={report.id}>
                   <Subtitle isSize={6} style={{margin: 0}}>Report # {report.id}</Subtitle>
                   <Title isSize={6} style={{margin: 0}}>
-                    Name: {report.first_name} {report.last_name}
+                    Reported By: {report.first_name} {report.last_name}
                   </Title>
                   <Breadcrumb isSize={`small`} style={{margin: 0}}>
                     <BreadcrumbItem>
@@ -110,7 +106,7 @@ export default function AdminHome() {
                   </Breadcrumb>
                   <button>View Report</button>
                 <hr />
-                </>
+                </div>
               );
             })}
           </Content>
@@ -124,14 +120,13 @@ export default function AdminHome() {
         <CardContent>
           <Content>
           {(companies.length < 1) ? <h4>No Reports</h4> :
-            companies.map(report => {
-              console.log(report)
+            companies.map((report, i) => {
               return (
-                <>
+                <div key={report.id}>
                   <Subtitle isSize={6} style={{margin: 0}}>Report # {report.id}</Subtitle>
                   <Title isSize={6} style={{margin: 0}}>
                     Company: {report.name}
-                    Name: {report.first_name} {report.last_name}
+                    Reported By: {report.first_name} {report.last_name}
                   </Title>
                   <Breadcrumb isSize={`small`} style={{margin: 0}}>
                     <BreadcrumbItem>
@@ -143,7 +138,7 @@ export default function AdminHome() {
                   </Breadcrumb>
                   <button>View Report</button>
                 <hr />
-                </>
+                </div>
               );
             })}
           </Content>
@@ -159,10 +154,10 @@ export default function AdminHome() {
           {(jobs.length < 1) ? <h4>No Reports</h4> :
             jobs.map(report => {
               return (
-                <>
+                <div key={report.id}>
                   <Subtitle isSize={6} style={{margin: 0}}>Report # {report.id}</Subtitle>
                   <Title isSize={6} style={{margin: 0}}>
-                    Company: {report.name}
+                    Reported By: {report.first_name} {report.last_name}
                   </Title>
                     <Title isSize={6} style={{margin: 0}}>Job Post: {report.title}</Title>
                     <p style={{margin: 0}}>Posted by: {report.first_name} {report.last_name}</p>
@@ -176,7 +171,7 @@ export default function AdminHome() {
                   </Breadcrumb>
                   <button>View Report</button>
                 <hr />
-                </>
+                </div>
               );
             })}
           </Content>
@@ -192,7 +187,7 @@ export default function AdminHome() {
             {(resources.length < 1) ? <h4>No Reports</h4> :
             resources.map(report => {
               return (
-                <>
+                <div key={report.id}>
                   <Subtitle isSize={6} style={{margin: 0}}>Report # {report.id}</Subtitle>
                   <Title isSize={6} style={{margin: 0}}>
                   </Title>
@@ -208,7 +203,7 @@ export default function AdminHome() {
                   </Breadcrumb>
                   <button>View Report</button>
                 <hr />
-                </>
+                </div>
               );
             })} 
             
