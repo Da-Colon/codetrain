@@ -105,6 +105,7 @@ export default function Reports() {
     }
   };
 
+
   const ENDPOINT = `http://localhost:3000`;
 
   // Unresolved reports
@@ -247,6 +248,16 @@ export default function Reports() {
 
   const handleViewResourcePostClick = id => {
     history.push(`/resources/${id}`)
+  }
+
+  const handleBanUserClick = async id => {
+    const response = await axios.put(`${ENDPOINT}/reports/auth/user/${id}`)
+    console.log(response)
+    if(response.status === 200){
+      alert('User Authorization revoked')
+    } else {
+      alert('Sorry There was an error updating authorization')
+    }
   }
 
   const handleResolveClick = async id => {
@@ -564,15 +575,18 @@ export default function Reports() {
                 {" "}
                 Offender:{" "}
                 {singleReport.first_name + " " + singleReport.last_name}
+                <span style={{fontWeight: "900"}}>{!singleReport.auth ? 'User Banned' : ''}</span>
               </h2>
             ) : singleReport.posts_jobs_id === null ? (
               <>Offending Company: {singleReport.name}</>
             ) : (
               <>
-                <h2>Offending Company{singleReport.name}</h2>
+                <h2>Offending Company: {singleReport.name}</h2>
                 <h2>
                   Company User:{" "}
                   {singleReport.first_name + " " + singleReport.last_name}
+                  <span style={{fontWeight: "900"}}>{!singleReport.auth ? 'User Banned' : ''}</span>
+                
                 </h2>
                 <h2>Job Post: {singleReport.jobtitle}</h2>
               </>
@@ -594,7 +608,7 @@ export default function Reports() {
                 <>
                 <Button onClick={() => handleViewProfileClick(singleReport.users_id)} style={{ margin: "16px" }}>View Offender Profile</Button>
                 <Button style={{ margin: "16px" }}>Message Offender</Button>
-                <Button style={{ margin: "16px" }}>Ban User</Button>
+                <Button onClick={() => handleBanUserClick(singleReport.users_id)} style={{ margin: "16px" }}>Ban User</Button>
                 </>
               ) : <></>}
               <Button style={{ margin: "16px" }}>
