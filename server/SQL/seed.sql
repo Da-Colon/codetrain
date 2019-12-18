@@ -120,7 +120,7 @@ The first challenge was in finding a way to pursue this beautiful discipline but
     'General Assembly',
     NULL,
     'https://media.licdn.com/dms/image/C4E03AQGFNfnHoHBbuw/profile-displayphoto-shrink_200_200/0?e=1582156800&v=beta&t=26YZVF-MHWJRVIISSzMvvI_neQptWO_qFjGO6yQk6TI'
-  )
+  ),
   -- COMPANY USERS
   (
     'hrdave@google.com',
