@@ -10,6 +10,75 @@ router.get('/reports', async (req, res) =>{
   res.json(getTheReports).status(200)
 })
 
+// All Companies reports
+router.get('/reports/all/companies', async (req, res) =>{
+  const getTheReports = await AdminModel.getCompaniesReports();
+  res.json(getTheReports).status(200)
+})
+
+
+// All USERS reports
+router.get('/reports/all/users', async (req, res) =>{
+  const getTheReports = await AdminModel.getUsersReports();
+  res.json(getTheReports).status(200)
+})
+
+
+// All jobs reports
+router.get('/reports/all/jobs', async (req, res) =>{
+  const getTheReports = await AdminModel.getJobsReports();
+  res.json(getTheReports).status(200)
+})
+
+
+// all resource reports
+router.get('/reports/all/resources', async (req, res) =>{
+  const getTheReports = await AdminModel.getResourcesReports();
+  res.json(getTheReports).status(200)
+})
+
+// reports resolved
+
+// get all reports resolved
+router.get('/reports/resolved', async (req, res) =>{
+  const getTheReports = await AdminModel.getResolvedReports();
+  res.json(getTheReports).status(200)
+})
+
+// All Companies reports resolved
+router.get('/reports/all/resolved/companies', async (req, res) =>{
+  const getTheReports = await AdminModel.getResolvedCompaniesReports();
+  res.json(getTheReports).status(200)
+})
+
+
+// All USERS reports resolved
+router.get('/reports/all/resolved/users', async (req, res) =>{
+  const getTheReports = await AdminModel.getResolvedUsersReports();
+  res.json(getTheReports).status(200)
+})
+
+
+// All jobs reports resolved
+router.get('/reports/all/resolved/jobs', async (req, res) =>{
+  const getTheReports = await AdminModel.getResolvedJobsReports();
+  res.json(getTheReports).status(200)
+})
+
+
+// all resource reports resolved
+router.get('/reports/all/resolved/resources', async (req, res) =>{
+  const getTheReports = await AdminModel.getResolvedResourcesReports();
+  res.json(getTheReports).status(200)
+})
+
+// get single report
+router.get('/report/:report_id', async (req, res) =>{
+  const {report_id} = req.params;
+  const report = await AdminModel.getSingleReport(report_id);
+  res.json(report).status(200)
+})
+
 // get all reports about a user
 router.get('/reports/:users_id', async (req, res) =>{
   const {users_id} = req.params;
@@ -108,33 +177,6 @@ router.post('/reports/resolve/:report_id', async (req, res) =>{
   res.status(200).end()
 })
 
-
-// All Companies reports
-router.get('/reports/all/companies', async (req, res) =>{
-  const getTheReports = await AdminModel.getCompaniesReports();
-  res.json(getTheReports).status(200)
-})
-
-
-// All USERS reports
-router.get('/reports/all/users', async (req, res) =>{
-  const getTheReports = await AdminModel.getUsersReports();
-  res.json(getTheReports).status(200)
-})
-
-
-// All jobs reports
-router.get('/reports/all/jobs', async (req, res) =>{
-  const getTheReports = await AdminModel.getJobsReports();
-  res.json(getTheReports).status(200)
-})
-
-
-// all resource reports
-router.get('/reports/all/resources', async (req, res) =>{
-  const getTheReports = await AdminModel.getResourcesReports();
-  res.json(getTheReports).status(200)
-})
 
 // // search user
 // router.get('/reports/allusers', async (req, res) =>{
