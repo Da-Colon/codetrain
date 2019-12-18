@@ -37,7 +37,6 @@ const BootcampResourceGet = () => {
             const endpoint = `http://localhost:3000/resources/delete/${resourceId}`;
             await axios.put(endpoint);
             await fetchResourcesData()
-            history.push('/resources')
           }
         },
         {

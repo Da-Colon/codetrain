@@ -1,6 +1,6 @@
-const developmentType = 2;
-const developmentAuth = true;
-const developmentid = 2;
+const developmentType = null;
+const developmentAuth = null;
+const developmentid = null;
 const developmentCid = null;
 
 const initialState = {

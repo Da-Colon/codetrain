@@ -27,7 +27,7 @@ const ResourcePost = props => {
 
   let history = useHistory();
 
-  const deleteResource = resourceId => {
+  const deleteResource = async resourceId => {
     confirmAlert({
       title: 'Are you sure?',
       message: 'Who knows how many people you helped by creating this resource! Please reconsider before clicking Yes. Regardless, thank you for your contribution, and we hope you contribute again soon!',
@@ -37,7 +37,6 @@ const ResourcePost = props => {
           onClick: async () => {
             const endpoint = `http://localhost:3000/resources/delete/${resourceId}`;
             await axios.put(endpoint);
-            await fetchResourcesData()
             history.push('/resources')
           }
         },

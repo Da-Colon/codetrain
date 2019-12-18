@@ -78,6 +78,22 @@ The first challenge was in finding a way to pursue this beautiful discipline but
   NULL
 ),
 (
+  'prescottsun@gmail.com',
+  'test',
+  'Prescott',
+  'Sun',
+  'https://prescottsun.github.io/portfolio/',
+  '
+  A lifelong computer and tech enthusiast. I graduated from the University of Connecticut with a Bachelor of Science in mechanical engineering. I moved to Atlanta for my first job out of school, working as a business intelligence analyst. At school and work, I always found the times when I was trying to solve problems and complete tasks through programming to be the most interesting. I was always the most enthusiastic when I programmed a script to solve math problems in Matlab, created macros in Visual Basic to automate tasks in Excel, or used SQL queries for financial data analysis. That interest has grown into a passion that I am seeking to turn into a full-time career.',
+   '{JavaScript, CSS, HTML, Angular, React, Regular Expressions}',
+  'https://github.com/prescottsun',
+  'https://www.linkedin.com/in/prescott-sun/',
+  TRUE,
+  2,
+  'General Assembly',
+  NULL
+),
+(
   'nocarrots@gmail.com',
   'test',
   'Nep',
@@ -280,7 +296,7 @@ INSERT INTO posts_resources (
   Stack Overflow also has a Jobs section to assist developers in finding their next opportunity. For employers, Stack Overflow provides tools to brand their business, advertise their openings on the site, and source candidates from Stack Overflow''s database of developers who are open to being contacted.
   ',
   'https://stackoverflow.com/',
-  1
+  4
 ),
 (
   'Flexbox Froggy',
@@ -308,7 +324,7 @@ INSERT INTO posts_resources (
   
   You will learn how to select elements by type, ID, descendant, class, etc. It''s not a bad idea to first get a handle on how the game works and read the description of each selector intended to be used on each level in the right panel of the game, but ideally you will be able to complete all levels without reference to any selectors.',
   'https://flukeout.github.io/',
-  2
+  4
 ),
 (
   'CSS Diner Guide',

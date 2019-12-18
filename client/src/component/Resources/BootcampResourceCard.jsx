@@ -53,14 +53,14 @@ const BootcampResourceCard = (props) => {
       style={resourceCardStyles}
     >
       <CardHeader>
-        <CardHeaderTitle>{title}</CardHeaderTitle>
+        <CardHeaderTitle style={{fontSize: '1.5rem'}}>{title}</CardHeaderTitle>
       </CardHeader>
       <CardContent>
         <Media>
           <MediaContent hasTextAlign={"left"}>
-            <Title isSize={5}>Resource Info</Title>
+            <Title isSize={4}>Resource Info</Title>
             <Subtitle isSize={6}>
-              <Breadcrumb isSize={`small`} isAlign={"left"}>
+              <Breadcrumb isSize={`medium`} isAlign={"left"}>
                 <ul>
                   <BreadcrumbItem>
                     <Anchor href={resourceURL} target="_blank">
@@ -91,9 +91,9 @@ const BootcampResourceCard = (props) => {
             </Subtitle>
           </MediaContent>
           <MediaContent hasTextAlign={"right"}>
-            <Title isSize={5}>Resource Creator</Title>
+            <Title isSize={4}>Resource Creator</Title>
             <Subtitle isSize={6}>
-              <Breadcrumb isSize={`small`} isAlign={"right"}>
+              <Breadcrumb isSize={`medium`} isAlign={"right"}>
                 <ul>
                   <BreadcrumbItem>
                     <Link to={`/user/${usersId}`}>
