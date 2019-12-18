@@ -1,4 +1,4 @@
-import React, { useState, useEffect, forceUpdate } from "react";
+import React, { useState, useEffect} from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import Moment from "react-moment";
@@ -8,30 +8,23 @@ import {
   Panel,
   PanelBlock,
   PanelHeading,
-  PanelIcon,
   PanelTab,
   PanelTabs,
   Control,
   Input,
-  Icon,
   Select,
   Box,
+  Field,
+  Label,
+  Title,
+  TextArea,
   Button
 } from "bloomer";
 
-//   getAllCompanyReports,
-//   getAllJobReports,
-//   getAllResourceReports,
-//   getAllUserReports,
-//   sendMessageCompany,
-//   sendMessageUser,
-//   postReport,
+
 //   deleteJob,
 //   deleteResource,
-//   removeAuthCompanyUsers,
-//   removeAuthUser,
-//   getReports,
-//   resolveIssue
+
 
 export default function Reports() {
   const history = useHistory();
@@ -56,7 +49,21 @@ export default function Reports() {
 
   // single report
   const [singleReport, setReport] = useState([]);
-  const [sendMessage, setSendMessage] = useState([]);
+  const [sendMessage, setSendMessage] = useState({
+    subject: "",
+    message: "",
+    sent_from: "",
+    sent_to: "",
+  });
+
+  const [messageData, setMessageData] = useState({id: '', name: ''})
+
+  const [sendCompanyMessage, setSendCompanyMessage] = useState({
+    subject: "",
+    message: "",
+    sent_from: "",
+    companies_id: "",
+  });
   // conditional rendering states
   const [showResolved, setShowResolved] = useState(false);
   const [showUnResolved, setShowUnResolved] = useState(true);
@@ -67,6 +74,7 @@ export default function Reports() {
   const [showResourceReports, setShowResourceReports] = useState(false);
   const [showReport, setShowReport] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
+  const [showCompanyMessage, setShowCompanyMessage] = useState(false);
 
   const handleResolveTabClick = () => {
     setShowResolved(true);
@@ -232,6 +240,7 @@ export default function Reports() {
   const handleReportClick = id => {
     setShowReport(true);
     getTheReport(id);
+    setShowMessage(false);
   };
 
   const handleViewProfileClick = id => {
@@ -282,6 +291,69 @@ export default function Reports() {
       alert("Sorry, There was an Error resolving report");
     }
   };
+
+  const handleMessageSubmit = async e => {
+    e.preventDefault();
+    const endpoint = 'http://localhost:3000'
+    const send = await axios.post(`${endpoint}/sendmessage`, sendMessage);
+    if (send.status === 200) {
+      alert("Message Sent");
+      setShowMessage(false);
+    } else {
+      alert("There was a problem sending the message please try again later");
+    }
+  };
+
+  const handleCompanyMessageSubmit = async e => {
+    e.preventDefault();
+    const endpoint = 'http://localhost:3000'
+    const send = await axios.post(`${endpoint}/reports/send/company`, sendCompanyMessage);
+    if (send.status === 200) {
+      alert("Message Sent");
+      setShowCompanyMessage(false);
+    } else {
+      alert("There was a problem sending the message please try again later");
+    }
+  };
+
+  const handleUserMessageForm = (id) => {
+    setShowMessage(true);
+    setShowReport(false);
+    setMessageData({...messageData, id: id})
+  }
+
+  const handleCompanyMessageForm = (id) => {
+    setShowCompanyMessage(true);
+    setShowReport(false);
+  }
+
+  const handleMessageChange = e => {
+    const { name, value } = e.target;
+    setSendMessage({
+      ...sendMessage,
+      [name]: value,
+      sent_from: user.id,
+      sent_to: messageData.id,
+    });
+  };
+  const handleCompanyMessageChange = e => {
+    const { name, value } = e.target;
+    setSendCompanyMessage({
+      ...sendCompanyMessage,
+      [name]: value,
+      sent_from: user.id,
+      companies_id: singleReport.companies_id,
+    });
+  };
+
+  const handleCompanyBanClick = async e => {
+    const response = await axios.put(`${ENDPOINT}/reports/auth/company/${singleReport.companies_id}`);
+    if(response.status === 200) {
+      alert('Company Ban Successful')
+    } else{
+      alert('Sorry there was an error with the ban')
+    }
+  }
 
   return (
     <div style={{ display: "flex" }}>
@@ -607,11 +679,11 @@ export default function Reports() {
               {singleReport.users_id ? (
                 <>
                 <Button onClick={() => handleViewProfileClick(singleReport.users_id)} style={{ margin: "16px" }}>View Offender Profile</Button>
-                <Button style={{ margin: "16px" }}>Message Offender</Button>
+                <Button onClick={()=> handleUserMessageForm(singleReport.users_id)} style={{ margin: "16px" }}>Message Offender</Button>
                 <Button onClick={() => handleBanUserClick(singleReport.users_id)} style={{ margin: "16px" }}>Ban User</Button>
                 </>
               ) : <></>}
-              <Button style={{ margin: "16px" }}>
+              <Button onClick={()=> handleUserMessageForm(singleReport.submited_by)} style={{ margin: "16px" }}>
                 Message Report Submitter
               </Button>
               {singleReport.companies_id !== null ? (
@@ -619,8 +691,8 @@ export default function Reports() {
                   <Button onClick={() => handleViewCompanyProfileClick(singleReport.companies_id)} style={{ margin: "16px" }}>
                     View Company Profile
                   </Button>
-                  <Button style={{ margin: "16px" }}>Message Company</Button>
-                  <Button style={{ margin: "16px" }}>Ban Company</Button>
+                  <Button onClick={() => handleCompanyMessageForm(singleReport.users_id)} style={{ margin: "16px" }}>Message Company</Button>
+                  <Button onClick={handleCompanyBanClick} style={{ margin: "16px" }}>Ban Company</Button>
                 </>
               ) : (
                 ""
@@ -643,6 +715,107 @@ export default function Reports() {
       ) : (
         " "
       )}
+    {showMessage ? (
+      <Box style={{display: "flex", flexDirection: "column", margin: "0 auto"}}>
+      <Title isSize={4}>Send Message</Title>
+      <form  onSubmit={handleMessageSubmit}>
+        {/* <Field>
+          <Label>Send To</Label>
+          <Control>
+            <Input
+              type="text"
+              name="receiver"
+              aria-label="receiver"
+              disabled
+            />
+          </Control>
+        </Field> */}
+
+        <Field>
+          <Label>Subject</Label>
+          <Control>
+            <Input
+              type="text"
+              onChange={handleMessageChange}
+              name="subject"
+              aria-label="subject"
+            />
+          </Control>
+        </Field>
+
+        <Field>
+          <Label>Message</Label>
+          <Control>
+            <TextArea
+              type="textarea"
+              onChange={handleMessageChange}
+              name="message"
+              aria-label="message"
+            />
+          </Control>
+        </Field>
+
+        <Field isGrouped>
+          <Control>
+            <Button type="submit" isColor="primary">
+              Submit
+            </Button>
+          </Control>
+        </Field>
+      </form>
+      </Box>
+    ) : ''}
+    {showCompanyMessage ? (
+      <Box style={{display: "flex", flexDirection: "column", margin: "0 auto"}}>
+      <Title isSize={4}>Send Message to {singleReport.name}</Title>
+      <form  onSubmit={handleCompanyMessageSubmit}>
+        <Field>
+          <Label>Send To</Label>
+          <Control>
+            <Input
+              type="text"
+              placeholder={singleReport.name}
+              name="receiver"
+              aria-label="receiver"
+              disabled
+            />
+          </Control>
+        </Field>
+
+        <Field>
+          <Label>Subject</Label>
+          <Control>
+            <Input
+              type="text"
+              onChange={handleCompanyMessageChange}
+              name="subject"
+              aria-label="subject"
+            />
+          </Control>
+        </Field>
+
+        <Field>
+          <Label>Message</Label>
+          <Control>
+            <TextArea
+              type="textarea"
+              onChange={handleCompanyMessageChange}
+              name="message"
+              aria-label="message"
+            />
+          </Control>
+        </Field>
+
+        <Field isGrouped>
+          <Control>
+            <Button type="submit" isColor="primary">
+              Submit
+            </Button>
+          </Control>
+        </Field>
+      </form>
+      </Box>
+    ) : ''}
     </div>
   );
 }

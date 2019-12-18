@@ -125,7 +125,7 @@ router.put('/reports/auth/user/:users_id', async (req, res) =>{
 router.put('/reports/auth/company/:companies_id', async (req, res) =>{
   const {companies_id} = req.params;
   const AuthCompanyUsers = await AdminModel.removeAuthCompanyUsers(companies_id)
-  if (authUser.command === "UPDATE" && authUser.rowCount >= 1) {
+  if ( AuthCompanyUsers.command === "UPDATE" &&  AuthCompanyUsers.rowCount >= 1) {
     res.sendStatus(200);
   } else {
     res

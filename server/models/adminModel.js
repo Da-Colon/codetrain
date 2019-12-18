@@ -62,14 +62,17 @@ const getResourcesReports = () => {
   }
 };
 
-const getSingleReport = (report_id) => {
-  const query = db.one(`SELECT reports.id, first_name, auth, last_name, submited_by, name, posts_jobs.title jobTitle, posts_resources.title resourceTitle, reason, reports.companies_id, reports.resource_id, reports.posts_jobs_id, reports.users_id, resolved from reports LEFT JOIN companies on reports.companies_id = companies.id LEFT JOIN users ON reports.users_id = users.id LEFT JOIN posts_jobs ON reports.posts_jobs_id = posts_jobs.id LEFT JOIN posts_resources ON reports.resource_id = posts_resources.id WHERE reports.id = $1;`, [report_id])
+const getSingleReport = report_id => {
+  const query = db.one(
+    `SELECT reports.id, first_name, auth, last_name, submited_by, name, posts_jobs.title jobTitle, posts_resources.title resourceTitle, reason, reports.companies_id, reports.resource_id, reports.posts_jobs_id, reports.users_id, resolved from reports LEFT JOIN companies on reports.companies_id = companies.id LEFT JOIN users ON reports.users_id = users.id LEFT JOIN posts_jobs ON reports.posts_jobs_id = posts_jobs.id LEFT JOIN posts_resources ON reports.resource_id = posts_resources.id WHERE reports.id = $1;`,
+    [report_id]
+  );
   try {
     return query;
   } catch {
     console.log("There was an error when retrieving the reports");
   }
-}
+};
 
 // ALL REPORTS RESOLVED
 
@@ -180,7 +183,7 @@ const getAllResourceReports = resource_id => {
 
 // delete/change auth of user
 const removeAuthUser = users_id => {
-  console.log(users_id)
+  console.log(users_id);
   const query = db.result(`UPDATE users SET auth = false WHERE id = $1;`, [
     users_id
   ]);
@@ -216,17 +219,18 @@ const sendMessageCompany = async (
     `SELECT id FROM users WHERE companies_id = $1;`,
     [companies_id]
   );
+  console.log("HEEEELLLO", getUsers);
   // maps through getUsers to make a new array of just the ids
   const companyUsers = getUsers.map(obj => {
-    Object.keys(obj)
+   return Object.keys(obj)
       .sort()
       .map(key => {
-        obj[key];
+        return obj[key];
       });
   });
+  console.log("asdasdasda", companyUsers);
   // map through ids and send message to those users
   const query = await companyUsers.map(async sent_to => {
-    console.log("THIS", sent_to);
     await db.any(
       `INSERT INTO private_messages (subject, message, sent_from, sent_to) VALUES ($1, $2, $3, $4);`,
       [subject, message, sent_from, sent_to[0]]
