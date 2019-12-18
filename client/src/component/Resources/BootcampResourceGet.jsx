@@ -1,30 +1,10 @@
-import React, { Fragment } from "react";
-import { useState, useEffect } from "react";
-import styled from "styled-components";
-import axios from "axios";
-import { useSelector } from "react-redux";
-import Moment from "react-moment";
-import { Link, useHistory } from "react-router-dom";
-
-import {
-  Box,
-  Breadcrumb,
-  BreadcrumbItem,
-  Button,
-  Card,
-  CardHeader,
-  CardHeaderTitle,
-  CardContent,
-  Content,
-  CardFooter,
-  CardFooterItem,
-  Media,
-  MediaContent,
-  Title,
-  Subtitle
-} from "bloomer";
-
-import EditResourceModal from "./EditResourceModal";
+import React, { Fragment } from 'react';
+import BootcampResourceCard from './BootcampResourceCard';
+import { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { Link, useHistory, Route } from 'react-router-dom';
 
 const BootcampResourceGet = () => {
   const user = useSelector(state => state.user);
@@ -37,7 +17,7 @@ const BootcampResourceGet = () => {
   });
 
   const fetchResourcesData = async () => {
-    const resourcesEndpoint = "http://localhost:3000/resources/getAllResources";
+    const resourcesEndpoint = 'http://localhost:3000/resources/getAllResources';
     const res = await axios.get(resourcesEndpoint);
     setResources(res.data);
     setResourcesFetched(true);
@@ -60,14 +40,13 @@ const BootcampResourceGet = () => {
     fetchResourcesData();
   }, []);
 
-  console.log("this", resources);
   const history = useHistory();
 
   return (
     <Fragment>
       {user.user_types_id === 2 && (
         <Link to="/resources/submit">
-          <Anchor style={{ fontSize: "2rem" }}>Submit a resource</Anchor>
+          <Anchor style={{ fontSize: '2rem' }}>Submit a resource</Anchor>
         </Link>
       )}
       <ResourceWrapper>
@@ -96,120 +75,31 @@ const BootcampResourceGet = () => {
             //     `/report/resource/${resource.id}/${resource.users_id}`
             //   );
             // };
-
             return (
-              <Card
-                key={i}
-                style={{
-                  maxWidth: "600px",
-                  margin: "20px",
-                  display: "flex",
-                  flexDirection: "column"
-                }}
-              >
-                <CardHeader>
-                  <CardHeaderTitle>{title}</CardHeaderTitle>
-                </CardHeader>
-                <CardContent>
-                  <Media>
-                    <MediaContent hasTextAlign={"left"}>
-                      <Title isSize={5}>Resource Info</Title>
-                      <Subtitle isSize={6}>
-                        <Breadcrumb isSize={`small`} isAlign={"left"}>
-                          <ul>
-                            <BreadcrumbItem>
-                              <Anchor href={resourceURL} target="_blank">
-                                Resource link
-                              </Anchor>
-                            </BreadcrumbItem>
-                            <BreadcrumbItem>
-                              <Link
-                                to={`/report/resource/${resource.id}/${resource.users_id}`}
-                              >
-                                Report
-                              </Link>
-                            </BreadcrumbItem>
-                          </ul>
-                          <ul>
-                            <BreadcrumbItem>
-                              <Link to={`/resources/${resourceId}`}>
-                                Full post
-                              </Link>
-                            </BreadcrumbItem>
-                            <BreadcrumbItem>
-                              &nbsp;&nbsp;
-                              <Moment format="YYYY-MM-DD">{datePosted}</Moment>
-                            </BreadcrumbItem>
-                          </ul>
-                        </Breadcrumb>
-                      </Subtitle>
-                    </MediaContent>
-                    <MediaContent hasTextAlign={"right"}>
-                      <Title isSize={5}>Resource Creator</Title>
-                      <Subtitle isSize={6}>
-                        <Breadcrumb isSize={`small`} isAlign={"right"}>
-                          <ul>
-                            <BreadcrumbItem>
-                              <Link to={`/user/${usersId}`}>
-                                {firstName} {lastName}
-                              </Link>
-                            </BreadcrumbItem>
-                            <BreadcrumbItem>
-                              <a href={`mailto:${email}`} target="_blank">
-                                Email
-                              </a>
-                            </BreadcrumbItem>
-                          </ul>
-                          <ul>
-                            <BreadcrumbItem>
-                              <a href={githubLink} target="_blank">
-                                GitHub
-                              </a>
-                            </BreadcrumbItem>
-                            <BreadcrumbItem>
-                              <a href={linkedinLink} target="_blank">
-                                LinkedIn
-                              </a>
-                            </BreadcrumbItem>
-                          </ul>
-                        </Breadcrumb>
-                      </Subtitle>
-                    </MediaContent>
-                  </Media>
-                  <Content>
-                    <Box>{descriptionShort}</Box>
-                  </Content>
-                  {/* <Content>{descriptionFull}</Content> */}
-                </CardContent>
-                {user.id === usersId ? (
-                  <CardFooter style={{ marginTop: "auto" }}>
-                    <CardFooterItem>
-                      <Button
-                        isColor={`success`}
-                        onClick={e => editResource(e, resource)}
-                      >
-                        Edit
-                      </Button>
-                    </CardFooterItem>
-                    <CardFooterItem>
-                      <Button
-                        isColor={`danger`}
-                        onClick={() => deleteResource(resourceId)}
-                      >
-                        Delete
-                      </Button>
-                    </CardFooterItem>
-                    {editFormActive.resourceId === resource.id ? (
-                      <EditResourceModal
-                        editFormActive={editFormActive}
-                        setEditFormActive={setEditFormActive}
-                        resource={resource}
-                      />
-                    ) : null}
-                  </CardFooter>
-                ) : null}{" "}
-                */}
-              </Card>
+              <Fragment>
+                <BootcampResourceCard
+                  key={i}
+                  title={title}
+                  resourceURL={resourceURL}
+                  cardResource={resource}
+                  resourceId={resourceId}
+                  datePosted={datePosted}
+                  usersId={usersId}
+                  firstName={firstName}
+                  lastName={lastName}
+                  email={email}
+                  githubLink={githubLink}
+                  linkedinLink={linkedinLink}
+                  descriptionShort={descriptionShort}
+                  // descriptionFull={descriptionFull}
+                  user={user}
+                  editResource={editResource}
+                  deleteResource={deleteResource}
+                  editFormActive={editFormActive}
+                  setEditFormActive={setEditFormActive}
+                  fetchResourcesData={fetchResourcesData}
+                />
+              </Fragment>
             );
           })
         ) : (

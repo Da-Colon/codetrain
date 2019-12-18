@@ -37,13 +37,9 @@ router.post("/add", async (req, res) => {
 // Update company
 router.put("/update/:id", async (req, res) => {
   const { id } = req.params;
-  const { column, value } = req.body;
-  const response = await CompaniesModel.updateCompany(id, column, value);
-  if (response.command === "UPDATE" && response.rowCount >= 1) {
-    res.sendStatus(200);
-  } else {
-    res.send(`Could not update ${column} for job id: ${id}`).status(409);
-  }
+  const { email, name, company_url, company_logo_url, description } = req.body;
+  const response = await CompaniesModel.updateCompany(email, name, company_url, company_logo_url, description, id);
+  res.json({ message: "Successfully Updated" }).status(200);
 });
 
 module.exports = router;

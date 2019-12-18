@@ -110,6 +110,7 @@ const ApplicantsData = props => {
   const handleRejection = async (applicantId, jobId) => {
     const endpoint = `http://localhost:3000/job-applications/update-status/${applicantId}/${jobId}`
     const res = await Axios.put(endpoint)
+    getApplicantsByJobId()
     alert('Applicant was rejected.')
   }
 

@@ -2,6 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { useParams, useHistory } from "react-router-dom";
+import { Container } from "bloomer";
+import {
+  Form,
+  Label,
+  Input,
+  Button,
+  Title,
+  TextArea
+} from "../Styles/FormStyles";
 
 const CompanyProfile = () => {
   const company = useSelector(state => state.user);
@@ -13,6 +22,7 @@ const CompanyProfile = () => {
     company_logo_url: "",
     description: ""
   });
+  const [isEditMode, setEditMode] = useState(false);
 
   // This plucks the id from the URL so we can use it in the getCompanyInfo and useEffect functions
   let { id } = useParams();
@@ -24,37 +34,125 @@ const CompanyProfile = () => {
     setCompanyInfo(response.data);
   };
 
-  const history = useHistory()
+  const history = useHistory();
   const postReport = () => {
-    history.push(`/report/company/${companyInfo.id}`)
-  }
+    history.push(`/report/company/${companyInfo.id}`);
+  };
 
   useEffect(() => {
     getCompanyInfo(id);
   }, []);
 
-  return (
-    <card>
-      <h1>Company Name: {companyInfo.name}
-      </h1>
-      {companyInfo.id !== company.companies_id && <button onClick={postReport}>Report {companyInfo.name}</button>}
-      <img src={companyInfo.company_logo_url} alt="company logo" />
-      <h2>
-        Email:{" "}
-        <a href="mailto:{companyInfo.email}">
-          {companyInfo.email}
-        </a>
-      </h2>
-      <h2>
-        Website:{" "}
-        <a href={companyInfo.company_url}>
-          {companyInfo.company_url}
-        </a>
-      </h2>
+  const handleEditMode = e => {
+    e.preventDefault();
+    setEditMode(true);
+  };
 
-      <h2>About: </h2>
-      <p>{companyInfo.description}</p>
-    </card>
+  const handleChange = e => {
+    const { name, value } = e.target;
+    setCompanyInfo({ ...companyInfo, [name]: value });
+  };
+
+  const updateCompany = async (id) => {
+    const endpoint = `http://localhost:3000/companies/update/${id}`
+    const payload = {
+      email: companyInfo.email,
+      name: companyInfo.name,
+      company_url: companyInfo.company_url,
+      company_logo_url: companyInfo.company_logo_url,
+      description: companyInfo.description
+    }
+    const response = await axios.put(endpoint, payload)
+  }
+
+  const handleEditSubmit = e => {
+    e.preventDefault();
+    updateCompany(id)
+    setEditMode(false)
+    history.push(`/company/${id}`)
+  };
+
+  return (
+    <>
+      {isEditMode ? (
+        <Form onSubmit={handleEditSubmit}>
+          <Label>
+            Company Name
+            <Input
+              type="text"
+              placeholder="Company name"
+              name="name"
+              value={companyInfo.name}
+              onChange={handleChange}
+            ></Input>
+          </Label>
+          <Label>
+            Link to Company Logo
+            <Input
+              type="url"
+              placeholder="Link to your company logo"
+              name="company_logo_url"
+              value={companyInfo.company_logo_url}
+              onChange={handleChange}
+            ></Input>
+          </Label>
+          <Label>
+            Company Email
+            <Input
+              type="email"
+              placeholder="Link to your company logo"
+              name="email"
+              value={companyInfo.email}
+              onChange={handleChange}
+            ></Input>
+          </Label>
+          <Label>
+            Company Website
+            <Input
+              type="url"
+              placeholder="Company Website"
+              name="company_url"
+              value={companyInfo.company_url}
+              onChange={handleChange}
+            ></Input>
+          </Label>
+          <Label>
+            About Us
+            <TextArea
+              type="text"
+              placeholder="About Us"
+              name="description"
+              value={companyInfo.description}
+              onChange={handleChange}
+            ></TextArea>
+          </Label>
+          <Button type="submit">Edit Company Profile</Button>
+        </Form>
+      ) : (
+        <Container>
+          {companyInfo.id === company.companies_id ? (
+            <Button onClick={handleEditMode}>Edit Profile</Button>
+          ) : (
+            <></>
+          )}
+          <h1>Company Name: {companyInfo.name}</h1>
+          {companyInfo.id !== company.companies_id && (
+            <button onClick={postReport}>Report {companyInfo.name}</button>
+          )}
+          <img src={companyInfo.company_logo_url} alt="company logo" />
+          <h2>
+            Email: <a href="mailto:{companyInfo.email}">{companyInfo.email}</a>
+          </h2>
+          <h2>
+            Website:{" "}
+            <a href={companyInfo.company_url}>{companyInfo.company_url}</a>
+          </h2>
+
+          <h2>Company Description: </h2>
+          <p>{companyInfo.description}</p>
+        </Container>
+      )}
+    </>
   );
 };
 

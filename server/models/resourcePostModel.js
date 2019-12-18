@@ -18,7 +18,8 @@ const getAllResourcesAndPosters = async () => {
     FROM
 	    posts_resources as pr
     INNER JOIN users ON users.id = pr.users_id
-    WHERE pr.is_deleted = false;
+    WHERE pr.is_deleted = false
+    ORDER BY pr.id;
 `);
 
   try {
