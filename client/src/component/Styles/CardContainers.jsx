@@ -22,7 +22,19 @@ export const MappedItem = styled.li`
 export const CenteredContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-content: center;
+  justify-items: center;
   justify-content: center;
   margin: 10vh 20vw;
+  max-width: 800px;
+`;
+
+export const CardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-items: center;
+  justify-content: center;
+  // margin: 10vh 20vw;
+  max-width: 80vw;
 `;

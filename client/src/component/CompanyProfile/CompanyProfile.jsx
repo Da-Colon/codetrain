@@ -2,7 +2,17 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { useParams, useHistory } from "react-router-dom";
-import { Container } from "bloomer";
+import {
+  Container,
+  Card,
+  CardHeader,
+  CardHeaderTitle,
+  CardImage,
+  CardContent,
+  CardFooter,
+  CardFooterItem,
+  Image
+} from "bloomer";
 import {
   Form,
   Label,
@@ -11,6 +21,9 @@ import {
   Title,
   TextArea
 } from "../Styles/FormStyles";
+import { CardHeaderIcon } from "bloomer/lib/components/Card/Header/CardHeaderIcon";
+import { Anchor } from "../Styles/navStyles";
+import { CardContainer } from "../Styles/CardContainers";
 
 const CompanyProfile = () => {
   const company = useSelector(state => state.user);
@@ -53,23 +66,23 @@ const CompanyProfile = () => {
     setCompanyInfo({ ...companyInfo, [name]: value });
   };
 
-  const updateCompany = async (id) => {
-    const endpoint = `http://localhost:3000/companies/update/${id}`
+  const updateCompany = async id => {
+    const endpoint = `http://localhost:3000/companies/update/${id}`;
     const payload = {
       email: companyInfo.email,
       name: companyInfo.name,
       company_url: companyInfo.company_url,
       company_logo_url: companyInfo.company_logo_url,
       description: companyInfo.description
-    }
-    const response = await axios.put(endpoint, payload)
-  }
+    };
+    const response = await axios.put(endpoint, payload);
+  };
 
   const handleEditSubmit = e => {
     e.preventDefault();
-    updateCompany(id)
-    setEditMode(false)
-    history.push(`/company/${id}`)
+    updateCompany(id);
+    setEditMode(false);
+    history.push(`/company/${id}`);
   };
 
   return (
@@ -129,28 +142,47 @@ const CompanyProfile = () => {
           <Button type="submit">Edit Company Profile</Button>
         </Form>
       ) : (
-        <Container>
-          {companyInfo.id === company.companies_id ? (
-            <Button onClick={handleEditMode}>Edit Profile</Button>
-          ) : (
-            <></>
-          )}
-          <h1>Company Name: {companyInfo.name}</h1>
-          {companyInfo.id !== company.companies_id && (
-            <button onClick={postReport}>Report {companyInfo.name}</button>
-          )}
-          <img src={companyInfo.company_logo_url} alt="company logo" />
-          <h2>
-            Email: <a href="mailto:{companyInfo.email}">{companyInfo.email}</a>
-          </h2>
-          <h2>
-            Website:{" "}
-            <a href={companyInfo.company_url}>{companyInfo.company_url}</a>
-          </h2>
+        <CardContainer>
+          <Card>
+            {companyInfo.id === company.companies_id ? (
+              <Button onClick={handleEditMode}>Edit Profile</Button>
+            ) : (
+              <></>
+            )}
+            <CardHeader>
+              <CardHeaderTitle>
+                Company Name: {companyInfo.name}
+              </CardHeaderTitle>
+            </CardHeader>
+            {companyInfo.id !== company.companies_id && (
+              <button onClick={postReport}>Report {companyInfo.name}</button>
+            )}
+            <CardContent>
+              <CardImage>
+                <Image
+                  isSize="128x128"
+                  src={companyInfo.company_logo_url}
+                  alt="company logo"
+                />
+              </CardImage>
+              <h2>
+                Email:{" "}
+                <Anchor href="mailto:{companyInfo.email}">
+                  {companyInfo.email}
+                </Anchor>
+              </h2>
+              <h2>
+                Website:{" "}
+                <Anchor href={companyInfo.company_url}>
+                  {companyInfo.company_url}
+                </Anchor>
+              </h2>
 
-          <h2>Company Description: </h2>
-          <p>{companyInfo.description}</p>
-        </Container>
+              <h2>Company Description: </h2>
+              <p>{companyInfo.description}</p>
+            </CardContent>
+          </Card>
+        </CardContainer>
       )}
     </>
   );
