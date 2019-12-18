@@ -241,6 +241,14 @@ export default function Reports() {
     history.push(`/company/${id}`)
   }
 
+  const handleViewJobPostClick = id => {
+    history.push(`/jobs/${id}`)
+  }
+
+  const handleViewResourcePostClick = id => {
+    history.push(`/resources/${id}`)
+  }
+
   const handleResolveClick = async id => {
     const response = await axios.post(`${ENDPOINT}/reports/resolve/${id}`);
     if (response.status === 200) {
@@ -604,12 +612,12 @@ export default function Reports() {
                 ""
               )}
               {singleReport.posts_jobs_id !== null ? (
-                <Button style={{ margin: "16px" }}>View Job Post</Button>
+                <Button onClick={() => handleViewJobPostClick(singleReport.posts_jobs_id)} style={{ margin: "16px" }}>View Job Post</Button>
               ) : (
                 ""
               )}
               {singleReport.resource_id !== null ? (
-                <Button style={{ margin: "16px" }}> Resource Post </Button>
+                <Button onClick={() => handleViewResourcePostClick(singleReport.resource_id)} style={{ margin: "16px" }}> Resource Post </Button>
               ) : (
                 ""
               )}
