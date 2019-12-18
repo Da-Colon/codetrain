@@ -34,6 +34,7 @@ import {
 //   resolveIssue
 
 export default function Reports() {
+  const history = useHistory();
   const user = useSelector(state => state.user);
 
   if (user.user_types_id !== 1) {
@@ -231,6 +232,14 @@ export default function Reports() {
     setShowReport(true);
     getTheReport(id);
   };
+
+  const handleViewProfileClick = id => {
+    history.push(`/user/${id}`)
+  }
+
+  const handleViewCompanyProfileClick = id => {
+    history.push(`/company/${id}`)
+  }
 
   const handleResolveClick = async id => {
     const response = await axios.post(`${ENDPOINT}/reports/resolve/${id}`);
@@ -573,15 +582,19 @@ export default function Reports() {
               >
                 Resolve
               </Button>
-              <Button style={{ margin: "16px" }}>View Offender Profile</Button>
-              <Button style={{ margin: "16px" }}>Message Offender</Button>
+              {singleReport.users_id ? (
+                <>
+                <Button onClick={() => handleViewProfileClick(singleReport.users_id)} style={{ margin: "16px" }}>View Offender Profile</Button>
+                <Button style={{ margin: "16px" }}>Message Offender</Button>
+                <Button style={{ margin: "16px" }}>Ban User</Button>
+                </>
+              ) : <></>}
               <Button style={{ margin: "16px" }}>
                 Message Report Submitter
               </Button>
-              <Button style={{ margin: "16px" }}>Ban User</Button>
               {singleReport.companies_id !== null ? (
                 <>
-                  <Button style={{ margin: "16px" }}>
+                  <Button onClick={() => handleViewCompanyProfileClick(singleReport.companies_id)} style={{ margin: "16px" }}>
                     View Company Profile
                   </Button>
                   <Button style={{ margin: "16px" }}>Message Company</Button>
