@@ -2,7 +2,17 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
-import { Container } from "bloomer";
+import {
+  Container,
+  Card,
+  CardHeader,
+  CardHeaderTitle,
+  CardImage,
+  CardContent,
+  CardFooter,
+  CardFooterItem,
+  Image
+} from "bloomer";
 import {
   Form,
   Label,
@@ -11,6 +21,8 @@ import {
   Title,
   TextArea
 } from "../Styles/FormStyles";
+import { Anchor } from "../Styles/navStyles";
+import { CardContainer } from "../Styles/CardContainers";
 
 const UserProfile = () => {
   const user = useSelector(state => state.user);
@@ -150,50 +162,65 @@ const UserProfile = () => {
           <Button type="submit">Edit Your Profile</Button>
         </Form>
       ) : (
-        <Container>
-          {userInfo.id === user.id ? (
-            <Button onClick={handleEditMode}>Edit Your Profile</Button>
-          ) : (
-            <></>
-          )}
-          <h1>
-            User Name: {userInfo.first_name} {userInfo.last_name}
-          </h1>
-          {userInfo.id !== user.id && (
-            <button onClick={postReport}>Report {userInfo.first_name}</button>
-          )}
-          <img src={userInfo.profile_pic_url}></img>
-          <h2>Bootcamp: {userInfo.bootcamp_name}</h2>
-          <h2>
-            Email: <a href="mailto:{userInfo.email}">{userInfo.email}</a>
-          </h2>
-          <h2>
-            Github: <a href={userInfo.github_url}>{userInfo.github_url}</a>
-          </h2>
-          <h2>
-            LinkedIn:{" "}
-            <a href={userInfo.linkedin_url}>{userInfo.linkedin_url}</a>
-          </h2>
-          <h2>
-            Personal Website:{" "}
-            <a href={userInfo.personal_website}>{userInfo.personal_website}</a>
-          </h2>
-
-          <h2>About: </h2>
-          <p>{userInfo.about}</p>
-          <h2>Skills: </h2>
-          {skillsArray ? (
-            <ul>
-              {Object.values(skillsArray).map(skill => {
-                return (
-                  <li style={{ display: "inline", margin: "10px" }}>{skill}</li>
-                );
-              })}
-            </ul>
-          ) : (
-            <></>
-          )}
-        </Container>
+        <CardContainer>
+          <Card>
+            {userInfo.id === user.id ? (
+              <Button onClick={handleEditMode}>Edit Your Profile</Button>
+            ) : (
+              <></>
+            )}
+            <CardHeaderTitle>
+              User Name: {userInfo.first_name} {userInfo.last_name}
+            </CardHeaderTitle>
+            {userInfo.id !== user.id && (
+              <button onClick={postReport}>Report {userInfo.first_name}</button>
+            )}
+            <CardContent>
+              <CardImage>
+                <Image isSize="128x128" src={userInfo.profile_pic_url} />
+              </CardImage>
+              <h2>Bootcamp: {userInfo.bootcamp_name}</h2>
+              <h2>
+                Email:{" "}
+                <Anchor href="mailto:{userInfo.email}">{userInfo.email}</Anchor>
+              </h2>
+              <h2>
+                Github:{" "}
+                <Anchor href={userInfo.github_url}>
+                  {userInfo.github_url}
+                </Anchor>
+              </h2>
+              <h2>
+                LinkedIn:{" "}
+                <Anchor href={userInfo.linkedin_url}>
+                  {userInfo.linkedin_url}
+                </Anchor>
+              </h2>
+              <h2>
+                Personal Website:{" "}
+                <Anchor href={userInfo.personal_website}>
+                  {userInfo.personal_website}
+                </Anchor>
+              </h2>
+              <h2>About: </h2>
+              <p>{userInfo.about}</p>
+              <h2>Skills: </h2>
+              {skillsArray ? (
+                <ul>
+                  {Object.values(skillsArray).map(skill => {
+                    return (
+                      <li style={{ display: "inline", margin: "10px" }}>
+                        {skill}
+                      </li>
+                    );
+                  })}
+                </ul>
+              ) : (
+                <></>
+              )}{" "}
+            </CardContent>
+          </Card>
+        </CardContainer>
       )}
     </>
   );
