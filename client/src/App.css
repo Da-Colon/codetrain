@@ -5,6 +5,7 @@ html {
   color: rgb(26, 25, 25);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: auto;
 }
 *,
 *:before,
