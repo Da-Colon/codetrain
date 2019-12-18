@@ -109,7 +109,7 @@ export default function Messages() {
 
   return (
     <Main>
-      {messages.length === 0 ? (
+      {messages.length === 0 && sentMessages === 0 ? (
         <h1>No Messages</h1>
       ) : (
         <Panel
@@ -148,7 +148,7 @@ export default function Messages() {
             })}
           </PanelBlock>
           ) : ''}
-
+  
           {showSent ? (
 
             <PanelBlock
