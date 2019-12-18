@@ -25,59 +25,56 @@ import {
 const BootcampResourceCard = (props) => {
   let history = useHistory();
 
-  const { 
-    title, 
-    resourceURL, 
-    cardResource, 
-    resourceId, 
-    datePosted, 
-    usersId, 
-    firstName, 
-    lastName, 
-    email, 
-    githubLink, 
-    linkedinLink, 
-    descriptionShort, 
-    descriptionFull, 
-    user, 
+  const {
+    title,
+    resourceURL,
+    cardResource,
+    resourceId,
+    datePosted,
+    usersId,
+    firstName,
+    lastName,
+    email,
+    githubLink,
+    linkedinLink,
+    descriptionShort,
+    descriptionFull,
+    user,
     editResource,
     deleteResource,
     editFormActive,
     setEditFormActive,
-    fetchResourcesData
+    fetchResourcesData,
+    resourceCardStyles
   } = props;
 
   return (
     <Card
-      style={{
-        maxWidth: "600px",
-        margin: "20px",
-        display: "flex",
-        flexDirection: "column"
-      }}
+      style={resourceCardStyles}
     >
       <CardHeader>
-        <CardHeaderTitle>{title}</CardHeaderTitle>
+        <CardHeaderTitle style={{fontSize: '1.5rem'}}>{title}</CardHeaderTitle>
       </CardHeader>
       <CardContent>
         <Media>
           <MediaContent hasTextAlign={"left"}>
-            <Title isSize={5}>Resource Info</Title>
+            <Title isSize={4}>Resource Info</Title>
             <Subtitle isSize={6}>
-              <Breadcrumb isSize={`small`} isAlign={"left"}>
+              <Breadcrumb isSize={`medium`} isAlign={"left"}>
                 <ul>
                   <BreadcrumbItem>
                     <Anchor href={resourceURL} target="_blank">
                       Resource link
               </Anchor>
                   </BreadcrumbItem>
-                  <BreadcrumbItem>
-                    <Link
-                      to={`/report/resource/${cardResource.id}/${cardResource.users_id}`}
-                    >
-                      Report
+                  {cardResource.users_id !== user.id ?
+                    <BreadcrumbItem>
+                      <Link
+                        to={`/report/resource/${cardResource.id}/${cardResource.users_id}`}
+                      >
+                        Report
               </Link>
-                  </BreadcrumbItem>
+                    </BreadcrumbItem> : null}
                 </ul>
                 <ul>
                   <BreadcrumbItem>
@@ -94,9 +91,9 @@ const BootcampResourceCard = (props) => {
             </Subtitle>
           </MediaContent>
           <MediaContent hasTextAlign={"right"}>
-            <Title isSize={5}>Resource Creator</Title>
+            <Title isSize={4}>Resource Creator</Title>
             <Subtitle isSize={6}>
-              <Breadcrumb isSize={`small`} isAlign={"right"}>
+              <Breadcrumb isSize={`medium`} isAlign={"right"}>
                 <ul>
                   <BreadcrumbItem>
                     <Link to={`/user/${usersId}`}>
@@ -130,6 +127,7 @@ const BootcampResourceCard = (props) => {
         </Content>
         <Content>{descriptionFull}</Content>
       </CardContent>
+      {props.BackButton ? props.BackButton() : null}
       {user.id === usersId ? (
         <CardFooter style={{ marginTop: "auto" }}>
           <CardFooterItem>
@@ -145,7 +143,6 @@ const BootcampResourceCard = (props) => {
               isColor={`danger`}
               onClick={() => {
                 deleteResource(resourceId)
-                history.push('/resources')
               }}
             >
               Delete

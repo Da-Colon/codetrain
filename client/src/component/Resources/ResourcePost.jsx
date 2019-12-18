@@ -4,7 +4,10 @@ import BootcampResourceCard from './BootcampResourceCard';
 import styled from "styled-components";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import {Button} from 'bloomer'
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 const ResourcePost = props => {
   const user = useSelector(state => state.user);
@@ -25,9 +28,24 @@ const ResourcePost = props => {
   let history = useHistory();
 
   const deleteResource = async resourceId => {
-    const endpoint = `http://localhost:3000/resources/delete/${resourceId}`;
-    await axios.put(endpoint);
-    history.push('/resources')
+    confirmAlert({
+      title: 'Are you sure?',
+      message: 'Who knows how many people you helped by creating this resource! Please reconsider before clicking Yes. Regardless, thank you for your contribution, and we hope you contribute again soon!',
+      buttons: [
+        {
+          label: 'Delete',
+          onClick: async () => {
+            const endpoint = `http://localhost:3000/resources/delete/${resourceId}`;
+            await axios.put(endpoint);
+            history.push('/resources')
+          }
+        },
+        {
+          label: 'Keep',
+          onClick: () => null
+        }
+      ]
+    });
   };
 
   const editResource = (e, resource) => {
@@ -40,6 +58,15 @@ const ResourcePost = props => {
   useEffect(() => {
     fetchResourcesData();
   }, []);
+
+  const resourceCardStyles = {
+    maxWidth: "1000px",
+    margin: "20px",
+    display: "flex",
+    flexDirection: "column"
+  }
+
+  const BackButton = () => <Link to='/resources' style={{textAlign: 'center', marginBottom: 20}}><Button isColor={'link'} isOutlined>Back to Resources</Button></Link>
 
   return (
     <ResourceWrapper>
@@ -64,9 +91,11 @@ const ResourcePost = props => {
           editFormActive={editFormActive}
           setEditFormActive={setEditFormActive}
           fetchResourcesData={fetchResourcesData}
+          resourceCardStyles={resourceCardStyles}
+          BackButton={BackButton}
         />
       ) : (
-          <p>Loading ...</p>
+          null
         )}
     </ResourceWrapper>
   );

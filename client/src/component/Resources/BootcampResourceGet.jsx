@@ -5,6 +5,9 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { Link, useHistory, Route } from 'react-router-dom';
+import {Title, Button} from 'bloomer';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 const BootcampResourceGet = () => {
   const user = useSelector(state => state.user);
@@ -23,10 +26,25 @@ const BootcampResourceGet = () => {
     setResourcesFetched(true);
   };
 
-  const deleteResource = async resourceId => {
-    const endpoint = `http://localhost:3000/resources/delete/${resourceId}`;
-    await axios.put(endpoint);
-    fetchResourcesData();
+  const deleteResource = resourceId => {
+    confirmAlert({
+      title: 'Are you sure?',
+      message: 'Who knows how many people you helped by creating this resource! Please reconsider before clicking Yes. Regardless, thank you for your contribution, and we hope you contribute again soon!',
+      buttons: [
+        {
+          label: 'Delete',
+          onClick: async () => {
+            const endpoint = `http://localhost:3000/resources/delete/${resourceId}`;
+            await axios.put(endpoint);
+            await fetchResourcesData()
+          }
+        },
+        {
+          label: 'Keep',
+          onClick: () => null
+        }
+      ]
+    });
   };
 
   const editResource = (e, resource) => {
@@ -42,12 +60,17 @@ const BootcampResourceGet = () => {
 
   const history = useHistory();
 
+  const resourceCardStyles = {
+    maxWidth: '600px',
+    margin: '20px',
+    display: 'flex',
+    flexDirection: 'column'
+  };
+
   return (
     <Fragment>
       {user.user_types_id === 2 && (
-        <Link to="/resources/submit">
-          <Anchor style={{ fontSize: '2rem' }}>Submit a resource</Anchor>
-        </Link>
+        <Title isSize={3} style={{textAlign: 'center', marginTop: 30}}><Link to="/resources/submit"><Button isColor={'link'} isOutlined={true}>Submit a resource!</Button></Link></Title>
       )}
       <ResourceWrapper>
         {resourcesFetched ? (
@@ -98,6 +121,7 @@ const BootcampResourceGet = () => {
                   editFormActive={editFormActive}
                   setEditFormActive={setEditFormActive}
                   fetchResourcesData={fetchResourcesData}
+                  resourceCardStyles={resourceCardStyles}
                 />
               </Fragment>
             );

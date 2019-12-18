@@ -35,7 +35,7 @@ CREATE TABLE posts_resources (
     down_votes INTEGER DEFAULT (0),
     title VARCHAR(100),
     categories TEXT [],
-    short_description VARCHAR(400),
+    short_description VARCHAR(800),
     full_description TEXT,
     resource_url TEXT,
     date_posted DATE DEFAULT NOW(),
