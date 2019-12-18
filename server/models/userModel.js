@@ -14,7 +14,8 @@ class User {
     personal_website,
     about,
     skills,
-    companies_id
+    companies_id,
+    profile_pic_url
   ) {
     this.email = email;
     this.password = password;
@@ -28,6 +29,7 @@ class User {
     this.about = about;
     this.skills = skills;
     this.companies_id = companies_id;
+    this.profile_pic_url = profile_pic_url;
   }
 
   //  BCrypt password compare
@@ -56,7 +58,7 @@ class User {
   }
 
   static async getById(id) {
-    const query = `SELECT id, email, first_name, last_name, personal_website, about, skills, github_url, linkedin_url, auth, user_types_id, bootcamp_name, companies_id FROM users WHERE id= ${id}`;
+    const query = `SELECT id, email, first_name, last_name, personal_website, about, skills, github_url, linkedin_url, auth, user_types_id, bootcamp_name, companies_id, profile_pic_url FROM users WHERE id= ${id}`;
     try {
       const response = await db.one(query);
       return response;
@@ -71,11 +73,20 @@ class User {
     personal_website,
     about,
     skills,
-    id
+    id,
+    profile_pic_url
   ) {
     const query = await db.any(
       `UPDATE users SET github_url = $1, linkedin_url = $2, personal_website = $3, about = $4, skills = $5 WHERE id = $6;`,
-      [github_url, linkedin_url, personal_website, about, skills, id]
+      [
+        github_url,
+        linkedin_url,
+        personal_website,
+        about,
+        skills,
+        id,
+        profile_pic_url
+      ]
     );
     try {
       return query;
