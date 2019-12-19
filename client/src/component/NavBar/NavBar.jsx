@@ -61,12 +61,17 @@ const NavBar = () => {
                 <NavLink to="/messages">Messages</NavLink>
               </NavbarItem>
               <NavbarItem>
-                <Link to="" onClick={handleLogout}>Logout</Link>
+                <Link to="" onClick={handleLogout}>
+                  Logout
+                </Link>
               </NavbarItem>
             </>
           ) : // Below items only render for Bootcamp Users
           user.user_types_id === 2 && user.auth === true ? (
             <>
+              <NavbarItem>
+                <NavLink to="/home">Home</NavLink>
+              </NavbarItem>
               <NavbarItem>
                 <NavLink to={`/user/${user.id}`}>Profile</NavLink>
               </NavbarItem>
@@ -89,7 +94,7 @@ const NavBar = () => {
             // Company User NavBar
             <>
               <NavbarItem>
-                <NavLink to={"home"}>Home</NavLink>
+                <NavLink to="/home">Home</NavLink>
               </NavbarItem>
               <NavbarItem>
                 <NavLink to={`/company/${user.companies_id}`}>Company</NavLink>
@@ -113,6 +118,9 @@ const NavBar = () => {
             user.auth === false ? (
             // Not Auth User
             <>
+              <NavbarItem>
+                <NavLink to="/home">Home</NavLink>
+              </NavbarItem>
               <NavbarItem>
                 <NavLink to="/profile">Profile</NavLink>
               </NavbarItem>
