@@ -26,7 +26,7 @@ const JobBoard = () => {
   const fetchJobsData = async () => {
     const endpoint = "http://localhost:3000/posts/jobs";
     const res = await Axios.get(endpoint);
-    const activeJobs = res.data.filter(job => job.is_active === true)
+    const activeJobs = res.data.filter(job => job.is_active === true);
     setJobs(activeJobs);
   };
 
@@ -38,7 +38,9 @@ const JobBoard = () => {
   // mapping over data and passing job data as props to the Job Card which renders job posts
   return (
     <JobCardWrapper>
-      {jobs.map(job => <JobCard key={job.id} data={job} />)}
+      {jobs.map(job => (
+        <JobCard key={job.id} data={job} />
+      ))}
     </JobCardWrapper>
   );
 };
@@ -76,23 +78,25 @@ const JobCard = ({ data }) => {
   //     });
   // };
   const history = useHistory();
-  const handleReportClick = () =>{
-    history.replace(`/report/job/${data.id}/${data.companies_id}/${data.users_id}`)
-  }
+  const handleReportClick = () => {
+    history.replace(
+      `/report/job/${data.id}/${data.companies_id}/${data.users_id}`
+    );
+  };
 
   return (
     <Card style={{ maxWidth: "400px", margin: "20px" }}>
       <CardHeader>
-        <CardHeaderTitle>
-          {data.title}
-        </CardHeaderTitle>
+        <CardHeaderTitle>{data.title}</CardHeaderTitle>
       </CardHeader>
       <CardContent>
         <Content>
           <strong>Company Name: </strong>
-          <Link to={`/company/${companyData.id}`}>{companyData.name}</Link>
-          {console.log('COMPANY INFO: ', companyData)}
-          {console.log('COMPANY CONTACT INFO: ', data)}
+          <Link style={{ color: "blue" }} to={`/company/${companyData.id}`}>
+            {companyData.name}
+          </Link>
+          {console.log("COMPANY INFO: ", companyData)}
+          {console.log("COMPANY CONTACT INFO: ", data)}
         </Content>
         <Content>
           <strong>Date Posted: </strong>
@@ -100,7 +104,9 @@ const JobCard = ({ data }) => {
         </Content>
         <Content>
           <strong>Full post: </strong>
-          <Link to={`/jobs/${data.id}`}>See full post</Link>
+          <Link style={{ color: "blue" }} to={`/jobs/${data.id}`}>
+            See full post
+          </Link>
         </Content>
         <Content>
           <strong>Experience: </strong> {data.experience}
@@ -110,7 +116,9 @@ const JobCard = ({ data }) => {
           {data.contact_email}
         </Content>
         <Content>
-          <Button isColor="primary" onClick={handleReportClick}>Report this job posting</Button>
+          <Button isColor="primary" onClick={handleReportClick}>
+            Report this job posting
+          </Button>
         </Content>
       </CardContent>
     </Card>

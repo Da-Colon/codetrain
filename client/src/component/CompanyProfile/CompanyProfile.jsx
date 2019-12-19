@@ -89,77 +89,74 @@ const CompanyProfile = () => {
   return (
     <>
       {isEditMode ? (
-        <Box style={{margin: "16px"}}>
-          <Title style={{textAlign: "center"}}>Edit Your Profile</Title>
-        <form onSubmit={handleEditSubmit}>
-          <Field>
-
-          <Label>
-            Company Name
-            <Input
-              type="text"
-              placeholder="Company name"
-              name="name"
-              value={companyInfo.name}
-              onChange={handleChange}
-              ></Input>
-          </Label>
-              </Field>
-              <Field>
-
-          <Label>
-            Link to Company Logo
-            <Input
-              type="url"
-              placeholder="Link to your company logo"
-              name="company_logo_url"
-              value={companyInfo.company_logo_url}
-              onChange={handleChange}
-              ></Input>
-          </Label>
-              </Field>
-              <Field>
-
-          <Label>
-            Company Email
-            <Input
-              type="email"
-              placeholder="Link to your company logo"
-              name="email"
-              value={companyInfo.email}
-              onChange={handleChange}
-              ></Input>
-          </Label>
-              </Field>
-              <Field>
-                
-          <Label>
-            Company Website
-            <Input
-              type="url"
-              placeholder="Company Website"
-              name="company_url"
-              value={companyInfo.company_url}
-              onChange={handleChange}
-              ></Input>
-          </Label>
-              </Field>
-              <Field>
-
-          <Label>
-            About Us
-            <TextArea
-              type="text"
-              placeholder="About Us"
-              name="description"
-              value={companyInfo.description}
-              onChange={handleChange}
-              ></TextArea>
-          </Label>
-              </Field>
-          <Button isColor="primary" type="submit">Edit Company Profile</Button>
-        </form>
-            </Box>
+        <Box style={{ margin: "16px" }}>
+          <Title style={{ textAlign: "center" }}>Edit Your Profile</Title>
+          <form onSubmit={handleEditSubmit}>
+            <Field>
+              <Label>
+                Company Name
+                <Input
+                  type="text"
+                  placeholder="Company name"
+                  name="name"
+                  value={companyInfo.name}
+                  onChange={handleChange}
+                ></Input>
+              </Label>
+            </Field>
+            <Field>
+              <Label>
+                Link to Company Logo
+                <Input
+                  type="url"
+                  placeholder="Link to your company logo"
+                  name="company_logo_url"
+                  value={companyInfo.company_logo_url}
+                  onChange={handleChange}
+                ></Input>
+              </Label>
+            </Field>
+            <Field>
+              <Label>
+                Company Email
+                <Input
+                  type="email"
+                  placeholder="Link to your company logo"
+                  name="email"
+                  value={companyInfo.email}
+                  onChange={handleChange}
+                ></Input>
+              </Label>
+            </Field>
+            <Field>
+              <Label>
+                Company Website
+                <Input
+                  type="url"
+                  placeholder="Company Website"
+                  name="company_url"
+                  value={companyInfo.company_url}
+                  onChange={handleChange}
+                ></Input>
+              </Label>
+            </Field>
+            <Field>
+              <Label>
+                About Us
+                <TextArea
+                  type="text"
+                  placeholder="About Us"
+                  name="description"
+                  value={companyInfo.description}
+                  onChange={handleChange}
+                ></TextArea>
+              </Label>
+            </Field>
+            <Button isColor="primary" type="submit">
+              Edit Company Profile
+            </Button>
+          </form>
+        </Box>
       ) : (
         <CardContainer>
           <Card>
@@ -170,7 +167,7 @@ const CompanyProfile = () => {
             )}
             <CardHeader>
               <CardHeaderTitle>
-                Company Name: {companyInfo.name}
+                <strong>Company Name</strong>: {companyInfo.name}
               </CardHeaderTitle>
             </CardHeader>
             {companyInfo.id !== company.companies_id && (
@@ -185,19 +182,21 @@ const CompanyProfile = () => {
                 />
               </CardImage>
               <h2>
-                Email:{" "}
-                <Anchor href="mailto:{companyInfo.email}">
+                <strong>Email</strong>:{" "}
+                <Anchor target="_blank" href="mailto:{companyInfo.email}">
                   {companyInfo.email}
                 </Anchor>
               </h2>
               <h2>
-                Website:{" "}
-                <Anchor href={companyInfo.company_url}>
+                <strong>Website</strong>:{" "}
+                <Anchor target="_blank" href={companyInfo.company_url}>
                   {companyInfo.company_url}
                 </Anchor>
               </h2>
 
-              <h2>Company Description: </h2>
+              <h2>
+                <strong>About</strong>:{" "}
+              </h2>
               <p>{companyInfo.description}</p>
             </CardContent>
           </Card>
