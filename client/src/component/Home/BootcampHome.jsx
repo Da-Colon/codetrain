@@ -6,18 +6,16 @@ import styled from "styled-components";
 
 const BootcampHome = () => (
   <>
-    <Container>
-      <Wrapper>
-        <HackerNews />
-        <TechNews />
-      </Wrapper>
-    </Container>
+    <Wrapper>
+      <HackerNews />
+      <TechNews />
+    </Wrapper>
   </>
 );
 
 const Wrapper = styled.div`
   display: flex;
+  justify-content: space-evenly;
 `;
-
 
 export default BootcampHome;

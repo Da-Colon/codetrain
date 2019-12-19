@@ -37,9 +37,9 @@ const Index = () => {
 };
 
 const Wrapper = styled.div`
-  width: 50%;
+  width: 40%;
   overflow-y: auto;
-  height: 100vh;
+  height: 92vh;
 `
 
 export default Index;
