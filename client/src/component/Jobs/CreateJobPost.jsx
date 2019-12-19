@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import {useHistory} from 'react-router-dom'
 import {
-  Form,
-  Label,
+  Box,
+  Select,
   Input,
-  Button,
+  Field,
+  Label,
   Title,
+  Button,
   TextArea
-} from "../Styles/FormStyles";
+} from "bloomer";
 import axios from "axios";
 
 const CreateJobPost = () => {
@@ -52,13 +54,15 @@ const CreateJobPost = () => {
 
   return (
     <>
-      <Title>Create a Job Post</Title>
       {state.isSubmitted ? (
         <div>
           <h2> Thank you for your submission {state.contact_name}</h2>
         </div>
       ) : (
-        <Form onSubmit={handleSubmit}>
+        <Box style={{margin: "64px"}}>
+        <Title style={{textAlign: "center"}}>Create a Job Post</Title>
+
+        <form onSubmit={handleSubmit} style={{padding: "32px"}}>
           <Label>
             Job Title
             <Input
@@ -67,7 +71,7 @@ const CreateJobPost = () => {
               name="job_title"
               value={state.name}
               onChange={handleChange}
-            ></Input>
+              ></Input>
           </Label>
           <Label>
             Job Description
@@ -76,7 +80,7 @@ const CreateJobPost = () => {
               name="description"
               value={state.description}
               onChange={handleChange}
-            ></TextArea>
+              />
           </Label>
           <Label>
             Experience Desired
@@ -85,7 +89,7 @@ const CreateJobPost = () => {
               name="experience"
               value={state.experience}
               onChange={handleChange}
-            ></TextArea>
+              />
           </Label>
           <Label>
             Contact Email
@@ -95,7 +99,7 @@ const CreateJobPost = () => {
               name="email"
               value={state.email}
               onChange={handleChange}
-            ></Input>
+              ></Input>
           </Label>
           <Label>
             Contact Phone Number
@@ -105,10 +109,11 @@ const CreateJobPost = () => {
               name="phone"
               value={state.phone}
               onChange={handleChange}
-            ></Input>
+              ></Input>
           </Label>
-          <Button type="submit">Create Job</Button>
-        </Form>
+          <Button isColor="primary" type="submit">Create Job</Button>
+        </form>
+      </Box>
       )}
     </>
   );

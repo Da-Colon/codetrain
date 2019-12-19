@@ -2,7 +2,17 @@ import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 
-import { Form, Label, Input, Button as FormButton } from '../Styles/FormStyles';
+// import { Form, Label, Input, Button as FormButton } from '../Styles/FormStyles';
+import {
+  Box,
+  Select,
+  Input,
+  Field,
+  Label,
+  Title,
+  TextArea,
+  Button
+} from "bloomer";
 
 import { Modal, ModalBackground, ModalContent, ModalClose } from 'bloomer';
 
@@ -44,8 +54,10 @@ const EditResourceModal = props => {
   return (
     <Modal isActive={editFormActive}>
       <ModalBackground />
-      <ModalContent style={{ width: '100vw' }}>
-        <Form onSubmit={handleUpdate}>
+      <ModalContent style={{ width: '85vw', backgroundColor: "white", padding: "64px"}}>
+        <form onSubmit={handleUpdate}>
+          <Field>
+
           <Label>
             Resource Title
             <Input
@@ -54,30 +66,39 @@ const EditResourceModal = props => {
               name="title"
               value={editState.title}
               onChange={handleEdit}
-            ></Input>
+              ></Input>
           </Label>
+              </Field>
+              <Field>
+
           <Label>
             Resource Description (short)
-            <textarea
+            <TextArea
               rows="5"
               cols="33"
               placeholder="Short description of resource"
               name="short_description"
               value={editState.short_description}
               onChange={handleEdit}
-            ></textarea>
+              />
           </Label>
+              </Field>
+              <Field>
+
           <Label>
             Resource Description (full)
-            <textarea
+            <TextArea
               rows="5"
               cols="33"
               placeholder="Full description of resource"
               name="full_description"
               value={editState.full_description}
               onChange={handleEdit}
-            ></textarea>
+              />
           </Label>
+              </Field>
+              <Field>
+
           <Label>
             Resource Link (URL)
             <Input
@@ -86,10 +107,11 @@ const EditResourceModal = props => {
               name="resource_url"
               value={editState.resource_url}
               onChange={handleEdit}
-            ></Input>
+              ></Input>
           </Label>
-          <FormButton type="submit">Update Resource</FormButton>
-        </Form>
+              </Field>
+          <Button isColor="primary" type="submit">Update Resource</Button>
+        </form>
       </ModalContent>
       <ModalClose onClick={() => setEditFormActive(false)} />
     </Modal>

@@ -18,13 +18,15 @@ import {
 } from "bloomer";
 import styled from "styled-components";
 import {
-  Form,
-  Label,
+  Box,
+  Select,
   Input,
-  Button,
+  Field,
+  Label,
   Title,
+  Button,
   TextArea
-} from "../Styles/FormStyles";
+} from "bloomer";
 
 const JobPost = props => {
   const user = useSelector(state => state.user);
@@ -125,13 +127,20 @@ const JobPost = props => {
     });
   };
 
+  const handleReportClick = () =>{
+    history.replace(`/report/job/${jobs.id}/${jobs.companies_id}/${jobs.users_id}`)
+  }
 
 
 
   return (
     <>
       {isEditMode ? (
-        <Form onSubmit={handleEditSubmit}>
+        <Box style={{margin: "32px"}}>
+          <Title style={{textAlign: "center"}}>Edit Your Post</Title>
+        <form onSubmit={handleEditSubmit} style={{padding: "32px"}}>
+          <Field>
+
           <Label>
             Job Title
             <Input
@@ -140,8 +149,11 @@ const JobPost = props => {
               name="job_title"
               value={editJobState.job_title}
               onChange={handleChange}
-            ></Input>
+              />
           </Label>
+              </Field>
+              <Field>
+
           <Label>
             Job Description
             <TextArea
@@ -149,8 +161,11 @@ const JobPost = props => {
               name="description"
               value={editJobState.description}
               onChange={handleChange}
-            ></TextArea>
+              />
           </Label>
+              </Field>
+              <Field>
+
           <Label>
             Experience Desired
             <TextArea
@@ -158,8 +173,11 @@ const JobPost = props => {
               name="experience"
               value={editJobState.experience}
               onChange={handleChange}
-            ></TextArea>
+              />
           </Label>
+              </Field>
+              <Field>
+
           <Label>
             Contact Email
             <Input
@@ -168,8 +186,11 @@ const JobPost = props => {
               name="email"
               value={editJobState.email}
               onChange={handleChange}
-            ></Input>
+              />
           </Label>
+              </Field>
+              <Field>
+
           <Label>
             Contact Phone Number
             <Input
@@ -178,11 +199,13 @@ const JobPost = props => {
               name="phone"
               value={editJobState.phone}
               onChange={handleChange}
-            ></Input>
+              />
           </Label>
-          <Button type="submit">Edit Job Post</Button>
-          <Button onClick={handleRemoveJob}>Remove Job Post</Button>
-        </Form>
+              </Field>
+          <Button style={{margin: "8px"}} isColor="primary" type="submit">Edit Job Post</Button>
+          <Button style={{margin: "8px"}} isColor="danger" onClick={handleRemoveJob}>Remove Job Post</Button>
+        </form>
+              </Box>
       ) : (
           <CardFooterItem>
             <Card style={{ maxWidth: "60vw", margin: "20px" }}>
@@ -210,8 +233,8 @@ const JobPost = props => {
                   {jobs.contact_email}
                 </Content>
                 <Content>
-                  <strong>Report: </strong>
-                  <Link to={`/report/job/${jobs.id}/${jobs.companies_id}/${jobs.users_id}`}>Report this job posting</Link>
+        
+                  <Button isColor="primary" onClick={handleReportClick}>Report this job posting</Button>
                 </Content>
               </CardContent>
               <CardFooter>

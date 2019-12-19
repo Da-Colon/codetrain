@@ -10,12 +10,13 @@ import {
   CardHeaderTitle,
   CardContent,
   Content,
+  Button,
   CardFooter,
   CardFooterItem
 } from "bloomer";
 import styled from "styled-components";
 
-import { Button } from "../Styles/FormStyles";
+// import { Button } from "../Styles/FormStyles";
 import { Anchor } from "../Styles/navStyles";
 
 // This component fetches all the data that will populate each job post
@@ -74,6 +75,10 @@ const JobCard = ({ data }) => {
   //       alert("You have already applied for this job.");
   //     });
   // };
+  const history = useHistory();
+  const handleReportClick = () =>{
+    history.replace(`/report/job/${data.id}/${data.companies_id}/${data.users_id}`)
+  }
 
   return (
     <Card style={{ maxWidth: "400px", margin: "20px" }}>
@@ -105,8 +110,7 @@ const JobCard = ({ data }) => {
           {data.contact_email}
         </Content>
         <Content>
-          <strong>Report: </strong>
-          <Link to={`/report/job/${data.id}/${data.companies_id}/${data.users_id}`}>Report this job posting</Link>
+          <Button isColor="primary" onClick={handleReportClick}>Report this job posting</Button>
         </Content>
       </CardContent>
     </Card>

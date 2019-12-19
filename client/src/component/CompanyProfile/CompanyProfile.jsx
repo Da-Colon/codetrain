@@ -11,16 +11,17 @@ import {
   CardContent,
   CardFooter,
   CardFooterItem,
-  Image
-} from "bloomer";
-import {
-  Form,
-  Label,
+  Image,
+  Box,
+  Select,
   Input,
-  Button,
+  Field,
+  Label,
   Title,
-  TextArea
-} from "../Styles/FormStyles";
+  TextArea,
+  Button
+} from "bloomer";
+
 import { CardHeaderIcon } from "bloomer/lib/components/Card/Header/CardHeaderIcon";
 import { Anchor } from "../Styles/navStyles";
 import { CardContainer } from "../Styles/CardContainers";
@@ -88,7 +89,11 @@ const CompanyProfile = () => {
   return (
     <>
       {isEditMode ? (
-        <Form onSubmit={handleEditSubmit}>
+        <Box style={{margin: "16px"}}>
+          <Title style={{textAlign: "center"}}>Edit Your Profile</Title>
+        <form onSubmit={handleEditSubmit}>
+          <Field>
+
           <Label>
             Company Name
             <Input
@@ -97,8 +102,11 @@ const CompanyProfile = () => {
               name="name"
               value={companyInfo.name}
               onChange={handleChange}
-            ></Input>
+              ></Input>
           </Label>
+              </Field>
+              <Field>
+
           <Label>
             Link to Company Logo
             <Input
@@ -107,8 +115,11 @@ const CompanyProfile = () => {
               name="company_logo_url"
               value={companyInfo.company_logo_url}
               onChange={handleChange}
-            ></Input>
+              ></Input>
           </Label>
+              </Field>
+              <Field>
+
           <Label>
             Company Email
             <Input
@@ -117,8 +128,11 @@ const CompanyProfile = () => {
               name="email"
               value={companyInfo.email}
               onChange={handleChange}
-            ></Input>
+              ></Input>
           </Label>
+              </Field>
+              <Field>
+                
           <Label>
             Company Website
             <Input
@@ -127,8 +141,11 @@ const CompanyProfile = () => {
               name="company_url"
               value={companyInfo.company_url}
               onChange={handleChange}
-            ></Input>
+              ></Input>
           </Label>
+              </Field>
+              <Field>
+
           <Label>
             About Us
             <TextArea
@@ -137,10 +154,12 @@ const CompanyProfile = () => {
               name="description"
               value={companyInfo.description}
               onChange={handleChange}
-            ></TextArea>
+              ></TextArea>
           </Label>
-          <Button type="submit">Edit Company Profile</Button>
-        </Form>
+              </Field>
+          <Button isColor="primary" type="submit">Edit Company Profile</Button>
+        </form>
+            </Box>
       ) : (
         <CardContainer>
           <Card>
