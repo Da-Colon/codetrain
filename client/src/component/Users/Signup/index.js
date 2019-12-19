@@ -114,7 +114,7 @@ const SignupForm = () => {
   };
 
   return (
-    <Box style={{ margin: "32px" }}>
+    <Box style={{ margin: "0 auto", maxWidth: '60vw', marginTop: 40 }}>
       <form onSubmit={handleSubmit}>
         <Title style={{ textAlign: "center" }}>Create an Account</Title>
         <Field>
@@ -192,7 +192,7 @@ const SignupForm = () => {
           </Label>
         </Field>
 
-        <Title>Are you part of a Bootcamp or a Company?</Title>
+        <Title isSize={5}>Are you part of a Bootcamp or a Company?</Title>
         <Field>
           <Label>
             <input
@@ -201,7 +201,7 @@ const SignupForm = () => {
               onChange={handleInputChange}
               name="user_type"
               aria-label="Bootcamp"
-            />
+            /> 
             Bootcamp
           </Label>
         </Field>
