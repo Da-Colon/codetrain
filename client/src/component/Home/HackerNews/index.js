@@ -23,7 +23,7 @@ const Index = () => {
   return (
     <Wrapper>
       <Title>HackerNews Top Stories</Title>
-      <ul>
+      { topIds.length > 1 ? <ul>
         {topIds.map(id => {
           return (
             <li key={id}>
@@ -31,7 +31,8 @@ const Index = () => {
             </li>
           );
         })}
-      </ul>
+      </ul> : <p>Loading...</p>}
+      
     </Wrapper>
   );
 };
