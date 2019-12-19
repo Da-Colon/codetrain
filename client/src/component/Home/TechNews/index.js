@@ -22,20 +22,21 @@ const Index = () => {
   return (
     <Wrapper>
       <Title>TechCrunch Top Stories</Title>
-      <ul>
+      { topStories.length > 1 ? <ul>
         {topStories.map((story, i) => (
           <li key={i}>
             <Story data={story} />
           </li>
         ))}
-      </ul>
+      </ul> : <p>Loading...</p>}
+      
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  width: 50%;
+  width: 40%;
   overflow-y: auto;
-  height: 100vh;
+  height: 92vh;
 `;
 export default Index;

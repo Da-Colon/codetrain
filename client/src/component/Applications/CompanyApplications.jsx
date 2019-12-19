@@ -16,7 +16,8 @@ import {
   Label,
   Title,
   TextArea,
-  Button
+  Button,
+  Select
 } from "bloomer";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -24,7 +25,6 @@ import styled from "styled-components";
 const CompanyApplications = () => {
   const user = useSelector(state => state.user);
   const [jobs, setJobs] = useState([]);
-  // const [jobTitle, setJobTitle] = useState();
   const [jobId, setJobId] = useState("");
   const [showApplicants, setShowApplicants] = useState(false);
 
@@ -52,26 +52,44 @@ const CompanyApplications = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <h2>Select a job to display applicants</h2>
-        <select onChange={handleChange} value={jobId}>
-          {jobs.map((job, i) => {
-            return (
-              <option key={i} value={job.id}>
-                {job.title}
-              </option>
-            );
-          })}
-        </select>
-        <button type="submit">See Applicants</button>
-      </form>
+      <FormWrapper>
+        <form
+          onSubmit={handleSubmit}
+          style={{ display: "flex", flexDirection: "column" }}
+        >
+          <h1 style={{ textAlign: "center", fontSize: "300%" }}>
+            Select a job to display applicants
+          </h1>
+          <Field style={{ alignSelf: "center" }}>
+            <Control>
+              <Select onChange={handleChange} value={jobId}>
+                {jobs.map((job, i) => {
+                  return (
+                    <option key={i} value={job.id}>
+                      {job.title}
+                    </option>
+                  );
+                })}
+              </Select>
+            </Control>
+          </Field>
+          <Button isColor="primary" type="submit">
+            See Applicants
+          </Button>
+        </form>
+      </FormWrapper>
 
       <ApplicantCardWrapper>
-        {showApplicants ? <ApplicantsData jobId={jobId} /> : <></>}
+        {showApplicants ? <ApplicantsData jobId={jobId} /> : null}
       </ApplicantCardWrapper>
     </>
   );
 };
+
+const FormWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 const ApplicantsData = props => {
   const user = useSelector(state => state.user);
@@ -141,7 +159,7 @@ const ApplicantsData = props => {
             <Card
               key={applicant.jobId}
               style={{
-                maxWidth: "400px",
+                maxWidth: "375px",
                 margin: "20px",
                 display: "flex",
                 flexDirection: "column"
@@ -162,11 +180,9 @@ const ApplicantsData = props => {
                 </Content>
                 <Content>
                   <strong>Skills:</strong>
-                  <ul style={{ display: "inline", listStyleType: "none" }}>
                     {applicant.skills.map((skill, i) => {
-                      return <li key={i}>{skill}</li>;
+                      return <p key={i} style={{display: "inline"}}>{skill}{" "}</p>;
                     })}
-                  </ul>
                 </Content>
                 <Content>
                   <strong>Github Page:</strong>
@@ -283,5 +299,5 @@ export default CompanyApplications;
 const ApplicantCardWrapper = styled.div`
   display: flex;
   flex-flow: row wrap;
-  justify-content: flex-start;
+  justify-content: space-evenly;
 `;

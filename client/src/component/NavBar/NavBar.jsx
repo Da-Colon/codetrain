@@ -31,7 +31,7 @@ const NavBar = () => {
       style={{
         borderBottom: "solid 0.01rem grey",
         margin: "0",
-        backgroundColor: `${greyLighterColor}`
+        backgroundColor: "#88BBD6"
       }}
     >
       <NavbarBrand>
@@ -61,12 +61,17 @@ const NavBar = () => {
                 <NavLink to="/messages">Messages</NavLink>
               </NavbarItem>
               <NavbarItem>
-                <Link onClick={handleLogout}>Logout</Link>
+                <Link to="" onClick={handleLogout}>
+                  Logout
+                </Link>
               </NavbarItem>
             </>
           ) : // Below items only render for Bootcamp Users
           user.user_types_id === 2 && user.auth === true ? (
             <>
+              <NavbarItem>
+                <NavLink to="/home">Home</NavLink>
+              </NavbarItem>
               <NavbarItem>
                 <NavLink to={`/user/${user.id}`}>Profile</NavLink>
               </NavbarItem>
@@ -80,7 +85,7 @@ const NavBar = () => {
                 <NavLink to="/messages">Messages</NavLink>
               </NavbarItem>
               <NavbarItem>
-                <Link onClick={handleLogout}>
+                <Link to="" onClick={handleLogout}>
                   Logout
                 </Link>
               </NavbarItem>
@@ -89,7 +94,7 @@ const NavBar = () => {
             // Company User NavBar
             <>
               <NavbarItem>
-                <NavLink to={"home"}>Home</NavLink>
+                <NavLink to="/home">Home</NavLink>
               </NavbarItem>
               <NavbarItem>
                 <NavLink to={`/company/${user.companies_id}`}>Company</NavLink>
@@ -104,7 +109,7 @@ const NavBar = () => {
                 <NavLink to="/messages">Messages</NavLink>
               </NavbarItem>
               <NavbarItem>
-                <Link onClick={handleLogout}>
+                <Link to="" onClick={handleLogout}>
                   Logout
                 </Link>
               </NavbarItem>
@@ -114,10 +119,13 @@ const NavBar = () => {
             // Not Auth User
             <>
               <NavbarItem>
+                <NavLink to="/home">Home</NavLink>
+              </NavbarItem>
+              <NavbarItem>
                 <NavLink to="/profile">Profile</NavLink>
               </NavbarItem>
               <NavbarItem>
-                <Link onClick={handleLogout}>
+                <Link to="" onClick={handleLogout}>
                   Logout
                 </Link>
               </NavbarItem>

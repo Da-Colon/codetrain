@@ -47,7 +47,7 @@ const LoginForm = props => {
     <Form onSubmit={handleSubmit} className="form-signin">
       <Title style={{ textAlign: "center" }}>Sign In</Title>
       <Label>
-        Email Adress:
+        Email Address:
         <Input
           className="form-control"
           type="email"

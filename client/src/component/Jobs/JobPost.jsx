@@ -28,6 +28,7 @@ import {
 
 const JobPost = props => {
   const user = useSelector(state => state.user);
+
   const [isEditMode, setEditMode] = useState(false);
   const [jobs, setJobs] = useState([]);
   let history = useHistory();
