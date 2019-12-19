@@ -43,6 +43,6 @@ export const Button = styled.button`
   cursor: pointer;
 `;
 
-export const Anchor = styled.span`
+export const Anchor = styled.a`
   color: blue;
 `;
