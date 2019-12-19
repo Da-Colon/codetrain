@@ -215,8 +215,9 @@ const JobPost = props => {
             </CardContent>
             <CardFooter>
               <CardFooterItem>
+              {console.log(user)}
                 {/* If it's a bootcamp user viewing the job, give them ability to apply. If it's a user representing the company that posted the job, give them the option to apply. */}
-                {user.id === 2 ? (
+                {user.user_types_id === 2 ? (
                   <Button onClick={postApplication}>Apply!</Button>
                 ) : user.companies_id === jobs.companies_id ? (
                   <Button onClick={handleEditMode}>Edit Post</Button>
