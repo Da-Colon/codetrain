@@ -1,6 +1,5 @@
-## Project title
+## CodeTrain
 
-CodeTrain
 An online forum for coding bootcamp students to share learning resources and prospective employers to post their job listings and connect with students.
 
 ## Description
@@ -19,28 +18,28 @@ There are many online resources to learn coding and find job listings, but none 
 
 <b>Built with</b>
 
-- React
+- React:
   Javascript library used to build the frontend client of the application. Primarily built with functional components and react hooks.
 
-- Express and Node.js
+- Express and Node.js:
   Framework used to build the backend server of the application. Models and routes serve as an API for the client.
 
-- PostgreSQL
+- PostgreSQL:
   SQL databases used for all data storage in the application. SQL quereis are used in the models for all CRUD operations. Tables in the DB store user info, resource posts, job listings, applications, messages,and reports.
 
-- React-router
+- React-Router:
   Navigational components used for all page routing throughout the website.
 
-- Redux
+- Redux:
   Application state manager used to store the user data of logged in users and pass it to components throughout the application.
 
-- Passport.js
+- Passport.js:
   Middleware used for user login authentication.
 
-- Bulma/Bloomer
+- Bulma/Bloomer:
   CSS framework used to style many components in the application.
 
-- Styled-components
+- Styled-components:
   React component styling used to create custom unified styling throughout the application.
 
 ## Features
@@ -62,10 +61,10 @@ There are many online resources to learn coding and find job listings, but none 
 ## Installation
 
 Clone or download the repository to your local machine. Install node modules with "npm install" in client and server folders. Run a development environment with the follow scripts:
--Client folder: "npm run start"
--Server folder: "npm run dev"
 
--Create/reset database with schema and seed data: "npm run db:reset"
+- Client folder: "npm run start"
+- Server folder: "npm run dev"
+- Create/reset database with schema and seed data: "npm run db:reset"
 
 ## Tests
 
@@ -73,9 +72,7 @@ Clone or download the repository to your local machine. Install node modules wit
 
 ## Credits
 
-David Colon: https://github.com/Da-Colon
-Daniel Farlow: https://github.com/daniel-farlow
-Nep Orshiso: https://github.com/neporshiso
-Prescott Sun: https://github.com/prescottsun
-
-#### Anything else that seems useful
+- David Colon: https://github.com/Da-Colon
+- Daniel Farlow: https://github.com/daniel-farlow
+- Nep Orshiso: https://github.com/neporshiso
+- Prescott Sun: https://github.com/prescottsun
