@@ -616,18 +616,16 @@ VALUES
     6,
     1
   );
-INSERT INTO reports (users_id, reason)
+INSERT INTO reports (users_id, posts_jobs_id, companies_id, resource_id, reason)
 VALUES
-  (1, 'using the platform to troll beginners');
-INSERT INTO reports (users_id, reason)
-VALUES
-  (1, 'I dont like them');
-INSERT INTO reports (users_id, reason)
-VALUES
-  (3, 'He is weird');
-INSERT INTO reports (companies_id, reason)
-VALUES
-  (
-    1,
-    'bad reputation of taking advatage of new programmers'
-  );
+  (null, null, 1, null, 'They are using the platform to troll beginners'),
+  (null, null, 1, null, 'My Interactions with this company have been bad. On multiple occassions they have been very rude.'),
+
+  (5, 3, 3, null, 'This post sounds fact can you investigate it?'),
+  (5, 3, 3, null, 'This post is sketchy and this recruiter was rude'),
+
+  (1, null, null, 1, 'this was poorly written and the link does not work'),
+  (1, null, null, 10, 'This resource post was uninformative'),
+  (1, null, null, 10, 'Ugh this was such a bad post, please delete'),
+
+  (5, null, 3, null, 'This was a bad recruiter he should lose his job');
