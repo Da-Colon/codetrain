@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Moment from "react-moment";
-
 import axios from "axios";
+import {useHistory} from 'react-router-dom'
 
-import {
-  MainContainer,
-  SmallCard,
-  MappedList,
-  MappedItem
-} from "../Styles/CardContainers";
-import { Title } from "bloomer/lib/elements/Title";
+import { Button, Box, Title, Container, Card } from "bloomer";
+
 
 export default function CompanyHome() {
   const user = useSelector(state => state.user);
+  const history = useHistory();
   
   const [postUsers, setPostUsers] = useState([]);
   const [messages, setMessages] = useState([])
@@ -30,7 +26,7 @@ export default function CompanyHome() {
 
   const getMessages = async () => {
     const response = await axios.get(
-      `${endpoint}/messages/${user.id}`
+      `${endpoint}/messages/all/${user.id}`
     );
     const data = response.data;
     setMessages(data);
@@ -42,49 +38,49 @@ export default function CompanyHome() {
   },[]);
 
   return (
-    <MainContainer>
-      <SmallCard>
+    <Container style={{display: "flex", width: "100%"}}>
+    <Card style={{margin: "32px", width: "50%"}}>
+      <Box style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
         <Title>Recent Applicants</Title>
-        <button>View All Job Posts</button>
+        <Button isColor="primary" onClick={()=> history.push('/jobs')}>View All Job Posts</Button>
+        </Box>
+        <Box style={{overflowY: "scroll", height: "75vh"}}>
         {postUsers.map((post, index, arr) => {
           return (
-            <MappedList key={index}>
+            <Box style={{height: "200px"}} key={index}>
                   <>
-                  <MappedItem>JOB ID: {post.id}</MappedItem>
-                  <MappedItem>JOB TITLE: {post.title}</MappedItem>
-                  <MappedItem>
-                    Applicant Name: {post.first_name} {post.last_name}
-                    <button> View Profile</button>
-                  </MappedItem>
-                  <MappedItem>Date Applied: <Moment format="YYYY-MM-DD">{post.date_applied}</Moment></MappedItem>
-                  <MappedItem>Status: {(!post.rejected && !post.accepted) ? '<pending>' : (post.rejected) ? 'rejected' : (post.accepted) ? 'approved' : ''}</MappedItem>
+                  <Title isSize={5}>JOB #: {post.id}</Title>
+                  <p><strong>JOB TITLE:</strong> {post.title}</p>
+                  <p>
+                  <strong>Applicant Name:</strong> {post.first_name} {post.last_name}
+                  </p>
+                  <p><strong>Date Applied:</strong> <Moment format="YYYY-MM-DD">{post.date_applied}</Moment></p>
+                  <p><strong>Status:</strong> {(!post.rejected && !post.accepted) ? '<pending>' : (post.rejected) ? 'rejected' : (post.accepted) ? 'approved' : ''}</p>
                 </>
-                <hr />
-                {/* ) }  */}
-            </MappedList>
+            </Box>
           );
         })}
-      </SmallCard>
-
-      <SmallCard>
+        </Box>
+      </Card>
+      <Card style={{margin: "32px", width: "50%"}}>
+      <Box style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
         <Title>Messages</Title>
-        <button>View All Messages</button>
+        <Button isColor="primary" onClick={() => history.push(`/messages`)}>View All Messages</Button>
+        </Box>
+        <Box style={{overflowY: "scroll", height: "75vh"}}>
         {messages.map((message, index) => {
           return(
-          <MappedList key={index}>
+            <Box style={{display: "flex", flexDirection: "column", height: "200px"}} key={index}>
 
-            <MappedItem>From: {message.first_name} {message.last_name}</MappedItem>
-            <MappedItem>Date Sent: <Moment format="YYYY-MM-DD">{message.date_sent}</Moment></MappedItem>
-            <MappedItem>Subject: {message.subject}</MappedItem>
-            <button>View Message</button>
-
-
-          </MappedList>
+            <Title isSize={5} >From: {message.first_name} {message.last_name}</Title>
+            <p>Date Sent: <Moment format="YYYY-MM-DD">{message.date_sent}</Moment></p>
+            <p>Subject: {message.subject}</p>
+            <Button isColor="primary" onClick={() => history.push(`/messages/${message.id}`)} style={{width: "fit-content", margin: "0 auto"}}>View Message</Button>
+          </Box>
           )
         })}
-        
-      </SmallCard>
-
-    </MainContainer>
+        </Box>
+    </Card>
+    </Container>
   );
 }
