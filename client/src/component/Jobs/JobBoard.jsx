@@ -85,18 +85,14 @@ const JobCard = ({ data }) => {
   };
 
   return (
-    <Card style={{ maxWidth: "400px", margin: "20px" }}>
+    <Card style={{ maxWidth: "400px", margin: "20px", display: 'flex', flexDirection: 'column'}}>
       <CardHeader>
         <CardHeaderTitle>{data.title}</CardHeaderTitle>
       </CardHeader>
       <CardContent>
         <Content>
           <strong>Company Name: </strong>
-          <Link style={{ color: "blue" }} to={`/company/${companyData.id}`}>
-            {companyData.name}
-          </Link>
-          {console.log("COMPANY INFO: ", companyData)}
-          {console.log("COMPANY CONTACT INFO: ", data)}
+          <Link to={`/company/${companyData.id}`}>{companyData.name}</Link>
         </Content>
         <Content>
           <strong>Date Posted: </strong>
@@ -115,20 +111,20 @@ const JobCard = ({ data }) => {
           <strong>Contact Email: </strong>
           {data.contact_email}
         </Content>
-        <Content>
-          <Button isColor="primary" onClick={handleReportClick}>
-            Report this job posting
-          </Button>
-        </Content>
       </CardContent>
+      <CardFooter style={{marginTop: 'auto'}}>
+      <CardFooterItem>
+        <Button isColor="primary" onClick={handleReportClick}>Report this job posting</Button>
+      </CardFooterItem>
+    </CardFooter>
     </Card>
   );
 };
 
 const JobCardWrapper = styled.div`
   display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-start;
+  flex-wrap: wrap;
+  justify-content: space-around;
 `;
 
 export default JobBoard;
