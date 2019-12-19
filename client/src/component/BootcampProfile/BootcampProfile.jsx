@@ -11,16 +11,17 @@ import {
   CardContent,
   CardFooter,
   CardFooterItem,
-  Image
-} from "bloomer";
-import {
-  Form,
-  Label,
+  Image,
+  Box,
+  Select,
   Input,
-  Button,
+  Field,
+  Label,
   Title,
-  TextArea
-} from "../Styles/FormStyles";
+  TextArea,
+  Button
+} from "bloomer";
+
 import { Anchor } from "../Styles/navStyles";
 import { CardContainer } from "../Styles/CardContainers";
 
@@ -98,69 +99,84 @@ const UserProfile = () => {
   return (
     <>
       {isEditMode ? (
-        <Form onSubmit={handleEditSubmit}>
-          <Label>
-            Profile Pic URL
-            <Input
-              type="url"
-              placeholder="Profile Pic URL"
-              name="profile_pic_url"
-              value={userInfo.profile_pic_url}
-              onChange={handleChange}
-            ></Input>
-          </Label>
-          <Label>
-            Github Profile
-            <Input
-              type="url"
-              placeholder="Github Profile URL"
-              name="github_url"
-              value={userInfo.github_url}
-              onChange={handleChange}
-            ></Input>
-          </Label>
-          <Label>
-            LinkedIn Profile
-            <Input
-              type="url"
-              placeholder="LinkedIn Profile"
-              name="linkedin_url"
-              value={userInfo.linkedin_url}
-              onChange={handleChange}
-            ></Input>
-          </Label>
-          <Label>
-            Personal Website
-            <Input
-              type="url"
-              placeholder="Your Personal Website"
-              name="personal_website"
-              value={userInfo.personal_website}
-              onChange={handleChange}
-            ></Input>
-          </Label>
-          <Label>
-            About Me
-            <TextArea
-              type="text"
-              placeholder="About Me"
-              name="about"
-              value={userInfo.about}
-              onChange={handleChange}
-            ></TextArea>
-          </Label>
-          <Label>
-            Skills
-            <TextArea
-              type="text"
-              placeholder="Skills"
-              name="skills"
-              value={userInfo.skills}
-              onChange={handleChange}
-            ></TextArea>
-          </Label>
-          <Button type="submit">Edit Your Profile</Button>
-        </Form>
+        <Box style={{margin: "16px"}}>
+          <Title style={{textAlign: "center"}}>Edit Your Profile</Title>
+          <form onSubmit={handleEditSubmit} style={{padding: "32px"}}>
+            <Field>
+              <Label>
+                Profile Pic URL
+                <Input
+                  type="url"
+                  placeholder="Profile Pic URL"
+                  name="profile_pic_url"
+                  value={userInfo.profile_pic_url}
+                  onChange={handleChange}
+                ></Input>
+              </Label>
+            </Field>
+            <Field>
+              <Label>
+                Github Profile
+                <Input
+                  type="url"
+                  placeholder="Github Profile URL"
+                  name="github_url"
+                  value={userInfo.github_url}
+                  onChange={handleChange}
+                ></Input>
+              </Label>
+            </Field>
+            <Field>
+              <Label>
+                LinkedIn Profile
+                <Input
+                  type="url"
+                  placeholder="LinkedIn Profile"
+                  name="linkedin_url"
+                  value={userInfo.linkedin_url}
+                  onChange={handleChange}
+                ></Input>
+              </Label>
+            </Field>
+            <Field>
+              <Label>
+                Personal Website
+                <Input
+                  type="url"
+                  placeholder="Your Personal Website"
+                  name="personal_website"
+                  value={userInfo.personal_website}
+                  onChange={handleChange}
+                ></Input>
+              </Label>
+            </Field>
+            <Field>
+              <Label>
+                About Me
+                <TextArea
+                  type="text"
+                  placeholder="About Me"
+                  name="about"
+                  value={userInfo.about}
+                  onChange={handleChange}
+                />
+              </Label>
+            </Field>
+            <Field>
+              <Label>
+                Skills
+                <TextArea
+                  type="text"
+                  placeholder="Skills"
+                  name="skills"
+                  value={userInfo.skills}
+                  onChange={handleChange}
+                />
+              </Label>
+            </Field>
+            <Button isColor="primary" type="submit">Edit Your Profile</Button>
+          </form>
+        </Box>
       ) : (
         <CardContainer>
           <Card>
