@@ -1,7 +1,7 @@
 ## Project title
 
 CodeTrain
-A online forum for coding bootcamp students to share learning resources and prospective employers to post their job listings and connect with students.
+An online forum for coding bootcamp students to share learning resources and prospective employers to post their job listings and connect with students.
 
 ## Description
 
@@ -9,58 +9,54 @@ A community of coding bootcamp students and employers looking to hire new develo
 
 ## Motivation
 
+There are many online resources to learn coding and find job listings, but none designed specifically for current and former coding bootcamp students. With the rising popularity of these bootcamps, we wanted to create a
+
 ## Challenges and Solutions
-
-## Build status
-
-Build status of continus integration i.e. travis, appveyor etc. Ex. -
-
-[![Build Status](https://travis-ci.org/akashnimare/foco.svg?branch=master)](https://travis-ci.org/akashnimare/foco)
-[![Windows Build Status](https://ci.appveyor.com/api/projects/status/github/akashnimare/foco?branch=master&svg=true)](https://ci.appveyor.com/project/akashnimare/foco/branch/master)
-
-## Code style
-
-If you're using any code style like xo, standard etc. That will help others while contributing to your project. Ex. -
-
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
 
 ## Screenshots
 
 Include logo/demo screenshot etc.
 
-## Tech/framework used
-
-Ex. -
+## Technology used
 
 <b>Built with</b>
-React
+-React
 Javascript library used to build the frontend client of the application. Primarily built with functional components and react hooks.
 
-Redux
-Used to store the user data of logged in users and pass it to components throughout the application.
+-Express and Node.js
+Framework used to build the backend server of the application. Models and routes serve as an API for the client.
 
-React-router
-Used for all page routing throughout the website.
-
-Node.JS and Express
-Used to build the backend server of the application. Models and routes were created to serve as an API for the client.
-
-PostgreSQL
+-PostgreSQL
 SQL databases used for all data storage in the application. SQL quereis are used in the models for all CRUD operations. Tables in the DB store user info, resource posts, job listings, applications, messages,and reports.
 
-Passport.js
+-React-router
+Navigational components used for all page routing throughout the website.
+
+-Redux
+Application state manager used to store the user data of logged in users and pass it to components throughout the application.
+
+-Passport.js
 Middleware used for user login authentication.
 
-Bulma
-CSS framework
+-Bulma/Bloomer
+CSS framework used to style many components in the application.
 
-Styled-components
+-Styled-components
+React component styling used to create custom unified styling throughout the application.
 
 ## Features
 
-Three different user types/roles (student, company, admin) with unique functionality and views for each.
+-Three different user roles (student, company, admin) with unique functionality and views for each.
 
-Full range of CRUD actions available for
+-User account creation and logins with user authentication.
+
+-Personal user and company profile pages to share user and contact information
+
+-Board of learning resource posts and job listings with full create, read, update, and delete actions available.
+
+-Bootcampers can apply to job listings. Company users can review applicants' qualifications and reject or accept them to go forward in the hiring process.
+
+-User messaging and reporting system. Users can send and reply to messages from other users. Regular users can report issues to be resolved by admin users.
 
 ## Code Example
 
@@ -68,11 +64,11 @@ Show what the library does as concisely as possible, developers should be able t
 
 ## Installation
 
-Provide step by step series of examples and explanations about how to get a development env running.
+Clone or download the repository to your local machine. Install node modules with "npm install" in client and server folders. Run a development environment with the follow scripts:
+-Client folder: "npm run start"
+-Server folder: "npm run dev"
 
-## API Reference
-
-Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
+-Create/reset database with seed data: "npm run db:reset"
 
 ## Tests
 
@@ -82,18 +78,8 @@ Describe and show how to run the tests with code examples.
 
 If people like your project they’ll want to learn how they can use it. To do so include step by step guide to use your project.
 
-## Contribute
-
-Let people know how they can contribute into your project. A [contributing guideline](https://github.com/zulip/zulip-electron/blob/master/CONTRIBUTING.md) will be a big plus.
-
 ## Credits
 
 Give proper credits. This could be a link to any repo which inspired you to build this project, any blogposts or links to people who contrbuted in this project.
 
 #### Anything else that seems useful
-
-## License
-
-A short snippet describing the license (MIT, Apache etc)
-
-MIT © [Yourname]()
