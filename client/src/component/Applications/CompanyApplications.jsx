@@ -17,7 +17,8 @@ import {
   Title,
   TextArea,
   Button,
-  Select
+  Select,
+  Box
 } from "bloomer";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -235,57 +236,61 @@ const ApplicantsData = props => {
         })
       ) : showMessage ? (
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <Title isSize={4}>Reply to {messageApplicant.first_name}</Title>
-          <form onSubmit={handleSubmit}>
-            <Field>
-              <Label>Send To</Label>
-              <Control>
-                <Input
-                  type="text"
-                  placeholder={
-                    messageApplicant.first_name +
-                    " " +
-                    messageApplicant.last_name
-                  }
-                  name="receiver"
-                  aria-label="receiver"
-                  disabled
-                />
-              </Control>
-            </Field>
+          <Box style={{ margin: "32px" }}>
+            <Title style={{ textAlign: "center" }} isSize={4}>
+              Reply to {messageApplicant.first_name}
+            </Title>
+            <form onSubmit={handleSubmit} style={{ padding: "32px 128px" }}>
+              <Field>
+                <Label>Send To</Label>
+                <Control>
+                  <Input
+                    type="text"
+                    placeholder={
+                      messageApplicant.first_name +
+                      " " +
+                      messageApplicant.last_name
+                    }
+                    name="receiver"
+                    aria-label="receiver"
+                    disabled
+                  />
+                </Control>
+              </Field>
 
-            <Field>
-              <Label>Subject</Label>
-              <Control>
-                <Input
-                  type="text"
-                  onChange={handleChange}
-                  name="subject"
-                  aria-label="subject"
-                />
-              </Control>
-            </Field>
+              <Field>
+                <Label>Subject</Label>
+                <Control>
+                  <Input
+                    type="text"
+                    onChange={handleChange}
+                    name="subject"
+                    aria-label="subject"
+                  />
+                </Control>
+              </Field>
 
-            <Field>
-              <Label>Message</Label>
-              <Control>
-                <TextArea
-                  type="textarea"
-                  onChange={handleChange}
-                  name="message"
-                  aria-label="message"
-                />
-              </Control>
-            </Field>
+              <Field>
+                <Label>Message</Label>
+                <Control>
+                  <TextArea
+                    type="textarea"
+                    onChange={handleChange}
+                    name="message"
+                    aria-label="message"
+                  />
+                </Control>
+              </Field>
 
-            <Field isGrouped>
-              <Control>
-                <Button type="submit" isColor="primary">
-                  Submit
-                </Button>
-              </Control>
-            </Field>
-          </form>
+              <Field isGrouped>
+                <Control>
+                  <Button type="submit" isColor="primary">
+                    Submit
+                  </Button>
+                </Control>
+              </Field>
+            </form>
+          </Box>
         </div>
       ) : (
         ""

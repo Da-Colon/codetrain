@@ -1,6 +1,25 @@
 import React, { useState } from "react";
 
-import { Form, Label, Input, Button, Title } from "../../Styles/FormStyles";
+// import { Form, Label, Input, Button, Title } from "../../Styles/FormStyles";
+import {
+  Card,
+  Box,
+  Panel,
+  PanelBlock,
+  PanelHeading,
+  PanelIcon,
+  PanelTab,
+  PanelTabs,
+  Control,
+  Select,
+  Input,
+  Field,
+  Label,
+  Title,
+  TextArea,
+  Button,
+  Icon
+} from "bloomer";
 import Axios from "axios";
 
 const CreateCompany = props => {
@@ -36,7 +55,9 @@ const CreateCompany = props => {
       {state.isSubmitted ? (
         <p>Your company was added</p>
       ) : (
-        <Form>
+        <form>
+          <Field>
+            
           <Label>
             Company Email
             <Input
@@ -45,8 +66,11 @@ const CreateCompany = props => {
               name="email"
               value={state.email}
               onChange={handleChange}
-            />
+              />
           </Label>
+              </Field>
+              <Field>
+
           <Label>
             Company Name
             <Input
@@ -54,10 +78,11 @@ const CreateCompany = props => {
               name="name"
               value={state.name}
               onChange={handleChange}
-            />
+              />
           </Label>
+              </Field>
           <Button onClick={handleSubmit}>Add Company</Button>
-        </Form>
+        </form>
       )}
     </>
   );

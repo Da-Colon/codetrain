@@ -1,8 +1,18 @@
 import React, {Fragment, useState} from 'react';
 import {useSelector} from 'react-redux';
 import axios from "axios";
-import { Form, Label, Input, Button, Title } from '../Styles/FormStyles'
+// import { Form, Label, Input, Button, Title } from '../Styles/FormStyles'
 import {useHistory} from 'react-router-dom';
+import {
+  Box,
+  Select,
+  Input,
+  Field,
+  Label,
+  Title,
+  TextArea,
+  Button
+} from "bloomer";
 
 const BootcampResourcePost = () => {
   const user = useSelector(state => state.user);
@@ -41,13 +51,16 @@ const BootcampResourcePost = () => {
   }
 
   return ( 
-    <Fragment>
+    <Box style={{margin: "32px"}}>
     {state.resourceSubmitted ? (
-      <div>
+      <Box>
         <Title>Thank you for submitting a resource!</Title>
-      </div>
+      </Box>
     ) : (
-      <Form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
+      <Title style={{textAlign: "center"}}>Submit Your Resource</Title>
+        <Field>
+
         <Label>
           Resource Title
           <Input
@@ -56,30 +69,39 @@ const BootcampResourcePost = () => {
             name="title"
             value={state.title}
             onChange={handleChange}
-          ></Input>
+            ></Input>
         </Label>
+            </Field>
+            <Field>
+
         <Label>
           Resource Description (short)
-          <textarea
+          <TextArea
             rows="5"
             cols="33"
             placeholder="Short description of resource"
             name="short_description"
             value={state.short_description}
             onChange={handleChange}
-          ></textarea>
+            />
         </Label>
+            </Field>
+            <Field>
+
         <Label>
           Resource Description (full)
-          <textarea
+          <TextArea
             rows="5"
             cols="33"
             placeholder="Full description of resource"
             name="full_description"
             value={state.full_description}
             onChange={handleChange}
-          ></textarea>
+            />
         </Label>
+            </Field>
+            <Field>
+
         <Label>
           Resource Link (URL)
           <Input
@@ -88,12 +110,13 @@ const BootcampResourcePost = () => {
             name="resource_url"
             value={state.resource_url}
             onChange={handleChange}
-          ></Input>
+            ></Input>
         </Label>
-        <Button type="submit">Submit Resource</Button>
-      </Form>
+            </Field>
+        <Button isColor="primary" type="submit">Submit Resource</Button>
+      </form>
     )}
-    </Fragment>
+    </Box>
   );
 }
  
