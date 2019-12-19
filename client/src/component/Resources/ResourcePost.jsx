@@ -66,7 +66,7 @@ const ResourcePost = props => {
     flexDirection: "column"
   }
 
-  const BackButton = () => <Link to='/resources' style={{textAlign: 'center', marginBottom: 20}}><Button isColor={'link'} isOutlined>Back to Resources</Button></Link>
+  const BackButton = () => <Link to='/resources' style={{textAlign: 'center', marginBottom: 20}}><Button isColor={'link'} isOutlined>See All Resources</Button></Link>
 
   return (
     <ResourceWrapper>
