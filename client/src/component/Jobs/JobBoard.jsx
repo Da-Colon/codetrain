@@ -86,36 +86,35 @@ const JobCard = ({ data }) => {
   return (
     <Card style={{ maxWidth: "400px", margin: "20px" }}>
       <CardHeader>
-        <Link to={`/jobs/${data.id}`}>
-          <CardHeaderTitle>
-            {data.title} &nbsp; <Anchor>See full post</Anchor>
-          </CardHeaderTitle>
-        </Link>
-        <Link
-          to={`/report/job/${data.id}/${data.companies_id}/${data.users_id}`}
-        >
-          Report Job
-        </Link>
+        <CardHeaderTitle>
+          {data.title}
+        </CardHeaderTitle>
       </CardHeader>
       <CardContent>
         <Content>
-          <strong>Date Posted:</strong>
+          <strong>Company Name: </strong>
+          <Link to={`/company/${companyData.id}`}>{companyData.name}</Link>
+          {console.log('COMPANY INFO: ', companyData)}
+          {console.log('COMPANY CONTACT INFO: ', data)}
+        </Content>
+        <Content>
+          <strong>Date Posted: </strong>
           <Moment format="YYYY-MM-DD">{data.date_posted}</Moment>
         </Content>
-        {/* <Content>
-          <strong>Job Description: </strong>
-          {data.content}
-        </Content> */}
         <Content>
-          <strong>Experience:</strong> {data.experience}
+          <strong>Full post: </strong>
+          <Link to={`/jobs/${data.id}`}>See full post</Link>
         </Content>
         <Content>
-          <strong>Company Name:</strong>
-          <Link to={`/company/${companyData.id}`}>{companyData.name}</Link>
+          <strong>Experience: </strong> {data.experience}
         </Content>
         <Content>
-          <strong>Contact Email:</strong>
+          <strong>Contact Email: </strong>
           {data.contact_email}
+        </Content>
+        <Content>
+          <strong>Report: </strong>
+          <Link to={`/report/job/${data.id}/${data.companies_id}/${data.users_id}`}>Report this job posting</Link>
         </Content>
       </CardContent>
       <CardFooter>
