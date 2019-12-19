@@ -99,9 +99,9 @@ const UserProfile = () => {
   return (
     <>
       {isEditMode ? (
-        <Box style={{margin: "16px"}}>
-          <Title style={{textAlign: "center"}}>Edit Your Profile</Title>
-          <form onSubmit={handleEditSubmit} style={{padding: "32px"}}>
+        <Box style={{ margin: "16px" }}>
+          <Title style={{ textAlign: "center" }}>Edit Your Profile</Title>
+          <form onSubmit={handleEditSubmit} style={{ padding: "32px" }}>
             <Field>
               <Label>
                 Profile Pic URL
@@ -174,7 +174,9 @@ const UserProfile = () => {
                 />
               </Label>
             </Field>
-            <Button isColor="primary" type="submit">Edit Your Profile</Button>
+            <Button isColor="primary" type="submit">
+              Edit Your Profile
+            </Button>
           </form>
         </Box>
       ) : (
@@ -186,7 +188,8 @@ const UserProfile = () => {
               <></>
             )}
             <CardHeaderTitle>
-              User Name: {userInfo.first_name} {userInfo.last_name}
+              <strong>User Name</strong>: {userInfo.first_name}{" "}
+              {userInfo.last_name}
             </CardHeaderTitle>
             {userInfo.id !== user.id && (
               <button onClick={postReport}>Report {userInfo.first_name}</button>
@@ -195,32 +198,40 @@ const UserProfile = () => {
               <CardImage>
                 <Image isSize="128x128" src={userInfo.profile_pic_url} />
               </CardImage>
-              <h2>Bootcamp: {userInfo.bootcamp_name}</h2>
               <h2>
-                Email:{" "}
-                <Anchor href="mailto:{userInfo.email}">{userInfo.email}</Anchor>
+                <strong>Bootcamp</strong>: {userInfo.bootcamp_name}
               </h2>
               <h2>
-                Github:{" "}
-                <Anchor href={userInfo.github_url}>
+                <strong>Email</strong>:{" "}
+                <Anchor target="_blank" href="mailto:{userInfo.email}">
+                  {userInfo.email}
+                </Anchor>
+              </h2>
+              <h2>
+                <strong>Github</strong>:{" "}
+                <Anchor target="_blank" href={userInfo.github_url}>
                   {userInfo.github_url}
                 </Anchor>
               </h2>
               <h2>
-                LinkedIn:{" "}
-                <Anchor href={userInfo.linkedin_url}>
+                <strong>LinkedIn</strong>:{" "}
+                <Anchor target="_blank" href={userInfo.linkedin_url}>
                   {userInfo.linkedin_url}
                 </Anchor>
               </h2>
               <h2>
-                Personal Website:{" "}
-                <Anchor href={userInfo.personal_website}>
+                <strong>Personal Website</strong>:{" "}
+                <Anchor target="_blank" href={userInfo.personal_website}>
                   {userInfo.personal_website}
                 </Anchor>
               </h2>
-              <h2>About: </h2>
+              <h2>
+                <strong>About</strong>:{" "}
+              </h2>
               <p>{userInfo.about}</p>
-              <h2>Skills: </h2>
+              <h2>
+                <strong>Skills</strong>:{" "}
+              </h2>
               {skillsArray ? (
                 <ul>
                   {Object.values(skillsArray).map(skill => {

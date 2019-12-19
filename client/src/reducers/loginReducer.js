@@ -17,9 +17,9 @@
 // const developmentCid = null;
 
 // company credentials (hmnep@gmail.com)
-const developmentType = 3;
+const developmentType = 2;
 const developmentAuth = true;
-const developmentid = 6;
+const developmentid = 1;
 const developmentCid = 1;
 
 const initialState = {
