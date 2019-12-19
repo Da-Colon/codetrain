@@ -151,7 +151,7 @@ The first challenge was in finding a way to pursue this beautiful discipline but
     TRUE,
     3,
     NULL,
-    3,
+    1,
     'https://randomuser.me/api/portraits/women/5.jpg'
   ),
   (
@@ -432,68 +432,88 @@ INSERT INTO posts_jobs (
   )
 VALUES
   (
-    'Job Post 1',
-    'Lorem tempor quis in occaecat cupidatat amet sit. Ex sint cupidatat aute ea. Officia sit do consectetur deserunt consectetur occaecat enim aute. Nisi nisi sint mollit eu. Dolore laboris deserunt exercitation consequat voluptate pariatur ea duis mollit adipisicing sit ipsum incididunt. Consectetur anim aliquip exercitation commodo. Sunt sit culpa proident ex. Nostrud dolor cillum ullamco exercitation aliquip excepteur sint ex excepteur ipsum. Culpa laborum voluptate aliquip aliquip occaecat ea. Non ut aliqua aliqua ad ipsum velit id nulla commodo. In dolor aute mollit cupidatat id ipsum enim exercitation cillum pariatur. Occaecat et ut amet eu enim velit nisi velit qui est eu et reprehenderit occaecat. Ea enim enim velit occaecat magna amet eu do amet exercitation. Aliquip et sint cillum sit. Fugiat ad ex quis id nisi. Officia qui nostrud laborum labore laborum do sint occaecat pariatur reprehenderit aute aliqua magna cillum. Eiusmod cupidatat officia enim nisi aute veniam sit excepteur ex fugiat amet sint tempor do. Excepteur incididunt amet ullamco minim dolore commodo cupidatat sit duis. Ipsum anim quis sit sint aute aliqua sit Lorem amet.',
-    'Adipisicing Lorem in excepteur sint occaecat minim commodo minim incididunt minim qui ea.',
-    'company@email.com',
-    '1-867-5309',
-    3,
-    5
-  ),
-  (
-    'Job Post 2',
-    'Lorem tempor quis in occaecat cupidatat amet sit. Ex sint cupidatat aute ea. Officia sit do consectetur deserunt consectetur occaecat enim aute. Nisi nisi sint mollit eu. Dolore laboris deserunt exercitation consequat voluptate pariatur ea duis mollit adipisicing sit ipsum incididunt. Consectetur anim aliquip exercitation commodo. Sunt sit culpa proident ex. Nostrud dolor cillum ullamco exercitation aliquip excepteur sint ex excepteur ipsum. Culpa laborum voluptate aliquip aliquip occaecat ea. Non ut aliqua aliqua ad ipsum velit id nulla commodo. In dolor aute mollit cupidatat id ipsum enim exercitation cillum pariatur. Occaecat et ut amet eu enim velit nisi velit qui est eu et reprehenderit occaecat. Ea enim enim velit occaecat magna amet eu do amet exercitation. Aliquip et sint cillum sit. Fugiat ad ex quis id nisi. Officia qui nostrud laborum labore laborum do sint occaecat pariatur reprehenderit aute aliqua magna cillum. Eiusmod cupidatat officia enim nisi aute veniam sit excepteur ex fugiat amet sint tempor do. Excepteur incididunt amet ullamco minim dolore commodo cupidatat sit duis. Ipsum anim quis sit sint aute aliqua sit Lorem amet.',
-    'Adipisicing Lorem in excepteur sint occaecat minim commodo minim incididunt minim qui ea.',
-    'company@email.com',
-    '1-867-5309',
-    1,
-    5
-  ),
-  (
-    'Job Post 3',
-    'Lorem tempor quis in occaecat cupidatat amet sit. Ex sint cupidatat aute ea. Officia sit do consectetur deserunt consectetur occaecat enim aute. Nisi nisi sint mollit eu. Dolore laboris deserunt exercitation consequat voluptate pariatur ea duis mollit adipisicing sit ipsum incididunt. Consectetur anim aliquip exercitation commodo. Sunt sit culpa proident ex. Nostrud dolor cillum ullamco exercitation aliquip excepteur sint ex excepteur ipsum. Culpa laborum voluptate aliquip aliquip occaecat ea. Non ut aliqua aliqua ad ipsum velit id nulla commodo. In dolor aute mollit cupidatat id ipsum enim exercitation cillum pariatur. Occaecat et ut amet eu enim velit nisi velit qui est eu et reprehenderit occaecat. Ea enim enim velit occaecat magna amet eu do amet exercitation. Aliquip et sint cillum sit. Fugiat ad ex quis id nisi. Officia qui nostrud laborum labore laborum do sint occaecat pariatur reprehenderit aute aliqua magna cillum. Eiusmod cupidatat officia enim nisi aute veniam sit excepteur ex fugiat amet sint tempor do. Excepteur incididunt amet ullamco minim dolore commodo cupidatat sit duis. Ipsum anim quis sit sint aute aliqua sit Lorem amet.',
-    'Adipisicing Lorem in excepteur sint occaecat minim commodo minim incididunt minim qui ea.',
-    'company@email.com',
-    '1-867-5309',
-    2,
-    5
-  ),
-  (
-    'Job Post 4',
-    'Lorem tempor quis in occaecat cupidatat amet sit. Ex sint cupidatat aute ea. Officia sit do consectetur deserunt consectetur occaecat enim aute. Nisi nisi sint mollit eu. Dolore laboris deserunt exercitation consequat voluptate pariatur ea duis mollit adipisicing sit ipsum incididunt. Consectetur anim aliquip exercitation commodo. Sunt sit culpa proident ex. Nostrud dolor cillum ullamco exercitation aliquip excepteur sint ex excepteur ipsum. Culpa laborum voluptate aliquip aliquip occaecat ea. Non ut aliqua aliqua ad ipsum velit id nulla commodo. In dolor aute mollit cupidatat id ipsum enim exercitation cillum pariatur. Occaecat et ut amet eu enim velit nisi velit qui est eu et reprehenderit occaecat. Ea enim enim velit occaecat magna amet eu do amet exercitation. Aliquip et sint cillum sit. Fugiat ad ex quis id nisi. Officia qui nostrud laborum labore laborum do sint occaecat pariatur reprehenderit aute aliqua magna cillum. Eiusmod cupidatat officia enim nisi aute veniam sit excepteur ex fugiat amet sint tempor do. Excepteur incididunt amet ullamco minim dolore commodo cupidatat sit duis. Ipsum anim quis sit sint aute aliqua sit Lorem amet.',
-    'Adipisicing Lorem in excepteur sint occaecat minim commodo minim incididunt minim qui ea.',
-    'company@email.com',
+    '.Net core and .Net core 2 one CRUD page',
+    'We need to build one page to manage CRUD for one Entity
+
+The main components are:
+
+- Grid of records: where user can filter/sort and delete records
+
+- Add new record
+
+- Edit exist record
+
+The entity has the following fields (11 fields):
+
+- ID: text, max length 25 characters
+
+- Name: text, max length 50 characters
+
+- Description: text, max length 255 characters
+
+- Pillar: Drop-down (few options, read from Pillars table)
+
+- Category: Drop-down (many options, read from Categories table, and filters based on selected Pillar)
+
+- Sub Category: Drop-down (many options, read from Sub_Categories table, and filters based on selected Category)
+
+- Unit: Drop-down (few options, read from Units table)
+
+- Source: Drop-down (few options, read from Sources table)
+
+- Form: Drop-down (few options, read from Sources table)
+
+- Expression: text, max length 255 characters
+
+- YTD Expression: text, max length 255 characters',
+    'Technologies:
+
+- .Net core 2+ (C#)
+
+- Angular 6+
+
+- Bootstrap 4',
+    'hmnep@gmail.com',
     '1-867-5309',
     1,
     6
   ),
   (
-    'Job Post 5',
-    'Lorem tempor quis in occaecat cupidatat amet sit. Ex sint cupidatat aute ea. Officia sit do consectetur deserunt consectetur occaecat enim aute. Nisi nisi sint mollit eu. Dolore laboris deserunt exercitation consequat voluptate pariatur ea duis mollit adipisicing sit ipsum incididunt. Consectetur anim aliquip exercitation commodo. Sunt sit culpa proident ex. Nostrud dolor cillum ullamco exercitation aliquip excepteur sint ex excepteur ipsum. Culpa laborum voluptate aliquip aliquip occaecat ea. Non ut aliqua aliqua ad ipsum velit id nulla commodo. In dolor aute mollit cupidatat id ipsum enim exercitation cillum pariatur. Occaecat et ut amet eu enim velit nisi velit qui est eu et reprehenderit occaecat. Ea enim enim velit occaecat magna amet eu do amet exercitation. Aliquip et sint cillum sit. Fugiat ad ex quis id nisi. Officia qui nostrud laborum labore laborum do sint occaecat pariatur reprehenderit aute aliqua magna cillum. Eiusmod cupidatat officia enim nisi aute veniam sit excepteur ex fugiat amet sint tempor do. Excepteur incididunt amet ullamco minim dolore commodo cupidatat sit duis. Ipsum anim quis sit sint aute aliqua sit Lorem amet.',
-    'Adipisicing Lorem in excepteur sint occaecat minim commodo minim incididunt minim qui ea.',
-    'company@email.com',
+    'For 2020 All-round awesome Front-end developer for start-up',
+    'We are looking for an all-round awesome Front End developer who is creative, has a good eye for UI/UX, works fast, is detailed oriented and can meet deadlines.
+
+You need a strong command of HTML/CSS/JS/Bootstrap.
+
+They have a solid understanding of React/Angular/VueJS.
+
+You must have experience building responsive websites ([login to view URL] compatible).
+
+If you are passionate about sustainability and social impact, then this will be a great project for you.',
+    'We are looking for someone who can work with CSS, HTML5, Javascript, and Angular.js',
+    'hmnep@gmail.com',
     '1-867-5309',
-    2,
-    5
+    1,
+    6
   ),
   (
-    'Job Post 6',
-    'Lorem tempor quis in occaecat cupidatat amet sit. Ex sint cupidatat aute ea. Officia sit do consectetur deserunt consectetur occaecat enim aute. Nisi nisi sint mollit eu. Dolore laboris deserunt exercitation consequat voluptate pariatur ea duis mollit adipisicing sit ipsum incididunt. Consectetur anim aliquip exercitation commodo. Sunt sit culpa proident ex. Nostrud dolor cillum ullamco exercitation aliquip excepteur sint ex excepteur ipsum. Culpa laborum voluptate aliquip aliquip occaecat ea. Non ut aliqua aliqua ad ipsum velit id nulla commodo. In dolor aute mollit cupidatat id ipsum enim exercitation cillum pariatur. Occaecat et ut amet eu enim velit nisi velit qui est eu et reprehenderit occaecat. Ea enim enim velit occaecat magna amet eu do amet exercitation. Aliquip et sint cillum sit. Fugiat ad ex quis id nisi. Officia qui nostrud laborum labore laborum do sint occaecat pariatur reprehenderit aute aliqua magna cillum. Eiusmod cupidatat officia enim nisi aute veniam sit excepteur ex fugiat amet sint tempor do. Excepteur incididunt amet ullamco minim dolore commodo cupidatat sit duis. Ipsum anim quis sit sint aute aliqua sit Lorem amet.',
-    'Adipisicing Lorem in excepteur sint occaecat minim commodo minim incididunt minim qui ea.',
-    'company@email.com',
+    'Integrate MailChimp with Web Application',
+    'We are an HR Tech startup. We need to integrate our core application with MailChimp using standard MailChimp APIs. Looking for a developer who has prior experience with MailChimp APIs and can start work immediately. Our application is an AWS native application built using MEAN stack. We are based out of Bangalore.',
+    'Mailchimp, AWS Lambda, MongoDB, Amazon App Development, Javascript',
+    'hmnep@gmail.com',
     '1-867-5309',
-    3,
-    4
+    1,
+    6
   ),
   (
-    'Job Post 7',
-    'Lorem tempor quis in occaecat cupidatat amet sit. Ex sint cupidatat aute ea. Officia sit do consectetur deserunt consectetur occaecat enim aute. Nisi nisi sint mollit eu. Dolore laboris deserunt exercitation consequat voluptate pariatur ea duis mollit adipisicing sit ipsum incididunt. Consectetur anim aliquip exercitation commodo. Sunt sit culpa proident ex. Nostrud dolor cillum ullamco exercitation aliquip excepteur sint ex excepteur ipsum. Culpa laborum voluptate aliquip aliquip occaecat ea. Non ut aliqua aliqua ad ipsum velit id nulla commodo. In dolor aute mollit cupidatat id ipsum enim exercitation cillum pariatur. Occaecat et ut amet eu enim velit nisi velit qui est eu et reprehenderit occaecat. Ea enim enim velit occaecat magna amet eu do amet exercitation. Aliquip et sint cillum sit. Fugiat ad ex quis id nisi. Officia qui nostrud laborum labore laborum do sint occaecat pariatur reprehenderit aute aliqua magna cillum. Eiusmod cupidatat officia enim nisi aute veniam sit excepteur ex fugiat amet sint tempor do. Excepteur incididunt amet ullamco minim dolore commodo cupidatat sit duis. Ipsum anim quis sit sint aute aliqua sit Lorem amet.',
-    'Adipisicing Lorem in excepteur sint occaecat minim commodo minim incididunt minim qui ea.',
-    'company@email.com',
+    'Angular Developer',
+    'As developer for the Web, he/she must know about HTTP (and siblings), HTML, CSS, JavaScript, JQuery, Ajax, JSON, multiple browsers (and their individual differences), tools, and programs that deal with Web communications. You must know about the human cognition, basic psychology, and logic sorting. You should also have good common sense and must know about all technologies offerings in accessibility and usability, interaction principles, MVC (Model-View-Controller pattern) separation, languages for creating interfaces, and generally tool kits, tools and programs that deal with the interface.',
+    'HTTP, HTM, CSS, JavaScript, JQuery, Ajax, JSON',
+    'hmnep@gmail.com',
     '1-867-5309',
-    3,
-    4
+    1,
+    6
   );
+
 -- JOB APPLICATIONS
 INSERT INTO job_applications (users_id, posts_jobs_id)
 VALUES
@@ -507,15 +527,8 @@ VALUES
   (2, 3),
   (3, 3),
   (1, 4),
-  (2, 4),
-  (1, 5),
-  (2, 5),
-  (3, 5),
-  (2, 6),
-  (3, 6),
-  (1, 7),
-  (2, 7),
-  (3, 7);
+  (2, 4);
+
 -- PRIVATE MESSAGES
 INSERT INTO private_messages(subject, message, sent_from, sent_to)
 VALUES

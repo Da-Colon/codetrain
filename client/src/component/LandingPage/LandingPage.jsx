@@ -7,7 +7,7 @@ import { Anchor } from "../Styles/navStyles";
 const LandingPage = () => {
   return (
     <CenteredContainer>
-      <Content>
+      <Content style={{fontSize: '1.35rem'}}>
         <h1>
           <strong>Welcome to CodeTrain</strong>
         </h1>
