@@ -21,7 +21,7 @@ const Post = props => {
   const dateToFormat = postData.time;
 
   return (
-    <Box>
+    <Box style={{margin: "1rem"}}>
       <p>
          <a href={postData.url} target="_blank">{postData.title}</a> 
       </p>
