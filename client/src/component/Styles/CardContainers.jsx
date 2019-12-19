@@ -35,6 +35,6 @@ export const CardContainer = styled.div`
   align-content: center;
   justify-items: center;
   justify-content: center;
-  // margin: 10vh 20vw;
-  max-width: 80vw;
+  margin: 10vh 10vw;
+  // max-width: ;
 `;

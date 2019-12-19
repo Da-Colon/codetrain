@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import Axios from "axios";
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import {
   Card,
   CardHeader,
@@ -102,11 +104,28 @@ const JobPost = props => {
 
   const handleRemoveJob = async e => {
     e.preventDefault()
-    const endpoint = `http://localhost:3000/posts/jobs/delete/${props.match.params.job_id}`
-    const response = await Axios.put(endpoint);
-    alert("Job Post Deleted")
-    history.push(`/jobs`)
-  }
+    confirmAlert({
+      title: 'Are you sure?',
+      message: 'You will not be able to recover this job posting once it has been removed.',
+      buttons: [
+        {
+          label: 'Delete',
+          onClick: async () => {
+            const endpoint = `http://localhost:3000/posts/jobs/delete/${props.match.params.job_id}`
+            const response = await Axios.put(endpoint);
+            history.push(`/jobs`)
+          }
+        },
+        {
+          label: 'Keep',
+          onClick: () => null
+        }
+      ]
+    });
+  };
+
+
+
 
   return (
     <>
@@ -164,52 +183,51 @@ const JobPost = props => {
           <Button onClick={handleRemoveJob}>Remove Job Post</Button>
         </Form>
       ) : (
-        <CardFooterItem>
-          <Card style={{ maxWidth: "60vw", margin: "20px" }}>
-            <CardHeader>
-              <CardHeaderTitle>{jobs.title}</CardHeaderTitle>
-              <Link
-            to={`/report/job/${jobs.id}/${jobs.companies_id}/${jobs.users_id}`}
-          >
-            Report Job
-          </Link>
-            </CardHeader>
-            <CardContent>
-              <Content>
-                <strong>Date Posted: </strong>
-                <Moment format="YYYY-MM-DD">{jobs.date_posted}</Moment>
-              </Content>
-              <Content>
-                <strong>Job Description: </strong>
-                {jobs.content}
-              </Content>
-              <Content>
-                <strong>Experience:</strong> {jobs.experience}
-              </Content>
-              <Content>
-                <strong>Company Name: </strong>
-                <Link to={`/company/${jobs.companies_id}`}>{jobs.name}</Link>
-              </Content>
-              <Content>
-                <strong>Contact Email: </strong>
-                {jobs.contact_email}
-              </Content>
-            </CardContent>
-            <CardFooter>
-              <CardFooterItem>
-                {/* If it's a bootcamp user viewing the job, give them ability to apply. If it's a user representing the company that posted the job, give them the option to apply. */}
-                {user.id === 2 ? (
-                  <Button onClick={postApplication}>Apply!</Button>
-                ) : user.companies_id === jobs.companies_id ? (
-                  <Button onClick={handleEditMode}>Edit Post</Button>
-                ) : (
-                  <></>
-                )}
-              </CardFooterItem>
-            </CardFooter>
-          </Card>
-        </CardFooterItem>
-      )}
+          <CardFooterItem>
+            <Card style={{ maxWidth: "60vw", margin: "20px" }}>
+              <CardHeader>
+                <CardHeaderTitle>{jobs.title}</CardHeaderTitle>
+              </CardHeader>
+              <CardContent>
+                <Content>
+                  <strong>Company Name: </strong>
+                  <Link to={`/company/${jobs.companies_id}`}>{jobs.name}</Link>
+                </Content>
+                <Content>
+                  <strong>Date Posted: </strong>
+                  <Moment format="YYYY-MM-DD">{jobs.date_posted}</Moment>
+                </Content>
+                <Content>
+                  <strong>Job Description: </strong>
+                  {jobs.content}
+                </Content>
+                <Content>
+                  <strong>Experience:</strong> {jobs.experience}
+                </Content>
+                <Content>
+                  <strong>Contact Email: </strong>
+                  {jobs.contact_email}
+                </Content>
+                <Content>
+                  <strong>Report: </strong>
+                  <Link to={`/report/job/${jobs.id}/${jobs.companies_id}/${jobs.users_id}`}>Report this job posting</Link>
+                </Content>
+              </CardContent>
+              <CardFooter>
+                <CardFooterItem>
+                  {/* If it's a bootcamp user viewing the job, give them ability to apply. If it's a user representing the company that posted the job, give them the option to apply. */}
+                  {user.user_types_id === 2 ? (
+                    <Button onClick={postApplication}>Apply!</Button>
+                  ) : user.companies_id === jobs.companies_id ? (
+                    <Button onClick={handleEditMode}>Edit Post</Button>
+                  ) : (
+                        <></>
+                      )}
+                </CardFooterItem>
+              </CardFooter>
+            </Card>
+          </CardFooterItem>
+        )}
     </>
   );
 };
