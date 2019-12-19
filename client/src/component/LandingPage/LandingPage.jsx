@@ -12,10 +12,10 @@ const LandingPage = () => {
           <strong>Welcome to CodeTrain</strong>
         </h1>
         <p>
-          A community of bootcamp students and employers looking to hire new
-          developers. Bootcamper students can share learning resources with each
-          other and apply to job posts. Company representatives can list their
-          job opprtunities here and connect with bootcampers.
+          A community of coding bootcamp students and employers looking to hire
+          new developers. Bootcamper students can share learning resources with
+          each other and apply to jobs posted here. Company representatives can
+          list their job opprtunities here and connect with bootcampers.
         </p>
         <br />
         <Link to="/resources">

@@ -9,7 +9,7 @@ export default function Home() {
   const user = useSelector(state => state.user);
 
   return (
-    <div>
+    <>
       {user.user_types_id === 1 && user.auth === true ? (
         <AdminHome />
       ) : user.user_types_id === 2 && user.auth === true ? (
@@ -23,6 +23,6 @@ export default function Home() {
         // <></>
         window.location.replace("/")
       )}
-    </div>
+    </>
   );
 }

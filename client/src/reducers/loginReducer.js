@@ -1,13 +1,3 @@
-// const developmentType = 2;
-// const developmentAuth = true;
-// const developmentid = 6;
-// const developmentCid = 3;
-
-// const developmentType = 3;
-// const developmentAuth = true;
-// const developmentid = 2;
-// const developmentCid = null;
-
 const developmentType = null;
 const developmentAuth = null;
 const developmentid = null;

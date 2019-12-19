@@ -56,7 +56,7 @@ const App = () => {
             exact
           />
           <Route path="/applications" component={Applications} exact />
-          <Route path="/messages" component={Messages} exact />
+          <Route path="/messages/:user_id?" component={Messages} exact />
           <Route path="/user/:id" component={BootcampProfile} exact />
           <Route path="/company/:id" component={CompanyProfile} exact />
           <Route path="/jobs" component={Jobs} exact />

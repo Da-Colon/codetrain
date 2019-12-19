@@ -2,8 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Moment from "react-moment";
 import axios from "axios";
-import { SideBar, Main, Message } from "../Styles/messageStyles";
+import { useHistory, useParams } from "react-router-dom";
+
+import { Main, Message } from "../Styles/messageStyles";
 import {
+  Card,
+  Box,
   Panel,
   PanelBlock,
   PanelHeading,
@@ -19,13 +23,12 @@ import {
   Button,
   Icon
 } from "bloomer";
-import { useHistory } from "react-router-dom";
 
 export default function Messages() {
   const user = useSelector(state => state.user);
   const [messages, setMessages] = useState([]);
-  const [sentMessages, setSentMessages] = useState([])
-  const [message, setMessage] = useState([]);
+  const [sentMessages, setSentMessages] = useState([]);
+  const [singleMessage, setMessage] = useState([{ id: "" }]);
   const [showMessage, setShowMessage] = useState(false);
   const [showSent, setShowSent] = useState(false);
   const [showInbox, setShowInbox] = useState(true);
@@ -38,15 +41,20 @@ export default function Messages() {
   });
 
   const endpoint = "http://localhost:3000";
+  let { user_id } = useParams();
 
   const getMessages = async () => {
-    const inboxMessages = await axios.get(`${endpoint}/messages/all/${user.id}`);
+    const inboxMessages = await axios.get(
+      `${endpoint}/messages/all/${user.id}`
+    );
     const inboxData = inboxMessages.data;
     setMessages(inboxData);
 
-    const getSentMessages = await axios.get(`${endpoint}/messages/sent/${user.id}`);
+    const getSentMessages = await axios.get(
+      `${endpoint}/messages/sent/${user.id}`
+    );
     const sentData = getSentMessages.data;
-    setSentMessages(sentData)
+    setSentMessages(sentData);
   };
 
   const showMessageAndReplyForm = async message_id => {
@@ -56,8 +64,15 @@ export default function Messages() {
     setShowMessage(true);
   };
 
+  const ShowMessageParam = id => {
+    showMessageAndReplyForm(id);
+  };
+
   useEffect(() => {
     getMessages();
+    if (user_id) {
+      ShowMessageParam(user_id);
+    }
   }, []);
 
   const handleSubmit = async e => {
@@ -66,6 +81,7 @@ export default function Messages() {
     if (send.status === 200) {
       alert("Message Sent");
       setShowMessage(false);
+      getMessages();
     } else {
       alert("There was a problem sending the message please try again later");
     }
@@ -76,7 +92,7 @@ export default function Messages() {
     setSendMessage({
       ...sendMessage,
       [name]: value,
-      sent_from: message[0].sent_from,
+      sent_from: singleMessage[0].sent_from,
       sent_to: user.id,
       sent_from_companies_id: user.companies_id
     });
@@ -88,22 +104,20 @@ export default function Messages() {
   };
 
   const handleSentTabClick = () => {
-    setShowSent(true)
+    setShowSent(true);
     setShowInbox(false);
-  }
+  };
 
-  const handleInboxTabClick  = () => {
+  const handleInboxTabClick = () => {
     setShowInbox(true);
-    setShowSent(false)
-  }
-
-  
+    setShowSent(false);
+  };
 
   const history = useHistory();
   const postReport = e => {
     e.preventDefault();
     history.push(
-      `/report/user/${message[0].id}/${message[0].sent_from_companies_id}`
+      `/report/user/${singleMessage[0].id}/${singleMessage[0].sent_from_companies_id}`
     );
   };
 
@@ -123,85 +137,131 @@ export default function Messages() {
         >
           <PanelHeading>Messages</PanelHeading>
           <PanelTabs>
-            <PanelTab isActive={showInbox} onClick={handleInboxTabClick}>Inbox</PanelTab>
-            <PanelTab isActive={showSent} onClick={handleSentTabClick}>Sent</PanelTab>
+            <PanelTab isActive={showInbox} onClick={handleInboxTabClick}>
+              Inbox
+            </PanelTab>
+            <PanelTab isActive={showSent} onClick={handleSentTabClick}>
+              Sent
+            </PanelTab>
           </PanelTabs>
-          {showInbox ? (
-          <PanelBlock
-            style={{ display: "flex", flexDirection: "column" }}
-          >
-            {messages.map((message, index) => {
-              return (
-                <ul key={message.id} onClick={() => handleClick(message.id)} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                  <li>
-                    <PanelIcon className="fa fa-code-fork" />
-                    From: {message.first_name} {message.last_name}
-                  </li>
-                  <li>
-                    Date Sent:
-                    <Moment format="YYYY-MM-DD">{message.date_sent}</Moment>
-                  </li>
-                  <li>Subject: {message.subject}</li>
-                  <hr />
-                </ul>
-              );
-            })}
-          </PanelBlock>
-          ) : ''}
-  
+          {showInbox
+            ? messages.map((message, index) => {
+                return (
+                  <PanelBlock
+                    key={index}
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      backgroundColor:
+                        message.id === singleMessage[0].id
+                          ? "lightgrey"
+                          : "unset"
+                    }}
+                  >
+                    <ul
+                      key={message.id}
+                      onClick={() => handleClick(message.id)}
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "flex-start",
+                        marginLeft: "8px"
+                      }}
+                    >
+                      <li>
+                        <strong>
+                          From: {message.first_name} {message.last_name}
+                        </strong>
+                      </li>
+                      <li>
+                        <strong>Date Sent:</strong>
+                        <Moment format="YYYY-MM-DD">{message.date_sent}</Moment>
+                      </li>
+                      <li>
+                        <strong>Subject:</strong> {message.subject}
+                      </li>
+                    </ul>
+                  </PanelBlock>
+                );
+              })
+            : ""}
           {showSent ? (
-
-            <PanelBlock
-            style={{ display: "flex", flexDirection: "column" }}
-            >
-            {sentMessages.map((message, index) => {
-              return (
-                <ul key={message.id} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                <li>
-                To: {message.first_name} {message.last_name}
-                </li>
-                <li>
-                Date Sent:
-                <Moment format="YYYY-MM-DD">{message.date_sent}</Moment>
-                </li>
-                <li>Subject: {message.subject}</li>
-                <hr />
-                </ul>
+            <PanelBlock style={{ display: "flex", flexDirection: "column" }}>
+              {sentMessages.map((message, index) => {
+                return (
+                  <ul
+                    key={message.id}
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "flex-start",
+                      marginLeft: "8px"
+                    }}
+                  >
+                    <li>
+                      <strong>
+                        To: {message.first_name} {message.last_name}
+                      </strong>
+                    </li>
+                    <li>
+                      <strong>Date Sent:</strong>
+                      <Moment format="YYYY-MM-DD">{message.date_sent}</Moment>
+                    </li>
+                    <li>
+                      <strong>Subject:</strong> {message.subject}
+                    </li>
+                    <hr />
+                  </ul>
                 );
               })}
-          </PanelBlock>
-        ) : ''}
+            </PanelBlock>
+          ) : (
+            ""
+          )}
+          ;
         </Panel>
       )}
       {showMessage ? (
-        <Message style={{ position: "relative", left: "300px", overflowY: "scroll", overflowX: "hidden", height: "86vh" }}>
-          {message.map((message, index) => {
+        <Message
+          style={{
+            position: "relative",
+            left: "300px",
+            overflowY: "scroll",
+            overflowX: "hidden",
+            height: "90vh",
+            margin: "0 auto",
+            width: "80vw",
+            padding: "32px"
+          }}
+        >
+          {singleMessage.map((message, index) => {
             return (
-              <ul key={message.id}>
-                <li>
-                  {message.first_name} {message.last_name}
-                  <button onClick={postReport}>
+              <Box key={message.id}>
+                <Title>
+                  {message.first_name} {message.last_name}{" "}
+                  <Button onClick={postReport}>
                     Report {message.first_name}
-                  </button>
-                </li>
-                <li>
+                  </Button>
+                </Title>
+                <p>
                   Date Sent:
                   <Moment format="YYYY-MM-DD">{message.date_sent}</Moment>
-                </li>
-                <li>Subject: {message.subject}</li>
-                <li>{message.message}</li>
-                <hr />
-              </ul>
+                </p>
+                <p>Subject: {message.subject}</p>
+                <Box style={{ padding: "16px", margin: "16px" }}>
+                  {message.message}
+                </Box>
+              </Box>
             );
           })}
-          <Title isSize={4}>Reply to {message[0].first_name}</Title>
+          <Title isSize={4}>Reply to {singleMessage[0].first_name}</Title>
           <form onSubmit={handleSubmit}>
             <Field>
               <Label>Send To</Label>
               <Control>
                 <Input
                   type="text"
-                  placeholder={message[0].first_name}
+                  placeholder={singleMessage[0].first_name}
                   name="receiver"
                   aria-label="receiver"
                   disabled
