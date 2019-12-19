@@ -28,7 +28,7 @@ export default function Messages() {
   const user = useSelector(state => state.user);
   const [messages, setMessages] = useState([]);
   const [sentMessages, setSentMessages] = useState([]);
-  const [singleMessage, setMessage] = useState([{id: ''}]);
+  const [singleMessage, setMessage] = useState([{ id: "" }]);
   const [showMessage, setShowMessage] = useState(false);
   const [showSent, setShowSent] = useState(false);
   const [showInbox, setShowInbox] = useState(true);
@@ -146,7 +146,6 @@ export default function Messages() {
           </PanelTabs>
           {showInbox
             ? messages.map((message, index) => {
-              console.log(singleMessage)
                 return (
                   <PanelBlock
                     key={index}
@@ -154,7 +153,9 @@ export default function Messages() {
                       display: "flex",
                       flexDirection: "column",
                       backgroundColor:
-                        message.id === singleMessage[0].id ? "lightgrey" : "unset"
+                        message.id === singleMessage[0].id
+                          ? "lightgrey"
+                          : "unset"
                     }}
                   >
                     <ul

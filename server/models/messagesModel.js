@@ -12,7 +12,7 @@ const getSomeMessages = user_id => {
 };
 
 const getAllMessages = user_id => {
-  const query = db.any(`SELECT private_messages.id, subject, message, date_sent, first_name, last_name from private_messages INNER JOIN users on users.id = sent_to WHERE sent_from = ${user_id} ORDER BY date_sent DESC 
+  const query = db.any(`SELECT private_messages.id, subject, message, date_sent, first_name, last_name from private_messages INNER JOIN users on users.id = sent_to WHERE sent_from = ${user_id} ORDER BY date_sent ASC
   ;`);
 
   try {
@@ -23,7 +23,7 @@ const getAllMessages = user_id => {
 };
 
 const getSentMessages = user_id => {
-  const query = db.any(`SELECT private_messages.id, subject, message, date_sent, first_name, last_name from private_messages INNER JOIN users on users.id = sent_from WHERE sent_to = ${user_id} ORDER BY date_sent DESC 
+  const query = db.any(`SELECT private_messages.id, subject, message, date_sent, first_name, last_name from private_messages INNER JOIN users on users.id = sent_from WHERE sent_to = ${user_id} ORDER BY date_sent ASC
   ;`);
 
   try {
