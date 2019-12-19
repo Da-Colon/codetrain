@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { Link, useHistory } from "react-router-dom";
-import { Form, Label, Input, Button, Title } from "../../Styles/FormStyles";
 import CreateCompany from "./CreateCompany";
+
+import {
+  Box,
+  Select,
+  Input,
+  Field,
+  Label,
+  Title,
+  Button
+} from "bloomer";
 
 const SignupForm = () => {
   const endpoint = "http://localhost:3000";
@@ -34,25 +43,28 @@ const SignupForm = () => {
   const addInput = () => {
     if (newUser.user_type === "2") {
       return (
-        <Label>
-          Bootcamp Name
-          <Input
-            type="text"
-            placeholder="Name of Bootcamp"
-            onChange={handleInputChange}
-            name="bootcamp_name"
-            aria-label="Bootcamp Name"
-            required
-          />
-        </Label>
+        <Field>
+          <Label>
+            Bootcamp Name
+            <Input
+              type="text"
+              placeholder="Name of Bootcamp"
+              onChange={handleInputChange}
+              name="bootcamp_name"
+              aria-label="Bootcamp Name"
+              required
+            />
+          </Label>
+        </Field>
       );
     }
     if (newUser.user_type === "3") {
       return (
-        <container>
+        <Field>
           <Label>
             Company Name
-            <select onChange={handleInputChange} name="company_id">
+            <br />
+            <Select onChange={handleInputChange} name="company_id">
               <option>Select a company</option>
               {companyInfo.map(company => {
                 return (
@@ -61,7 +73,7 @@ const SignupForm = () => {
                   </option>
                 );
               })}
-            </select>
+            </Select>
           </Label>
           <Label>
             Is your company not listed? Add it here.
@@ -75,7 +87,7 @@ const SignupForm = () => {
             /> */}
             <CreateCompany getCompanyInfo={getCompanyInfo} />
           </Label>
-        </container>
+        </Field>
       );
     }
   };
@@ -102,99 +114,114 @@ const SignupForm = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Title style={{ textAlign: "center" }}>Create an Account</Title>
-      <Label>
-        Email Address
-        <Input
-          type="email"
-          placeholder="Email Address"
-          onChange={handleInputChange}
-          name="email"
-          aria-label="Email Address"
-        />
-      </Label>
-      <Label>
-        Password
-        <Input
-          type="password"
-          placeholder="Password"
-          onChange={handleInputChange}
-          name="password"
-          aria-label="Password"
-        />
-      </Label>
-      <Label>
-        First Name
-        <Input
-          type="text"
-          placeholder="Enter First Name"
-          onChange={handleInputChange}
-          name="first_name"
-          aria-label="First Name"
-        />
-      </Label>
-      <Label>
-        Last Name
-        <Input
-          type="text"
-          placeholder="Enter Last Name"
-          onChange={handleInputChange}
-          name="last_name"
-          aria-label="Last Name"
-        />
-      </Label>
-      <Label>
-        Github Profile
-        <Input
-          type="url"
-          placeholder="Link to your Github Profile"
-          onChange={handleInputChange}
-          name="github_url"
-          value={newUser.github_url}
-          aria-label="Github URL"
-        />
-      </Label>
-      <Label>
-        LinkedIn Profile
-        <Input
-          type="url"
-          placeholder="Link to your LinkedIn Profile"
-          onChange={handleInputChange}
-          name="linkedin_url"
-          value={newUser.linkedin_url}
-          aria-label="Linkedin URL"
-        />
-      </Label>
+    <Box style={{ margin: "32px" }}>
+      <form onSubmit={handleSubmit}>
+        <Title style={{ textAlign: "center" }}>Create an Account</Title>
+        <Field>
+          <Label>
+            Email Address
+            <Input
+              type="email"
+              placeholder="Email Address"
+              onChange={handleInputChange}
+              name="email"
+              aria-label="Email Address"
+            />
+          </Label>
+        </Field>
+        <Field>
+          <Label>
+            Password
+            <Input
+              type="password"
+              placeholder="Password"
+              onChange={handleInputChange}
+              name="password"
+              aria-label="Password"
+            />
+          </Label>
+        </Field>
+        <Field>
+          <Label>
+            First Name
+            <Input
+              type="text"
+              placeholder="Enter First Name"
+              onChange={handleInputChange}
+              name="first_name"
+              aria-label="First Name"
+            />
+          </Label>
+        </Field>
+        <Field>
+          <Label>
+            Last Name
+            <Input
+              type="text"
+              placeholder="Enter Last Name"
+              onChange={handleInputChange}
+              name="last_name"
+              aria-label="Last Name"
+            />
+          </Label>
+        </Field>
+        <Field>
+          <Label>
+            Github Profile
+            <Input
+              type="url"
+              placeholder="Link to your Github Profile"
+              onChange={handleInputChange}
+              name="github_url"
+              value={newUser.github_url}
+              aria-label="Github URL"
+            />
+          </Label>
+        </Field>
+        <Field>
+          <Label>
+            LinkedIn Profile
+            <Input
+              type="url"
+              placeholder="Link to your LinkedIn Profile"
+              onChange={handleInputChange}
+              name="linkedin_url"
+              value={newUser.linkedin_url}
+              aria-label="Linkedin URL"
+            />
+          </Label>
+        </Field>
 
-      <Title>Are you part of a Bootcamp or a Company?</Title>
-      <Label>
-        <input
-          type="radio"
-          value="2"
-          onChange={handleInputChange}
-          name="user_type"
-          aria-label="Bootcamp"
-        />
-        Bootcamp
-      </Label>
-      <Label>
-        <input
-          type="radio"
-          value="3"
-          onChange={handleInputChange}
-          name="user_type"
-          aria-label="Bootcamp"
-        />
-        Company
-      </Label>
-      {addInput()}
+        <Title>Are you part of a Bootcamp or a Company?</Title>
+        <Field>
+          <Label>
+            <input
+              type="radio"
+              value="2"
+              onChange={handleInputChange}
+              name="user_type"
+              aria-label="Bootcamp"
+            />
+            Bootcamp
+          </Label>
+        </Field>
+        <Field>
+          <Label>
+            <input
+              type="radio"
+              value="3"
+              onChange={handleInputChange}
+              name="user_type"
+              aria-label="Bootcamp"
+            />
+            Company
+          </Label>
+        </Field>
+        {addInput()}
 
-      <Button type="submit">Create Your Account</Button>
-      <Link to="/login" style={{ fontSize: "150%" }}>
-        Already have an account, Sign in!
-      </Link>
-    </Form>
+        <Button type="submit">Create Your Account</Button>
+      </form>
+    </Box>
   );
 };
 

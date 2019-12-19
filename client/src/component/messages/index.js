@@ -106,11 +106,13 @@ export default function Messages() {
   const handleSentTabClick = () => {
     setShowSent(true);
     setShowInbox(false);
+    setShowMessage(false);
   };
 
   const handleInboxTabClick = () => {
     setShowInbox(true);
     setShowSent(false);
+    setShowMessage(false);
   };
 
   const history = useHistory();
@@ -225,7 +227,7 @@ export default function Messages() {
         <Message
           style={{
             position: "relative",
-            left: "300px",
+            left: "150px",
             overflowY: "scroll",
             overflowX: "hidden",
             height: "90vh",
@@ -249,12 +251,15 @@ export default function Messages() {
                 </p>
                 <p>Subject: {message.subject}</p>
                 <Box style={{ padding: "16px", margin: "16px" }}>
+                <Title isSize={5}>Message</Title>
                   {message.message}
                 </Box>
               </Box>
             );
           })}
+          <Box>
           <Title isSize={4}>Reply to {singleMessage[0].first_name}</Title>
+
           <form onSubmit={handleSubmit}>
             <Field>
               <Label>Send To</Label>
@@ -265,7 +270,7 @@ export default function Messages() {
                   name="receiver"
                   aria-label="receiver"
                   disabled
-                />
+                  />
               </Control>
             </Field>
 
@@ -277,7 +282,7 @@ export default function Messages() {
                   onChange={handleChange}
                   name="subject"
                   aria-label="subject"
-                />
+                  />
               </Control>
             </Field>
 
@@ -289,7 +294,7 @@ export default function Messages() {
                   onChange={handleChange}
                   name="message"
                   aria-label="message"
-                />
+                  />
               </Control>
             </Field>
 
@@ -301,6 +306,7 @@ export default function Messages() {
               </Control>
             </Field>
           </form>
+                  </Box>
         </Message>
       ) : (
         ""
