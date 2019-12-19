@@ -2,14 +2,14 @@
 // const developmentAuth = true;
 // const developmentid = 2;
 // const developmentCid = null;
-// const developmentType = null;
-// const developmentAuth = null;
-// const developmentid = null;
-// const developmentCid = null;
-const developmentType = 3;
-const developmentAuth = true;
-const developmentid = 13;
-const developmentCid = 1;
+const developmentType = null;
+const developmentAuth = null;
+const developmentid = null;
+const developmentCid = null;
+// const developmentType = 3;
+// const developmentAuth = true;
+// const developmentid = 13;
+// const developmentCid = 1;
 
 const initialState = {
   id: developmentid,

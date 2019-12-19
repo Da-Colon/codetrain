@@ -118,7 +118,7 @@ const JobPost = props => {
         },
         {
           label: 'Keep',
-          onClick: () => history.push(`/jobs`)
+          onClick: () => null
         }
       ]
     });
@@ -187,14 +187,13 @@ const JobPost = props => {
           <Card style={{ maxWidth: "60vw", margin: "20px" }}>
             <CardHeader>
               <CardHeaderTitle>{jobs.title}</CardHeaderTitle>
-              <Link
-            to={`/report/job/${jobs.id}/${jobs.companies_id}/${jobs.users_id}`}
-          >
-            Report Job
-          </Link>
             </CardHeader>
             <CardContent>
               <Content>
+              <Content>
+              <strong>Report: </strong>
+              <Link to={`/report/job/${jobs.id}/${jobs.companies_id}/${jobs.users_id}`}>Report job posting</Link>
+              </Content>
                 <strong>Date Posted: </strong>
                 <Moment format="YYYY-MM-DD">{jobs.date_posted}</Moment>
               </Content>

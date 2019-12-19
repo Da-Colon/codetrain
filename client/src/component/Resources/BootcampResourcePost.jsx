@@ -11,7 +11,7 @@ const BootcampResourcePost = () => {
     title: "",
     short_description: "",
     full_description: "",
-    resource_url: "",
+    resource_url: "http://",
     resourceSubmitted: false
   });
 

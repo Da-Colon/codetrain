@@ -12,8 +12,8 @@ const SignupForm = () => {
     password: "",
     first_name: "",
     last_name: "",
-    github_url: "",
-    linkedin_url: "",
+    github_url: "https://",
+    linkedin_url: "https://",
     user_type: null,
     bootcamp_name: null,
     company_id: null
@@ -151,6 +151,7 @@ const SignupForm = () => {
           placeholder="Link to your Github Profile"
           onChange={handleInputChange}
           name="github_url"
+          value={newUser.github_url}
           aria-label="Github URL"
         />
       </Label>
@@ -161,6 +162,7 @@ const SignupForm = () => {
           placeholder="Link to your LinkedIn Profile"
           onChange={handleInputChange}
           name="linkedin_url"
+          value={newUser.linkedin_url}
           aria-label="Linkedin URL"
         />
       </Label>
