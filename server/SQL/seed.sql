@@ -517,7 +517,6 @@ If you are passionate about sustainability and social impact, then this will be 
 -- JOB APPLICATIONS
 INSERT INTO job_applications (users_id, posts_jobs_id)
 VALUES
-  (1, 1),
   (2, 1),
   (3, 1),
   (1, 2),
