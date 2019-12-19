@@ -16,19 +16,17 @@ import {
   Label,
   Title,
   TextArea,
-  Button
+  Button,
+  Select
 } from "bloomer";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-
 const CompanyApplications = () => {
   const user = useSelector(state => state.user);
   const [jobs, setJobs] = useState([]);
-  // const [jobTitle, setJobTitle] = useState();
   const [jobId, setJobId] = useState("");
   const [showApplicants, setShowApplicants] = useState(false);
-
 
   const getJobPostsByCompanyId = async () => {
     const endpoint = `http://localhost:3000/posts/jobs/company/${user.companies_id}`;
@@ -54,29 +52,51 @@ const CompanyApplications = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <h2>Select a job to display applicants</h2>
-        <select onChange={handleChange} value={jobId}>
-          {jobs.map((job, i )=> {
-            return <option key={i} value={job.id}>{job.title}</option>;
-          })}
-        </select>
-        <button type="submit">See Applicants</button>
-      </form>
+      <FormWrapper>
+        <form
+          onSubmit={handleSubmit}
+          style={{ display: "flex", flexDirection: "column" }}
+        >
+          <h1 style={{ textAlign: "center", fontSize: "300%" }}>
+            Select a job to display applicants
+          </h1>
+          <Field style={{ alignSelf: "center" }}>
+            <Control>
+              <Select onChange={handleChange} value={jobId}>
+                {jobs.map((job, i) => {
+                  return (
+                    <option key={i} value={job.id}>
+                      {job.title}
+                    </option>
+                  );
+                })}
+              </Select>
+            </Control>
+          </Field>
+          <Button isColor="primary" type="submit">
+            See Applicants
+          </Button>
+        </form>
+      </FormWrapper>
 
       <ApplicantCardWrapper>
-        {showApplicants ? <ApplicantsData jobId={jobId} /> : <></>}
+        {showApplicants ? <ApplicantsData jobId={jobId} /> : null}
       </ApplicantCardWrapper>
     </>
   );
 };
 
+const FormWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 const ApplicantsData = props => {
   const user = useSelector(state => state.user);
   const [applicants, setApplicants] = useState([]);
-  const [showMessage, setShowMessage] = useState(false)
+  const [showMessage, setShowMessage] = useState(false);
   const [showApplicants, setShowApplicants] = useState(true);
-  const [messageApplicant, setMessageApplicant] = useState('')
+  const [messageApplicant, setMessageApplicant] = useState("");
   const [sendMessage, setSendMessage] = useState({
     subject: "",
     message: "",
@@ -87,7 +107,7 @@ const ApplicantsData = props => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const endpoint = 'http://localhost:3000'
+    const endpoint = "http://localhost:3000";
     const send = await Axios.post(`${endpoint}/sendmessage`, sendMessage);
     if (send.status === 200) {
       alert("Message Sent");
@@ -108,18 +128,18 @@ const ApplicantsData = props => {
   }, []);
 
   const handleRejection = async (applicantId, jobId) => {
-    const endpoint = `http://localhost:3000/job-applications/update-status/${applicantId}/${jobId}`
-    const res = await Axios.put(endpoint)
-    getApplicantsByJobId()
-    alert('Applicant was rejected.')
-  }
+    const endpoint = `http://localhost:3000/job-applications/update-status/${applicantId}/${jobId}`;
+    const res = await Axios.put(endpoint);
+    getApplicantsByJobId();
+    alert("Applicant was rejected.");
+  };
 
-  const showMessageForm = (applicant) => {
+  const showMessageForm = applicant => {
     setShowMessage(true);
     setShowApplicants(false);
-    setMessageApplicant(applicant)
-  }
-  
+    setMessageApplicant(applicant);
+  };
+
   const handleChange = e => {
     const { name, value } = e.target;
     setSendMessage({
@@ -130,13 +150,21 @@ const ApplicantsData = props => {
       sent_from_companies_id: user.companies_id
     });
   };
-  
+
   return (
     <>
       {applicants && showApplicants ? (
         applicants.map(applicant => {
           return (
-            <Card key={applicant.jobId} style={{ maxWidth: "400px", margin: "20px", display:"flex", flexDirection: "column" }}>
+            <Card
+              key={applicant.jobId}
+              style={{
+                maxWidth: "375px",
+                margin: "20px",
+                display: "flex",
+                flexDirection: "column"
+              }}
+            >
               <CardHeader>
                 <CardHeaderTitle>
                   {applicant.first_name} {applicant.last_name}
@@ -152,11 +180,9 @@ const ApplicantsData = props => {
                 </Content>
                 <Content>
                   <strong>Skills:</strong>
-                  <ul style={{ display: "inline", listStyleType: "none" }}>
-                    {applicant.skills.map((skill, i )=> {
-                      return <li key={i}>{skill}</li>;
+                    {applicant.skills.map((skill, i) => {
+                      return <p key={i} style={{display: "inline"}}>{skill}{" "}</p>;
                     })}
-                  </ul>
                 </Content>
                 <Content>
                   <strong>Github Page:</strong>
@@ -176,74 +202,94 @@ const ApplicantsData = props => {
                 </Content>
                 <Content>
                   <strong>Application Status:</strong>
-                  <p>{(!applicant.rejected && !applicant.accepted) ? '<pending>' : (applicant.rejected) ? 'rejected' : (applicant.accepted) ? 'approved' : ''}</p>
+                  <p>
+                    {!applicant.rejected && !applicant.accepted
+                      ? "<pending>"
+                      : applicant.rejected
+                      ? "rejected"
+                      : applicant.accepted
+                      ? "approved"
+                      : ""}
+                  </p>
                 </Content>
               </CardContent>
-              <CardFooter style={{marginTop: "auto"}}>
+              <CardFooter style={{ marginTop: "auto" }}>
                 <CardFooterItem>
-                  <Button onClick={() => showMessageForm(applicant)}>Message</Button>
-                    <Link to={`/user/${applicant.applicantid}`}>
-                  <Button>
-                      View Profile
+                  <Button onClick={() => showMessageForm(applicant)}>
+                    Message
                   </Button>
-                    </Link>
-                  <Button onClick={() => handleRejection(applicant.applicantid, applicant.jobid)}>Reject</Button>
+                  <Link to={`/user/${applicant.applicantid}`}>
+                    <Button>View Profile</Button>
+                  </Link>
+                  <Button
+                    onClick={() =>
+                      handleRejection(applicant.applicantid, applicant.jobid)
+                    }
+                  >
+                    Reject
+                  </Button>
                 </CardFooterItem>
               </CardFooter>
             </Card>
           );
         })
-      ) : (showMessage) ? ( 
-        <div style={{display: "flex", flexDirection: "column"}}>
-        <Title isSize={4}>Reply to {messageApplicant.first_name}</Title>
-        <form  onSubmit={handleSubmit}>
-          <Field>
-            <Label>Send To</Label>
-            <Control>
-              <Input
-                type="text"
-                placeholder={messageApplicant.first_name + ' ' + messageApplicant.last_name}
-                name="receiver"
-                aria-label="receiver"
-                disabled
-              />
-            </Control>
-          </Field>
+      ) : showMessage ? (
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <Title isSize={4}>Reply to {messageApplicant.first_name}</Title>
+          <form onSubmit={handleSubmit}>
+            <Field>
+              <Label>Send To</Label>
+              <Control>
+                <Input
+                  type="text"
+                  placeholder={
+                    messageApplicant.first_name +
+                    " " +
+                    messageApplicant.last_name
+                  }
+                  name="receiver"
+                  aria-label="receiver"
+                  disabled
+                />
+              </Control>
+            </Field>
 
-          <Field>
-            <Label>Subject</Label>
-            <Control>
-              <Input
-                type="text"
-                onChange={handleChange}
-                name="subject"
-                aria-label="subject"
-              />
-            </Control>
-          </Field>
+            <Field>
+              <Label>Subject</Label>
+              <Control>
+                <Input
+                  type="text"
+                  onChange={handleChange}
+                  name="subject"
+                  aria-label="subject"
+                />
+              </Control>
+            </Field>
 
-          <Field>
-            <Label>Message</Label>
-            <Control>
-              <TextArea
-                type="textarea"
-                onChange={handleChange}
-                name="message"
-                aria-label="message"
-              />
-            </Control>
-          </Field>
+            <Field>
+              <Label>Message</Label>
+              <Control>
+                <TextArea
+                  type="textarea"
+                  onChange={handleChange}
+                  name="message"
+                  aria-label="message"
+                />
+              </Control>
+            </Field>
 
-          <Field isGrouped>
-            <Control>
-              <Button type="submit" isColor="primary">
-                Submit
-              </Button>
-            </Control>
-          </Field>
-        </form>
+            <Field isGrouped>
+              <Control>
+                <Button type="submit" isColor="primary">
+                  Submit
+                </Button>
+              </Control>
+            </Field>
+          </form>
         </div>
-      ) : ''}
+      ) : (
+        ""
+      )}
     </>
   );
 };
@@ -253,5 +299,5 @@ export default CompanyApplications;
 const ApplicantCardWrapper = styled.div`
   display: flex;
   flex-flow: row wrap;
-  justify-content: flex-start;
+  justify-content: space-evenly;
 `;
