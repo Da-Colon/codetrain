@@ -225,7 +225,7 @@ export default function Messages() {
         <Message
           style={{
             position: "relative",
-            left: "300px",
+            left: "150px",
             overflowY: "scroll",
             overflowX: "hidden",
             height: "90vh",

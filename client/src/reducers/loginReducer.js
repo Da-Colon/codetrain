@@ -1,7 +1,26 @@
+// no credentials (public user)
 const developmentType = null;
 const developmentAuth = null;
 const developmentid = null;
 const developmentCid = null;
+
+// admin credentials (nep@gmail)
+// const developmentType = 1;
+// const developmentAuth = true;
+// const developmentid = 13;
+// const developmentCid = null;
+
+// bootcamper credentials (dbananas@gmail.com)
+// const developmentType = 2;
+// const developmentAuth = true;
+// const developmentid = 2;
+// const developmentCid = null;
+
+// company credentials (hmnep@gmail.com)
+// const developmentType = 3;
+// const developmentAuth = true;
+// const developmentid = 6;
+// const developmentCid = 3;
 
 const initialState = {
   id: developmentid,
