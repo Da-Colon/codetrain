@@ -173,40 +173,36 @@ const ApplicantsData = props => {
               </CardHeader>
               <CardContent>
                 <Content>
-                  <strong>Date Applied:</strong>
+                  <strong>Date Applied:{" "}</strong>
                   <Moment format="YYYY-MM-DD">{applicant.date_applied}</Moment>
                 </Content>
                 <Content>
-                  <strong>Email Address:</strong> {applicant.email}
+                  <strong>Email Address:{" "}</strong> {applicant.email}
                 </Content>
                 <Content>
-                  <strong>Skills:</strong>
-                  {applicant.skills.map((skill, i) => {
-                    return (
-                      <p key={i} style={{ display: "inline" }}>
-                        {skill}{" "}
-                      </p>
-                    );
-                  })}
+                  <strong>Skills:{" "}</strong>
+                    {applicant.skills.map((skill, i) => {
+                      return <p key={i} style={{display: "inline"}}>{skill}{" "}</p>;
+                    })}
                 </Content>
                 <Content>
-                  <strong>Github Page:</strong>
+                  <strong>Github Page:{" "}</strong>
                   <a href={applicant.github_url}>
                     {applicant.first_name}'s Github Profile
                   </a>
                 </Content>
                 <Content>
-                  <strong>LinkedIn:</strong>
+                  <strong>LinkedIn:{" "}</strong>
                   <a href={applicant.linkedin_url}>
                     {applicant.first_name}'s LinkedIn Profile
                   </a>
                 </Content>
                 <Content>
-                  <strong>Bootcamp Name:</strong>
+                  <strong>Bootcamp Name:{" "}</strong>
                   <p>{applicant.bootcamp_name}</p>
                 </Content>
                 <Content>
-                  <strong>Application Status:</strong>
+                  <strong>Application Status:{" "}</strong>
                   <p>
                     {!applicant.rejected && !applicant.accepted
                       ? "<pending>"
@@ -219,7 +215,7 @@ const ApplicantsData = props => {
                 </Content>
               </CardContent>
               <CardFooter style={{ marginTop: "auto" }}>
-                <CardFooterItem>
+                <CardFooterItem style={{display: "flex", justifyContent: "space-around"}}>
                   <Button onClick={() => showMessageForm(applicant)}>
                     Message
                   </Button>

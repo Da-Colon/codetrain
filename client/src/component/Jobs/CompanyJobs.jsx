@@ -67,7 +67,7 @@ const JobCard = props => {
   }, []);
 
   return (
-    <Card style={{ maxWidth: "400px", margin: "20px" }}>
+    <Card style={{ maxWidth: "400px", margin: "20px", display: "flex", flexDirection: "column" }}>
       <CardHeader>
         <CardHeaderTitle>{data.title}</CardHeaderTitle>
       </CardHeader>
@@ -77,18 +77,18 @@ const JobCard = props => {
           <Moment format="YYYY-MM-DD">{data.date_posted}</Moment>
         </Content>
         <Content>
-          <strong>Experience:</strong> {data.experience}
+          <strong>Experience: </strong> {data.experience}
         </Content>
         <Content>
-          <strong>Company Name:</strong>
+          <strong>Company Name: </strong>
           <Link to={`/company/${companyData.id}`}>{companyData.name}</Link>
         </Content>
         <Content>
-          <strong>Contact Email:</strong>
+          <strong>Contact Email: </strong>
           {data.contact_email}
         </Content>
       </CardContent>
-      <CardFooter>
+      <CardFooter style={{marginTop: "auto"}} >
         <CardFooterItem>
           <Button>
             <Link to={`/jobs/${data.id}`}>View Details</Link>
