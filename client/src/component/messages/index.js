@@ -241,7 +241,7 @@ export default function Messages() {
               <Box key={message.id}>
                 <Title>
                   {message.first_name} {message.last_name}{" "}
-                  <Button onClick={postReport}>
+                  <Button isColor="danger" onClick={postReport}>
                     Report {message.first_name}
                   </Button>
                 </Title>

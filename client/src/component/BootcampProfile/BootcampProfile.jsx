@@ -192,7 +192,7 @@ const UserProfile = () => {
               {userInfo.last_name}
             </CardHeaderTitle>
             {userInfo.id !== user.id && (
-              <button onClick={postReport}>Report {userInfo.first_name}</button>
+              <Button isColor="danger" onClick={postReport}>Report {userInfo.first_name}</Button>
             )}
             <CardContent>
               <CardImage>

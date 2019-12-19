@@ -1,8 +1,8 @@
 // no credentials (public user)
-// const developmentType = null;
-// const developmentAuth = null;
-// const developmentid = null;
-// const developmentCid = null;
+const developmentType = null;
+const developmentAuth = null;
+const developmentid = null;
+const developmentCid = null;
 
 // admin credentials (nep@gmail)
 // const developmentType = 1;
@@ -10,17 +10,17 @@
 // const developmentid = 13;
 // const developmentCid = null;
 
-// bootcamper credentials (dbananas@gmail.com)
+// bootcamper credentials (dcapples@gmail.com)
 // const developmentType = 2;
 // const developmentAuth = true;
-// const developmentid = 2;
+// const developmentid = 1;
 // const developmentCid = null;
 
 // company credentials (hmnep@gmail.com)
-const developmentType = 2;
-const developmentAuth = true;
-const developmentid = 1;
-const developmentCid = 1;
+// const developmentType = 2;
+// const developmentAuth = true;
+// const developmentid = 1;
+// const developmentCid = 1;
 
 const initialState = {
   id: developmentid,

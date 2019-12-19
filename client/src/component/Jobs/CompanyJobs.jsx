@@ -1,10 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import Axios from "axios";
-import CreateJobPost from "./CreateJobPost";
+
 import {
   Card,
   CardHeader,
@@ -12,12 +12,10 @@ import {
   CardContent,
   Content,
   CardFooter,
-  CardFooterItem
+  CardFooterItem,
+  Button
 } from "bloomer";
 import styled from "styled-components";
-
-import { Button } from "../Styles/FormStyles";
-import { Anchor } from "../Styles/navStyles";
 
 // This component fetches all the data that will populate each job post
 const CompanyJobs = () => {
@@ -27,7 +25,7 @@ const CompanyJobs = () => {
   const fetchJobsData = async () => {
     const endpoint = `http://localhost:3000/posts/jobs/company/${user.companies_id}`;
     const res = await Axios.get(endpoint);
-    const activeJobs = res.data.filter(job => job.is_active === true)
+    const activeJobs = res.data.filter(job => job.is_active === true);
     setJobs(activeJobs);
   };
 
@@ -67,7 +65,14 @@ const JobCard = props => {
   }, []);
 
   return (
-    <Card style={{ maxWidth: "400px", margin: "20px", display: "flex", flexDirection: "column" }}>
+    <Card
+      style={{
+        maxWidth: "400px",
+        margin: "20px",
+        display: "flex",
+        flexDirection: "column"
+      }}
+    >
       <CardHeader>
         <CardHeaderTitle>{data.title}</CardHeaderTitle>
       </CardHeader>
@@ -88,9 +93,9 @@ const JobCard = props => {
           {data.contact_email}
         </Content>
       </CardContent>
-      <CardFooter style={{marginTop: "auto"}} >
+      <CardFooter style={{ marginTop: "auto" }}>
         <CardFooterItem>
-          <Button>
+          <Button isColor="primary">
             <Link to={`/jobs/${data.id}`}>View Details</Link>
           </Button>
         </CardFooterItem>

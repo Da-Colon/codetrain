@@ -171,7 +171,7 @@ const CompanyProfile = () => {
               </CardHeaderTitle>
             </CardHeader>
             {companyInfo.id !== company.companies_id && (
-              <button onClick={postReport}>Report {companyInfo.name}</button>
+              <Button isColor="danger" onClick={postReport}>Report {companyInfo.name}</Button>
             )}
             <CardContent>
               <CardImage>
