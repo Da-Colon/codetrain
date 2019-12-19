@@ -59,7 +59,7 @@ I have a wonderful wife, who has been there to support me through this career tr
 
 I am more passionate than I have ever been in my life to continue to learn new skills and languages and achieving all of my career goals. While I do plan to focus on my current Stack and continue to improve, in the future I would like to learn more about lower level languages, data architecture, and game design.',
     '{Javascript, HTML5, CSS3, postgreSQL, React, Python, jQuery}',
-    'github.com/Da-Colon',
+    'https://github.com/Da-Colon',
     'https://www.linkedin.com/in/david-colon-600994124/',
     TRUE,
     2,

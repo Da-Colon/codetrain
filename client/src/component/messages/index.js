@@ -170,7 +170,7 @@ export default function Messages() {
                 );
               })}
           </PanelBlock>
-        ) : ''};
+        ) : ''}
         </Panel>
       )}
       {showMessage ? (
