@@ -38,7 +38,7 @@ const BootcampViewApplications = () => {
                 <CardHeader>
                   <CardHeaderTitle>
                     <Link to={`/jobs/${application.posts_jobs_id}`}>
-                      <Anchor>Job Title: {application.title}</Anchor>
+                      <Anchor>{application.title}</Anchor>
                     </Link>
                   </CardHeaderTitle>
                 </CardHeader>

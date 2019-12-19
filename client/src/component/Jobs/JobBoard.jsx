@@ -37,9 +37,7 @@ const JobBoard = () => {
   // mapping over data and passing job data as props to the Job Card which renders job posts
   return (
     <JobCardWrapper>
-      {jobs.map(job => {
-        return <JobCard key={job.id} data={job} />;
-      })}
+      {jobs.map(job => <JobCard key={job.id} data={job} />)}
     </JobCardWrapper>
   );
 };
@@ -60,29 +58,23 @@ const JobCard = ({ data }) => {
     fetchCompanyData();
   }, []);
 
-  const postApplication = () => {
-    const endpoint = "http://localhost:3000/job-applications/add-application/";
-    const payload = {
-      users_id: user.id,
-      posts_jobs_id: data.id
-    };
+  // Currently not being used since decision was made to allow an application only when they are viewing the full details of the job post
+  // const postApplication = () => {
+  //   const endpoint = "http://localhost:3000/job-applications/add-application/";
+  //   const payload = {
+  //     users_id: user.id,
+  //     posts_jobs_id: data.id
+  //   };
 
-    Axios.post(endpoint, payload)
-      .then(res => {
-        alert("Your application was received.");
-      })
-      .catch(err => {
-        alert("You have already applied for this job.");
-      });
-  };
-
-  const history = useHistory();
-  // const postReport = () => {
-  //   history.push(
-  //     `/report/job/${data.id}/${data.companies_id}/${data.users_id}`
-  //   );
+  //   Axios.post(endpoint, payload)
+  //     .then(res => {
+  //       alert("Your application was received.");
+  //     })
+  //     .catch(err => {
+  //       alert("You have already applied for this job.");
+  //     });
   // };
-  // title, content, experience, date_posted, contact_email, contact_phone, company_name, company_profile, company_url
+
   return (
     <Card style={{ maxWidth: "400px", margin: "20px" }}>
       <CardHeader>
@@ -118,11 +110,6 @@ const JobCard = ({ data }) => {
           {data.contact_email}
         </Content>
       </CardContent>
-      <CardFooter>
-        {/* <CardFooterItem href="#">
-          <Button onClick={postApplication}>Apply!</Button>
-        </CardFooterItem> */}
-      </CardFooter>
     </Card>
   );
 };

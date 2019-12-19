@@ -23,7 +23,7 @@ const Post = props => {
   return (
     <Box style={{margin: "1rem"}}>
       <p>
-         <a href={postData.url} target="_blank">{postData.title}</a> 
+         <a href={postData.url} target="_blank" rel="noopener noreferrer">{postData.title}</a> 
       </p>
       <p>
         Posted {" "}

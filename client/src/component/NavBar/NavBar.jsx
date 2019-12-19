@@ -61,7 +61,7 @@ const NavBar = () => {
                 <NavLink to="/messages">Messages</NavLink>
               </NavbarItem>
               <NavbarItem>
-                <Link onClick={handleLogout}>Logout</Link>
+                <Link to="" onClick={handleLogout}>Logout</Link>
               </NavbarItem>
             </>
           ) : // Below items only render for Bootcamp Users
@@ -80,7 +80,7 @@ const NavBar = () => {
                 <NavLink to="/messages">Messages</NavLink>
               </NavbarItem>
               <NavbarItem>
-                <Link onClick={handleLogout}>
+                <Link to="" onClick={handleLogout}>
                   Logout
                 </Link>
               </NavbarItem>
@@ -104,7 +104,7 @@ const NavBar = () => {
                 <NavLink to="/messages">Messages</NavLink>
               </NavbarItem>
               <NavbarItem>
-                <Link onClick={handleLogout}>
+                <Link to="" onClick={handleLogout}>
                   Logout
                 </Link>
               </NavbarItem>
@@ -117,7 +117,7 @@ const NavBar = () => {
                 <NavLink to="/profile">Profile</NavLink>
               </NavbarItem>
               <NavbarItem>
-                <Link onClick={handleLogout}>
+                <Link to="" onClick={handleLogout}>
                   Logout
                 </Link>
               </NavbarItem>
