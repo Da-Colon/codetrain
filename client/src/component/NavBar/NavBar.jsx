@@ -31,7 +31,7 @@ const NavBar = () => {
       style={{
         borderBottom: "solid 0.01rem grey",
         margin: "0",
-        backgroundColor: `${greyLighterColor}`
+        backgroundColor: "#88BBD6"
       }}
     >
       <NavbarBrand>
