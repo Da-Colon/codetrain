@@ -15,22 +15,17 @@ import Resources from "./component/Resources";
 import ResourcePost from "./component/Resources/ResourcePost";
 import JobPost from "./component/Jobs/JobPost";
 import CreateJobPost from "./component/Jobs/CreateJobPost";
-
-import "./App.css";
-
 import "./App.css";
 import Messages from "./component/messages";
 import BootcampResourcePost from "./component/Resources/BootcampResourcePost";
 import AdminReports from "./component/Home/admin/reports";
 import Reports from "./component/PostReports";
-import Wrapper from "./component/Wrapper";
 
 const App = () => {
   return (
     <>
       <Router>
         <NavBar />
-        <Wrapper>
           <Route path="/" component={LandingPage} exact />
           <Route path="/signup" component={Signup} exact />
           <Route path="/login" component={Login} exact />
@@ -78,7 +73,6 @@ const App = () => {
             component={BootcampResourcePost}
             exact
           />
-        </Wrapper>
       </Router>
     </>
   );
