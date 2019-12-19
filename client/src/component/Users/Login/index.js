@@ -26,7 +26,11 @@ const LoginForm = props => {
       console.log(response);
       const data = await response.data.user;
       await updateUser(data);
-      history.push("/home");
+      if (response.data.user.user_types_id === 1) {
+        history.push("/admin/reports");
+      } else {
+        history.push("/home");
+      }
     } catch {
       window.alert(
         "Sorry, There Was An Error While Logging In, Please Try Again"

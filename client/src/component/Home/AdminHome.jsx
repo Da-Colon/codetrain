@@ -12,7 +12,8 @@ import {
   Title,
   Breadcrumb,
   BreadcrumbItem,
-  Subtitle
+  Subtitle,
+  Button
 } from "bloomer";
 
 export default function AdminHome() {
@@ -104,7 +105,7 @@ export default function AdminHome() {
                       </Moment>
                     </BreadcrumbItem>
                   </Breadcrumb>
-                  <button>View Report</button>
+                  <Button isColor="primary">View Report</Button>
                 <hr />
                 </div>
               );
@@ -169,7 +170,7 @@ export default function AdminHome() {
                       </Moment>
                     </BreadcrumbItem>
                   </Breadcrumb>
-                  <button>View Report</button>
+                  <Button isColor="primary">View Report</Button>
                 <hr />
                 </div>
               );
@@ -201,7 +202,7 @@ export default function AdminHome() {
                       </Moment>
                     </BreadcrumbItem>
                   </Breadcrumb>
-                  <button>View Report</button>
+                  <Button isColor="primary">View Report</Button>
                 <hr />
                 </div>
               );

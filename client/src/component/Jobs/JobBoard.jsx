@@ -114,7 +114,7 @@ const JobCard = ({ data }) => {
       </CardContent>
       <CardFooter style={{marginTop: 'auto'}}>
       <CardFooterItem>
-        <Button isColor="primary" onClick={handleReportClick}>Report this job posting</Button>
+        <Button isColor="danger" onClick={handleReportClick}>Report this job posting</Button>
       </CardFooterItem>
     </CardFooter>
     </Card>

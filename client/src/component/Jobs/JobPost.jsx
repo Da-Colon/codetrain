@@ -234,7 +234,7 @@ const JobPost = props => {
                 </Content>
                 <Content>
         
-                  <Button isColor="primary" onClick={handleReportClick}>Report this job posting</Button>
+                  <Button isColor="danger" onClick={handleReportClick}>Report this job posting</Button>
                 </Content>
               </CardContent>
               <CardFooter>
