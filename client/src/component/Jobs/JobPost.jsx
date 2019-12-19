@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import Axios from "axios";
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import {
   Card,
   CardHeader,
@@ -102,11 +104,28 @@ const JobPost = props => {
 
   const handleRemoveJob = async e => {
     e.preventDefault()
-    const endpoint = `http://localhost:3000/posts/jobs/delete/${props.match.params.job_id}`
-    const response = await Axios.put(endpoint);
-    alert("Job Post Deleted")
-    history.push(`/jobs`)
-  }
+    confirmAlert({
+      title: 'Are you sure?',
+      message: 'You will not be able to recover this job posting once it has been removed.',
+      buttons: [
+        {
+          label: 'Delete',
+          onClick: async () => {
+            const endpoint = `http://localhost:3000/posts/jobs/delete/${props.match.params.job_id}`
+            const response = await Axios.put(endpoint);
+            history.push(`/jobs`)
+          }
+        },
+        {
+          label: 'Keep',
+          onClick: () => history.push(`/jobs`)
+        }
+      ]
+    });
+  };
+
+
+
 
   return (
     <>
