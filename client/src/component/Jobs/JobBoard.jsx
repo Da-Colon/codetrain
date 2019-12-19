@@ -92,12 +92,14 @@ const JobCard = ({ data }) => {
       </CardHeader>
       <CardContent>
         <Content>
-          <strong>Date Posted: </strong>
-          <Moment format="YYYY-MM-DD">{data.date_posted}</Moment>
+          <strong>Company Name: </strong>
+          <Link to={`/company/${companyData.id}`}>{companyData.name}</Link>
+          {console.log('COMPANY INFO: ', companyData)}
+          {console.log('COMPANY CONTACT INFO: ', data)}
         </Content>
         <Content>
-          <strong>Report: </strong>
-          <Link to={`/report/job/${data.id}/${data.companies_id}/${data.users_id}`}>Report Job</Link>
+          <strong>Date Posted: </strong>
+          <Moment format="YYYY-MM-DD">{data.date_posted}</Moment>
         </Content>
         <Content>
           <strong>Full post: </strong>
@@ -107,14 +109,12 @@ const JobCard = ({ data }) => {
           <strong>Experience: </strong> {data.experience}
         </Content>
         <Content>
-          <strong>Company Name: </strong>
-          <Link to={`/company/${companyData.id}`}>{companyData.name}</Link>
-          {console.log('COMPANY INFO: ', companyData)}
-          {console.log('COMPANY CONTACT INFO: ', data)}
-        </Content>
-        <Content>
           <strong>Contact Email: </strong>
           {data.contact_email}
+        </Content>
+        <Content>
+          <strong>Report: </strong>
+          <Link to={`/report/job/${data.id}/${data.companies_id}/${data.users_id}`}>Report this job posting</Link>
         </Content>
       </CardContent>
       <CardFooter>

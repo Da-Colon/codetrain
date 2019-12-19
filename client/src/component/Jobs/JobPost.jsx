@@ -183,52 +183,51 @@ const JobPost = props => {
           <Button onClick={handleRemoveJob}>Remove Job Post</Button>
         </Form>
       ) : (
-        <CardFooterItem>
-          <Card style={{ maxWidth: "60vw", margin: "20px" }}>
-            <CardHeader>
-              <CardHeaderTitle>{jobs.title}</CardHeaderTitle>
-            </CardHeader>
-            <CardContent>
-              <Content>
-              <Content>
-              <strong>Report: </strong>
-              <Link to={`/report/job/${jobs.id}/${jobs.companies_id}/${jobs.users_id}`}>Report job posting</Link>
-              </Content>
-                <strong>Date Posted: </strong>
-                <Moment format="YYYY-MM-DD">{jobs.date_posted}</Moment>
-              </Content>
-              <Content>
-                <strong>Job Description: </strong>
-                {jobs.content}
-              </Content>
-              <Content>
-                <strong>Experience:</strong> {jobs.experience}
-              </Content>
-              <Content>
-                <strong>Company Name: </strong>
-                <Link to={`/company/${jobs.companies_id}`}>{jobs.name}</Link>
-              </Content>
-              <Content>
-                <strong>Contact Email: </strong>
-                {jobs.contact_email}
-              </Content>
-            </CardContent>
-            <CardFooter>
-              <CardFooterItem>
-              {console.log(user)}
-                {/* If it's a bootcamp user viewing the job, give them ability to apply. If it's a user representing the company that posted the job, give them the option to apply. */}
-                {user.user_types_id === 2 ? (
-                  <Button onClick={postApplication}>Apply!</Button>
-                ) : user.companies_id === jobs.companies_id ? (
-                  <Button onClick={handleEditMode}>Edit Post</Button>
-                ) : (
-                  <></>
-                )}
-              </CardFooterItem>
-            </CardFooter>
-          </Card>
-        </CardFooterItem>
-      )}
+          <CardFooterItem>
+            <Card style={{ maxWidth: "60vw", margin: "20px" }}>
+              <CardHeader>
+                <CardHeaderTitle>{jobs.title}</CardHeaderTitle>
+              </CardHeader>
+              <CardContent>
+                <Content>
+                  <strong>Company Name: </strong>
+                  <Link to={`/company/${jobs.companies_id}`}>{jobs.name}</Link>
+                </Content>
+                <Content>
+                  <strong>Date Posted: </strong>
+                  <Moment format="YYYY-MM-DD">{jobs.date_posted}</Moment>
+                </Content>
+                <Content>
+                  <strong>Job Description: </strong>
+                  {jobs.content}
+                </Content>
+                <Content>
+                  <strong>Experience:</strong> {jobs.experience}
+                </Content>
+                <Content>
+                  <strong>Contact Email: </strong>
+                  {jobs.contact_email}
+                </Content>
+                <Content>
+                  <strong>Report: </strong>
+                  <Link to={`/report/job/${jobs.id}/${jobs.companies_id}/${jobs.users_id}`}>Report this job posting</Link>
+                </Content>
+              </CardContent>
+              <CardFooter>
+                <CardFooterItem>
+                  {/* If it's a bootcamp user viewing the job, give them ability to apply. If it's a user representing the company that posted the job, give them the option to apply. */}
+                  {user.user_types_id === 2 ? (
+                    <Button onClick={postApplication}>Apply!</Button>
+                  ) : user.companies_id === jobs.companies_id ? (
+                    <Button onClick={handleEditMode}>Edit Post</Button>
+                  ) : (
+                        <></>
+                      )}
+                </CardFooterItem>
+              </CardFooter>
+            </Card>
+          </CardFooterItem>
+        )}
     </>
   );
 };
