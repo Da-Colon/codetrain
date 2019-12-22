@@ -101,10 +101,6 @@ const ResourcePost = props => {
   );
 };
 
-const Anchor = styled.a`
-  color: blue;
-`;
-
 const ResourceWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;

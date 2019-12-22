@@ -1,24 +1,11 @@
 import React, { useState } from "react";
 
-// import { Form, Label, Input, Button, Title } from "../../Styles/FormStyles";
 import {
-  Card,
-  Box,
-  Panel,
-  PanelBlock,
-  PanelHeading,
-  PanelIcon,
-  PanelTab,
-  PanelTabs,
-  Control,
-  Select,
+
   Input,
   Field,
   Label,
-  Title,
-  TextArea,
-  Button,
-  Icon
+  Button
 } from "bloomer";
 import Axios from "axios";
 
@@ -43,7 +30,7 @@ const CreateCompany = props => {
       name: state.name
     };
 
-    const response = await Axios.post(endpoint, payload);
+    await Axios.post(endpoint, payload);
     // alert("Your company was added");
     setState({ ...state, isSubmitted: true });
 

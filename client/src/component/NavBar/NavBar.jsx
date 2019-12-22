@@ -10,11 +10,11 @@ import {
   NavbarMenu,
   NavbarEnd
 } from "bloomer";
-import ColorTheme from "../Styles/ColorTheme";
+
 
 const NavBar = () => {
   const user = useSelector(state => state.user);
-  const { greyLighterColor } = ColorTheme;
+
 
   const handleLogout = async e => {
     theStore.dispatch({

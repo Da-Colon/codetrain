@@ -3,17 +3,13 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { useParams, useHistory } from "react-router-dom";
 import {
-  Container,
   Card,
   CardHeader,
   CardHeaderTitle,
   CardImage,
   CardContent,
-  CardFooter,
-  CardFooterItem,
   Image,
   Box,
-  Select,
   Input,
   Field,
   Label,
@@ -22,7 +18,6 @@ import {
   Button
 } from "bloomer";
 
-import { CardHeaderIcon } from "bloomer/lib/components/Card/Header/CardHeaderIcon";
 import { Anchor } from "../Styles/navStyles";
 import { CardContainer } from "../Styles/CardContainers";
 
@@ -76,7 +71,7 @@ const CompanyProfile = () => {
       company_logo_url: companyInfo.company_logo_url,
       description: companyInfo.description
     };
-    const response = await axios.put(endpoint, payload);
+    await axios.put(endpoint, payload);
   };
 
   const handleEditSubmit = e => {
@@ -171,7 +166,9 @@ const CompanyProfile = () => {
               </CardHeaderTitle>
             </CardHeader>
             {companyInfo.id !== company.companies_id && (
-              <Button isColor="danger" onClick={postReport}>Report {companyInfo.name}</Button>
+              <Button isColor="danger" onClick={postReport}>
+                Report {companyInfo.name}
+              </Button>
             )}
             <CardContent>
               <CardImage>

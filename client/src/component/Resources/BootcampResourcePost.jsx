@@ -1,11 +1,9 @@
-import React, {Fragment, useState} from 'react';
+import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
 import axios from "axios";
-// import { Form, Label, Input, Button, Title } from '../Styles/FormStyles'
 import {useHistory} from 'react-router-dom';
 import {
   Box,
-  Select,
   Input,
   Field,
   Label,
@@ -43,7 +41,7 @@ const BootcampResourcePost = () => {
       userId
     };
 
-    const response = await axios.post(endpoint, payload);
+    await axios.post(endpoint, payload);
     setState({ ...state, resourceSubmitted: true });
     setTimeout(() => {
       history.push('/resources')

@@ -3,17 +3,12 @@ import { useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 import {
-  Container,
   Card,
-  CardHeader,
   CardHeaderTitle,
   CardImage,
   CardContent,
-  CardFooter,
-  CardFooterItem,
   Image,
   Box,
-  Select,
   Input,
   Field,
   Label,
@@ -85,7 +80,7 @@ const UserProfile = () => {
       skills: skillsArray,
       profile_pic_url: userInfo.profile_pic_url
     };
-    const response = await axios.put(endpoint, payload);
+    await axios.put(endpoint, payload);
     setSkillsArray(skillsArray);
   };
 
@@ -192,7 +187,9 @@ const UserProfile = () => {
               {userInfo.last_name}
             </CardHeaderTitle>
             {userInfo.id !== user.id && (
-              <Button isColor="danger" onClick={postReport}>Report {userInfo.first_name}</Button>
+              <Button isColor="danger" onClick={postReport}>
+                Report {userInfo.first_name}
+              </Button>
             )}
             <CardContent>
               <CardImage>

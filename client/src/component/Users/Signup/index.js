@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import CreateCompany from "./CreateCompany";
 
 import {
@@ -26,7 +26,6 @@ const SignupForm = () => {
     user_type: null,
     bootcamp_name: null,
     company_id: null
-    // company_name: null
   });
 
   const [companyInfo, setCompanyInfo] = useState([]);

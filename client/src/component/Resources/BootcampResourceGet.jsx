@@ -1,13 +1,13 @@
-import React, { Fragment } from 'react';
-import BootcampResourceCard from './BootcampResourceCard';
-import { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import axios from 'axios';
-import { useSelector } from 'react-redux';
-import { Link, useHistory, Route } from 'react-router-dom';
-import {Title, Button} from 'bloomer';
-import { confirmAlert } from 'react-confirm-alert';
-import 'react-confirm-alert/src/react-confirm-alert.css';
+import React, { Fragment } from "react";
+import BootcampResourceCard from "./BootcampResourceCard";
+import { useState, useEffect } from "react";
+import styled from "styled-components";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { Title, Button } from "bloomer";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 const BootcampResourceGet = () => {
   const user = useSelector(state => state.user);
@@ -20,7 +20,7 @@ const BootcampResourceGet = () => {
   });
 
   const fetchResourcesData = async () => {
-    const resourcesEndpoint = 'http://localhost:3000/resources/getAllResources';
+    const resourcesEndpoint = "http://localhost:3000/resources/getAllResources";
     const res = await axios.get(resourcesEndpoint);
     setResources(res.data);
     setResourcesFetched(true);
@@ -28,19 +28,20 @@ const BootcampResourceGet = () => {
 
   const deleteResource = resourceId => {
     confirmAlert({
-      title: 'Are you sure?',
-      message: 'Who knows how many people you helped by creating this resource! Please reconsider before clicking Yes. Regardless, thank you for your contribution, and we hope you contribute again soon!',
+      title: "Are you sure?",
+      message:
+        "Who knows how many people you helped by creating this resource! Please reconsider before clicking Yes. Regardless, thank you for your contribution, and we hope you contribute again soon!",
       buttons: [
         {
-          label: 'Delete',
+          label: "Delete",
           onClick: async () => {
             const endpoint = `http://localhost:3000/resources/delete/${resourceId}`;
             await axios.put(endpoint);
-            await fetchResourcesData()
+            await fetchResourcesData();
           }
         },
         {
-          label: 'Keep',
+          label: "Keep",
           onClick: () => null
         }
       ]
@@ -58,40 +59,39 @@ const BootcampResourceGet = () => {
     fetchResourcesData();
   }, []);
 
-  const history = useHistory();
-
   const resourceCardStyles = {
-    maxWidth: '600px',
-    margin: '20px',
-    display: 'flex',
-    flexDirection: 'column'
+    maxWidth: "600px",
+    margin: "20px",
+    display: "flex",
+    flexDirection: "column"
   };
 
   return (
     <Fragment>
       {user.user_types_id === 2 && (
-        <Title isSize={3} style={{textAlign: 'center', marginTop: 30}}><Link to="/resources/submit"><Button isColor={'link'} isOutlined={true}>Submit a resource!</Button></Link></Title>
+        <Title isSize={3} style={{ textAlign: "center", marginTop: 30 }}>
+          <Link to="/resources/submit">
+            <Button isColor={"link"} isOutlined={true}>
+              Submit a resource!
+            </Button>
+          </Link>
+        </Title>
       )}
       <ResourceWrapper>
         {resourcesFetched ? (
           resources.map((resource, i) => {
             const {
               id: resourceId,
-              up_votes,
-              down_votes,
               title,
               short_description: descriptionShort,
-              full_description: descriptionFull,
               resource_url: resourceURL,
-              is_deleted: isDeleted,
               date_posted: datePosted /* information beyond this line relates to resource poster */,
               users_id: usersId,
               email,
               first_name: firstName,
               last_name: lastName,
               github_url: githubLink,
-              linkedin_url: linkedinLink,
-              bootcamp_name: bootcampAffiliation
+              linkedin_url: linkedinLink
             } = resource;
             // const postReport = () => {
             //   history.push(
@@ -114,7 +114,6 @@ const BootcampResourceGet = () => {
                   githubLink={githubLink}
                   linkedinLink={linkedinLink}
                   descriptionShort={descriptionShort}
-                  // descriptionFull={descriptionFull}
                   user={user}
                   editResource={editResource}
                   deleteResource={deleteResource}
@@ -134,9 +133,6 @@ const BootcampResourceGet = () => {
   );
 };
 
-const Anchor = styled.a`
-  color: blue;
-`;
 
 const ResourceWrapper = styled.div`
   display: flex;
