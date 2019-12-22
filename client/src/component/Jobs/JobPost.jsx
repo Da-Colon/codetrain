@@ -16,10 +16,8 @@ import {
   CardFooter,
   CardFooterItem
 } from "bloomer";
-import styled from "styled-components";
 import {
   Box,
-  Select,
   Input,
   Field,
   Label,
@@ -98,7 +96,7 @@ const JobPost = props => {
       contact_phone: editJobState.phone
     };
 
-    const response = await Axios.put(endpoint, payload);
+    await Axios.put(endpoint, payload);
     alert("Edit Successful!");
     setEditMode(false);
     fetchJobsData()
@@ -115,7 +113,7 @@ const JobPost = props => {
           label: 'Delete',
           onClick: async () => {
             const endpoint = `http://localhost:3000/posts/jobs/delete/${props.match.params.job_id}`
-            const response = await Axios.put(endpoint);
+            await Axios.put(endpoint);
             history.push(`/jobs`)
           }
         },
@@ -256,10 +254,5 @@ const JobPost = props => {
   );
 };
 
-const JobCardWrapper = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-`;
 
 export default JobPost;

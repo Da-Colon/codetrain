@@ -1,6 +1,6 @@
 import React from "react";
 import Moment from "react-moment";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import EditResourceModal from './EditResourceModal';
 import styled from 'styled-components';
 
@@ -23,7 +23,6 @@ import {
 } from "bloomer";
 
 const BootcampResourceCard = (props) => {
-  let history = useHistory();
 
   const {
     title,
@@ -63,7 +62,7 @@ const BootcampResourceCard = (props) => {
               <Breadcrumb style={{fontSize: '1rem'}} isAlign={"left"}>
                 <ul>
                   <BreadcrumbItem>
-                    <Anchor href={resourceURL} target="_blank">
+                    <Anchor href={resourceURL} target="_blank" rel="noopener noreferrer">
                       Resource link
               </Anchor>
                   </BreadcrumbItem>
@@ -101,19 +100,19 @@ const BootcampResourceCard = (props) => {
                     </Link>
                   </BreadcrumbItem>
                   <BreadcrumbItem>
-                    <a href={`mailto:${email}`} target="_blank">
+                    <a href={`mailto:${email}`} target="_blank" rel="noopener noreferrer">
                       Email
               </a>
                   </BreadcrumbItem>
                 </ul>
                 <ul>
                   <BreadcrumbItem>
-                    <a href={githubLink} target="_blank">
+                    <a href={githubLink} target="_blank" rel="noopener noreferrer">
                       GitHub
               </a>
                   </BreadcrumbItem>
                   <BreadcrumbItem>
-                    <a href={linkedinLink} target="_blank">
+                    <a href={linkedinLink} target="_blank" rel="noopener noreferrer">
                       LinkedIn
               </a>
                   </BreadcrumbItem>
@@ -164,12 +163,6 @@ const BootcampResourceCard = (props) => {
 
 const Anchor = styled.a`
   color: blue;
-`;
-
-const ResourceWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
 `;
 
 export default BootcampResourceCard;

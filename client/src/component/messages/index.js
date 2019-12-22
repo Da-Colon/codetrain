@@ -6,12 +6,10 @@ import { useHistory, useParams } from "react-router-dom";
 
 import { Main, Message } from "../Styles/messageStyles";
 import {
-  Card,
   Box,
   Panel,
   PanelBlock,
   PanelHeading,
-  PanelIcon,
   PanelTab,
   PanelTabs,
   Control,
@@ -21,7 +19,6 @@ import {
   Title,
   TextArea,
   Button,
-  Icon
 } from "bloomer";
 
 export default function Messages() {

@@ -6,7 +6,7 @@ const Story = props => {
 
   return (
     <Box style={{margin: "1rem"}}>
-      <a href={story.url} target="_blank">
+      <a href={story.url} target="_blank" rel="noopener noreferrer">
         <p>{story.title}</p>
       </a>
       <p>{story.description}</p>

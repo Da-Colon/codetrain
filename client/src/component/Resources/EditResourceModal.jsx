@@ -4,12 +4,9 @@ import axios from 'axios';
 
 // import { Form, Label, Input, Button as FormButton } from '../Styles/FormStyles';
 import {
-  Box,
-  Select,
   Input,
   Field,
   Label,
-  Title,
   TextArea,
   Button
 } from "bloomer";
@@ -46,7 +43,7 @@ const EditResourceModal = props => {
     };
 
     setEditState({ ...editState, resourceEdited: true });
-    const response = await axios.put(endpoint, payload);
+    await axios.put(endpoint, payload);
     setEditFormActive(false)
     fetchResourcesData()
   }

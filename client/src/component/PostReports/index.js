@@ -6,8 +6,6 @@ import { useHistory } from "react-router-dom";
 
 import {
   Box,
-  Select,
-  Input,
   Field,
   Label,
   Title,

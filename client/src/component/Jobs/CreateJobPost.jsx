@@ -1,21 +1,12 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import {useHistory} from 'react-router-dom'
-import {
-  Box,
-  Select,
-  Input,
-  Field,
-  Label,
-  Title,
-  Button,
-  TextArea
-} from "bloomer";
+import { useHistory } from "react-router-dom";
+import { Box, Input, Label, Title, Button, TextArea } from "bloomer";
 import axios from "axios";
 
 const CreateJobPost = () => {
   const company = useSelector(state => state.user);
-  let history = useHistory()
+  let history = useHistory();
 
   const [state, setState] = useState({
     job_title: "",
@@ -46,10 +37,10 @@ const CreateJobPost = () => {
       users_id: company.id
     };
 
-    const response = await axios.post(endpoint, payload);
-    alert('Your job was posted!')
+    await axios.post(endpoint, payload);
+    alert("Your job was posted!");
     setState({ ...state, isSubmitted: true });
-    history.push("/jobs")
+    history.push("/jobs");
   };
 
   return (
@@ -59,61 +50,63 @@ const CreateJobPost = () => {
           <h2> Thank you for your submission {state.contact_name}</h2>
         </div>
       ) : (
-        <Box style={{margin: "64px"}}>
-        <Title style={{textAlign: "center"}}>Create a Job Post</Title>
+        <Box style={{ margin: "64px" }}>
+          <Title style={{ textAlign: "center" }}>Create a Job Post</Title>
 
-        <form onSubmit={handleSubmit} style={{padding: "32px"}}>
-          <Label>
-            Job Title
-            <Input
-              type="text"
-              placeholder="Job Title"
-              name="job_title"
-              value={state.name}
-              onChange={handleChange}
+          <form onSubmit={handleSubmit} style={{ padding: "32px" }}>
+            <Label>
+              Job Title
+              <Input
+                type="text"
+                placeholder="Job Title"
+                name="job_title"
+                value={state.name}
+                onChange={handleChange}
               ></Input>
-          </Label>
-          <Label>
-            Job Description
-            <TextArea
-              placeholder="Job Description Information"
-              name="description"
-              value={state.description}
-              onChange={handleChange}
+            </Label>
+            <Label>
+              Job Description
+              <TextArea
+                placeholder="Job Description Information"
+                name="description"
+                value={state.description}
+                onChange={handleChange}
               />
-          </Label>
-          <Label>
-            Experience Desired
-            <TextArea
-              placeholder="What skills are you looking for?"
-              name="experience"
-              value={state.experience}
-              onChange={handleChange}
+            </Label>
+            <Label>
+              Experience Desired
+              <TextArea
+                placeholder="What skills are you looking for?"
+                name="experience"
+                value={state.experience}
+                onChange={handleChange}
               />
-          </Label>
-          <Label>
-            Contact Email
-            <Input
-              type="email"
-              placeholder="Contact Email"
-              name="email"
-              value={state.email}
-              onChange={handleChange}
+            </Label>
+            <Label>
+              Contact Email
+              <Input
+                type="email"
+                placeholder="Contact Email"
+                name="email"
+                value={state.email}
+                onChange={handleChange}
               ></Input>
-          </Label>
-          <Label>
-            Contact Phone Number
-            <Input
-              type="tel"
-              placeholder="Phone Number"
-              name="phone"
-              value={state.phone}
-              onChange={handleChange}
+            </Label>
+            <Label>
+              Contact Phone Number
+              <Input
+                type="tel"
+                placeholder="Phone Number"
+                name="phone"
+                value={state.phone}
+                onChange={handleChange}
               ></Input>
-          </Label>
-          <Button isColor="primary" type="submit">Create Job</Button>
-        </form>
-      </Box>
+            </Label>
+            <Button isColor="primary" type="submit">
+              Create Job
+            </Button>
+          </form>
+        </Box>
       )}
     </>
   );
