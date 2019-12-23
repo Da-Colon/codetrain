@@ -9,6 +9,13 @@ import {Button} from 'bloomer'
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
+const fetchResourcesData = async (resourceId) => {
+  const resourcesEndpoint = `http://localhost:3000/resources/${resourceId}`;
+  const res = await axios.get(resourcesEndpoint);
+  const data = res.data
+  return data
+};
+
 const ResourcePost = props => {
   const user = useSelector(state => state.user);
   const [resources, setResources] = useState([]);
@@ -18,12 +25,6 @@ const ResourcePost = props => {
     resourceId: null
   });
 
-  const fetchResourcesData = async () => {
-    const resourcesEndpoint = `http://localhost:3000/resources/${props.match.params.resource_id}`;
-    const res = await axios.get(resourcesEndpoint);
-    setResources(res.data);
-    setResourcesFetched(true);
-  };
 
   let history = useHistory();
 
@@ -56,8 +57,11 @@ const ResourcePost = props => {
   };
 
   useEffect(() => {
-    fetchResourcesData();
-  }, []);
+    fetchResourcesData(props.match.params.resource_id).then(data => {
+    setResources(data)
+    setResourcesFetched(true);
+  })
+  }, [props.match.params.resource_id]);
 
   const resourceCardStyles = {
     maxWidth: "1000px",

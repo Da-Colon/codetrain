@@ -16,6 +16,7 @@ import {
   CardFooter,
   CardFooterItem
 } from "bloomer";
+
 import {
   Box,
   Input,
@@ -25,6 +26,13 @@ import {
   Button,
   TextArea
 } from "bloomer";
+
+const fetchJobsData = async (jobId) => {
+  const endpoint = `http://localhost:3000/posts/jobs/id/${jobId}`;
+  const res = await Axios.get(endpoint);
+  const data = res.data
+  return data
+};
 
 const JobPost = props => {
   const user = useSelector(state => state.user);
@@ -42,15 +50,11 @@ const JobPost = props => {
     isSubmitted: false
   });
 
-  const fetchJobsData = async () => {
-    const endpoint = `http://localhost:3000/posts/jobs/id/${props.match.params.job_id}`;
-    const res = await Axios.get(endpoint);
-    setJobs(res.data);
-  };
+  
 
   useEffect(() => {
-    fetchJobsData();
-  }, []);
+    fetchJobsData(props.match.params.job_id).then(data => setJobs(data));
+  }, [props.match.params.job_id]);
 
   const postApplication = async () => {
     const endpoint = "http://localhost:3000/job-applications/add-application/";

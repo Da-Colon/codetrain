@@ -16,7 +16,7 @@ const Post = props => {
 
   useEffect(() => {
     getAnItem(props.id);
-  }, []);
+  }, [props.id]);
 
   const dateToFormat = postData.time;
 

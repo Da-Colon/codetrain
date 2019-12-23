@@ -17,22 +17,23 @@ import {
 } from "bloomer";
 import styled from "styled-components";
 
+const fetchJobsData = async (companyId) => {
+  const endpoint = `http://localhost:3000/posts/jobs/company/${companyId}`;
+  const res = await Axios.get(endpoint);
+  const activeJobs = res.data.filter(job => job.is_active === true);
+  return activeJobs;
+};
+
 // This component fetches all the data that will populate each job post
 const CompanyJobs = () => {
   const user = useSelector(state => state.user);
   const [jobs, setJobs] = useState([]);
 
-  const fetchJobsData = async () => {
-    const endpoint = `http://localhost:3000/posts/jobs/company/${user.companies_id}`;
-    const res = await Axios.get(endpoint);
-    const activeJobs = res.data.filter(job => job.is_active === true);
-    setJobs(activeJobs);
-  };
 
   // the 2nd empty array argument prevents infinite re-renders.
   useEffect(() => {
-    fetchJobsData();
-  }, []);
+    fetchJobsData(user.companies_id).then(activeJobs => setJobs(activeJobs));
+  }, [user.companies_id]);
 
   // mapping over data and passing job data as props to the Job Card which renders job posts
   return (
@@ -49,20 +50,21 @@ const CompanyJobs = () => {
   );
 };
 
+const fetchCompanyData = async (companyId) => {
+  const endpoint = `http://localhost:3000/companies/id/${companyId}`;
+  const res = await Axios.get(endpoint);
+  const data = res.data
+  return data
+};
 // These are the actual job posts. They receive data from the JobBoard component.
 const JobCard = props => {
   const { data } = props;
   const [companyData, setCompanyData] = useState([]);
 
-  const fetchCompanyData = async () => {
-    const endpoint = `http://localhost:3000/companies/id/${data.companies_id}`;
-    const res = await Axios.get(endpoint);
-    setCompanyData(res.data);
-  };
 
   useEffect(() => {
-    fetchCompanyData();
-  }, []);
+    fetchCompanyData(data.companies_id).then(data => setCompanyData(data));
+  }, [data.companies_id]);
 
   return (
     <Card

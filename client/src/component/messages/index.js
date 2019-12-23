@@ -18,10 +18,26 @@ import {
   Label,
   Title,
   TextArea,
-  Button,
+  Button
 } from "bloomer";
+const endpoint = "http://localhost:3000";
+
+
+const getMessages = async (userId) => {
+  const response = await axios.get(`${endpoint}/messages/all/${userId}`);
+  const data = response.data;
+  return data;
+};
+
+const getSentMessages = async (userId) => {
+  const response = await axios.get(`${endpoint}/messages/sent/${userId}`);
+  const data = response.data;
+  return data;
+};
+
 
 export default function Messages() {
+  let { user_id } = useParams();
   const user = useSelector(state => state.user);
   const [messages, setMessages] = useState([]);
   const [sentMessages, setSentMessages] = useState([]);
@@ -37,23 +53,6 @@ export default function Messages() {
     sent_from_companies_id: null
   });
 
-  const endpoint = "http://localhost:3000";
-  let { user_id } = useParams();
-
-  const getMessages = async () => {
-    const inboxMessages = await axios.get(
-      `${endpoint}/messages/all/${user.id}`
-    );
-    const inboxData = inboxMessages.data;
-    setMessages(inboxData);
-
-    const getSentMessages = await axios.get(
-      `${endpoint}/messages/sent/${user.id}`
-    );
-    const sentData = getSentMessages.data;
-    setSentMessages(sentData);
-  };
-
   const showMessageAndReplyForm = async message_id => {
     const response = await axios.get(`${endpoint}/messages/one/${message_id}`);
     const data = response.data;
@@ -61,16 +60,15 @@ export default function Messages() {
     setShowMessage(true);
   };
 
-  const ShowMessageParam = id => {
-    showMessageAndReplyForm(id);
-  };
+  
 
   useEffect(() => {
-    getMessages();
+    getMessages(user.id).then(data => setMessages(data));
+    getSentMessages(user_id).then(data => setSentMessages(data));
     if (user_id) {
-      ShowMessageParam(user_id);
+      showMessageAndReplyForm(user_id);
     }
-  }, []);
+  }, [user.id, user_id]);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -248,62 +246,62 @@ export default function Messages() {
                 </p>
                 <p>Subject: {message.subject}</p>
                 <Box style={{ padding: "16px", margin: "16px" }}>
-                <Title isSize={5}>Message</Title>
+                  <Title isSize={5}>Message</Title>
                   {message.message}
                 </Box>
               </Box>
             );
           })}
           <Box>
-          <Title isSize={4}>Reply to {singleMessage[0].first_name}</Title>
+            <Title isSize={4}>Reply to {singleMessage[0].first_name}</Title>
 
-          <form onSubmit={handleSubmit}>
-            <Field>
-              <Label>Send To</Label>
-              <Control>
-                <Input
-                  type="text"
-                  placeholder={singleMessage[0].first_name}
-                  name="receiver"
-                  aria-label="receiver"
-                  disabled
+            <form onSubmit={handleSubmit}>
+              <Field>
+                <Label>Send To</Label>
+                <Control>
+                  <Input
+                    type="text"
+                    placeholder={singleMessage[0].first_name}
+                    name="receiver"
+                    aria-label="receiver"
+                    disabled
                   />
-              </Control>
-            </Field>
+                </Control>
+              </Field>
 
-            <Field>
-              <Label>Subject</Label>
-              <Control>
-                <Input
-                  type="text"
-                  onChange={handleChange}
-                  name="subject"
-                  aria-label="subject"
+              <Field>
+                <Label>Subject</Label>
+                <Control>
+                  <Input
+                    type="text"
+                    onChange={handleChange}
+                    name="subject"
+                    aria-label="subject"
                   />
-              </Control>
-            </Field>
+                </Control>
+              </Field>
 
-            <Field>
-              <Label>Message</Label>
-              <Control>
-                <TextArea
-                  type="textarea"
-                  onChange={handleChange}
-                  name="message"
-                  aria-label="message"
+              <Field>
+                <Label>Message</Label>
+                <Control>
+                  <TextArea
+                    type="textarea"
+                    onChange={handleChange}
+                    name="message"
+                    aria-label="message"
                   />
-              </Control>
-            </Field>
+                </Control>
+              </Field>
 
-            <Field isGrouped>
-              <Control>
-                <Button type="submit" isColor="primary">
-                  Submit
-                </Button>
-              </Control>
-            </Field>
-          </form>
-                  </Box>
+              <Field isGrouped>
+                <Control>
+                  <Button type="submit" isColor="primary">
+                    Submit
+                  </Button>
+                </Control>
+              </Field>
+            </form>
+          </Box>
         </Message>
       ) : (
         ""
