@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import Moment from "react-moment";
@@ -21,10 +21,21 @@ import {
   Button
 } from "bloomer";
 
+import {
+  getReports,
+  getUsersReports,
+  getCompaniesReports,
+  getJobsReports,
+  getResourcesReports,
+  getResolvedReports,
+  getUsersResolvedReports,
+  getCompaniesResolvedReports,
+  getJobsResolvedReports,
+  getResourcesResolvedReports
+} from "./reportFunctions";
 
 //   deleteJob,
 //   deleteResource,
-
 
 export default function Reports() {
   const history = useHistory();
@@ -53,16 +64,16 @@ export default function Reports() {
     subject: "",
     message: "",
     sent_from: "",
-    sent_to: "",
+    sent_to: ""
   });
 
-  const [messageData, setMessageData] = useState({id: '', name: ''})
+  const [messageData, setMessageData] = useState({ id: "", name: "" });
 
   const [sendCompanyMessage, setSendCompanyMessage] = useState({
     subject: "",
     message: "",
     sent_from: "",
-    companies_id: "",
+    companies_id: ""
   });
   // conditional rendering states
   const [showResolved, setShowResolved] = useState(false);
@@ -113,106 +124,51 @@ export default function Reports() {
     }
   };
 
-
   const ENDPOINT = `http://localhost:3000`;
 
-  // Unresolved reports
-  const getReports = async () => {
-    const all = await axios.get(`${ENDPOINT}/reports`);
-    const data = all.data;
-    setAllReports(data);
-  };
+  useEffect(() => {
+    getReports().then(reports => setAllReports(reports));
+  }, []);
 
-  const getUsersReports = async () => {
-    const response = await axios.get(`${ENDPOINT}/reports/all/users`);
-    const data = response.data;
-    if (response.status === 200) {
-      setUsers(data);
-    } else {
-      alert("Sorry, there was an error");
-    }
-  };
+  useEffect(() => {
+    getUsersReports().then(reports => setUsers(reports));
+  }, []);
 
-  const getCompaniesReports = async () => {
-    const response = await axios.get(`${ENDPOINT}/reports/all/companies`);
-    const data = response.data;
-    if (response.status === 200) {
-      setCompanies(data);
-    } else {
-      alert("Sorry, there was an error");
-    }
-  };
+  useEffect(() => {
+    getCompaniesReports().then(reports => setCompanies(reports));
+  }, []);
 
-  const getJobsReports = async () => {
-    const response = await axios.get(`${ENDPOINT}/reports/all/jobs`);
-    const data = response.data;
-    if (response.status === 200) {
-      setJobs(data);
-    } else {
-      alert("Sorry, there was an error");
-    }
-  };
+  useEffect(() => {
+    getJobsReports().then(reports => setJobs(reports));
+  }, []);
 
-  const getResourcesReports = async () => {
-    const response = await axios.get(`${ENDPOINT}/reports/all/resources`);
-    const data = response.data;
-    if (response.status === 200) {
-      setResources(data);
-    } else {
-      alert("Sorry, there was an error");
-    }
-  };
+  useEffect(() => {
+    getResourcesReports().then(reports => setResources(reports));
+  }, []);
 
-  // Resolved reports
-  const getResolvedReports = async () => {
-    const all = await axios.get(`${ENDPOINT}/reports/resolved`);
-    const data = all.data;
-    setAllResolvedReports(data);
-  };
+  useEffect(() => {
+    getResolvedReports().then(reports => setAllResolvedReports(reports));
+  }, []);
 
-  const getUsersResolvedReports = async () => {
-    const response = await axios.get(`${ENDPOINT}/reports/all/resolved/users`);
-    const data = response.data;
-    if (response.status === 200) {
-      setUsersResolved(data);
-    } else {
-      alert("Sorry, there was an error");
-    }
-  };
+  useEffect(() => {
+    getUsersResolvedReports().then(reports => setUsersResolved(reports));
+  }, []);
 
-  const getCompaniesResolvedReports = async () => {
-    const response = await axios.get(
-      `${ENDPOINT}/reports/all/resolved/companies`
+  useEffect(() => {
+    getCompaniesResolvedReports().then(reports =>
+      setCompaniesResolved(reports)
     );
-    const data = response.data;
-    if (response.status === 200) {
-      setCompaniesResolved(data);
-    } else {
-      alert("Sorry, there was an error");
-    }
-  };
+  }, []);
 
-  const getJobsResolvedReports = async () => {
-    const response = await axios.get(`${ENDPOINT}/reports/all/resolved/jobs`);
-    const data = response.data;
-    if (response.status === 200) {
-      setJobsResolved(data);
-    } else {
-      alert("Sorry, there was an error");
-    }
-  };
+  useEffect(() => {
+    getJobsResolvedReports().then(reports => setJobsResolved(reports));
+  }, []);
 
-  const getResourcesResolvedReports = async () => {
-    const response = await axios.get(
-      `${ENDPOINT}/reports/all/resolved/resources`
+  useEffect(() => {
+    getResourcesResolvedReports().then(reports =>
+      setResourcesResolved(reports)
     );
-    const data = response.data;
-    if (response.status === 200) {
-      setResourcesResolved(data);
-    } else {
-      alert("Sorry, there was an error");
-    }
-  };
+  }, []);
 
   const getTheReport = async id => {
     const response = await axios.get(`${ENDPOINT}/report/${id}`);
@@ -224,19 +180,6 @@ export default function Reports() {
     }
   };
 
-  useEffect(() => {
-    getReports();
-    getUsersReports();
-    getCompaniesReports();
-    getJobsReports();
-    getResourcesReports();
-    getResolvedReports();
-    getUsersResolvedReports();
-    getCompaniesResolvedReports();
-    getJobsResolvedReports();
-    getResourcesResolvedReports();
-  }, []);
-
   const handleReportClick = id => {
     setShowReport(true);
     getTheReport(id);
@@ -244,30 +187,30 @@ export default function Reports() {
   };
 
   const handleViewProfileClick = id => {
-    history.push(`/user/${id}`)
-  }
+    history.push(`/user/${id}`);
+  };
 
   const handleViewCompanyProfileClick = id => {
-    history.push(`/company/${id}`)
-  }
+    history.push(`/company/${id}`);
+  };
 
   const handleViewJobPostClick = id => {
-    history.push(`/jobs/${id}`)
-  }
+    history.push(`/jobs/${id}`);
+  };
 
   const handleViewResourcePostClick = id => {
-    history.push(`/resources/${id}`)
-  }
+    history.push(`/resources/${id}`);
+  };
 
   const handleBanUserClick = async id => {
-    const response = await axios.put(`${ENDPOINT}/reports/auth/user/${id}`)
-    console.log(response)
-    if(response.status === 200){
-      alert('User Authorization revoked')
+    const response = await axios.put(`${ENDPOINT}/reports/auth/user/${id}`);
+    console.log(response);
+    if (response.status === 200) {
+      alert("User Authorization revoked");
     } else {
-      alert('Sorry There was an error updating authorization')
+      alert("Sorry There was an error updating authorization");
     }
-  }
+  };
 
   const handleResolveClick = async id => {
     const response = await axios.post(`${ENDPOINT}/reports/resolve/${id}`);
@@ -276,16 +219,20 @@ export default function Reports() {
       setReport(false);
       setShowResolved(false);
       setShowUnResolved(false);
-      getReports();
-      getUsersReports();
-      getCompaniesReports();
-      getJobsReports();
-      getResourcesReports();
-      getResolvedReports();
-      getUsersResolvedReports();
-      getCompaniesResolvedReports();
-      getJobsResolvedReports();
-      getResourcesResolvedReports();
+      getReports().then(reports => setAllReports(reports))
+      getUsersReports().then(reports => setUsers(reports));
+      getCompaniesReports().then(reports => setCompanies(reports));
+      getJobsReports().then(reports => setJobs(reports));
+      getResourcesReports().then(reports => setResources(reports));
+      getResolvedReports().then(reports => setAllResolvedReports(reports));
+      getUsersResolvedReports().then(reports => setUsersResolved(reports));
+      getCompaniesResolvedReports().then(reports =>
+        setCompaniesResolved(reports)
+      );
+      getJobsResolvedReports().then(reports => setJobsResolved(reports));
+      getResourcesResolvedReports().then(reports =>
+        setResourcesResolved(reports)
+      );
       setShowUnResolved(true);
     } else {
       alert("Sorry, There was an Error resolving report");
@@ -294,7 +241,7 @@ export default function Reports() {
 
   const handleMessageSubmit = async e => {
     e.preventDefault();
-    const endpoint = 'http://localhost:3000'
+    const endpoint = "http://localhost:3000";
     const send = await axios.post(`${endpoint}/sendmessage`, sendMessage);
     if (send.status === 200) {
       alert("Message Sent");
@@ -306,8 +253,11 @@ export default function Reports() {
 
   const handleCompanyMessageSubmit = async e => {
     e.preventDefault();
-    const endpoint = 'http://localhost:3000'
-    const send = await axios.post(`${endpoint}/reports/send/company`, sendCompanyMessage);
+    const endpoint = "http://localhost:3000";
+    const send = await axios.post(
+      `${endpoint}/reports/send/company`,
+      sendCompanyMessage
+    );
     if (send.status === 200) {
       alert("Message Sent");
       setShowCompanyMessage(false);
@@ -316,16 +266,16 @@ export default function Reports() {
     }
   };
 
-  const handleUserMessageForm = (id) => {
+  const handleUserMessageForm = id => {
     setShowMessage(true);
     setShowReport(false);
-    setMessageData({...messageData, id: id})
-  }
+    setMessageData({ ...messageData, id: id });
+  };
 
-  const handleCompanyMessageForm = (id) => {
+  const handleCompanyMessageForm = id => {
     setShowCompanyMessage(true);
     setShowReport(false);
-  }
+  };
 
   const handleMessageChange = e => {
     const { name, value } = e.target;
@@ -333,7 +283,7 @@ export default function Reports() {
       ...sendMessage,
       [name]: value,
       sent_from: user.id,
-      sent_to: messageData.id,
+      sent_to: messageData.id
     });
   };
   const handleCompanyMessageChange = e => {
@@ -342,18 +292,20 @@ export default function Reports() {
       ...sendCompanyMessage,
       [name]: value,
       sent_from: user.id,
-      companies_id: singleReport.companies_id,
+      companies_id: singleReport.companies_id
     });
   };
 
   const handleCompanyBanClick = async e => {
-    const response = await axios.put(`${ENDPOINT}/reports/auth/company/${singleReport.companies_id}`);
-    if(response.status === 200) {
-      alert('Company Ban Successful')
-    } else{
-      alert('Sorry there was an error with the ban')
+    const response = await axios.put(
+      `${ENDPOINT}/reports/auth/company/${singleReport.companies_id}`
+    );
+    if (response.status === 200) {
+      alert("Company Ban Successful");
+    } else {
+      alert("Sorry there was an error with the ban");
     }
-  }
+  };
 
   return (
     <div style={{ display: "flex" }}>
@@ -647,7 +599,9 @@ export default function Reports() {
                 {" "}
                 Offender:{" "}
                 {singleReport.first_name + " " + singleReport.last_name}
-                <span style={{fontWeight: "900"}}>{!singleReport.auth ? 'User Banned' : ''}</span>
+                <span style={{ fontWeight: "900" }}>
+                  {!singleReport.auth ? "User Banned" : ""}
+                </span>
               </h2>
             ) : singleReport.posts_jobs_id === null ? (
               <>Offending Company: {singleReport.name}</>
@@ -657,8 +611,9 @@ export default function Reports() {
                 <h2>
                   Company User:{" "}
                   {singleReport.first_name + " " + singleReport.last_name}
-                  <span style={{fontWeight: "900"}}>{!singleReport.auth ? 'User Banned' : ''}</span>
-                
+                  <span style={{ fontWeight: "900" }}>
+                    {!singleReport.auth ? "User Banned" : ""}
+                  </span>
                 </h2>
                 <h2>Job Post: {singleReport.jobtitle}</h2>
               </>
@@ -678,32 +633,86 @@ export default function Reports() {
               </Button>
               {singleReport.users_id ? (
                 <>
-                <Button onClick={() => handleViewProfileClick(singleReport.users_id)} style={{ margin: "16px" }}>View Offender Profile</Button>
-                <Button onClick={()=> handleUserMessageForm(singleReport.users_id)} style={{ margin: "16px" }}>Message Offender</Button>
-                <Button onClick={() => handleBanUserClick(singleReport.users_id)} style={{ margin: "16px" }}>Ban User</Button>
+                  <Button
+                    onClick={() =>
+                      handleViewProfileClick(singleReport.users_id)
+                    }
+                    style={{ margin: "16px" }}
+                  >
+                    View Offender Profile
+                  </Button>
+                  <Button
+                    onClick={() => handleUserMessageForm(singleReport.users_id)}
+                    style={{ margin: "16px" }}
+                  >
+                    Message Offender
+                  </Button>
+                  <Button
+                    onClick={() => handleBanUserClick(singleReport.users_id)}
+                    style={{ margin: "16px" }}
+                  >
+                    Ban User
+                  </Button>
                 </>
-              ) : <></>}
-              <Button onClick={()=> handleUserMessageForm(singleReport.submited_by)} style={{ margin: "16px" }}>
+              ) : (
+                <></>
+              )}
+              <Button
+                onClick={() => handleUserMessageForm(singleReport.submited_by)}
+                style={{ margin: "16px" }}
+              >
                 Message Report Submitter
               </Button>
               {singleReport.companies_id !== null ? (
                 <>
-                  <Button onClick={() => handleViewCompanyProfileClick(singleReport.companies_id)} style={{ margin: "16px" }}>
+                  <Button
+                    onClick={() =>
+                      handleViewCompanyProfileClick(singleReport.companies_id)
+                    }
+                    style={{ margin: "16px" }}
+                  >
                     View Company Profile
                   </Button>
-                  <Button onClick={() => handleCompanyMessageForm(singleReport.users_id)} style={{ margin: "16px" }}>Message Company</Button>
-                  <Button onClick={handleCompanyBanClick} style={{ margin: "16px" }}>Ban Company</Button>
+                  <Button
+                    onClick={() =>
+                      handleCompanyMessageForm(singleReport.users_id)
+                    }
+                    style={{ margin: "16px" }}
+                  >
+                    Message Company
+                  </Button>
+                  <Button
+                    onClick={handleCompanyBanClick}
+                    style={{ margin: "16px" }}
+                  >
+                    Ban Company
+                  </Button>
                 </>
               ) : (
                 ""
               )}
               {singleReport.posts_jobs_id !== null ? (
-                <Button onClick={() => handleViewJobPostClick(singleReport.posts_jobs_id)} style={{ margin: "16px" }}>View Job Post</Button>
+                <Button
+                  onClick={() =>
+                    handleViewJobPostClick(singleReport.posts_jobs_id)
+                  }
+                  style={{ margin: "16px" }}
+                >
+                  View Job Post
+                </Button>
               ) : (
                 ""
               )}
               {singleReport.resource_id !== null ? (
-                <Button onClick={() => handleViewResourcePostClick(singleReport.resource_id)} style={{ margin: "16px" }}> Resource Post </Button>
+                <Button
+                  onClick={() =>
+                    handleViewResourcePostClick(singleReport.resource_id)
+                  }
+                  style={{ margin: "16px" }}
+                >
+                  {" "}
+                  Resource Post{" "}
+                </Button>
               ) : (
                 ""
               )}
@@ -715,11 +724,13 @@ export default function Reports() {
       ) : (
         " "
       )}
-    {showMessage ? (
-      <Box style={{display: "flex", flexDirection: "column", margin: "0 auto"}}>
-      <Title isSize={4}>Send Message</Title>
-      <form  onSubmit={handleMessageSubmit}>
-        {/* <Field>
+      {showMessage ? (
+        <Box
+          style={{ display: "flex", flexDirection: "column", margin: "0 auto" }}
+        >
+          <Title isSize={4}>Send Message</Title>
+          <form onSubmit={handleMessageSubmit}>
+            {/* <Field>
           <Label>Send To</Label>
           <Control>
             <Input
@@ -731,91 +742,97 @@ export default function Reports() {
           </Control>
         </Field> */}
 
-        <Field>
-          <Label>Subject</Label>
-          <Control>
-            <Input
-              type="text"
-              onChange={handleMessageChange}
-              name="subject"
-              aria-label="subject"
-            />
-          </Control>
-        </Field>
+            <Field>
+              <Label>Subject</Label>
+              <Control>
+                <Input
+                  type="text"
+                  onChange={handleMessageChange}
+                  name="subject"
+                  aria-label="subject"
+                />
+              </Control>
+            </Field>
 
-        <Field>
-          <Label>Message</Label>
-          <Control>
-            <TextArea
-              type="textarea"
-              onChange={handleMessageChange}
-              name="message"
-              aria-label="message"
-            />
-          </Control>
-        </Field>
+            <Field>
+              <Label>Message</Label>
+              <Control>
+                <TextArea
+                  type="textarea"
+                  onChange={handleMessageChange}
+                  name="message"
+                  aria-label="message"
+                />
+              </Control>
+            </Field>
 
-        <Field isGrouped>
-          <Control>
-            <Button type="submit" isColor="primary">
-              Submit
-            </Button>
-          </Control>
-        </Field>
-      </form>
-      </Box>
-    ) : ''}
-    {showCompanyMessage ? (
-      <Box style={{display: "flex", flexDirection: "column", margin: "0 auto"}}>
-      <Title isSize={4}>Send Message to {singleReport.name}</Title>
-      <form  onSubmit={handleCompanyMessageSubmit}>
-        <Field>
-          <Label>Send To</Label>
-          <Control>
-            <Input
-              type="text"
-              placeholder={singleReport.name}
-              name="receiver"
-              aria-label="receiver"
-              disabled
-            />
-          </Control>
-        </Field>
+            <Field isGrouped>
+              <Control>
+                <Button type="submit" isColor="primary">
+                  Submit
+                </Button>
+              </Control>
+            </Field>
+          </form>
+        </Box>
+      ) : (
+        ""
+      )}
+      {showCompanyMessage ? (
+        <Box
+          style={{ display: "flex", flexDirection: "column", margin: "0 auto" }}
+        >
+          <Title isSize={4}>Send Message to {singleReport.name}</Title>
+          <form onSubmit={handleCompanyMessageSubmit}>
+            <Field>
+              <Label>Send To</Label>
+              <Control>
+                <Input
+                  type="text"
+                  placeholder={singleReport.name}
+                  name="receiver"
+                  aria-label="receiver"
+                  disabled
+                />
+              </Control>
+            </Field>
 
-        <Field>
-          <Label>Subject</Label>
-          <Control>
-            <Input
-              type="text"
-              onChange={handleCompanyMessageChange}
-              name="subject"
-              aria-label="subject"
-            />
-          </Control>
-        </Field>
+            <Field>
+              <Label>Subject</Label>
+              <Control>
+                <Input
+                  type="text"
+                  onChange={handleCompanyMessageChange}
+                  name="subject"
+                  aria-label="subject"
+                />
+              </Control>
+            </Field>
 
-        <Field>
-          <Label>Message</Label>
-          <Control>
-            <TextArea
-              type="textarea"
-              onChange={handleCompanyMessageChange}
-              name="message"
-              aria-label="message"
-            />
-          </Control>
-        </Field>
+            <Field>
+              <Label>Message</Label>
+              <Control>
+                <TextArea
+                  type="textarea"
+                  onChange={handleCompanyMessageChange}
+                  name="message"
+                  aria-label="message"
+                />
+              </Control>
+            </Field>
 
-        <Field isGrouped>
-          <Control>
-            <Button type="submit" isColor="primary">
-              Submit
-            </Button>
-          </Control>
-        </Field>
-      </form>
-      </Box>
-    ) : ''}
+            <Field isGrouped>
+              <Control>
+                <Button type="submit" isColor="primary">
+                  Submit
+                </Button>
+              </Control>
+            </Field>
+          </form>
+        </Box>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

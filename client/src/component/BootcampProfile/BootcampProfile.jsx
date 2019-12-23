@@ -50,7 +50,7 @@ const UserProfile = () => {
 
   useEffect(() => {
     getUserInfo(id);
-  }, []);
+  }, [id]);
 
   const postReport = e => {
     e.preventDefault();

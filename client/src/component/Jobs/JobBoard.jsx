@@ -18,19 +18,20 @@ import styled from "styled-components";
 
 
 // This component fetches all the data that will populate each job post
+const fetchJobsData = async () => {
+  const endpoint = "http://localhost:3000/posts/jobs";
+  const res = await Axios.get(endpoint);
+  const activeJobs = res.data.filter(job => job.is_active === true);
+  return activeJobs
+};
+
 const JobBoard = () => {
   const [jobs, setJobs] = useState([]);
 
-  const fetchJobsData = async () => {
-    const endpoint = "http://localhost:3000/posts/jobs";
-    const res = await Axios.get(endpoint);
-    const activeJobs = res.data.filter(job => job.is_active === true);
-    setJobs(activeJobs);
-  };
 
   // the 2nd empty array argument prevents infinite re-renders.
   useEffect(() => {
-    fetchJobsData();
+    fetchJobsData().then(activeJobs => setJobs(activeJobs));
   }, []);
 
   // mapping over data and passing job data as props to the Job Card which renders job posts
@@ -43,20 +44,22 @@ const JobBoard = () => {
   );
 };
 
+const fetchCompanyData = async (companyId) => {
+  const endpoint = `http://localhost:3000/companies/id/${companyId}`;
+  const res = await Axios.get(endpoint);
+  const data = res.data
+  return data
+ 
+};
 // These are the actual job posts. They receive data from the JobBoard component.
 const JobCard = ({ data }) => {
   const [companyData, setCompanyData] = useState([]);
 
   // Grabs company profile data based on posts_jobs. This could've been an inner join however, since inner join creates a new table, being able to detect the jobs id in the JobCard Component does not match jobs id in the posts_jobs table
-  const fetchCompanyData = async () => {
-    const endpoint = `http://localhost:3000/companies/id/${data.companies_id}`;
-    const res = await Axios.get(endpoint);
-    setCompanyData(res.data);
-  };
 
   useEffect(() => {
-    fetchCompanyData();
-  }, []);
+    fetchCompanyData(data.companies_id).then(data => setCompanyData(data));
+  }, [data.companies_id]);
 
   // Currently not being used since decision was made to allow an application only when they are viewing the full details of the job post
   // const postApplication = () => {

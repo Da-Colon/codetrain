@@ -26,7 +26,7 @@ const BootcampViewApplications = () => {
 
   useEffect(() => {
     getUserApplications(user.id);
-  }, []);
+  }, [user.id]);
 
   return (
     <ul>

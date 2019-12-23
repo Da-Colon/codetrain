@@ -50,7 +50,7 @@ const CompanyProfile = () => {
 
   useEffect(() => {
     getCompanyInfo(id);
-  }, []);
+  }, [id]);
 
   const handleEditMode = e => {
     e.preventDefault();

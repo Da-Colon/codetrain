@@ -6,6 +6,31 @@ import {useHistory} from 'react-router-dom'
 
 import { Button, Box, Title, Container, Card } from "bloomer";
 
+const endpoint = "http://localhost:3000";
+
+const getJobsByCompany = async (companyId) => {
+  const response = await axios.get(
+    `${endpoint}/job-applications/users/${companyId}`
+  );
+  if(response.status === 200){
+    const data = response.data;
+    return data
+  }else {
+    console.log("There was an Error Returning Data")
+  }
+};
+
+const getMessages = async (userId) => {
+  const response = await axios.get(
+    `${endpoint}/messages/all/${userId}`
+  );
+  if(response.status === 200){
+    const data = response.data;
+    return data
+  }else {
+    console.log("There was an Error Returning Data")
+  }
+}
 
 export default function CompanyHome() {
   const user = useSelector(state => state.user);
@@ -14,28 +39,15 @@ export default function CompanyHome() {
   const [postUsers, setPostUsers] = useState([]);
   const [messages, setMessages] = useState([])
 
-  const endpoint = "http://localhost:3000";
   
-  const getJobsByCompany = async () => {
-    const response = await axios.get(
-      `${endpoint}/job-applications/users/${user.companies_id}`
-    );
-    const data = response.data;
-    setPostUsers(data);
-  };
-
-  const getMessages = async () => {
-    const response = await axios.get(
-      `${endpoint}/messages/all/${user.id}`
-    );
-    const data = response.data;
-    setMessages(data);
-  }
 
   useEffect(() => {
-    getJobsByCompany();
-    getMessages();
-  },[]);
+    getJobsByCompany(user.companies_id).then(data => setPostUsers(data));
+  },[user.companies_id]);
+
+  useEffect(()=> {
+    getMessages(user.id).then(data => setMessages(data));
+  },[user.id]);
 
   return (
     <Container style={{display: "flex", width: "100%"}}>

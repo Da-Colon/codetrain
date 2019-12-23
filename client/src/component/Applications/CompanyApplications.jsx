@@ -23,19 +23,21 @@ import {
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+const getJobPostsByCompanyId = async (companyId) => {
+  const endpoint = `http://localhost:3000/posts/jobs/company/${companyId}`;
+  const res = await Axios.get(endpoint);
+  const data = res.data
+  return data
+};
+
 const CompanyApplications = () => {
+
   const user = useSelector(state => state.user);
   const [jobs, setJobs] = useState([]);
   const [jobId, setJobId] = useState("");
   const [showApplicants, setShowApplicants] = useState(false);
 
-  const getJobPostsByCompanyId = async () => {
-    const endpoint = `http://localhost:3000/posts/jobs/company/${user.companies_id}`;
-    const res = await Axios.get(endpoint);
-
-    res.data.length > 1 ? setJobs(res.data) : setJobs();
-    res.data.length > 1 ? setJobId(String(res.data[0].id)) : setJobId();
-  };
+  
 
   function handleChange(e) {
     setJobId(e.target.value);
@@ -48,8 +50,16 @@ const CompanyApplications = () => {
   }
 
   useEffect(() => {
-    getJobPostsByCompanyId();
-  }, []);
+    getJobPostsByCompanyId(user.companies_id).then(data => {
+      if(data.length > 1){
+        setJobs(data)
+        setJobId(String(data[0].id))
+      }else {
+        setJobs()
+        setJobId();
+      }
+    });
+  }, [user.companies_id]);
 
   return (
     <>
@@ -92,7 +102,15 @@ const FormWrapper = styled.div`
   justify-content: center;
 `;
 
+const getApplicantsByJobId = async (jobsId) => {
+  const endpoint = `http://localhost:3000/api/applicants/${jobsId}`;
+  const res = await Axios.get(endpoint);
+  const data = res.data
+  return data
+};
+
 const ApplicantsData = props => {
+
   const user = useSelector(state => state.user);
   const [applicants, setApplicants] = useState([]);
   const [showMessage, setShowMessage] = useState(false);
@@ -118,15 +136,10 @@ const ApplicantsData = props => {
     }
   };
 
-  const getApplicantsByJobId = async () => {
-    const endpoint = `http://localhost:3000/api/applicants/${props.jobId}`;
-    const res = await Axios.get(endpoint);
-    setApplicants(res.data);
-  };
 
   useEffect(() => {
-    getApplicantsByJobId();
-  }, []);
+    getApplicantsByJobId(props.jobId).then(data => setApplicants(data));
+  }, [props.jobId]);
 
   const handleRejection = async (applicantId, jobId) => {
     const endpoint = `http://localhost:3000/job-applications/update-status/${applicantId}/${jobId}`;
