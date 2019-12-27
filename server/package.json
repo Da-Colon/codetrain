@@ -3,7 +3,7 @@
     "version": "0.0.1",
     "private": true,
     "scripts": {
-        "db:reset": "dropdb codetrain; bash restore-db.sh",
+        "db:reset": "bash restore-db.sh",
         "start": "node ./bin/www",
         "dev": "nodemon --ignore 'sessions/' ./bin/www"
     },
